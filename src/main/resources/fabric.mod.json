@@ -3,15 +3,15 @@
 	"id": "infinity_hoe",
 	"version": "${version}",
 	"name": "Infinity Hoe",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Enchantment that allows tilling thousands of land in one go",
 	"authors": [
-		"Me!"
+		"wdfeer"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/wdfeer/infinity-hoe",
+		"sources": "https://github.com/wdfeer/infinity-hoe"
 	},
-	"license": "CC0-1.0",
+	"license": "GPL-3.0",
 	"icon": "assets/infinity_hoe/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -22,17 +22,11 @@
 			}
 		]
 	},
-	"mixins": [
-		"infinity_hoe.mixins.json"
-	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*",
 		"fabric-language-kotlin": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
