@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
 
 class Infinity : Enchantment(Rarity.RARE, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)) {
     companion object {
@@ -15,6 +17,10 @@ class Infinity : Enchantment(Rarity.RARE, EnchantmentTarget.DIGGER, arrayOf(Equi
 
         fun register() {
             Registry.register(Registries.ENCHANTMENT, Identifier(InfinityHoe.MOD_ID, "hoe_infinity"), instance)
+        }
+
+        fun onTill(world: World, stack: ItemStack, pos: BlockPos) {
+
         }
     }
 
