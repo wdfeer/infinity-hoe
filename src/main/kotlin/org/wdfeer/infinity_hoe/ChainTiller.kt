@@ -88,19 +88,25 @@ object ChainTiller {
     private fun getNext(world: World, origin: BlockPos, blockFilter: Block? = null): BlockPos? {
         val originalBlockType: Block = blockFilter ?: world.getBlockState(origin).block
 
-        val options: MutableList<BlockPos> = mutableListOf()
-        for (x in -1..1) {
-            for (z in -1..1) {
-                val pos = origin.add(x, 0, z)
+        fun getRandomNeighbor(distance: Int): BlockPos? {
+            val options: MutableList<BlockPos> = mutableListOf()
+            for (x in -distance..distance) {
+                for (z in -distance..distance) {
+                    val pos = origin.add(x, 0, z)
 
-                if (pos.equals(origin)) continue
+                    if (pos.equals(origin)) continue
 
-                if (world.getBlockState(pos).block == originalBlockType)
-                    options.add(pos)
+                    if (world.getBlockState(pos).block == originalBlockType)
+                        options.add(pos)
+                }
             }
+            return if (options.isEmpty()) null else options.random()
         }
 
-        return if (options.isEmpty()) null else options.random()
+        var next = getRandomNeighbor(1)
+        if (next == null) next = getRandomNeighbor(2)
+
+        return next
     }
 }
 
