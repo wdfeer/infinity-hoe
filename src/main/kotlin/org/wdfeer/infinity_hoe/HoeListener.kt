@@ -4,6 +4,7 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.ActionResult
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+import org.wdfeer.infinity_hoe.tilling.ChainTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeListener {
