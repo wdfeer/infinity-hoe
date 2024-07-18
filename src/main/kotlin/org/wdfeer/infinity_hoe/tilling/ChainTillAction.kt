@@ -23,7 +23,9 @@ data class ChainTillAction(
 
         private fun getNext(world: World, origin: BlockPos, blockFilter: Block, alreadyIncluded: (BlockPos) -> Boolean): List<BlockPos> {
             fun isValidBlock(pos: BlockPos): Boolean =
-                !(pos == origin || alreadyIncluded(pos)) && world.getBlockState(pos).block == blockFilter
+                !(pos == origin || alreadyIncluded(pos))
+                        && world.getBlockState(pos).block == blockFilter
+                        && world.getBlockState(pos.up()).isAir
 
             fun getNeighbors(range: Int): List<BlockPos> {
                 val positions: MutableList<BlockPos> = mutableListOf()
