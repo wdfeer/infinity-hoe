@@ -31,11 +31,7 @@ class Pesticide : HoeEnchantment(Rarity.VERY_RARE) {
         }
 
         private fun checkCollision(entity: Entity, pos: BlockPos): Boolean {
-            for (i in 1..3) {
-                if (entity.boundingBox.contains(pos.up(i).toCenterPos()))
-                    return true
-            }
-            return false
+            return entity.pos.distanceTo(pos.toCenterPos()) < 3
         }
 
         private fun getDamage(hoe: ItemStack): Float {
