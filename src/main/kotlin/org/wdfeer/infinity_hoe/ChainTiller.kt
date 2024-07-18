@@ -25,8 +25,6 @@ object ChainTiller {
 
     private val worlds: Worlds = mutableMapOf()
 
-    private const val INITIAL_BLOCK_COUNT: Int = 16
-
     fun preTrigger(world: World, stack: ItemStack, blockPos: BlockPos) { // Executed before the initial block is tilled
         if (world.isClient) return
 
@@ -44,8 +42,12 @@ object ChainTiller {
 
         val next = getNext(world, pos, blockFilter)
         if (next != null) {
-            worlds[world]!![next] = BlockData(INITIAL_BLOCK_COUNT, hoe, player)
+            worlds[world]!![next] = BlockData(getBlockCount(hoe), hoe, player)
         }
+    }
+
+    private fun getBlockCount(hoe: ItemStack): Int {
+        return (hoe.item.maxDamage - hoe.damage) / 4 + 1
     }
 
     private fun onWorldTick(world: World) {
