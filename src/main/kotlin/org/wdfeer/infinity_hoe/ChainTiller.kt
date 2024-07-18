@@ -3,16 +3,18 @@ package org.wdfeer.infinity_hoe
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
+import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 
 typealias Worlds = MutableMap<World, Chains>
-typealias Chains = MutableMap<BlockPos, TillingBlock>
+typealias Chains = MutableMap<BlockPos, BlockData>
 
-// block count left, hoe
-typealias TillingBlock = Pair<Int, ItemStack>
+// block count left, hoe, player
+typealias BlockData = Triple<Int, ItemStack, ServerPlayerEntity>
 
 
 // Server-wide object that tills valid blocks automatically after a hoe with infinity enchantment has been used
@@ -33,7 +35,7 @@ object ChainTiller {
 
     private val blockTypes: MutableMap<ItemStack, Block> = mutableMapOf()
 
-    fun trigger(world: World, hoe: ItemStack, pos: BlockPos) { // Executed after the initial block is tilled
+    fun trigger(world: World, hoe: ItemStack, pos: BlockPos, player: ServerPlayerEntity) { // Executed after the initial block is tilled
         if (!blockTypes.contains(hoe)) return
         val blockFilter: Block = blockTypes[hoe]!!
         blockTypes.remove(hoe)
@@ -42,7 +44,7 @@ object ChainTiller {
 
         val next = getNext(world, pos, blockFilter)
         if (next != null) {
-            worlds[world]!![next] = TillingBlock(INITIAL_BLOCK_COUNT, hoe)
+            worlds[world]!![next] = BlockData(INITIAL_BLOCK_COUNT, hoe, player)
         }
     }
 
@@ -57,19 +59,24 @@ object ChainTiller {
         val newChains: Chains = mutableMapOf()
         for (entry in chains) {
             val pos: BlockPos = entry.key
-            val tillingBlock: TillingBlock = entry.value
+            val data: BlockData = entry.value
 
             val next: BlockPos? = getNext(world, pos)
             setFarmland(world, pos)
 
-            val hoe: ItemStack = tillingBlock.second
+            val hoe: ItemStack = data.second
             if (hoe.isEmpty) continue
-            hoe.damage++ // TODO: make the hoe actually break
+            damageHoe(hoe, data.third)
 
-            if (next != null && tillingBlock.first > 1)
-                newChains[next] = TillingBlock(tillingBlock.first - 1, tillingBlock.second)
+            if (next != null && data.first > 1)
+                newChains[next] = BlockData(data.first - 1, data.second, data.third)
         }
         worlds[world] = newChains
+    }
+
+    private fun damageHoe(hoe: ItemStack, player: ServerPlayerEntity) {
+        hoe.damage(1, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
+
     }
 
     private fun setFarmland(world: World, pos: BlockPos) {
