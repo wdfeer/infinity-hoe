@@ -11,8 +11,13 @@ import org.wdfeer.infinity_hoe.HoeListener;
 
 @Mixin(HoeItem.class)
 public class HoeMixin {
+	@Inject(at = @At("HEAD"), method = "useOnBlock")
+	private void preUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+		HoeListener.INSTANCE.preUseOnBlock(context);
+	}
+
 	@Inject(at = @At("RETURN"), method = "useOnBlock")
-	private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		HoeListener.INSTANCE.onUseOnBlock(context, cir);
+	private void postUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+		HoeListener.INSTANCE.postUseOnBlock(context, cir);
 	}
 }

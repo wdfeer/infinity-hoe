@@ -7,5 +7,6 @@ object InfinityHoe : ModInitializer {
 
 	override fun onInitialize() {
 		Infinity.register()
+		ChainTiller.initialize()
 	}
 }
