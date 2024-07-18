@@ -4,6 +4,7 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.ActionResult
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+import org.wdfeer.infinity_hoe.enchantment.Infinity
 import org.wdfeer.infinity_hoe.tilling.ChainTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
@@ -19,9 +20,9 @@ object HoeListener {
         context: ItemUsageContext,
         cir: CallbackInfoReturnable<ActionResult>
     ) {
-            if (cir.returnValue != ActionResult.CONSUME) return
-            if (isInfinityHoe(context))
-                ChainTiller.trigger(context.world, context.stack, context.blockPos, context.player as ServerPlayerEntity)
+        if (cir.returnValue != ActionResult.CONSUME) return
+        if (isInfinityHoe(context))
+            ChainTiller.trigger(context.world, context.stack, context.blockPos, context.player as ServerPlayerEntity)
     }
 
     private fun isInfinityHoe(context: ItemUsageContext): Boolean {
