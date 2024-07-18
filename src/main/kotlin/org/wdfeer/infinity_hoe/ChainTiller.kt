@@ -66,7 +66,7 @@ object ChainTiller {
             if (hoe.isEmpty) continue
             hoe.damage++ // TODO: make the hoe actually break
 
-            if (next != null)
+            if (next != null && tillingBlock.first > 1)
                 newChains[next] = TillingBlock(tillingBlock.first - 1, tillingBlock.second)
         }
         worlds[world] = newChains
