@@ -19,7 +19,7 @@ data class ChainTillAction(
 ) {
     companion object {
         private fun getPower(hoe: ItemStack): Int =
-            ((hoe.item.maxDamage - hoe.damage) + 1) * (hoe.getEnchantmentLevel(Enchantments.UNBREAKING) + 1)
+            ((hoe.item.maxDamage - hoe.damage) / 2 + 1) * (hoe.getEnchantmentLevel(Enchantments.UNBREAKING) + 1)
 
         private fun getNext(world: World, origin: BlockPos, blockFilter: Block, alreadyIncluded: (BlockPos) -> Boolean): List<BlockPos> {
             fun isValidBlock(pos: BlockPos): Boolean =
