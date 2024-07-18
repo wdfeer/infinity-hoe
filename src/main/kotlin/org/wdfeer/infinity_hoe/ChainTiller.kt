@@ -3,11 +3,14 @@ package org.wdfeer.infinity_hoe
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
+import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import kotlin.math.pow
 
 
 typealias Worlds = MutableMap<World, Chains>
@@ -49,9 +52,9 @@ object ChainTiller {
         }
     }
 
-    private fun getPower(hoe: ItemStack): Int {
-        return (hoe.item.maxDamage - hoe.damage) / 4 + 1
-    }
+    private fun getPower(hoe: ItemStack): Int =
+        (((hoe.item.maxDamage - hoe.damage) + 1f) * (hoe.getEnchantmentLevel(Enchantments.UNBREAKING) + 1f))
+            .pow(1.5f).toInt()
 
     private fun onWorldTick(world: World) {
         if (worlds.contains(world) && worlds[world] != null)
@@ -62,6 +65,7 @@ object ChainTiller {
 
     private fun chainsTick(world: World, chains: Chains) {
         val newChains: Chains = mutableMapOf()
+
         for (entry in chains) {
             val pos: BlockPos = entry.key
             val data: BlockData = entry.value
@@ -76,17 +80,18 @@ object ChainTiller {
             if (data.first <= 1) continue
 
             val (nextPositions, power) = getNext(world, pos, data.first - 1, originalBlockType)
+
             if (nextPositions.isNotEmpty())
                 for (p in nextPositions) {
                     newChains[p] = BlockData(power, data.second, data.third)
                 }
         }
+
         worlds[world] = newChains
     }
 
     private fun damageHoe(hoe: ItemStack, player: ServerPlayerEntity) {
         hoe.damage(1, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
-
     }
 
     private fun setFarmland(world: World, pos: BlockPos) {
@@ -102,7 +107,7 @@ object ChainTiller {
                 for (z in -distance..distance) {
                     val pos = origin.add(x, 0, z)
 
-                    if (pos.equals(origin)) continue
+                    if (pos.equals(origin) || worlds[world]!!.contains(pos)) continue
 
                     if (world.getBlockState(pos).block == originalBlockType)
                         positions.add(pos)
@@ -114,11 +119,12 @@ object ChainTiller {
         var next = getNeighbors(1)
         if (next.isEmpty()) next = getNeighbors(2)
 
-        var count = 1
-        for (i in next.count() downTo 2) {
-            if (power % i == 0) {
-                count = i
-                break
+        val count = when {
+            power % 2 == 0 && next.count() > 1 -> {
+                2
+            }
+            else -> {
+                1
             }
         }
         val newPower: Int = power / count
@@ -126,4 +132,3 @@ object ChainTiller {
         return Pair(next.shuffled().take(count), newPower)
     }
 }
-
