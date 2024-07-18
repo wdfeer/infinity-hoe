@@ -14,7 +14,7 @@ class Infinity : Enchantment(Rarity.RARE, EnchantmentTarget.DIGGER, arrayOf(Equi
         val instance = Infinity()
 
         fun register() {
-            Registry.register(Registries.ENCHANTMENT, Identifier(InfinityHoe.MOD_ID, "hoe_infinity"), instance)
+            Registry.register(Registries.ENCHANTMENT, Identifier(InfinityHoe.MOD_ID, "infinity"), instance)
         }
     }
 
