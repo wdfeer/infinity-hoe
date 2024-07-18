@@ -6,9 +6,12 @@ import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.enchantment.Pesticide
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 data class ChainTillAction(
     val world: World,
@@ -60,7 +63,7 @@ data class ChainTillAction(
         for (pos in blocks) {
             if (!canTick()) return
 
-            setFarmland(pos)
+            till(pos)
 
             damageHoe()
 
@@ -76,7 +79,10 @@ data class ChainTillAction(
         hoe.damage(1, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
     }
 
-    private fun setFarmland(pos: BlockPos) {
+    private fun till(pos: BlockPos) {
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
+
+        if (hoe.hasEnchantment(Pesticide.instance) && world is ServerWorld)
+            Pesticide.onTill(world, player, hoe, pos)
     }
 }
