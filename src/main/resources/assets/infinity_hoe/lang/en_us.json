@@ -1,4 +1,6 @@
 {
   "enchantment.infinity_hoe.infinity": "Infinity",
-  "enchantment.infinity_hoe.pesticide": "Pesticide"
+  "enchantment.infinity_hoe.infinity.desc": "Allows tilling large areas at once.",
+  "enchantment.infinity_hoe.pesticide": "Pesticide",
+  "enchantment.infinity_hoe.pesticide.desc": "Damage nearby monsters upon tilling."
 }
