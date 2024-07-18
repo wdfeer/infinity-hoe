@@ -13,7 +13,7 @@ import net.minecraft.world.World
 typealias Worlds = MutableMap<World, Chains>
 typealias Chains = MutableMap<BlockPos, BlockData>
 
-// block count left, hoe, player
+// block count left (later - power), hoe, player
 typealias BlockData = Triple<Int, ItemStack, ServerPlayerEntity>
 
 
@@ -40,13 +40,16 @@ object ChainTiller {
 
         if (!worlds.contains(world)) worlds[world] = mutableMapOf()
 
-        val next = getNext(world, pos, blockFilter)
-        if (next != null) {
-            worlds[world]!![next] = BlockData(getBlockCount(hoe), hoe, player)
+        val power: Int = getPower(hoe)
+        val next = getNext(world, pos, power, blockFilter)
+        if (next.first.isNotEmpty()) {
+            for (position in next.first) {
+                worlds[world]!![position] = BlockData(next.second, hoe, player)
+            }
         }
     }
 
-    private fun getBlockCount(hoe: ItemStack): Int {
+    private fun getPower(hoe: ItemStack): Int {
         return (hoe.item.maxDamage - hoe.damage) / 4 + 1
     }
 
@@ -62,16 +65,21 @@ object ChainTiller {
         for (entry in chains) {
             val pos: BlockPos = entry.key
             val data: BlockData = entry.value
+            val originalBlockType: Block = world.getBlockState(pos).block
 
-            val next: BlockPos? = getNext(world, pos)
             setFarmland(world, pos)
 
             val hoe: ItemStack = data.second
             if (hoe.isEmpty) continue
             damageHoe(hoe, data.third)
 
-            if (next != null && data.first > 1)
-                newChains[next] = BlockData(data.first - 1, data.second, data.third)
+            if (data.first <= 1) continue
+
+            val (nextPositions, power) = getNext(world, pos, data.first - 1, originalBlockType)
+            if (nextPositions.isNotEmpty())
+                for (p in nextPositions) {
+                    newChains[p] = BlockData(power, data.second, data.third)
+                }
         }
         worlds[world] = newChains
     }
@@ -85,11 +93,11 @@ object ChainTiller {
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
     }
 
-    private fun getNext(world: World, origin: BlockPos, blockFilter: Block? = null): BlockPos? {
+    private fun getNext(world: World, origin: BlockPos, power: Int, blockFilter: Block? = null): Pair<List<BlockPos>, Int> {
         val originalBlockType: Block = blockFilter ?: world.getBlockState(origin).block
 
-        fun getRandomNeighbor(distance: Int): BlockPos? {
-            val options: MutableList<BlockPos> = mutableListOf()
+        fun getNeighbors(distance: Int): List<BlockPos> {
+            val positions: MutableList<BlockPos> = mutableListOf()
             for (x in -distance..distance) {
                 for (z in -distance..distance) {
                     val pos = origin.add(x, 0, z)
@@ -97,16 +105,25 @@ object ChainTiller {
                     if (pos.equals(origin)) continue
 
                     if (world.getBlockState(pos).block == originalBlockType)
-                        options.add(pos)
+                        positions.add(pos)
                 }
             }
-            return if (options.isEmpty()) null else options.random()
+            return positions
         }
 
-        var next = getRandomNeighbor(1)
-        if (next == null) next = getRandomNeighbor(2)
+        var next = getNeighbors(1)
+        if (next.isEmpty()) next = getNeighbors(2)
 
-        return next
+        var count = 1
+        for (i in next.count() downTo 2) {
+            if (power % i == 0) {
+                count = i
+                break
+            }
+        }
+        val newPower: Int = power / count
+
+        return Pair(next.shuffled().take(count), newPower)
     }
 }
 
