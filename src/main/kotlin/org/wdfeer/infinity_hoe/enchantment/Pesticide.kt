@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.entity.Entity
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.damage.DamageTypes
+import net.minecraft.entity.mob.HostileEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -24,7 +25,7 @@ class Pesticide : HoeEnchantment(Rarity.VERY_RARE) {
 
         fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
             for (entity in world.iterateEntities()) {
-                if (checkCollision(entity, pos)) {
+                if (entity is HostileEntity && checkCollision(entity, pos)) {
                     entity.damage(DamageSource(DamageTypeHelper.getRegistryEntry(world,  DamageTypes.MAGIC), player), getDamage(hoe))
                 }
             }
