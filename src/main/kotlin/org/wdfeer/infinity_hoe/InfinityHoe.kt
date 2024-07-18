@@ -2,6 +2,7 @@ package org.wdfeer.infinity_hoe
 
 import net.fabricmc.api.ModInitializer
 import org.wdfeer.infinity_hoe.enchantment.Infinity
+import org.wdfeer.infinity_hoe.enchantment.Pesticide
 import org.wdfeer.infinity_hoe.tilling.ChainTiller
 
 object InfinityHoe : ModInitializer {
@@ -9,6 +10,7 @@ object InfinityHoe : ModInitializer {
 
 	override fun onInitialize() {
 		Infinity.register()
+		Pesticide.register()
 		ChainTiller.initialize()
 	}
 }
