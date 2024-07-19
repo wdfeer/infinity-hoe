@@ -2,7 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.minecraft.block.Fertilizable
+import net.minecraft.block.CropBlock
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
@@ -40,15 +40,15 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
         private fun growthAccelerationTick(world: ServerWorld, player: PlayerEntity, level: Int) {
             fun isApplicable(pos: BlockPos): Boolean {
                 val state = world.getBlockState(pos)
-                if (state.block !is Fertilizable) return false
+                if (state.block !is CropBlock) return false
 
-                val block = state.block as Fertilizable
+                val block = state.block as CropBlock
                 return block.isFertilizable(world, pos, state, false)
             }
 
             fun apply(pos: BlockPos) {
                 val state = world.getBlockState(pos)
-                val block = state.block as Fertilizable
+                val block = state.block as CropBlock
                 block.grow(world, player.random, pos, state)
             }
 
