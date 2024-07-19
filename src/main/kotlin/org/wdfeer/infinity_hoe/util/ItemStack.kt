@@ -8,4 +8,4 @@ fun ItemStack.hasEnchantment(enchantment: Enchantment): Boolean =
     EnchantmentHelper.fromNbt(this.enchantments).contains(enchantment)
 
 fun ItemStack.getEnchantmentLevel(enchantment: Enchantment): Int =
-    if (this.hasEnchantment(enchantment)) EnchantmentHelper.fromNbt(this.enchantments)[enchantment]!! else 0
+    EnchantmentHelper.fromNbt(this.enchantments)[enchantment] ?: 0

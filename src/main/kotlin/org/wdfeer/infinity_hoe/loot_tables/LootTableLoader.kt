@@ -10,8 +10,8 @@ import net.minecraft.loot.LootTables
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.function.EnchantRandomlyLootFunction
 import net.minecraft.util.Identifier
-import org.wdfeer.infinity_hoe.enchantment.Infinity
-import org.wdfeer.infinity_hoe.enchantment.Pesticide
+import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
+import org.wdfeer.infinity_hoe.util.addAll
 
 
 object LootTableLoader {
@@ -30,18 +30,15 @@ object LootTableLoader {
                     ItemEntry.builder(Items.DIAMOND_HOE)
                         .apply(
                             EnchantRandomlyLootFunction.create()
-                                .add(Enchantments.UNBREAKING)
                                 .add(Enchantments.MENDING)
-                                .add(Infinity.instance)
-                                .add(Pesticide.instance)
+                                .addAll(ModEnchantments.enchantments)
                         )
                         .build()
                 ).with(
                     ItemEntry.builder(Items.ENCHANTED_BOOK)
                         .apply(
                             EnchantRandomlyLootFunction.create()
-                                .add(Infinity.instance)
-                                .add(Pesticide.instance)
+                                .addAll(ModEnchantments.enchantments)
                         )
                         .build()
                 )

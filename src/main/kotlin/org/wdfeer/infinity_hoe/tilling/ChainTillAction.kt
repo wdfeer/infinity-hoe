@@ -9,6 +9,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.hasEnchantment
@@ -82,7 +83,7 @@ data class ChainTillAction(
     private fun till(pos: BlockPos) {
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
-        if (hoe.hasEnchantment(Pesticide.instance) && world is ServerWorld)
+        if (hoe.hasEnchantment(ModEnchantments.pesticide) && world is ServerWorld)
             Pesticide.onTill(world, player, hoe, pos)
     }
 }
