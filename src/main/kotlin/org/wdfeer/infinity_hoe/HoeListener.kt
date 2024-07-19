@@ -1,9 +1,11 @@
 package org.wdfeer.infinity_hoe
 
+import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
+import net.minecraft.util.math.BlockPos
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.AutoSeed
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
@@ -23,22 +25,25 @@ object HoeListener {
         context: ItemUsageContext,
         cir: CallbackInfoReturnable<ActionResult>
     ) {
-        if (cir.returnValue != ActionResult.CONSUME || context.player !is ServerPlayerEntity) return
+        if (cir.returnValue != ActionResult.CONSUME
+            || context.world !is ServerWorld
+            || context.player !is ServerPlayerEntity) return
 
-        val player = context.player as ServerPlayerEntity
+        onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
 
-        if (context.stack.hasEnchantment(ModEnchantments.infinity))
-            InfinityTiller.trigger(context.world, context.stack, context.blockPos, player)
 
-        if (context.world is ServerWorld) {
-            val world = context.world as ServerWorld
-            if (context.stack.hasEnchantment(ModEnchantments.pesticide)) {
-                Pesticide.onTill(world, player, context.stack, context.blockPos)
-            }
+    }
 
-            if (context.stack.hasEnchantment(ModEnchantments.autoSeed)) {
-                AutoSeed.onTill(world, player, context.blockPos)
-            }
+    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+        if (hoe.hasEnchantment(ModEnchantments.infinity))
+            InfinityTiller.trigger(world, hoe, pos, player)
+
+        if (hoe.hasEnchantment(ModEnchantments.pesticide)) {
+            Pesticide.onTill(world, player, hoe, pos)
+        }
+
+        if (hoe.hasEnchantment(ModEnchantments.autoSeed)) {
+            AutoSeed.onTill(world, player, pos)
         }
     }
 }
