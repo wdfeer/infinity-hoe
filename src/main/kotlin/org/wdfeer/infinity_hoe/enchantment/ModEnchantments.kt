@@ -24,5 +24,6 @@ object ModEnchantments {
 
         InfinityTiller.initialize()
         GrowthAcceleration.initialize()
+        AutoSeed.initialize()
     }
 }
