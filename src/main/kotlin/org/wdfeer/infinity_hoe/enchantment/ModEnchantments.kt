@@ -6,10 +6,12 @@ import net.minecraft.registry.Registry
 object ModEnchantments {
     val infinity = Infinity()
     val pesticide = Pesticide()
+    private val growthAcceleration = GrowthAcceleration()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
-        pesticide
+        pesticide,
+        growthAcceleration
     )
 
     fun initialize() {
