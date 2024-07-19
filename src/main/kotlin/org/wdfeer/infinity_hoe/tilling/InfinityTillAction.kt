@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
-import org.wdfeer.infinity_hoe.util.getAdjacent
+import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
@@ -32,7 +32,7 @@ data class InfinityTillAction(
                         && world.getBlockState(pos).block == blockFilter
                         && world.getBlockState(pos.up()).isAir
 
-            fun getNeighbors(range: Int): List<BlockPos> = origin.getAdjacent(range).filter { isValidBlock(it) }
+            fun getNeighbors(range: Int): List<BlockPos> = origin.getAdjacentHorizontally(range).filter { isValidBlock(it) }
 
             return getNeighbors(1)
         }

@@ -7,7 +7,7 @@ import org.wdfeer.infinity_hoe.tilling.InfinityTiller
 object ModEnchantments {
     val infinity = Infinity()
     val pesticide = Pesticide()
-    private val growthAcceleration = GrowthAcceleration()
+    val growthAcceleration = GrowthAcceleration()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -21,5 +21,6 @@ object ModEnchantments {
         }
 
         InfinityTiller.initialize()
+        GrowthAcceleration.initialize()
     }
 }
