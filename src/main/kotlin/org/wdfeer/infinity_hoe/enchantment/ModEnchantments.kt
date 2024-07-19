@@ -8,11 +8,13 @@ object ModEnchantments {
     val infinity = Infinity()
     val pesticide = Pesticide()
     val growthAcceleration = GrowthAcceleration()
+    val autoSeed = AutoSeed()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
         pesticide,
-        growthAcceleration
+        growthAcceleration,
+        autoSeed
     )
 
     fun initialize() {

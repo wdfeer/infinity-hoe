@@ -4,5 +4,7 @@
   "enchantment.infinity_hoe.pesticide": "Pesticide",
   "enchantment.infinity_hoe.pesticide.desc": "Damage nearby monsters upon tilling.",
   "enchantment.infinity_hoe.growth_acceleration": "Dryad's Blessing",
-  "enchantment.infinity_hoe.growth_acceleration.desc": "Nurtures nearby crops on a cooldown while item is held."
+  "enchantment.infinity_hoe.growth_acceleration.desc": "Nurtures nearby crops on a cooldown while item is held.",
+  "enchantment.infinity_hoe.autoseed": "Auto Seed",
+  "enchantment.infinity_hoe.autoseed.desc": "Plants seeds from other hand upon till or harvest."
 }
