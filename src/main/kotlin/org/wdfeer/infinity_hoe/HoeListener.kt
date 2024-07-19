@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.AutoSeed
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
+import org.wdfeer.infinity_hoe.tilling.InfinityTillAction
 import org.wdfeer.infinity_hoe.tilling.InfinityTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
@@ -30,11 +31,9 @@ object HoeListener {
             || context.player !is ServerPlayerEntity) return
 
         onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
-
-
     }
 
-    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, infinity: InfinityTillAction? = null) {
         if (hoe.hasEnchantment(ModEnchantments.infinity))
             InfinityTiller.trigger(world, hoe, pos, player)
 
@@ -43,7 +42,7 @@ object HoeListener {
         }
 
         if (hoe.hasEnchantment(ModEnchantments.autoSeed)) {
-            AutoSeed.onTill(world, player, pos)
+            AutoSeed.onTill(world, player, pos, infinity)
         }
     }
 }
