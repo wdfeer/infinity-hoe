@@ -11,10 +11,11 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
+import org.wdfeer.infinity_hoe.util.getAdjacent
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
-data class ChainTillAction(
+data class InfinityTillAction(
     val world: World,
     val hoe: ItemStack,
     val player: ServerPlayerEntity,
@@ -31,15 +32,7 @@ data class ChainTillAction(
                         && world.getBlockState(pos).block == blockFilter
                         && world.getBlockState(pos.up()).isAir
 
-            fun getNeighbors(range: Int): List<BlockPos> {
-                val positions: MutableList<BlockPos> = mutableListOf()
-
-                fun addIfValid(pos: BlockPos) = if (isValidBlock(pos)) positions.add(pos) else false
-
-                (-range..range).forEach { x -> (-range..range).forEach { z -> addIfValid(origin.add(x, 0, z)) } }
-
-                return positions
-            }
+            fun getNeighbors(range: Int): List<BlockPos> = origin.getAdjacent(range).filter { isValidBlock(it) }
 
             return getNeighbors(1)
         }
@@ -49,7 +42,7 @@ data class ChainTillAction(
     private var blocks: MutableList<BlockPos> = getNext(world, origin, blockFilter) { false }.toMutableList()
 
 
-    // Dead till actions get deleted
+    // Dead till-actions get deleted
     fun isDead(): Boolean = !canTick() || blocks.isEmpty()
 
     private fun canTick(): Boolean {

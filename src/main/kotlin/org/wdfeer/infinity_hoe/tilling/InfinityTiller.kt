@@ -8,12 +8,12 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 // Server-wide object that tills valid blocks automatically after a hoe with infinity enchantment has been used
-object ChainTiller {
+object InfinityTiller {
     fun initialize() {
         ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
     }
 
-    private var worldActions: MutableMap<World, MutableList<ChainTillAction>> = mutableMapOf()
+    private var worldActions: MutableMap<World, MutableList<InfinityTillAction>> = mutableMapOf()
 
     fun preTrigger(world: World, stack: ItemStack, blockPos: BlockPos) { // Executed before the initial block is tilled
         if (world.isClient) return
@@ -30,7 +30,7 @@ object ChainTiller {
 
         if (!worldActions.contains(world)) worldActions[world] = mutableListOf()
 
-        worldActions[world]!!.add(ChainTillAction(world, hoe, player, pos, blockFilter))
+        worldActions[world]!!.add(InfinityTillAction(world, hoe, player, pos, blockFilter))
     }
 
     private fun onWorldTick(world: World) {

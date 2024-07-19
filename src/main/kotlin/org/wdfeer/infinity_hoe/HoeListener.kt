@@ -7,7 +7,7 @@ import net.minecraft.util.ActionResult
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
-import org.wdfeer.infinity_hoe.tilling.ChainTiller
+import org.wdfeer.infinity_hoe.tilling.InfinityTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeListener {
@@ -15,7 +15,7 @@ object HoeListener {
         context: ItemUsageContext
     ) {
         if (context.stack.hasEnchantment(ModEnchantments.infinity))
-            ChainTiller.preTrigger(context.world, context.stack, context.blockPos)
+            InfinityTiller.preTrigger(context.world, context.stack, context.blockPos)
     }
 
     fun postUseOnBlock(
@@ -25,7 +25,7 @@ object HoeListener {
         if (cir.returnValue != ActionResult.CONSUME || context.player !is ServerPlayerEntity) return
 
         if (context.stack.hasEnchantment(ModEnchantments.infinity))
-            ChainTiller.trigger(context.world, context.stack, context.blockPos, context.player as ServerPlayerEntity)
+            InfinityTiller.trigger(context.world, context.stack, context.blockPos, context.player as ServerPlayerEntity)
 
         if (context.stack.hasEnchantment(ModEnchantments.pesticide) && context.world is ServerWorld)
             Pesticide.onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
