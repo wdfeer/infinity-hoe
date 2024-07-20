@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.util.DamageTypeHelper
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
-class Pesticide : HoeEnchantment(Rarity.VERY_RARE) {
+class Pesticide : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "pesticide"
 
     override fun getMaxLevel(): Int = 5
