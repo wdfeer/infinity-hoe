@@ -22,23 +22,43 @@ class Pesticide : HoeEnchantment(Rarity.VERY_RARE) {
 
     override fun isTreasure(): Boolean = true
 
+    override fun onCropBroken(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        pos: BlockPos,
+        mature: Boolean
+    ) {
+        if (mature)
+            trigger(world, player, hoe, pos)
+    }
+
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+        trigger(world, player, hoe, pos)
+    }
+
+    private fun trigger(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        pos: BlockPos
+    ) {
         for (entity in world.iterateEntities()) {
             if (entity is Monster && checkCollision(entity, pos)) {
-                entity.damage(DamageSource(DamageTypeHelper.getRegistryEntry(world,  DamageTypes.MAGIC), player),
+                entity.damage(
+                    DamageSource(DamageTypeHelper.getRegistryEntry(world, DamageTypes.MAGIC), player),
                     getDamage(hoe)
                 )
             }
         }
     }
 
-    companion object {
-        private fun checkCollision(entity: Entity, pos: BlockPos): Boolean {
-            return entity.pos.distanceTo(pos.toCenterPos()) < 3
-        }
 
-        private fun getDamage(hoe: ItemStack): Float {
-            return hoe.getEnchantmentLevel(ModEnchantments.pesticide) * 4f
-        }
+    private fun checkCollision(entity: Entity, pos: BlockPos): Boolean {
+        return entity.pos.distanceTo(pos.toCenterPos()) < 3
+    }
+
+    private fun getDamage(hoe: ItemStack): Float {
+        return hoe.getEnchantmentLevel(ModEnchantments.pesticide) * 4f
     }
 }
