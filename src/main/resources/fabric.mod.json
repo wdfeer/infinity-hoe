@@ -3,7 +3,7 @@
 	"id": "infinity_hoe",
 	"version": "${version}",
 	"name": "Infinity Hoe",
-	"description": "Enchantment that allows tilling thousands of land in one go",
+	"description": "Hoe Enchantments",
 	"authors": [
 		"wdfeer"
 	],
