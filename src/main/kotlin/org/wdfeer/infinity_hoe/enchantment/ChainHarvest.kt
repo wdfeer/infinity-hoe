@@ -2,13 +2,13 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.CropBlock
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import org.wdfeer.infinity_hoe.event.CropBreakListener
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
@@ -19,12 +19,16 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
         }
 
         private fun trigger(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, blockType: CropBlock, level: Int) {
-            val power = getPower(level)
+            if (serverActions[world] == null)
+                serverActions[world] = mutableListOf()
+            else if (serverActions[world]!!.any { it.blocks.contains(pos) })
+                return
+
             val applicable = getNext(pos, world, blockType)
             if (applicable.isEmpty()) return
 
-            if (serverActions[world] == null)
-                serverActions[world] = mutableListOf()
+            val power = getPower(level)
+
             serverActions[world]!!.add(ChainHarvestAction(applicable, power, blockType, player))
         }
 
@@ -80,10 +84,8 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
 
         private fun harvest(world: ServerWorld, pos: BlockPos, player: ServerPlayerEntity) {
             val state = world.getBlockState(pos)
-            val entity = world.getBlockEntity(pos)
             world.breakBlock(pos, true, player)
-            PlayerBlockBreakEvents.AFTER.invoker()
-                .afterBlockBreak(world, player, pos, state, entity)
+            CropBreakListener.onCropBreak(world, player, pos, state, ModEnchantments.chainHarvest)
         }
 
         private fun getPower(level: Int) = pow(4, level)

@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.CropBlock
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
@@ -25,16 +26,20 @@ object CropBreakListener {
         state: BlockState?
     ) {
         if (world is ServerWorld && player is ServerPlayerEntity && pos != null && state?.block is CropBlock) {
-            val hoe: ItemStack = player.handItems.first()
-            if (hoe.item !is HoeItem) return
+            onCropBreak(world, player, pos, state, null)
+        }
+    }
 
-            val crop = state.block as CropBlock
-            val mature = crop.getAge(state) >= crop.maxAge
+    fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, cause: Enchantment?) {
+        val hoe: ItemStack = player.handItems.first()
+        if (hoe.item !is HoeItem) return
 
-            ModEnchantments.enchantments.forEach {
-                if (hoe.hasEnchantment(it))
-                    it.onCropBroken(world, player, hoe, pos, state, mature)
-            }
+        val crop = state.block as CropBlock
+        val mature = crop.getAge(state) >= crop.maxAge
+
+        ModEnchantments.enchantments.forEach {
+            if (it != cause && hoe.hasEnchantment(it))
+                it.onCropBroken(world, player, hoe, pos, state, mature)
         }
     }
 }

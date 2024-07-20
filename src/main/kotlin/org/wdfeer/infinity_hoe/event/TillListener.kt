@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.event
 
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
@@ -30,9 +31,13 @@ object TillListener {
         onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
     }
 
-    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+    private fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+        onTill(world, player, hoe, pos, null)
+    }
+
+    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: Enchantment?) {
         ModEnchantments.enchantments.forEach {
-            if (hoe.hasEnchantment(it))
+            if (it != cause && hoe.hasEnchantment(it))
                 it.onTill(world, player, hoe, pos)
         }
     }
