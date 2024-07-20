@@ -5,35 +5,17 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.CropBlock
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.HoeItem
+import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 class ChainHarvest : HoeEnchantment(Rarity.RARE) {
     companion object {
         fun initialize() {
-            PlayerBlockBreakEvents.BEFORE.register { world, player, pos, state, _ -> preBlockBreak(world, player, pos, state); true }
             ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
-        }
-
-        private fun preBlockBreak(
-            world: World?,
-            player: PlayerEntity?,
-            pos: BlockPos?,
-            blockState: BlockState?,
-        ) {
-            if (world is ServerWorld && player is ServerPlayerEntity && pos != null && blockState?.block is CropBlock) {
-                val stack = player.getStackInHand(player.activeHand)
-                if (stack.item is HoeItem && stack.hasEnchantment(ModEnchantments.chainHarvest)){
-                    trigger(world, player, pos, blockState.block as CropBlock, stack.getEnchantmentLevel(ModEnchantments.chainHarvest))
-                }
-            }
         }
 
         private fun trigger(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, blockType: CropBlock, level: Int) {
@@ -71,13 +53,19 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
 
         private fun onWorldTick(world: ServerWorld) {
             val worldActions = serverActions[world] ?: return
+            worldActions.removeIf { it.power <= 0 }
 
-            for (action in worldActions) {
-                if (!canPlayerHarvest(action.player)) continue
+            for (i in 0 until  worldActions.count()) {
+                val action = worldActions[i]
+
                 if (action.power <= 0) continue
+
+                if (!canPlayerHarvest(action.player)) continue
 
                 val newBlocks: MutableList<BlockPos> = mutableListOf()
                 for (pos in action.blocks) {
+                    if (action.power <= 0) continue
+
                     if (isHarvestable(world, pos, action.cropType)){
                         harvest(world, pos, action.player)
                         action.power--
@@ -88,8 +76,6 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
                 }
                 action.blocks = newBlocks
             }
-
-            worldActions.removeIf { it.power <= 0 }
         }
 
         private fun harvest(world: ServerWorld, pos: BlockPos, player: ServerPlayerEntity) {
@@ -110,4 +96,15 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
     override fun getMinPower(level: Int): Int = 18 + level * 6
 
     override fun getMaxPower(level: Int): Int = 24 + level * 6
+
+    override fun onCropBroken(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        pos: BlockPos,
+        state: BlockState,
+        mature: Boolean
+    ) { 
+        trigger(world, player, pos, state.block as CropBlock, hoe.getEnchantmentLevel(this))
+    }
 }

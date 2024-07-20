@@ -7,17 +7,17 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.wdfeer.infinity_hoe.HoeListener;
+import org.wdfeer.infinity_hoe.event.TillListener;
 
 @Mixin(HoeItem.class)
 public class HoeMixin {
 	@Inject(at = @At("HEAD"), method = "useOnBlock")
 	private void preUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		HoeListener.INSTANCE.preUseOnBlock(context);
+		TillListener.INSTANCE.preUseOnBlock(context);
 	}
 
 	@Inject(at = @At("RETURN"), method = "useOnBlock")
 	private void postUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		HoeListener.INSTANCE.postUseOnBlock(context, cir);
+		TillListener.INSTANCE.postUseOnBlock(context, cir);
 	}
 }

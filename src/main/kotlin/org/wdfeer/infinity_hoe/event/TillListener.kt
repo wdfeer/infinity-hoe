@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe
+package org.wdfeer.infinity_hoe.event
 
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
-object HoeListener {
+object TillListener {
     fun preUseOnBlock( // Called from Mixin
         context: ItemUsageContext
     ) {
@@ -30,11 +30,10 @@ object HoeListener {
         onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
     }
 
-    private val tillListeners: MutableSet<(ServerWorld, ServerPlayerEntity, ItemStack, BlockPos) -> Unit> = mutableSetOf()
-    fun listen(listener: (world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) -> Unit) =
-        tillListeners.add(listener)
-
     fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
-        tillListeners.forEach { it.invoke(world, player, hoe, pos) }
+        ModEnchantments.enchantments.forEach {
+            if (hoe.hasEnchantment(it))
+                it.onTill(world, player, hoe, pos)
+        }
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.HoeListener
+import org.wdfeer.infinity_hoe.event.TillListener
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
@@ -75,6 +75,6 @@ data class InfinityTillAction(
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
         if (world is ServerWorld)
-            HoeListener.onTill(world, player, hoe, pos)
+            TillListener.onTill(world, player, hoe, pos)
     }
 }

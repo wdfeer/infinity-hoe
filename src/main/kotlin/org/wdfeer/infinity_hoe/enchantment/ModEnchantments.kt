@@ -8,7 +8,7 @@ object ModEnchantments {
     val infinity = Infinity()
     val pesticide = Pesticide()
     val growthAcceleration = GrowthAcceleration()
-    val autoSeed = AutoSeed()
+    private val autoSeed = AutoSeed()
     val chainHarvest = ChainHarvest()
 
     val enchantments: List<HoeEnchantment> = listOf(
@@ -25,9 +25,7 @@ object ModEnchantments {
         }
 
         InfinityTiller.initialize()
-        Pesticide.initialize()
         GrowthAcceleration.initialize()
-        AutoSeed.initialize()
         ChainHarvest.initialize()
     }
 }
