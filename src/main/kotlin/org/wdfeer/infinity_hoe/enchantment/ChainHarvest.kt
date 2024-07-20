@@ -79,7 +79,7 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
                 val newBlocks: MutableList<BlockPos> = mutableListOf()
                 for (pos in action.blocks) {
                     if (isHarvestable(world, pos, action.cropType)){
-                        world.breakBlock(pos, true, action.player)
+                        harvest(world, pos, action.player)
                         action.power--
                     }
 
@@ -90,6 +90,14 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
             }
 
             worldActions.removeIf { it.power <= 0 }
+        }
+
+        private fun harvest(world: ServerWorld, pos: BlockPos, player: ServerPlayerEntity) {
+            val state = world.getBlockState(pos)
+            val entity = world.getBlockEntity(pos)
+            world.breakBlock(pos, true, player)
+            PlayerBlockBreakEvents.AFTER.invoker()
+                .afterBlockBreak(world, player, pos, state, entity)
         }
 
         private fun getPower(level: Int) = pow(4, level)
