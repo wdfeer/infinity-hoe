@@ -33,7 +33,7 @@ object HoeListener {
         onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos)
     }
 
-    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, infinity: InfinityTillAction? = null) {
+    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
         if (hoe.hasEnchantment(ModEnchantments.infinity))
             InfinityTiller.trigger(world, hoe, pos, player)
 
@@ -42,7 +42,7 @@ object HoeListener {
         }
 
         if (hoe.hasEnchantment(ModEnchantments.autoSeed)) {
-            AutoSeed.onTill(world, player, pos, infinity)
+            AutoSeed.onTill(world, player, pos)
         }
     }
 }

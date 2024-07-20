@@ -4,7 +4,6 @@ import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -19,8 +18,7 @@ data class InfinityTillAction(
     val hoe: ItemStack,
     val player: ServerPlayerEntity,
     val origin: BlockPos,
-    val blockFilter: Block,
-    val autoSeedType: Item? = null
+    val blockFilter: Block
 ) {
     companion object {
         private fun getPower(hoe: ItemStack): Int =
@@ -77,6 +75,6 @@ data class InfinityTillAction(
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
         if (world is ServerWorld)
-            HoeListener.onTill(world, player, hoe, pos, this)
+            HoeListener.onTill(world, player, hoe, pos)
     }
 }

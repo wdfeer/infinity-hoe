@@ -12,7 +12,6 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTillAction
 import org.wdfeer.infinity_hoe.util.find
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
@@ -41,18 +40,19 @@ class AutoSeed : HoeEnchantment(Rarity.UNCOMMON) {
 
         }
 
-        fun onTill(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, infinity: InfinityTillAction? = null) {
-            val seed: ItemStack = findSeed(player)
-                ?: player.inventory.find { it.item == infinity?.autoSeedType }
-                ?: return
+        fun onTill(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos) {
+            val seed: ItemStack = findSeed(player) ?: return
 
             if (!player.canPlaceOn(pos, Direction.UP, seed)) return
 
             plant(world, seed, pos.up())
         }
 
-        fun findSeed(player: ServerPlayerEntity): ItemStack? =
-            player.handItems.find { it.item is BlockItem && (it.item as BlockItem).block is CropBlock }
+        private fun findSeed(player: ServerPlayerEntity): ItemStack? {
+            fun predicate(stack: ItemStack) = stack.item is BlockItem && (stack.item as BlockItem).block is CropBlock
+            return player.handItems.find(::predicate) ?: player.inventory.find(::predicate)
+        }
+
 
         private fun plant(world: ServerWorld, seed: ItemStack, pos: BlockPos) {
             val block = (seed.item as BlockItem).block

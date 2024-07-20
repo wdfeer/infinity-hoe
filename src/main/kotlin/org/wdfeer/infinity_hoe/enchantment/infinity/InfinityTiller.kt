@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.AutoSeed
 
 // Server-wide object that tills valid blocks automatically after a hoe with infinity enchantment has been used
 object InfinityTiller {
@@ -31,7 +30,7 @@ object InfinityTiller {
 
         if (!worldActions.contains(world)) worldActions[world] = mutableListOf()
 
-        worldActions[world]!!.add(InfinityTillAction(world, hoe, player, pos, blockFilter, AutoSeed.findSeed(player)?.item))
+        worldActions[world]!!.add(InfinityTillAction(world, hoe, player, pos, blockFilter))
     }
 
     private fun onWorldTick(world: World) {
