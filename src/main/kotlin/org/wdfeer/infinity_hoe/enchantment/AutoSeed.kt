@@ -12,7 +12,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.tilling.InfinityTillAction
+import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTillAction
 import org.wdfeer.infinity_hoe.util.find
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 

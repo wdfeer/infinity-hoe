@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.tilling
+package org.wdfeer.infinity_hoe.enchantment.infinity
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.AutoSeed
 // Server-wide object that tills valid blocks automatically after a hoe with infinity enchantment has been used
 object InfinityTiller {
     fun initialize() {
-        ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
+        ServerTickEvents.END_WORLD_TICK.register(InfinityTiller::onWorldTick)
     }
 
     private var worldActions: MutableMap<World, MutableList<InfinityTillAction>> = mutableMapOf()

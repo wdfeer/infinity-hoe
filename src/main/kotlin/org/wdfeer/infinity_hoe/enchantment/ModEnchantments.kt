@@ -2,7 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
-import org.wdfeer.infinity_hoe.tilling.InfinityTiller
+import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTiller
 
 object ModEnchantments {
     val infinity = Infinity()

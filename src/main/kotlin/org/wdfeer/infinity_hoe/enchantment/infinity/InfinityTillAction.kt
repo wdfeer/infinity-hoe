@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.tilling
+package org.wdfeer.infinity_hoe.enchantment.infinity
 
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks

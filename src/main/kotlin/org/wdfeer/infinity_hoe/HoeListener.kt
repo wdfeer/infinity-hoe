@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.AutoSeed
 import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
 import org.wdfeer.infinity_hoe.enchantment.Pesticide
-import org.wdfeer.infinity_hoe.tilling.InfinityTillAction
-import org.wdfeer.infinity_hoe.tilling.InfinityTiller
+import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTillAction
+import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTiller
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeListener {
