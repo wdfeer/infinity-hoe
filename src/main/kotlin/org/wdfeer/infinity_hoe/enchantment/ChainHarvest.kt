@@ -1,6 +1,7 @@
 package org.wdfeer.infinity_hoe.enchantment
 
 import com.google.common.math.IntMath.pow
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.CropBlock
@@ -18,6 +19,7 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
     companion object {
         fun initialize() {
             PlayerBlockBreakEvents.BEFORE.register { world, player, pos, state, _ -> preBlockBreak(world, player, pos, state); true }
+            ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
         }
 
         private fun preBlockBreak(
@@ -35,16 +37,62 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
         }
 
         private fun trigger(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, blockType: CropBlock, level: Int) {
-            val neighbors = pos.getAdjacentHorizontally(level + 2)
-            neighbors.filter {
-                world.getBlockState(it).block == blockType &&
-                        blockType.getAge(world.getBlockState(it)) == blockType.maxAge }
-                .shuffled()
-                .take(getCropCount(level))
-                .forEach { world.breakBlock(it, true, player) }
+            val power = getPower(level)
+            val applicable = getNext(pos, world, blockType)
+            if (applicable.isEmpty()) return
+
+            if (serverActions[world] == null)
+                serverActions[world] = mutableListOf()
+            serverActions[world]!!.add(ChainHarvestAction(applicable, power, blockType, player))
         }
 
-        private fun getCropCount(level: Int) = pow(4, level)
+        private fun getNext(
+            pos: BlockPos,
+            world: ServerWorld,
+            blockType: CropBlock
+        ) = pos.getAdjacentHorizontally(1).filter { isHarvestable(world, it, blockType) }
+
+
+        private fun isHarvestable(world: ServerWorld, pos: BlockPos, cropType: CropBlock): Boolean {
+            val state = world.getBlockState(pos)
+            return state.block == cropType && cropType.getAge(state) == cropType.maxAge
+        }
+
+        private val serverActions: MutableMap<ServerWorld, MutableList<ChainHarvestAction>> = mutableMapOf()
+
+        private data class ChainHarvestAction(
+            var blocks: List<BlockPos>,
+            var power: Int,
+            val cropType: CropBlock,
+            val player: ServerPlayerEntity
+        )
+
+        private fun canPlayerHarvest(player: ServerPlayerEntity) = player.isAlive
+
+        private fun onWorldTick(world: ServerWorld) {
+            val worldActions = serverActions[world] ?: return
+
+            for (action in worldActions) {
+                if (!canPlayerHarvest(action.player)) continue
+                if (action.power <= 0) continue
+
+                val newBlocks: MutableList<BlockPos> = mutableListOf()
+                for (pos in action.blocks) {
+                    if (isHarvestable(world, pos, action.cropType)){
+                        world.breakBlock(pos, true, action.player)
+                        action.power--
+                    }
+
+                    newBlocks.addAll(getNext(pos, world, action.cropType)
+                        .filter { !action.blocks.contains(it) && !newBlocks.contains(it) })
+                }
+                action.blocks = newBlocks
+            }
+
+            worldActions.removeIf { it.power <= 0 }
+        }
+
+        private fun getPower(level: Int) = pow(4, level)
     }
     
     override fun getPath(): String = "chain_harvest"
