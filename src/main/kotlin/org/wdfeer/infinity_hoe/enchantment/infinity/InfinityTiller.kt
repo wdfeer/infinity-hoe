@@ -4,13 +4,23 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.Block
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.HoeListener
+import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
+import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 // Server-wide object that tills valid blocks automatically after a hoe with infinity enchantment has been used
 object InfinityTiller {
     fun initialize() {
+        HoeListener.listen(::onTill)
         ServerTickEvents.END_WORLD_TICK.register(InfinityTiller::onWorldTick)
+    }
+
+    private fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+        if (hoe.hasEnchantment(ModEnchantments.infinity))
+            trigger(world, hoe, pos, player)
     }
 
     private var worldActions: MutableMap<World, MutableList<InfinityTillAction>> = mutableMapOf()

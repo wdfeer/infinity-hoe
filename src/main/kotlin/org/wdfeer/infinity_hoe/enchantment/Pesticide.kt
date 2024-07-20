@@ -8,17 +8,24 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import org.wdfeer.infinity_hoe.HoeListener
 import org.wdfeer.infinity_hoe.util.DamageTypeHelper
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 class Pesticide : HoeEnchantment(Rarity.VERY_RARE) {
     companion object {
-        fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
-            for (entity in world.iterateEntities()) {
-                if (entity is Monster && checkCollision(entity, pos)) {
-                    entity.damage(DamageSource(DamageTypeHelper.getRegistryEntry(world,  DamageTypes.MAGIC), player), getDamage(hoe))
+        fun initialize() {
+            HoeListener.listen(::onTill)
+        }
+
+        private fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+            if (hoe.hasEnchantment(ModEnchantments.pesticide))
+                for (entity in world.iterateEntities()) {
+                    if (entity is Monster && checkCollision(entity, pos)) {
+                        entity.damage(DamageSource(DamageTypeHelper.getRegistryEntry(world,  DamageTypes.MAGIC), player), getDamage(hoe))
+                    }
                 }
-            }
         }
 
         private fun checkCollision(entity: Entity, pos: BlockPos): Boolean {

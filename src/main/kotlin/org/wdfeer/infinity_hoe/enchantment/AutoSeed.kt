@@ -12,12 +12,14 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.HoeListener
 import org.wdfeer.infinity_hoe.util.find
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 class AutoSeed : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
         fun initialize() {
+            HoeListener.listen(::onTill)
             PlayerBlockBreakEvents.AFTER.register { world, player, pos, state, _ -> onBlockBreak(world, player, pos, state) }
         }
 
@@ -40,12 +42,14 @@ class AutoSeed : HoeEnchantment(Rarity.UNCOMMON) {
 
         }
 
-        fun onTill(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos) {
-            val seed: ItemStack = findSeed(player) ?: return
+        private fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
+            if (hoe.hasEnchantment(ModEnchantments.autoSeed)) {
+                val seed: ItemStack = findSeed(player) ?: return
 
-            if (!player.canPlaceOn(pos, Direction.UP, seed)) return
+                if (!player.canPlaceOn(pos, Direction.UP, seed)) return
 
-            plant(world, seed, pos.up())
+                plant(world, seed, pos.up())
+            }
         }
 
         private fun findSeed(player: ServerPlayerEntity): ItemStack? {

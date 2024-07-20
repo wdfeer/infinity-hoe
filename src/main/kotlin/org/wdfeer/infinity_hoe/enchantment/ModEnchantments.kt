@@ -25,6 +25,7 @@ object ModEnchantments {
         }
 
         InfinityTiller.initialize()
+        Pesticide.initialize()
         GrowthAcceleration.initialize()
         AutoSeed.initialize()
         ChainHarvest.initialize()
