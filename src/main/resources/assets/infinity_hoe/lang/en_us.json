@@ -8,5 +8,7 @@
   "enchantment.infinity_hoe.autoseed": "Disseminate",
   "enchantment.infinity_hoe.autoseed.desc": "Plants seeds from other hand upon till or harvest.",
   "enchantment.infinity_hoe.chain_harvest": "Cascade",
-  "enchantment.infinity_hoe.chain_harvest.desc": "Allows harvesting large areas at once."
+  "enchantment.infinity_hoe.chain_harvest.desc": "Allows harvesting large areas at once.",
+  "enchantment.infinity_hoe.untill": "Reset",
+  "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click."
 }
