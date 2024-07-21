@@ -11,7 +11,7 @@ object EnchantmentLoader {
     val growthAcceleration = GrowthAcceleration()
     private val autoSeed = AutoSeed()
     val chainHarvest = ChainHarvest()
-    private val untill = Untill()
+    val untill = Untill()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,

@@ -14,7 +14,7 @@ import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.EnchantmentLoader
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
-object CropBreakListener {
+object HoeHarvest {
     fun initialize() {
         PlayerBlockBreakEvents.AFTER.register {world, player, pos, state, _ -> onBlockBreak(world, player, pos, state)}
     }

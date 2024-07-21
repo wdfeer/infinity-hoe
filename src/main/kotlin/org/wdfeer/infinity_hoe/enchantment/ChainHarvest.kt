@@ -10,7 +10,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.CropBreakListener
+import org.wdfeer.infinity_hoe.event.HoeHarvest
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
@@ -87,7 +87,7 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE) {
         private fun harvest(world: ServerWorld, pos: BlockPos, player: ServerPlayerEntity) {
             val state = world.getBlockState(pos)
             world.breakBlock(pos, true, player)
-            CropBreakListener.onCropBreak(world, player, pos, state, EnchantmentLoader.chainHarvest)
+            HoeHarvest.onCropBreak(world, player, pos, state, EnchantmentLoader.chainHarvest)
         }
 
         private fun getPower(level: Int) = pow(4, level)
