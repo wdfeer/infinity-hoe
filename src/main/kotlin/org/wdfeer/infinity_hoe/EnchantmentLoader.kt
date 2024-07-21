@@ -30,5 +30,6 @@ object EnchantmentLoader {
         Infinity.initialize()
         GrowthAcceleration.initialize()
         ChainHarvest.initialize()
+        Untill.initialize()
     }
 }

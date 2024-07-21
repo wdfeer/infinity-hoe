@@ -7,8 +7,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTillAction
 
 class Infinity : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "infinity"
@@ -51,7 +51,7 @@ class Infinity : HoeEnchantment(Rarity.RARE) {
         private fun onWorldTick(world: World) {
             if (worldActions.contains(world) && worldActions[world] != null)
             {
-                worldActions.forEach { it.value.forEach { action -> action.tick() }}
+                worldActions.forEach { it.value.forEach(InfinityTillAction::tick) }
                 worldActions = worldActions.mapValues { it.value.filter { action -> !action.isDead() }.toMutableList() }.toMutableMap()
             }
         }

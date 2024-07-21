@@ -13,7 +13,7 @@ import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.Infinity
-import org.wdfeer.infinity_hoe.util.damage
+import org.wdfeer.infinity_hoe.enchantment.Untill
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeUse {
@@ -26,14 +26,14 @@ object HoeUse {
 
     fun postUseOnBlock(  // Called from Mixin
         context: ItemUsageContext,
-        cir: CallbackInfoReturnable<ActionResult>
+        useCallback: CallbackInfoReturnable<ActionResult>
     ) {
         if (context.world is ServerWorld
             && context.player is ServerPlayerEntity
-            && cir.returnValue == ActionResult.CONSUME)
+            && useCallback.returnValue == ActionResult.CONSUME)
             onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos, null)
         else
-            checkUntill(context.world, context.player, context.stack, context.blockPos, cir)
+            checkUntill(context.world, context.player, context.stack, context.blockPos, useCallback)
     }
 
     fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: Enchantment?) {
@@ -48,19 +48,11 @@ object HoeUse {
         player: PlayerEntity?,
         hoe: ItemStack,
         pos: BlockPos,
-        cir: CallbackInfoReturnable<ActionResult>
+        useCallback: CallbackInfoReturnable<ActionResult>
     ) {
         val state = world.getBlockState(pos)
         if (state.block == Blocks.FARMLAND && hoe.hasEnchantment(EnchantmentLoader.untill)) {
-            if (world.isClient)
-                cir.returnValue = ActionResult.SUCCESS
-            else
-            {
-                world.setBlockState(pos, Blocks.DIRT.defaultState)
-                if (player is ServerPlayerEntity)
-                    hoe.damage(player)
-                cir.returnValue = ActionResult.CONSUME
-            }
+            Untill.untill(world, pos, player, hoe, useCallback)
         }
     }
 }

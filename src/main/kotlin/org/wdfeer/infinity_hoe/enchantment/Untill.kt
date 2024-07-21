@@ -1,6 +1,20 @@
 package org.wdfeer.infinity_hoe.enchantment
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.minecraft.block.Blocks
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.ActionResult
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+import org.wdfeer.infinity_hoe.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.chain.InfinityUntillAction
 import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.util.damage
+import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 class Untill : HoeEnchantment(Rarity.COMMON) {
     override fun getPath(): String = "untill"
@@ -8,4 +22,55 @@ class Untill : HoeEnchantment(Rarity.COMMON) {
     override fun getMinPower(level: Int): Int = 10
 
     override fun getMaxPower(level: Int): Int = 60
+
+    companion object {
+        fun untill(
+            world: World,
+            pos: BlockPos,
+            player: PlayerEntity?,
+            hoe: ItemStack,
+            useCallback: CallbackInfoReturnable<ActionResult>
+        ) {
+            if (world.isClient)
+                useCallback.returnValue = ActionResult.SUCCESS
+            else if (world is ServerWorld && player is ServerPlayerEntity) {
+                untill(world, player, hoe, pos, hoe.hasEnchantment(EnchantmentLoader.infinity))
+                useCallback.returnValue = ActionResult.CONSUME
+            }
+        }
+
+        fun untill(
+            world: ServerWorld,
+            player: ServerPlayerEntity,
+            hoe: ItemStack,
+            pos: BlockPos,
+            infinity: Boolean
+        ) {
+            world.setBlockState(pos, Blocks.DIRT.defaultState)
+            hoe.damage(player)
+
+            if (infinity)
+                trigger(world, player, hoe, pos)
+        }
+
+        fun initialize() {
+            ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
+        }
+
+        private var worldActions: MutableMap<World, MutableList<InfinityUntillAction>> = mutableMapOf()
+
+        private fun trigger(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, origin: BlockPos) { // Executed after the initial untill
+            if (!worldActions.contains(world)) worldActions[world] = mutableListOf()
+
+            worldActions[world]!!.add(InfinityUntillAction(world, hoe, player, origin))
+        }
+
+        private fun onWorldTick(world: World) {
+            if (worldActions.contains(world) && worldActions[world] != null)
+            {
+                worldActions.forEach { it.value.forEach(InfinityUntillAction::tick) }
+                worldActions = worldActions.mapValues { it.value.filter { action -> !action.isDead() }.toMutableList() }.toMutableMap()
+            }
+        }
+    }
 }
