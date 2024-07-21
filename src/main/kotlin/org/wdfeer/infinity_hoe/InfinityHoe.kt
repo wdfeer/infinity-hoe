@@ -7,7 +7,7 @@ object InfinityHoe : ModInitializer {
 	const val MOD_ID: String = "infinity_hoe"
 
 	override fun onInitialize() {
-		EnchantmentInitializer.initialize()
+		EnchantmentLoader.initialize()
 		CropBreakListener.initialize()
 	}
 }

@@ -8,7 +8,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.EnchantmentInitializer
+import org.wdfeer.infinity_hoe.EnchantmentLoader
 import org.wdfeer.infinity_hoe.event.TillListener
 import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
@@ -70,6 +70,6 @@ data class InfinityTillAction(
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
         if (world is ServerWorld)
-            TillListener.onTill(world, player, hoe, pos, EnchantmentInitializer.infinity)
+            TillListener.onTill(world, player, hoe, pos, EnchantmentLoader.infinity)
     }
 }
