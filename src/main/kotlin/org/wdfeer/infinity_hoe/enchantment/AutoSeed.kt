@@ -7,6 +7,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.find
 
 class AutoSeed : HoeEnchantment(Rarity.UNCOMMON) {

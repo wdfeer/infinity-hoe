@@ -8,16 +8,16 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
-import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
-import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTiller
+import org.wdfeer.infinity_hoe.EnchantmentInitializer
+import org.wdfeer.infinity_hoe.enchantment.Infinity
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object TillListener {
     fun preUseOnBlock( // Called from Mixin
         context: ItemUsageContext
     ) {
-        if (context.stack.hasEnchantment(ModEnchantments.infinity))
-            InfinityTiller.preTrigger(context.world, context.stack, context.blockPos)
+        if (context.stack.hasEnchantment(EnchantmentInitializer.infinity))
+            Infinity.preTrigger(context.world, context.stack, context.blockPos)
     }
 
     fun postUseOnBlock(  // Called from Mixin
@@ -36,7 +36,7 @@ object TillListener {
     }
 
     fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: Enchantment?) {
-        ModEnchantments.enchantments.forEach {
+        EnchantmentInitializer.enchantments.forEach {
             if (it != cause && hoe.hasEnchantment(it))
                 it.onTill(world, player, hoe, pos)
         }

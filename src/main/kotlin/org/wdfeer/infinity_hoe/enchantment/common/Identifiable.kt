@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.common
 
 import net.minecraft.util.Identifier
 import org.wdfeer.infinity_hoe.InfinityHoe

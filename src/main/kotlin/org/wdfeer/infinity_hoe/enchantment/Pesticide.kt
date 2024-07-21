@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import org.wdfeer.infinity_hoe.EnchantmentInitializer
+import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.DamageTypeHelper
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
@@ -59,6 +61,6 @@ class Pesticide : HoeEnchantment(Rarity.RARE) {
     }
 
     private fun getDamage(hoe: ItemStack): Float {
-        return hoe.getEnchantmentLevel(ModEnchantments.pesticide) * 4f
+        return hoe.getEnchantmentLevel(EnchantmentInitializer.pesticide) * 4f
     }
 }

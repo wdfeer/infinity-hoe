@@ -8,6 +8,8 @@ import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.EnchantmentInitializer
+import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.getAdjacent
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.randoms
@@ -28,7 +30,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
                     if (!player.isAlive) continue
 
                     val level: Int = player.handItems.filter { it.item is HoeItem }
-                        .maxOfOrNull { it.getEnchantmentLevel(ModEnchantments.growthAcceleration) }
+                        .maxOfOrNull { it.getEnchantmentLevel(EnchantmentInitializer.growthAcceleration) }
                         ?: 0
 
                     if (level > 0) {

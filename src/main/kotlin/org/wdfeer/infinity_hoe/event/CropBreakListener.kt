@@ -11,7 +11,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
+import org.wdfeer.infinity_hoe.EnchantmentInitializer
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object CropBreakListener {
@@ -37,7 +37,7 @@ object CropBreakListener {
         val crop = state.block as CropBlock
         val mature = crop.getAge(state) >= crop.maxAge
 
-        ModEnchantments.enchantments.forEach {
+        EnchantmentInitializer.enchantments.forEach {
             if (it != cause && hoe.hasEnchantment(it))
                 it.onCropBroken(world, player, hoe, pos, state, mature)
         }

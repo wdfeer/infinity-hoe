@@ -3,14 +3,14 @@ package org.wdfeer.infinity_hoe.enchantment.infinity
 import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.enchantment.Enchantments
-import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.ModEnchantments
+import org.wdfeer.infinity_hoe.EnchantmentInitializer
 import org.wdfeer.infinity_hoe.event.TillListener
+import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
@@ -31,9 +31,7 @@ data class InfinityTillAction(
                         && world.getBlockState(pos).block == blockFilter
                         && world.getBlockState(pos.up()).isAir
 
-            fun getNeighbors(range: Int): List<BlockPos> = origin.getAdjacentHorizontally(range).filter { isValidBlock(it) }
-
-            return getNeighbors(1)
+            return origin.getAdjacentHorizontally(1).filter { isValidBlock(it) }
         }
     }
 
@@ -58,7 +56,7 @@ data class InfinityTillAction(
 
             till(pos)
 
-            damageHoe()
+            hoe.damage(player)
 
             power--
 
@@ -68,14 +66,10 @@ data class InfinityTillAction(
         blocks = newBlocks
     }
 
-    private fun damageHoe() {
-        hoe.damage(1, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
-    }
-
     private fun till(pos: BlockPos) {
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
         if (world is ServerWorld)
-            TillListener.onTill(world, player, hoe, pos, ModEnchantments.infinity)
+            TillListener.onTill(world, player, hoe, pos, EnchantmentInitializer.infinity)
     }
 }

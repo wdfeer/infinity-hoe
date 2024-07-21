@@ -1,10 +1,11 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
-import org.wdfeer.infinity_hoe.enchantment.infinity.InfinityTiller
+import org.wdfeer.infinity_hoe.enchantment.*
+import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
 
-object ModEnchantments {
+object EnchantmentInitializer {
     val infinity = Infinity()
     val pesticide = Pesticide()
     val growthAcceleration = GrowthAcceleration()
@@ -24,7 +25,7 @@ object ModEnchantments {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
 
-        InfinityTiller.initialize()
+        Infinity.initialize()
         GrowthAcceleration.initialize()
         ChainHarvest.initialize()
     }
