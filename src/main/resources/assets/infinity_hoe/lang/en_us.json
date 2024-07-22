@@ -10,5 +10,13 @@
   "enchantment.infinity_hoe.chain_harvest": "Cascade",
   "enchantment.infinity_hoe.chain_harvest.desc": "Allows harvesting large areas at once.",
   "enchantment.infinity_hoe.untill": "Reset",
-  "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click."
+  "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click.",
+  "enchantment.infinity_hoe.beetroot_specialist": "Beetroot Specialist",
+  "enchantment.infinity_hoe.beetroot_specialist.desc": "Chance of double harvest on beetroots.",
+  "enchantment.infinity_hoe.carrot_specialist": "Carrot Specialist",
+  "enchantment.infinity_hoe.carrot_specialist.desc": "Chance of double harvest on carrots.",
+  "enchantment.infinity_hoe.potato_specialist": "Potato Specialist",
+  "enchantment.infinity_hoe.potato_specialist.desc": "Chance of double harvest on potatoes.",
+  "enchantment.infinity_hoe.wheat_specialist": "Wheat Specialist",
+  "enchantment.infinity_hoe.wheat_specialist.desc": "Chance of double harvest on wheat."
 }
