@@ -14,13 +14,16 @@ object EnchantmentLoader {
     val untill = Untill()
 
     val enchantments: List<HoeEnchantment> = listOf(
-        infinity,
-        pesticide,
-        growthAcceleration,
-        autoSeed,
-        chainHarvest,
-        untill
-    )
+        listOf(
+            infinity,
+            pesticide,
+            growthAcceleration,
+            autoSeed,
+            chainHarvest,
+            untill
+        ),
+        Specialist.enchantments
+    ).flatten()
 
     fun initialize() {
         for (enchantment in enchantments) {
