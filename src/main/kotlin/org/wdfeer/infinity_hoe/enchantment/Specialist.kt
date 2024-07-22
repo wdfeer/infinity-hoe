@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
@@ -14,6 +15,8 @@ import kotlin.random.Random
 
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = path
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is Specialist
 
     override fun onCropBroken(
         world: ServerWorld,
