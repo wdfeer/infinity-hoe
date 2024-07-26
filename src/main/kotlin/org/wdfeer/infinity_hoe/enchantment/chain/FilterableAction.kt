@@ -11,7 +11,11 @@ abstract class FilterableAction(
     hoe: ItemStack,
     player: ServerPlayerEntity,
     origin: BlockPos,
-    private val blockFilter: Block  // TODO: blockFilter is somehow always null
-) : ChainAction(world, hoe, player, origin) {
+    private val blockFilter: Block
+) : ChainAction(world, hoe, player) {
     override fun getRequiredBlock(): Block = blockFilter
+
+    init {
+        initBlocks(origin)
+    }
 }

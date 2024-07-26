@@ -22,9 +22,8 @@ class Infinity : HoeEnchantment(Rarity.RARE) {
     private val actionManager = ActionManager<InfinityTillAction>()
 
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
-        blockTypes[hoe]?.let {
+        if (blockTypes[hoe] != null)
             actionManager.addAction(InfinityTillAction(world, hoe, player, pos, blockTypes[hoe]!!))
-        }
         blockTypes.remove(hoe)
     }
 
