@@ -7,6 +7,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.util.getStatusLevel
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
     override fun getPath(): String = "rejuvenation"
@@ -21,7 +22,7 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
         pos: BlockPos,
         mature: Boolean
     ) {
-        val regen = player.getStatusEffect(StatusEffects.REGENERATION)?.amplifier ?: -1
+        val regen = player.getStatusLevel(StatusEffects.REGENERATION) ?: -1
         if (mature && regen < 256) {
             player.removeStatusEffect(StatusEffects.REGENERATION)
             player.addStatusEffect(StatusEffectInstance(StatusEffects.REGENERATION, duration, regen + 1))

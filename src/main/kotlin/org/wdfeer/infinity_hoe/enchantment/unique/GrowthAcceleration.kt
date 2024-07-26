@@ -31,11 +31,9 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
 
                     val level: Int = player.handItems.filter { it.item is HoeItem }
                         .maxOfOrNull { it.getEnchantmentLevel(EnchantmentLoader.growthAcceleration) }
-                        ?: 0
+                        ?: continue
 
-                    if (level > 0) {
-                        growthAccelerationTick(world, player, level)
-                    }
+                    growthAccelerationTick(world, player, level)
                 }
         }
 
