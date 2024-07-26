@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique
 import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.CropBlock
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
@@ -12,7 +13,9 @@ import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.getAdjacent
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.getStatusLevel
 import org.wdfeer.infinity_hoe.util.randoms
+import kotlin.math.ceil
 
 class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
@@ -33,7 +36,9 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
                         .maxOfOrNull { it.getEnchantmentLevel(EnchantmentLoader.growthAcceleration) }
                         ?: continue
 
-                    growthAccelerationTick(world, player, level)
+                    val regen = player.getStatusLevel(StatusEffects.REGENERATION)
+
+                    growthAccelerationTick(world, player, level + (ceil(regen?.div(2f) ?: 0f).toInt()))
                 }
         }
 
