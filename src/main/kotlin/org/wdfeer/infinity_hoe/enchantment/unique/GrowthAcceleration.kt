@@ -39,7 +39,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
                 }
         }
 
-        private fun growthAccelerationTick(world: ServerWorld, player: PlayerEntity, level: Int) {
+        fun growthAccelerationTick(world: ServerWorld, player: PlayerEntity, level: Int) {
             fun isApplicable(pos: BlockPos): Boolean {
                 val state = world.getBlockState(pos)
                 if (state.block !is CropBlock) return false
