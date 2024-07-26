@@ -9,7 +9,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.util.DamageSourceHelper
+import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
 class Pesticide : HoeEnchantment(Rarity.RARE) {
@@ -46,10 +46,7 @@ class Pesticide : HoeEnchantment(Rarity.RARE) {
     ) {
         for (entity in world.iterateEntities()) {
             if (entity is Monster && checkCollision(entity, pos)) {
-                entity.damage(
-                    DamageSourceHelper.create(world, DamageTypes.MAGIC, player),
-                    getDamage(hoe)
-                )
+                entity.damage(DamageTypes.MAGIC, getDamage(hoe), player)
             }
         }
     }

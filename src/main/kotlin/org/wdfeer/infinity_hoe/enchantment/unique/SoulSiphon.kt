@@ -2,13 +2,18 @@ package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.enchantment.Enchantment
+import net.minecraft.entity.attribute.EntityAttribute
+import net.minecraft.entity.attribute.EntityAttributeModifier
+import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageTypes
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.GrowthAcceleration.Companion.growthAccelerationTick
-import org.wdfeer.infinity_hoe.util.DamageSourceHelper
-import org.wdfeer.infinity_hoe.util.hasEnchantment
+import org.wdfeer.infinity_hoe.util.*
+import java.util.*
+import kotlin.random.Random
 
 class SoulSiphon : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "soul_siphon"
@@ -20,17 +25,46 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
         ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
     }
 
-    private val interval: Int = 100
+    private val interval: Int = 40
     private fun canIteratePlayers(world: World): Boolean = world.time % interval == 0L
 
+    private val modifierUUID = UUID.nameUUIDFromBytes("soul_siphon".toByteArray())
+    private fun getModifier(hpIncrease: Double) = EntityAttributeModifier(
+        modifierUUID,
+        "soul_siphon",
+        hpIncrease,
+        EntityAttributeModifier.Operation.ADDITION)
     private fun onWorldTick(world: ServerWorld) {
         if (canIteratePlayers(world))
             for (player in world.players){
                 if (!player.isAlive) continue
-                if (player.handItems.none { it.hasEnchantment(this) }) continue
 
-                player.damage(DamageSourceHelper.create(world, DamageTypes.MAGIC), 2f)
-                growthAccelerationTick(world, player, 4)
+                val attribute = EntityAttributes.GENERIC_MAX_HEALTH
+                val mod = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)?.getModifier(modifierUUID)
+                if (player.handItems.none { it.hasEnchantment(this) } || player.health <= 2) {
+                    if (mod != null && Random.roll(3)) {
+                        recover(mod, player, attribute)
+                    }
+
+                    continue
+                }
+
+                player.attributes.addTemporary(attribute, getModifier(mod?.value?.minus(2) ?: -2.0))
+
+                player.damage(DamageTypes.MAGIC, 2f)
+
+                (3 downTo 1).forEach { growthAccelerationTick(world, player, it) }
             }
+    }
+
+    private fun recover(
+        mod: EntityAttributeModifier,
+        player: ServerPlayerEntity,
+        attribute: EntityAttribute
+    ) {
+        if (mod.value >= -2.0)
+            player.attributes.remove(attribute, mod)
+        else
+            player.attributes.addTemporary(attribute, getModifier(mod.value + 2.0))
     }
 }
