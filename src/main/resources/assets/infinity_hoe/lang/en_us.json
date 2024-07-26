@@ -13,6 +13,8 @@
   "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click.",
   "enchantment.infinity_hoe.soul_siphon": "Soul Siphon",
   "enchantment.infinity_hoe.soul_siphon.desc": "Reduces your maximum health temporarily to catalyze crop growth while item is held.",
+  "enchantment.infinity_hoe.rejuvenation": "Rejuvenation",
+  "enchantment.infinity_hoe.rejuvenation.desc": "Shortly gain Regeneration on harvest. This effect stacks indefinitely.",
 
   "enchantment.infinity_hoe.beetroot_specialist": "Beetroot Specialist",
   "enchantment.infinity_hoe.beetroot_specialist.desc": "Chance of double harvest on beetroots.",

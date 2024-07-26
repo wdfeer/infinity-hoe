@@ -12,6 +12,7 @@ object EnchantmentLoader {
     val chainHarvest = ChainHarvest()
     val untill = Untill()
     private val soulSiphon = SoulSiphon()
+    private val rejuvenation = Rejuvenation()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -20,7 +21,8 @@ object EnchantmentLoader {
         autoSeed,
         chainHarvest,
         untill,
-        soulSiphon
+        soulSiphon,
+        rejuvenation
     ) + Specialist.enchantments
 
 
