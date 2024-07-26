@@ -14,25 +14,20 @@ object EnchantmentLoader {
     val untill = Untill()
 
     val enchantments: List<HoeEnchantment> = listOf(
-        listOf(
-            infinity,
-            pesticide,
-            growthAcceleration,
-            autoSeed,
-            chainHarvest,
-            untill
-        ),
-        Specialist.enchantments
-    ).flatten()
+        infinity,
+        pesticide,
+        growthAcceleration,
+        autoSeed,
+        chainHarvest,
+        untill
+    ) + Specialist.enchantments
+
 
     fun initialize() {
         for (enchantment in enchantments) {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
 
-        Infinity.initialize()
         GrowthAcceleration.initialize()
-        ChainHarvest.initialize()
-        Untill.initialize()
     }
 }

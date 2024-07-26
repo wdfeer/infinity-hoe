@@ -21,7 +21,7 @@ object HoeUse {
         context: ItemUsageContext
     ) {
         if (context.stack.hasEnchantment(EnchantmentLoader.infinity))
-            Infinity.preTrigger(context.world, context.stack, context.blockPos)
+            Infinity.preTill(context.world, context.stack, context.blockPos)
     }
 
     fun postUseOnBlock(  // Called from Mixin
