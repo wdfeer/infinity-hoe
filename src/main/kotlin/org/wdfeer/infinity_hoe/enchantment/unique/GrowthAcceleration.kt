@@ -11,34 +11,35 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.util.getAdjacent
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.util.getStatusLevel
-import org.wdfeer.infinity_hoe.util.randoms
-import kotlin.math.ceil
+import org.wdfeer.infinity_hoe.util.*
+import kotlin.random.Random
 
 class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
-        private const val INTERVAL: Long = 200
+        private const val TICK_INTERVAL: Long = 20
+
+        fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.01f
 
         fun initialize() {
             ServerTickEvents.END_WORLD_TICK.register(Companion::onWorldTick)
         }
 
-        private fun canIteratePlayers(world: World): Boolean = world.time % INTERVAL == 0L
+        private fun canIteratePlayers(world: World): Boolean = world.time % TICK_INTERVAL == 0L
 
         private fun onWorldTick(world: ServerWorld) {
             if (canIteratePlayers(world))
                 for (player in world.players){
                     if (!player.isAlive) continue
 
+                    val regen = player.getStatusLevel(StatusEffects.REGENERATION)
+
+                    if (!Random.roll(getPlayerTickChance(regen))) continue
+
                     val level: Int = player.handItems.filter { it.item is HoeItem }
                         .maxOfOrNull { it.getEnchantmentLevel(EnchantmentLoader.growthAcceleration) }
                         ?: continue
 
-                    val regen = player.getStatusLevel(StatusEffects.REGENERATION)
-
-                    growthAccelerationTick(world, player, level + (ceil(regen?.div(2f) ?: 0f).toInt()))
+                    growthAccelerationTick(world, player, level)
                 }
         }
 
