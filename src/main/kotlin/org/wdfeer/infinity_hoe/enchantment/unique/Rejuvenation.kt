@@ -8,6 +8,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.getStatusLevel
+import kotlin.math.min
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
     override fun getPath(): String = "rejuvenation"
@@ -22,8 +23,9 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
         pos: BlockPos,
         mature: Boolean
     ) {
-        val regen = player.getStatusLevel(StatusEffects.REGENERATION) ?: -1
-        if (mature && regen < 256) {
+        if (mature) {
+            val regen = min(player.getStatusLevel(StatusEffects.REGENERATION) ?: -1, 9)
+
             player.removeStatusEffect(StatusEffects.REGENERATION)
             player.addStatusEffect(StatusEffectInstance(StatusEffects.REGENERATION, duration, regen + 1))
         }
