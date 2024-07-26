@@ -25,7 +25,7 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
         ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
     }
 
-    private val interval: Int = 40
+    private val interval: Int = 60
     private fun canIteratePlayers(world: World): Boolean = world.time % interval == 0L
 
     private val modifierUUID = UUID.nameUUIDFromBytes("soul_siphon".toByteArray())
@@ -53,7 +53,7 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
 
                 player.damage(DamageTypes.MAGIC, 2f)
 
-                (3 downTo 1).forEach { growthAccelerationTick(world, player, it) }
+                growthAccelerationTick(world, player, 3)
             }
     }
 
