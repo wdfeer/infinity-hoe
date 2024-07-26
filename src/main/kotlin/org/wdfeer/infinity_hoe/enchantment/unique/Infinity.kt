@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.minecraft.block.Block
 import net.minecraft.item.ItemStack
@@ -6,9 +6,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
 
 class Infinity : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "infinity"

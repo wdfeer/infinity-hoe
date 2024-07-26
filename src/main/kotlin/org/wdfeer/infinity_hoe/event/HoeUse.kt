@@ -11,9 +11,9 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
-import org.wdfeer.infinity_hoe.EnchantmentLoader
-import org.wdfeer.infinity_hoe.enchantment.Infinity
-import org.wdfeer.infinity_hoe.enchantment.Untill
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.unique.Infinity
+import org.wdfeer.infinity_hoe.enchantment.unique.Untill
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeUse {

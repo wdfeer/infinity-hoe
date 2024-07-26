@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
 

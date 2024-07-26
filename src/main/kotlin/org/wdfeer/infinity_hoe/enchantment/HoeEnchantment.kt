@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.common
+package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.block.BlockState
 import net.minecraft.enchantment.Enchantment

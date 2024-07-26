@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.minecraft.block.BlockState
 import net.minecraft.item.ItemStack
@@ -7,7 +7,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainHarvestAction
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 
 class ChainHarvest : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "chain_harvest"

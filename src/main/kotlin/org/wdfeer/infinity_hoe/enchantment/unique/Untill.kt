@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
@@ -9,10 +9,10 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
-import org.wdfeer.infinity_hoe.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityUntillAction
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 

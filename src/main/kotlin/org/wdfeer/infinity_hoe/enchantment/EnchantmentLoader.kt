@@ -1,9 +1,8 @@
-package org.wdfeer.infinity_hoe
+package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
-import org.wdfeer.infinity_hoe.enchantment.*
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.*
 
 object EnchantmentLoader {
     val infinity = Infinity()

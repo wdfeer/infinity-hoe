@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import net.minecraft.entity.Entity
 import net.minecraft.entity.damage.DamageSource
@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.EnchantmentLoader
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.DamageTypeHelper
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 

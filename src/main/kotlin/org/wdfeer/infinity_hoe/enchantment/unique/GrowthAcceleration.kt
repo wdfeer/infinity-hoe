@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment
+package org.wdfeer.infinity_hoe.enchantment.unique
 
 import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
@@ -8,8 +8,8 @@ import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.EnchantmentLoader
-import org.wdfeer.infinity_hoe.enchantment.common.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.getAdjacent
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.randoms
@@ -19,7 +19,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
         private const val INTERVAL: Long = 200
 
         fun initialize() {
-            ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
+            ServerTickEvents.END_WORLD_TICK.register(Companion::onWorldTick)
         }
 
         private fun canIteratePlayers(world: World): Boolean = world.time % INTERVAL == 0L
