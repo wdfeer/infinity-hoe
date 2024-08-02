@@ -15,9 +15,9 @@ class CropExperience : HoeEnchantment(Rarity.RARE) {
 
     override fun getMaxLevel(): Int = 5
 
-    override fun getMinPower(level: Int): Int = 18 + level * 3
+    override fun getMinPower(level: Int): Int = 15 + level * 3
 
-    override fun getMaxPower(level: Int): Int = 24 + level * 3
+    override fun getMaxPower(level: Int): Int = 21 + level * 3
 
     override fun onCropBroken(
         world: ServerWorld,

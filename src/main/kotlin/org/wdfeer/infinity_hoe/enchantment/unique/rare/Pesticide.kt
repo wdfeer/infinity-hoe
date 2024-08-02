@@ -19,7 +19,7 @@ class Pesticide : HoeEnchantment(Rarity.RARE) {
 
     override fun getMinPower(level: Int): Int = 10 + level * 4
 
-    override fun getMaxPower(level: Int): Int = 15 + level * 4
+    override fun getMaxPower(level: Int): Int = 16 + level * 4
 
     override fun isTreasure(): Boolean = true
 

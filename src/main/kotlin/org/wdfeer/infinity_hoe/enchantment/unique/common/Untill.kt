@@ -21,7 +21,7 @@ class Untill : HoeEnchantment(Rarity.COMMON) {
 
     override fun getMinPower(level: Int): Int = 10
 
-    override fun getMaxPower(level: Int): Int = 60
+    override fun getMaxPower(level: Int): Int = 40
 
     companion object {
         fun untill(

@@ -13,9 +13,9 @@ import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
 class Infinity : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "infinity"
 
-    override fun getMaxLevel(): Int = 3
-    override fun getMinPower(level: Int): Int = 18 + level * 6
-    override fun getMaxPower(level: Int): Int = 24 + level * 6
+    override fun getMaxLevel(): Int = ChainHarvest.getMaxLevel()
+    override fun getMinPower(level: Int): Int = ChainHarvest.getMinPower(level)
+    override fun getMaxPower(level: Int): Int = ChainHarvest.getMaxPower(level)
 
 
     override fun isTreasure(): Boolean = true

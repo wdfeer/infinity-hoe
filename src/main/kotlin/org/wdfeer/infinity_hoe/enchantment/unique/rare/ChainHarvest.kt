@@ -12,11 +12,16 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 class ChainHarvest : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "chain_harvest"
 
-    override fun getMaxLevel(): Int = 3
+    override fun getMaxLevel(): Int = Companion.getMaxLevel()
+    override fun getMinPower(level: Int): Int = Companion.getMinPower(level)
+    override fun getMaxPower(level: Int): Int = Companion.getMaxPower(level)
 
-    override fun getMinPower(level: Int): Int = 18 + level * 6
+    companion object {
+        fun getMaxLevel() = 3
+        fun getMinPower(level: Int) = 14 + level * 6
+        fun getMaxPower(level: Int) = 20 + level * 6
+    }
 
-    override fun getMaxPower(level: Int): Int = 24 + level * 6
 
 
     private val actionManager = ActionManager<ChainHarvestAction>()
