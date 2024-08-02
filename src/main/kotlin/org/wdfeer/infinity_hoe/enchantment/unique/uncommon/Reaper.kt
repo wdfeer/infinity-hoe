@@ -1,32 +1,34 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.bettercombat.BetterCombat
+import net.bettercombat.api.AttributesContainer
 import net.bettercombat.api.WeaponAttributes
-import net.bettercombat.logic.WeaponRegistry
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
-import org.wdfeer.infinity_hoe.InfinityHoe
-import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.hasEnchantment
-import java.lang.reflect.Method
 
 class Reaper : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
-        fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)
+        private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)
 
-        fun getAttributesMixin(stack: ItemStack, cir: CallbackInfoReturnable<WeaponAttributes>) {
-            if (cir.returnValue == null && stack.hasEnchantment(EnchantmentLoader.reaper)) {
-                // TODO: Don't use reflection
+        val instance: Reaper? = canRegister().let { if (it) Reaper() else null }
 
-                val method: Method = WeaponRegistry::class.java.getDeclaredMethod("getAttributes", Identifier::class.java)
+        private var scytheAttributes: WeaponAttributes? = null
 
-                method.isAccessible = true
 
-                cir.returnValue = method.invoke(WeaponRegistry::class.java, Identifier(InfinityHoe.MOD_ID, "reaper")) as? WeaponAttributes
+        fun mixinGetAttributes(stack: ItemStack, cir: CallbackInfoReturnable<WeaponAttributes>) {
+            if (cir.returnValue == null && stack.hasEnchantment(instance!!)) {
+                cir.returnValue = scytheAttributes
             }
+        }
+
+        fun mixinLoadContainers(
+            containers: MutableMap<Identifier, AttributesContainer>
+        ) {
+            scytheAttributes = containers[Identifier(BetterCombat.MODID, "scythe")]?.attributes()
         }
     }
 

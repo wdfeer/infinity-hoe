@@ -15,7 +15,6 @@ object EnchantmentLoader {
     val growthAcceleration = GrowthAcceleration()
     val chainHarvest = ChainHarvest()
     val untill = Untill()
-    val reaper = Reaper()
 
     val enchantments: List<HoeEnchantment> = mutableListOf(
         infinity,
@@ -28,7 +27,7 @@ object EnchantmentLoader {
         Rejuvenation(),
         CropExperience()
     ).apply {
-        if (Reaper.canRegister()) add(reaper)
+        Reaper.instance?.let { this.add(it) }
     } + Specialist.enchantments
 
 
