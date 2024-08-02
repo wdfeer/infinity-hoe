@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.item.ItemStack

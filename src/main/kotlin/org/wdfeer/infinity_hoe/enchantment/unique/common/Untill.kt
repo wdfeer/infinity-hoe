@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique
+package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity

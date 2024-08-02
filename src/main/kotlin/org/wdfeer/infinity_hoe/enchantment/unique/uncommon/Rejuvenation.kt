@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects

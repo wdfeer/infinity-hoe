@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.enchantment.Enchantment
@@ -10,7 +10,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.GrowthAcceleration.Companion.growthAccelerationTick
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration.Companion.growthAccelerationTick
 import org.wdfeer.infinity_hoe.util.*
 import java.util.*
 import kotlin.random.Random

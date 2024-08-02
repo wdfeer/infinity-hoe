@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents

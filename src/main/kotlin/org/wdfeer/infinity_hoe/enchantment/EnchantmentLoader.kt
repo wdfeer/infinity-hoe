@@ -2,7 +2,11 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
-import org.wdfeer.infinity_hoe.enchantment.unique.*
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.AutoSeed
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
 
 object EnchantmentLoader {
     val infinity = Infinity()
