@@ -17,6 +17,8 @@
   "enchantment.infinity_hoe.rejuvenation.desc": "Shortly gain Regeneration on harvest. This effect stacks indefinitely.",
   "enchantment.infinity_hoe.crop_experience": "Experience",
   "enchantment.infinity_hoe.crop_experience.desc": "Mature crops drop experience.",
+  "enchantment.infinity_hoe.reaper": "Reaper",
+  "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
 
   "enchantment.infinity_hoe.beetroot_specialist": "Beetroot Specialist",
   "enchantment.infinity_hoe.beetroot_specialist.desc": "Chance of double harvest on beetroots.",
