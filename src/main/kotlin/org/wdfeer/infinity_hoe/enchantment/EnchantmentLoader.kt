@@ -1,6 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment
 
-import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
@@ -16,6 +15,7 @@ object EnchantmentLoader {
     val growthAcceleration = GrowthAcceleration()
     val chainHarvest = ChainHarvest()
     val untill = Untill()
+    val reaper = Reaper()
 
     val enchantments: List<HoeEnchantment> = mutableListOf(
         infinity,
@@ -28,7 +28,7 @@ object EnchantmentLoader {
         Rejuvenation(),
         CropExperience()
     ).apply {
-        if (Reaper.canRegister()) add(Reaper())
+        if (Reaper.canRegister()) add(reaper)
     } + Specialist.enchantments
 
 

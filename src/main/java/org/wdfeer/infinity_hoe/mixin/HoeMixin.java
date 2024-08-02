@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.wdfeer.infinity_hoe.event.HoeUse;
 
 @Mixin(HoeItem.class)
-public class HoeMixin {
+class HoeMixin {
 	@Inject(at = @At("HEAD"), method = "useOnBlock")
 	private void preUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
 		HoeUse.INSTANCE.preUseOnBlock(context);
