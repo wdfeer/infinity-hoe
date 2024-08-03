@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.melee
+package org.wdfeer.infinity_hoe.enchantment.unique.combat
 
 import net.bettercombat.BetterCombat
 import net.bettercombat.api.AttributesContainer
