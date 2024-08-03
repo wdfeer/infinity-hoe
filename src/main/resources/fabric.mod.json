@@ -23,7 +23,8 @@
 		]
 	},
 	"mixins": [
-		"infinity_hoe.mixins.json"
+		"infinity_hoe.mixins.json",
+		"infinity_hoe.bettercombat.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
