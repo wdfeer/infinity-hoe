@@ -31,5 +31,8 @@
 		"java": ">=17",
 		"fabric-api": "*",
 		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"bettercombat": "*"
 	}
 }

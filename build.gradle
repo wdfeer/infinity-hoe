@@ -25,7 +25,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
-	modImplementation "maven.modrinth:better-combat:1.8.5+1.20.1-fabric"
+	modImplementation "maven.modrinth:better-combat:${project.bettercombat_version}-fabric"
 }
 
 processResources {
