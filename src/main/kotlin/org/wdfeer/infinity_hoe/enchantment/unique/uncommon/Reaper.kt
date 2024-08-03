@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 import net.bettercombat.BetterCombat
 import net.bettercombat.api.AttributesContainer
 import net.bettercombat.api.WeaponAttributes
+import net.bettercombat.logic.WeaponRegistry
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
@@ -14,21 +15,22 @@ class Reaper : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
         private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)
 
-        val instance: Reaper? = canRegister().let { if (it) Reaper() else null }
+        val instance: Reaper? = if (canRegister()) Reaper() else null
 
-        private var scytheAttributes: WeaponAttributes? = null
+        private var attributes: WeaponAttributes? = null
 
 
         fun mixinGetAttributes(stack: ItemStack, cir: CallbackInfoReturnable<WeaponAttributes>) {
             if (cir.returnValue == null && stack.hasEnchantment(instance!!)) {
-                cir.returnValue = scytheAttributes
+                cir.returnValue = attributes
             }
         }
 
         fun mixinLoadContainers(
             containers: MutableMap<Identifier, AttributesContainer>
         ) {
-            scytheAttributes = containers[instance!!.getIdentifier()]?.attributes()
+            val container = containers[instance!!.getIdentifier()]
+            attributes = WeaponRegistry.resolveAttributes(instance.getIdentifier(), container)
         }
     }
 
