@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.BetterCombatEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.combat.Equinox
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.Pesticide
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
@@ -26,7 +27,8 @@ object EnchantmentLoader {
         untill,
         SoulSiphon(),
         Rejuvenation(),
-        CropExperience()
+        CropExperience(),
+        Equinox()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

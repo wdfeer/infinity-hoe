@@ -3,7 +3,8 @@
   "package": "org.wdfeer.infinity_hoe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "HoeMixin"
+    "HoeMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
