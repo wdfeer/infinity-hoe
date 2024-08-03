@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Reaper;
+import org.wdfeer.infinity_hoe.enchantment.melee.BetterCombatEnchantment;
 
 import java.util.Map;
 
@@ -24,12 +24,16 @@ class WeaponRegistryMixin {
             method = "getAttributes(Lnet/minecraft/item/ItemStack;)Lnet/bettercombat/api/WeaponAttributes;",
             cancellable = true)
     private static void getAttributes(ItemStack itemStack, CallbackInfoReturnable<WeaponAttributes> cir){
-        Reaper.Companion.mixinGetAttributes(itemStack, cir);
+        for (var enchant : BetterCombatEnchantment.Companion.getEnchantments()) {
+            enchant.mixinGetAttributes(itemStack, cir);
+        }
     }
 
     @Inject(at = @At("RETURN"),
             method = "loadContainers")
     private static void loadContainers(ResourceManager resourceManager, CallbackInfo ci) {
-        Reaper.Companion.mixinLoadContainers(containers);
+        for (var enchant : BetterCombatEnchantment.Companion.getEnchantments()) {
+            enchant.mixinLoadContainers(containers);
+        }
     }
 }

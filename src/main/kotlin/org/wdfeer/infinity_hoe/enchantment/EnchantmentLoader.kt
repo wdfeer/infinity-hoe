@@ -2,12 +2,13 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import org.wdfeer.infinity_hoe.enchantment.melee.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.AutoSeed
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Reaper
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
+import org.wdfeer.infinity_hoe.util.ifElse
 
 object EnchantmentLoader {
     val infinity = Infinity()
@@ -16,7 +17,7 @@ object EnchantmentLoader {
     val chainHarvest = ChainHarvest()
     val untill = Untill()
 
-    val enchantments: List<HoeEnchantment> = mutableListOf(
+    val enchantments: List<HoeEnchantment> = listOf(
         infinity,
         pesticide,
         growthAcceleration,
@@ -26,9 +27,7 @@ object EnchantmentLoader {
         SoulSiphon(),
         Rejuvenation(),
         CropExperience()
-    ).apply {
-        Reaper.instance?.let { this.add(it) }
-    } + Specialist.enchantments
+    ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
     fun initialize() {
