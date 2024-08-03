@@ -28,7 +28,7 @@ class Reaper : HoeEnchantment(Rarity.UNCOMMON) {
         fun mixinLoadContainers(
             containers: MutableMap<Identifier, AttributesContainer>
         ) {
-            scytheAttributes = containers[Identifier(BetterCombat.MODID, "scythe")]?.attributes()
+            scytheAttributes = containers[instance!!.getIdentifier()]?.attributes()
         }
     }
 
