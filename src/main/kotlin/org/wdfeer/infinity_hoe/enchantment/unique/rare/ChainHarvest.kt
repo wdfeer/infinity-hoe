@@ -8,8 +8,9 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainHarvestAction
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class ChainHarvest : HoeEnchantment(Rarity.RARE) {
+class ChainHarvest : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
     override val maxLevel: Int

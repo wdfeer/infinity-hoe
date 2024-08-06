@@ -7,10 +7,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.getStatusLevel
 import kotlin.math.min
 
-class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
+class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     override fun getPath(): String = "rejuvenation"
     override fun getPowerRange(level: Int): IntRange = 10..40
 

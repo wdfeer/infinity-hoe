@@ -9,8 +9,9 @@ import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
+import org.wdfeer.infinity_hoe.event.listener.TillListener
 
-class Infinity : HoeEnchantment(Rarity.RARE) {
+class Infinity : HoeEnchantment(Rarity.RARE), TillListener {
     override fun getPath(): String = "infinity"
 
     override val maxLevel: Int

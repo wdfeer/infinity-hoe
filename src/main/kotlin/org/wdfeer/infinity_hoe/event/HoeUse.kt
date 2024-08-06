@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Infinity
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
+import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeUse {
@@ -38,8 +39,9 @@ object HoeUse {
 
     fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: Enchantment?) {
         EnchantmentLoader.enchantments.forEach {
+            val listener = it as? TillListener ?: return@forEach
             if (it != cause && hoe.hasEnchantment(it))
-                it.onTill(world, player, hoe, pos)
+                listener.onTill(world, player, hoe, pos)
         }
     }
 
