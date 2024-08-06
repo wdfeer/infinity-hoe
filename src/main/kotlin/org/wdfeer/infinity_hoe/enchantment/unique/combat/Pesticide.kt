@@ -9,10 +9,12 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
-class Pesticide : HoeEnchantment(Rarity.RARE) {
+class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
 
     override val maxLevel: Int

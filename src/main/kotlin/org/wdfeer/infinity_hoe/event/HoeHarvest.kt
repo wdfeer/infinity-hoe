@@ -12,6 +12,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeHarvest {
@@ -38,8 +39,9 @@ object HoeHarvest {
         val mature = crop.getAge(state) >= crop.maxAge
 
         EnchantmentLoader.enchantments.forEach {
+            val listener = it as? HarvestListener ?: return@forEach
             if (it != cause && hoe.hasEnchantment(it))
-                it.onCropBroken(world, player, hoe, pos, state, mature)
+                listener.onCropBroken(world, player, hoe, pos, state, mature)
         }
     }
 }

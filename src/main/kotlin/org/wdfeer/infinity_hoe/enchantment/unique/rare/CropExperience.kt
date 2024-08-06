@@ -7,10 +7,11 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import kotlin.math.floor
 
-class CropExperience : HoeEnchantment(Rarity.RARE) {
+class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "crop_experience"
 
     override val maxLevel: Int

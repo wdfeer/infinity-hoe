@@ -6,4 +6,6 @@ class MysticBlade : HoeEnchantment(Rarity.RARE) {
     override fun getPowerRange(level: Int): IntRange = 10..50
 
     override fun getPath(): String = "mystic_blade"
+
+    // TODO: Add functionality
 }

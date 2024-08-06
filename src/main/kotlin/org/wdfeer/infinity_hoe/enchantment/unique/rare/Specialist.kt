@@ -10,10 +10,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
 
-class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE) {
+class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = path
 
     override fun getPowerRange(level: Int): IntRange = 10..60
