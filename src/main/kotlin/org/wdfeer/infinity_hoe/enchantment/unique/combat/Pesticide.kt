@@ -15,11 +15,14 @@ import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 class Pesticide : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "pesticide"
 
-    override fun getMaxLevel(): Int = 5
+    override val maxLevel: Int
+        get() = 5
 
-    override fun getMinPower(level: Int): Int = 10 + level * 4
-
-    override fun getMaxPower(level: Int): Int = 16 + level * 4
+    override fun getPowerRange(level: Int): IntRange {
+        val min = 10 + level * 4
+        val max = 16 + level * 4
+        return min..max
+    }
 
     override fun isTreasure(): Boolean = true
 

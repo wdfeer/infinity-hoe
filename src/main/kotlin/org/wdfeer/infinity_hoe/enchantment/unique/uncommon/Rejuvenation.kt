@@ -12,8 +12,7 @@ import kotlin.math.min
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON) {
     override fun getPath(): String = "rejuvenation"
-    override fun getMinPower(level: Int): Int = 10
-    override fun getMaxPower(level: Int): Int = 40
+    override fun getPowerRange(level: Int): IntRange = 10..40
 
     private val duration = 2 * 20
     override fun onCropBroken(

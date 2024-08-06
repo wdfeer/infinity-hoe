@@ -10,8 +10,16 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 
-abstract class HoeEnchantment(rarity: Rarity) : Enchantment(rarity, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)),
-    Identifiable {
+abstract class HoeEnchantment(rarity: Rarity) : Enchantment(rarity, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)), Identifiable {
+    open val maxLevel: Int get() = 1
+    abstract fun getPowerRange(level: Int): IntRange
+
+
+    final override fun getMaxLevel(): Int = maxLevel
+    final override fun getMinPower(level: Int): Int = getPowerRange(level).first
+    final override fun getMaxPower(level: Int): Int = getPowerRange(level).last
+
+
     override fun isAcceptableItem(stack: ItemStack?): Boolean {
         return stack?.item is HoeItem
     }

@@ -13,9 +13,7 @@ import org.wdfeer.infinity_hoe.util.find
 class AutoSeed : HoeEnchantment(Rarity.UNCOMMON) {
     override fun getPath(): String = "autoseed"
 
-    override fun getMinPower(level: Int): Int = 10
-
-    override fun getMaxPower(level: Int): Int = 40
+    override fun getPowerRange(level: Int): IntRange = 10..40
 
     override fun onCropBroken(
         world: ServerWorld,

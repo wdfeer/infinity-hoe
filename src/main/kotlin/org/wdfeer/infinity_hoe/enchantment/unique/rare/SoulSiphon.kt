@@ -18,8 +18,9 @@ import kotlin.random.Random
 
 class SoulSiphon : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "soul_siphon"
-    override fun getMinPower(level: Int): Int = 14
-    override fun getMaxPower(level: Int): Int = 50
+
+    override fun getPowerRange(level: Int): IntRange = 14..50
+
     override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration
 
     init {

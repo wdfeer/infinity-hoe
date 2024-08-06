@@ -16,9 +16,7 @@ import kotlin.random.Random
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = path
 
-    override fun getMinPower(level: Int): Int = 10
-
-    override fun getMaxPower(level: Int): Int = 60
+    override fun getPowerRange(level: Int): IntRange = 10..60
 
     override fun canAccept(other: Enchantment?): Boolean = other !is Specialist
 

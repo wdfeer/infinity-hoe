@@ -18,6 +18,5 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitEnchantment {
 
 
     override fun getPath(): String = "equinox"
-    override fun getMinPower(level: Int): Int = 12
-    override fun getMaxPower(level: Int): Int = 50
+    override fun getPowerRange(level: Int): IntRange = 12..50
 }

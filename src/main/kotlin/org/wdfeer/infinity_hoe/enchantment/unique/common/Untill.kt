@@ -19,9 +19,7 @@ import org.wdfeer.infinity_hoe.util.hasEnchantment
 class Untill : HoeEnchantment(Rarity.COMMON) {
     override fun getPath(): String = "untill"
 
-    override fun getMinPower(level: Int): Int = 10
-
-    override fun getMaxPower(level: Int): Int = 40
+    override fun getPowerRange(level: Int): IntRange = 10..40
 
     companion object {
         fun untill(

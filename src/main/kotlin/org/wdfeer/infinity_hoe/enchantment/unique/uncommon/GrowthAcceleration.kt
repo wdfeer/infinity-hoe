@@ -67,9 +67,8 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
 
     override fun getPath(): String = "growth_acceleration"
 
-    override fun getMinPower(level: Int): Int = 8 + level * 5
+    override val maxLevel: Int
+        get() = 3
 
-    override fun getMaxPower(level: Int): Int = 16 + level * 5
-
-    override fun getMaxLevel(): Int = 3
+    override fun getPowerRange(level: Int): IntRange = 8 + level * 5..16 + level * 5
 }

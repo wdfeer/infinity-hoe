@@ -13,11 +13,10 @@ import kotlin.math.floor
 class CropExperience : HoeEnchantment(Rarity.RARE) {
     override fun getPath(): String = "crop_experience"
 
-    override fun getMaxLevel(): Int = 5
+    override val maxLevel: Int
+        get() = 5
 
-    override fun getMinPower(level: Int): Int = 15 + level * 3
-
-    override fun getMaxPower(level: Int): Int = 21 + level * 3
+    override fun getPowerRange(level: Int): IntRange = 15 + level * 3..21 + level * 3
 
     override fun onCropBroken(
         world: ServerWorld,
