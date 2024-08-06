@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "HoeMixin",
-    "ItemMixin"
+    "MiningItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

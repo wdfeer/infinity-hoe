@@ -7,7 +7,6 @@ import org.wdfeer.infinity_hoe.enchantment.unique.combat.OnHitEnchantment
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeHit {
-    @JvmStatic
     fun postHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
         EnchantmentLoader.enchantments.filter { it is OnHitEnchantment }.forEach {
             if (hoe.hasEnchantment(it))
