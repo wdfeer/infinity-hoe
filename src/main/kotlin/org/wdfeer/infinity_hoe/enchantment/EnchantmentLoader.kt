@@ -2,6 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import org.slf4j.Logger
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.Equinox
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.Pesticide
@@ -32,10 +33,12 @@ object EnchantmentLoader {
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
-    fun initialize() {
+    fun initialize(logger: Logger?) {
         for (enchantment in enchantments) {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
+        logger?.info("Loaded ${enchantments.size} hoe enchantments")
+
 
         GrowthAcceleration.initialize()
     }
