@@ -15,11 +15,11 @@ object InfinityHoeClient : ClientModInitializer {
         if (!FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)) return
 
         val currentPattern = BetterCombatClient.config.swingThruGrassBlacklist
-        val hoeRegex = "hoe" // Regex for "hoe"
+        val hoeRegex = "hoe"
 
         val orPatterns: List<String> = currentPattern.split("|")
         if (!currentPattern.contains(hoeRegex) || orPatterns.none { it == "hoe" }) {
-            val updatedPattern = "$currentPattern|$hoeRegex".trim('|')
+            val updatedPattern = "${currentPattern.trim('|')}|$hoeRegex"
             BetterCombatClient.config.swingThruGrassBlacklist = updatedPattern
         }
     }
