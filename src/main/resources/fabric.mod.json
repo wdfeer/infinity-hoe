@@ -20,6 +20,12 @@
 				"value": "org.wdfeer.infinity_hoe.InfinityHoe",
 				"adapter": "kotlin"
 			}
+		],
+		"client": [
+			{
+				"value": "org.wdfeer.infinity_hoe.client.InfinityHoeClient",
+				"adapter": "kotlin"
+			}
 		]
 	},
 	"mixins": [
