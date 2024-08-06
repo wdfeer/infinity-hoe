@@ -1,14 +1,24 @@
 package org.wdfeer.infinity_hoe.client
 
+import net.bettercombat.BetterCombat
 import net.bettercombat.client.BetterCombatClient
 import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents
+import net.fabricmc.loader.api.FabricLoader
 
 object InfinityHoeClient : ClientModInitializer {
     override fun onInitializeClient() {
-        val currentPattern = BetterCombatClient.config.swingThruGrassBlacklist
-        val hoeRegex = "\\bhoe\\b" // Regex for "hoe"
+        ClientLifecycleEvents.CLIENT_STARTED.register { initBetterCombat() }
+    }
 
-        if (!currentPattern.contains(hoeRegex)) {
+    private fun initBetterCombat() {
+        if (!FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)) return
+
+        val currentPattern = BetterCombatClient.config.swingThruGrassBlacklist
+        val hoeRegex = "hoe" // Regex for "hoe"
+
+        val orPatterns: List<String> = currentPattern.split("|")
+        if (!currentPattern.contains(hoeRegex) || orPatterns.none { it == "hoe" }) {
             val updatedPattern = "$currentPattern|$hoeRegex".trim('|')
             BetterCombatClient.config.swingThruGrassBlacklist = updatedPattern
         }
