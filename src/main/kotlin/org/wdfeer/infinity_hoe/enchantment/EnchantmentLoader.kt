@@ -5,6 +5,7 @@ import net.minecraft.registry.Registry
 import org.slf4j.Logger
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.Equinox
+import org.wdfeer.infinity_hoe.enchantment.unique.combat.MysticBlade
 import org.wdfeer.infinity_hoe.enchantment.unique.combat.Pesticide
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
@@ -29,7 +30,8 @@ object EnchantmentLoader {
         SoulSiphon(),
         Rejuvenation(),
         CropExperience(),
-        Equinox()
+        Equinox(),
+        MysticBlade()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
