@@ -14,7 +14,7 @@ import kotlin.math.floor
 class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "crop_experience"
 
-    override val maxLevel: Int
+    override val maxLvl: Int
         get() = 5
 
     override fun getPowerRange(level: Int): IntRange = 15 + level * 3..21 + level * 3

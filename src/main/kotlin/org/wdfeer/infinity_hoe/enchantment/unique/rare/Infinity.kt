@@ -14,7 +14,7 @@ import org.wdfeer.infinity_hoe.event.listener.TillListener
 class Infinity : HoeEnchantment(Rarity.RARE), TillListener {
     override fun getPath(): String = "infinity"
 
-    override val maxLevel: Int
+    override val maxLvl: Int
         get() = ChainHarvest.getMaxLevel()
     override fun getPowerRange(level: Int): IntRange = ChainHarvest.getPowerRange(level)
 

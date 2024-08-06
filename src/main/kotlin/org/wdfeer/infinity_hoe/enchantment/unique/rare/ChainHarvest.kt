@@ -13,8 +13,8 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 class ChainHarvest : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
-    override val maxLevel: Int
-        get() = getMaxLevel()
+    override val maxLvl: Int
+        get() = Companion.getMaxLevel()
     override fun getPowerRange(level: Int): IntRange = Companion.getPowerRange(level)
 
     companion object {

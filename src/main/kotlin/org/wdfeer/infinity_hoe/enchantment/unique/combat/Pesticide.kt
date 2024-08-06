@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
 
-    override val maxLevel: Int
+    override val maxLvl: Int
         get() = 5
 
     override fun getPowerRange(level: Int): IntRange {
