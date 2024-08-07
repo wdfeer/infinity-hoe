@@ -15,6 +15,6 @@ class MiningItemMixin {
     @Inject(method = "postHit", at = @At("RETURN"))
     void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir){
         if (stack.getItem() instanceof HoeItem)
-            HoeHit.INSTANCE.postHit(stack, target, attacker);
+            HoeHit.INSTANCE.postHit(stack, target, attacker, null);
     }
 }
