@@ -4,7 +4,6 @@ import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.block.CropBlock
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos

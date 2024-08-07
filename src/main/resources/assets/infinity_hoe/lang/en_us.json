@@ -20,7 +20,7 @@
   "enchantment.infinity_hoe.reaper": "Reaper",
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
   "enchantment.infinity_hoe.equinox": "Equinox",
-  "enchantment.infinity_hoe.equinox.desc": "Gain Strength or give Weakness on hit.",
+  "enchantment.infinity_hoe.equinox.desc": "Gain Strength, give Weakness, or apply a bone meal effect to nearby crops on melee hit.",
   "enchantment.infinity_hoe.mystic_blade": "Mystic Blade",
   "enchantment.infinity_hoe.mystic_blade.desc": "Damage increased by number of enchantments and their levels.",
 
