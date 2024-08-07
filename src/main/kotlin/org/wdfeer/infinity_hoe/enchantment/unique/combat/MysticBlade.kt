@@ -23,7 +23,7 @@ class MysticBlade : HoeEnchantment(Rarity.RARE), OnHitListener {
         damage(target, world, attacker, hoe)
 
         Pesticide.getNearbyLivingEntities(world, target.pos, Pesticide.DAMAGE_RADIUS).filter {
-            it is Monster && it != target
+            (target.type == it.type || it is Monster) && it != target && it != attacker
         }.forEach {
             damage(it, world, attacker, hoe)
         }
