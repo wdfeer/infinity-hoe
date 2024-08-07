@@ -17,7 +17,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
         private const val TICK_INTERVAL: Long = 20
 
-        private fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.01f
+        private fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.02f
 
         fun initialize() {
             ServerTickEvents.END_WORLD_TICK.register(Companion::onWorldTick)
