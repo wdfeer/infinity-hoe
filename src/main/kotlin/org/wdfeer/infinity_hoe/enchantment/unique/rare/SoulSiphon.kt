@@ -11,7 +11,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration.Companion.growthAccelerationTick
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration.Companion.proc
 import org.wdfeer.infinity_hoe.util.*
 import java.util.*
 import kotlin.random.Random
@@ -55,7 +55,7 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
 
                 player.damage(DamageTypes.MAGIC, 2f)
 
-                growthAccelerationTick(world, player, 3)
+                proc(world, player.blockPos, 3)
             }
     }
 

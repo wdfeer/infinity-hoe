@@ -39,11 +39,11 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
                         .maxOfOrNull { it.getEnchantmentLevel(EnchantmentLoader.growthAcceleration) }
                         ?: continue
 
-                    growthAccelerationTick(world, player, level)
+                    proc(world, player.blockPos, level)
                 }
         }
 
-        fun growthAccelerationTick(world: ServerWorld, player: PlayerEntity, level: Int) {
+        fun proc(world: ServerWorld, pos: BlockPos, level: Int) {
             fun isApplicable(pos: BlockPos): Boolean {
                 val state = world.getBlockState(pos)
                 if (state.block !is CropBlock) return false
@@ -55,10 +55,10 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
             fun apply(pos: BlockPos) {
                 val state = world.getBlockState(pos)
                 val block = state.block as CropBlock
-                block.grow(world, player.random, pos, state)
+                block.grow(world, world.random, pos, state)
             }
 
-            player.blockPos.getAdjacent(level + 1)
+            pos.getAdjacent(level + 1)
                 .filter(::isApplicable)
                 .randoms(pow(level, 2) + 1)
                 .forEach(::apply)
