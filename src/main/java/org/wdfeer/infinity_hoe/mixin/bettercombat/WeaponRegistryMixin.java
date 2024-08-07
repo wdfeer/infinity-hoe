@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.combat.BetterCombatEnchantment
 import java.util.Map;
 
 @Mixin(net.bettercombat.logic.WeaponRegistry.class)
-class WeaponRegistryMixin {
+abstract class WeaponRegistryMixin {
     @Shadow
     static Map<Identifier, AttributesContainer> containers;
 

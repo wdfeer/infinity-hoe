@@ -23,4 +23,20 @@ abstract class HoeEnchantment(rarity: Rarity) : Enchantment(
     override fun isAcceptableItem(stack: ItemStack?): Boolean {
         return stack?.item is HoeItem
     }
+
+    override fun isAvailableForRandomSelection(): Boolean = isAvailableRandomly
+
+
+    /* Workaround due to not being able to make a custom EnchantmentTarget.
+   Enchanting Tables include hoe enchantments on all diggers even if
+   isAcceptableItem(stack: ItemStack?) is overwritten properly.
+   Should be fixed since MC 1.20.5
+   */
+    companion object {
+        private var isAvailableRandomly: Boolean = true
+
+        fun setStackBeingProcessed(stack: ItemStack?) { // Called from mixin
+            isAvailableRandomly = stack == null || stack.item is HoeItem
+        }
+    }
 }
