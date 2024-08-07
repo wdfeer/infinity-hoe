@@ -6,7 +6,11 @@ import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
 
-abstract class HoeEnchantment(rarity: Rarity) : Enchantment(rarity, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)), Identifiable {
+abstract class HoeEnchantment(rarity: Rarity) : Enchantment(
+    rarity,
+    EnchantmentTarget.DIGGER,
+    arrayOf(EquipmentSlot.MAINHAND)
+), Identifiable {
     open val maxLvl: Int get() = 1
     abstract fun getPowerRange(level: Int): IntRange
 
