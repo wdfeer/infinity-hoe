@@ -8,6 +8,7 @@ import net.minecraft.entity.mob.Monster
 import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
@@ -39,6 +40,7 @@ class MysticBlade : HoeEnchantment(Rarity.RARE), OnHitListener {
             DamageSourceHelper.create(world, DamageTypes.MAGIC, attacker),
             getEnchantAmount(hoe) * damagePerEnchant
         )
+        HoeHit.postHit(hoe, target, attacker, this)
     }
 
     private val damagePerEnchant: Float = 0.1f

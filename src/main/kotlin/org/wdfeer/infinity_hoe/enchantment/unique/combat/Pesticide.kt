@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.event.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.damage
@@ -52,6 +53,7 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     ) {
         getNearbyLivingEntities(world, pos.toCenterPos(), DAMAGE_RADIUS).filter { it is Monster }.forEach {
             it.damage(DamageTypes.MAGIC, getDamage(hoe), player)
+            HoeHit.postHit(hoe, it, player, this)
         }
     }
 
