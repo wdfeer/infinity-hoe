@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
+package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.CropBlock
 import net.minecraft.item.BlockItem
@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.find
 
-class AutoSeed : HoeEnchantment(Rarity.UNCOMMON), HarvestListener, TillListener {
+class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener {
     override fun getPath(): String = "autoseed"
 
     override fun getPowerRange(level: Int): IntRange = 10..40
