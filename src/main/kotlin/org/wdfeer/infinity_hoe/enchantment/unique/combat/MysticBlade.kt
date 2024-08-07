@@ -46,4 +46,5 @@ class MysticBlade : HoeEnchantment(Rarity.RARE), OnHitListener {
     private fun getEnchantAmount(hoe: ItemStack): Int =
         EnchantmentHelper.fromNbt(hoe.enchantments).values.sumOf { it + 1 }
 
+    override fun canAccept(other: Enchantment?): Boolean = other !is Pesticide
 }
