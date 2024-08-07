@@ -54,7 +54,7 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
                     continue
                 }
 
-                if (trigger(world, player, 3, hoe) { (it / 6f).randomRound() + 1 }) {
+                if (trigger(world, player, 3, hoe, 0.5f)) {
                     player.attributes.addTemporary(attribute, getModifier(mod?.value?.minus(2) ?: -2.0))
 
                     player.damage(DamageTypes.MAGIC, 2f)

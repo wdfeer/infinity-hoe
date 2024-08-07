@@ -17,15 +17,16 @@ object CropCatalyzer {
         player: ServerPlayerEntity,
         level: Int,
         hoe: ItemStack,
-        getDamage: (blockCount: Int) -> Int = { ((it + 1) / 3f).randomRound() }
+        damageMult: Float = 1f
     ): Boolean {
         val blockCount = catalyzeGrowth(world, player.blockPos, level)
         if (blockCount > 0)
-            hoe.damage(player, getDamage(blockCount))
+            hoe.damage(player, (getHoeDamage(blockCount) * damageMult).randomRound())
 
         return blockCount > 0
     }
 
+    private fun getHoeDamage(blockCount: Int): Float = (blockCount + 2) / 3f
 
     private fun catalyzeGrowth(world: ServerWorld, pos: BlockPos, level: Int): Int {
         fun isApplicable(pos: BlockPos): Boolean {
