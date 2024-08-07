@@ -1,12 +1,13 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.combat
 
-import net.minecraft.entity.Entity
+import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.mob.Monster
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
@@ -49,19 +50,21 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
         hoe: ItemStack,
         pos: BlockPos
     ) {
-        for (entity in world.iterateEntities()) {
-            if (entity is Monster && checkCollision(entity, pos)) {
-                entity.damage(DamageTypes.MAGIC, getDamage(hoe), player)
-            }
+        getNearbyLivingEntities(world, pos.toCenterPos(), DAMAGE_RADIUS).filter { it is Monster }.forEach {
+            it.damage(DamageTypes.MAGIC, getDamage(hoe), player)
         }
-    }
-
-
-    private fun checkCollision(entity: Entity, pos: BlockPos): Boolean {
-        return entity.pos.distanceTo(pos.toCenterPos()) < 3
     }
 
     private fun getDamage(hoe: ItemStack): Float {
         return hoe.getEnchantmentLevel(EnchantmentLoader.pesticide) * 4f
+    }
+
+    companion object {
+        const val DAMAGE_RADIUS = 3.0
+
+        fun getNearbyLivingEntities(world: ServerWorld, origin: Vec3d, radius: Double): List<LivingEntity> =
+            world.iterateEntities()
+                .filter { it.pos.distanceTo(origin) <= radius}
+                .filterIsInstance<LivingEntity>()
     }
 }

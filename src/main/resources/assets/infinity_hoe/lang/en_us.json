@@ -22,7 +22,7 @@
   "enchantment.infinity_hoe.equinox": "Equinox",
   "enchantment.infinity_hoe.equinox.desc": "Gain Strength, give Weakness, or apply a bone meal effect to nearby crops on melee hit.",
   "enchantment.infinity_hoe.mystic_blade": "Mystic Blade",
-  "enchantment.infinity_hoe.mystic_blade.desc": "Damage increased by number of enchantments and their levels.",
+  "enchantment.infinity_hoe.mystic_blade.desc": "Deal area damage on hit based on the number of enchantments and their levels.",
 
   "enchantment.infinity_hoe.beetroot_specialist": "Beetroot Specialist",
   "enchantment.infinity_hoe.beetroot_specialist.desc": "Chance of double harvest on beetroots.",
