@@ -43,7 +43,8 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
 
                 val attribute = EntityAttributes.GENERIC_MAX_HEALTH
                 val mod = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)?.getModifier(modifierUUID)
-                if (player.handItems.none { it.hasEnchantment(this) } || player.health <= 2) {
+
+                if (player.handItems.none { !it.isEmpty && it.hasEnchantment(this) } || player.health <= 2) {
                     if (mod != null && Random.roll(3)) {
                         recover(mod, player, attribute)
                     }
