@@ -5,6 +5,7 @@ import net.bettercombat.api.AttributesContainer
 import net.bettercombat.api.WeaponAttributes
 import net.bettercombat.logic.WeaponRegistry
 import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
@@ -17,7 +18,8 @@ private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(Bett
 abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
         val enchantments: List<BetterCombatEnchantment> = canRegister().ifElse(listOf(
-            Reaper()
+            Reaper(),
+            Sickle()
         ), emptyList())
     }
 
@@ -37,4 +39,6 @@ abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
     }
 
     override fun getPowerRange(level: Int): IntRange = 8..40
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is BetterCombatEnchantment
 }
