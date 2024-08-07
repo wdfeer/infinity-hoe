@@ -10,7 +10,7 @@ fun ItemStack.hasEnchantment(enchantment: Enchantment): Boolean =
     EnchantmentHelper.fromNbt(this.enchantments).contains(enchantment)
 
 fun ItemStack.getEnchantmentLevel(enchantment: Enchantment): Int =
-    EnchantmentHelper.fromNbt(this.enchantments)[enchantment] ?: 0
+    EnchantmentHelper.fromNbt(this.enchantments)[enchantment] ?: -1
 
-fun ItemStack.damage(player: ServerPlayerEntity) =
-    this.damage(1, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
+fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
+    this.damage(amount, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }

@@ -10,8 +10,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration.Companion.proc
 import org.wdfeer.infinity_hoe.util.*
 import java.util.*
 import kotlin.random.Random
@@ -44,7 +44,9 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
                 val attribute = EntityAttributes.GENERIC_MAX_HEALTH
                 val mod = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)?.getModifier(modifierUUID)
 
-                if (player.handItems.none { !it.isEmpty && it.hasEnchantment(this) } || player.health <= 2) {
+                val hoe = player.handItems.find { !it.isEmpty && it.hasEnchantment(this) }
+
+                if (hoe == null || player.health <= 2) {
                     if (mod != null && Random.roll(3)) {
                         recover(mod, player, attribute)
                     }
@@ -52,11 +54,11 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE) {
                     continue
                 }
 
-                player.attributes.addTemporary(attribute, getModifier(mod?.value?.minus(2) ?: -2.0))
+                if (trigger(world, player, 3, hoe) { (it / 6f).randomRound() + 1 }) {
+                    player.attributes.addTemporary(attribute, getModifier(mod?.value?.minus(2) ?: -2.0))
 
-                player.damage(DamageTypes.MAGIC, 2f)
-
-                proc(world, player.blockPos, 3)
+                    player.damage(DamageTypes.MAGIC, 2f)
+                }
             }
     }
 

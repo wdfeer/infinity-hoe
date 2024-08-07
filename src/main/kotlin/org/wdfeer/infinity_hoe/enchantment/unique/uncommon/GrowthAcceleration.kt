@@ -1,16 +1,16 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
-import com.google.common.math.IntMath.pow
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.minecraft.block.CropBlock
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.util.*
+import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
+import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.getStatusLevel
+import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
 
 class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
@@ -34,34 +34,16 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON) {
 
                     if (!Random.roll(getPlayerTickChance(regen))) continue
 
-                    val level: Int = player.handItems.filter { it.item is HoeItem }
-                        .maxOfOrNull { it.getEnchantmentLevel(EnchantmentLoader.growthAcceleration) }
-                        ?: continue
+                    val hoe = player.handItems.find { it.item is HoeItem } ?: continue
+                    val level = hoe.getEnchantmentLevel(EnchantmentLoader.growthAcceleration)
 
-                    proc(world, player.blockPos, level)
+                    if (level == -1) continue
+
+                    trigger(world, player, level, hoe)
                 }
         }
 
-        fun proc(world: ServerWorld, pos: BlockPos, level: Int) {
-            fun isApplicable(pos: BlockPos): Boolean {
-                val state = world.getBlockState(pos)
-                if (state.block !is CropBlock) return false
 
-                val block = state.block as CropBlock
-                return block.isFertilizable(world, pos, state, false)
-            }
-
-            fun apply(pos: BlockPos) {
-                val state = world.getBlockState(pos)
-                val block = state.block as CropBlock
-                block.grow(world, world.random, pos, state)
-            }
-
-            pos.getAdjacent(level + 1)
-                .filter(::isApplicable)
-                .randoms(pow(level, 2) + 1)
-                .forEach(::apply)
-        }
     }
 
     override fun getPath(): String = "growth_acceleration"

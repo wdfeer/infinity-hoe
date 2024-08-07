@@ -5,8 +5,10 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.SoulSiphon
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
@@ -20,7 +22,11 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener {
         when (roll) {
             1 -> target.addStatusEffect(StatusEffectInstance(StatusEffects.WEAKNESS, statusDuration), attacker)
             2 -> attacker.addStatusEffect(StatusEffectInstance(StatusEffects.STRENGTH, statusDuration), attacker)
-            3 -> (target.world as? ServerWorld)?.let { GrowthAcceleration.proc(it, target.blockPos, 1) }
+            3 -> {
+                if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return
+
+                CropCatalyzer.trigger(attacker.world as ServerWorld, attacker, 1, hoe)
+            }
         }
     }
 
