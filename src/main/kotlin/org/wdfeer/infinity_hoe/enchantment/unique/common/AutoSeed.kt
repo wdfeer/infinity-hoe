@@ -15,7 +15,7 @@ import org.wdfeer.infinity_hoe.util.find
 class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener {
     override fun getPath(): String = "autoseed"
 
-    override fun getPowerRange(level: Int): IntRange = 10..40
+    override fun getPowerRange(level: Int): IntRange = 4..40
 
     override fun onCropBroken(
         world: ServerWorld,

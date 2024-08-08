@@ -20,8 +20,8 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE), HarvestListener {
     companion object {
         fun getMaxLevel() = 3
         fun getPowerRange(level: Int): IntRange = getMinPower(level)..getMaxPower(level)
-        private fun getMinPower(level: Int) = 14 + level * 6
-        private fun getMaxPower(level: Int) = 20 + level * 6
+        private fun getMinPower(level: Int) = 15 + level * 6
+        private fun getMaxPower(level: Int) = 21 + level * 6
     }
 
 

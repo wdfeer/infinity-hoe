@@ -19,8 +19,6 @@ class Infinity : HoeEnchantment(Rarity.RARE), TillListener {
     override fun getPowerRange(level: Int): IntRange = ChainHarvest.getPowerRange(level)
 
 
-    override fun isTreasure(): Boolean = true
-
     private val actionManager = ActionManager<InfinityTillAction>()
 
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {

@@ -17,7 +17,7 @@ class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override val maxLvl: Int
         get() = 5
 
-    override fun getPowerRange(level: Int): IntRange = 15 + level * 3..21 + level * 3
+    override fun getPowerRange(level: Int): IntRange = 12 + level * 4..20 + level * 4
 
     override fun onCropBroken(
         world: ServerWorld,

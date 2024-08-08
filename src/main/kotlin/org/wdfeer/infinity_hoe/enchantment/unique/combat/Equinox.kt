@@ -32,7 +32,7 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener {
 
 
     override fun getPath(): String = "equinox"
-    override fun getPowerRange(level: Int): IntRange = 12..50
+    override fun getPowerRange(level: Int): IntRange = 18..50
 
 
     override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration && other !is SoulSiphon

@@ -23,8 +23,8 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
         get() = 5
 
     override fun getPowerRange(level: Int): IntRange {
-        val min = 10 + level * 4
-        val max = 16 + level * 4
+        val min = 16 + level * 2
+        val max = 24 + level * 2
         return min..max
     }
 

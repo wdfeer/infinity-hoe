@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
 class MysticBlade : HoeEnchantment(Rarity.RARE), OnHitListener {
-    override fun getPowerRange(level: Int): IntRange = 10..50
+    override fun getPowerRange(level: Int): IntRange = 18..50
 
     override fun getPath(): String = "mystic_blade"
 

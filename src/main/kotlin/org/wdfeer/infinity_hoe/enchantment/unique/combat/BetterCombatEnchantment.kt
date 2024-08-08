@@ -38,7 +38,7 @@ abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
         attributes = WeaponRegistry.resolveAttributes(getIdentifier(), container)
     }
 
-    override fun getPowerRange(level: Int): IntRange = 8..40
+    override fun getPowerRange(level: Int): IntRange = 16..40
 
     override fun canAccept(other: Enchantment?): Boolean = other !is BetterCombatEnchantment
 }
