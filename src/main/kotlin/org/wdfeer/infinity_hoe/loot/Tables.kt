@@ -6,13 +6,13 @@ import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTables
 import net.minecraft.loot.condition.RandomChanceLootCondition
 import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.entry.LeafEntry
 import net.minecraft.loot.function.EnchantRandomlyLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.Identifier
 
 internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Builder) {
-    // TODO: reduce chances to something reasonable
     Easy(
         listOf(
             LootTables.SPAWN_BONUS_CHEST,
@@ -23,7 +23,7 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
             LootTables.VILLAGE_PLAINS_CHEST,
             LootTables.IGLOO_CHEST_CHEST
         ),
-        randomlyEnchantedLoot(Items.STONE_HOE, 1f)
+        randomlyEnchantedLoot(Items.STONE_HOE, 1, 0.4f)
     ),
     Medium(
         listOf(
@@ -34,7 +34,7 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
             LootTables.BASTION_OTHER_CHEST,
             LootTables.NETHER_BRIDGE_CHEST,
         ),
-        randomlyEnchantedLoot(Items.IRON_HOE, 1f)
+        randomlyEnchantedLoot(Items.IRON_HOE, 2, 0.25f)
     ),
     Hard(
         listOf(
@@ -42,14 +42,19 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
             LootTables.ANCIENT_CITY_CHEST,
             LootTables.END_CITY_TREASURE_CHEST
         ),
-        randomlyEnchantedLoot(Items.DIAMOND_HOE, 1f)
+        randomlyEnchantedLoot(Items.DIAMOND_HOE, 4, 0.2f)
     )
 }
 
-private fun randomlyEnchantedLoot(item: Item, chance: Float) = LootPool.builder()
-    .with(
-        ItemEntry.builder(item)
-            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1f)))
-            .apply(EnchantRandomlyLootFunction.builder())
-    )
+private fun randomlyEnchantedLoot(item: Item, count: Int, chance: Float) = LootPool.builder()
+    .with(getItemBuilder(item, count))
     .conditionally(RandomChanceLootCondition.builder(chance))
+
+private fun getItemBuilder(item: Item, enchantments: Int): LeafEntry.Builder<*> {
+    val builder = ItemEntry.builder(item)
+        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1f)))
+
+    repeat(enchantments) { builder.apply(EnchantRandomlyLootFunction.create()) }
+
+    return builder
+}
