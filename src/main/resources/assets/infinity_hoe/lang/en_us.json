@@ -6,7 +6,7 @@
   "enchantment.infinity_hoe.growth_acceleration": "Dryad's Blessing",
   "enchantment.infinity_hoe.growth_acceleration.desc": "Nurtures nearby crops on a cooldown while item is held.",
   "enchantment.infinity_hoe.autoseed": "Disseminate",
-  "enchantment.infinity_hoe.autoseed.desc": "Plants seeds from other hand upon till or harvest.",
+  "enchantment.infinity_hoe.autoseed.desc": "Plants seeds from inventory upon till or harvest.",
   "enchantment.infinity_hoe.chain_harvest": "Cascade",
   "enchantment.infinity_hoe.chain_harvest.desc": "Allows harvesting large areas at once.",
   "enchantment.infinity_hoe.untill": "Reset",
