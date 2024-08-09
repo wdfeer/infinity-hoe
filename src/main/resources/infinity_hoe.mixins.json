@@ -3,9 +3,10 @@
   "package": "org.wdfeer.infinity_hoe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EnchantmentHelperMixin",
+    "FarmlandMixin",
     "HoeMixin",
-    "MiningItemMixin",
-    "EnchantmentHelperMixin"
+    "MiningItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
