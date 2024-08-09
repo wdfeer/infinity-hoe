@@ -10,7 +10,7 @@ import net.minecraft.util.math.Direction
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
-import org.wdfeer.infinity_hoe.util.find
+import org.wdfeer.infinity_hoe.util.stacks
 
 class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener {
     override fun getPath(): String = "autoseed"
@@ -46,7 +46,7 @@ class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener {
 
         private fun findSeed(player: ServerPlayerEntity): ItemStack? {
             fun predicate(stack: ItemStack) = stack.item is BlockItem && (stack.item as BlockItem).block is CropBlock
-            return player.handItems.find(::predicate) ?: player.inventory.find(::predicate)
+            return player.handItems.find(::predicate) ?: player.inventory.stacks.find(::predicate)
         }
 
         private fun plant(world: ServerWorld, seed: ItemStack, pos: BlockPos) {

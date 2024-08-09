@@ -2,6 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -15,6 +16,7 @@ import org.wdfeer.infinity_hoe.enchantment.chain.InfinityUntillAction
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.hasEnchantment
+import org.wdfeer.infinity_hoe.util.stacks
 
 class Untill : HoeEnchantment(Rarity.COMMON) {
     override fun getPath(): String = "untill"
@@ -52,5 +54,8 @@ class Untill : HoeEnchantment(Rarity.COMMON) {
             if (infinity)
                 infinityUntillManager.addAction(InfinityUntillAction(world, hoe, player, pos))
         }
+
+        fun canCancelLandUntill(player: ServerPlayerEntity): Boolean = // Called from mixin
+            player.inventory.stacks.any {!it.isEmpty && it.item is HoeItem && it.hasEnchantment(EnchantmentLoader.untill)}
     }
 }

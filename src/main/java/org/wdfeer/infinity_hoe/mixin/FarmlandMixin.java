@@ -7,10 +7,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill;
 
 @Mixin(FarmlandBlock.class)
 public class FarmlandMixin {
@@ -21,12 +21,7 @@ public class FarmlandMixin {
                                     Entity entity,
                                     float fallDistance,
                                     CallbackInfo ci) {
-        if (entity instanceof ServerPlayerEntity player && hasUntillHoe(player))
+        if (entity instanceof ServerPlayerEntity player && Untill.Companion.canCancelLandUntill(player))
             ci.cancel();
-    }
-
-    @Unique
-    private boolean hasUntillHoe(ServerPlayerEntity player) {
-        return true; // TODO: Implement Untill check
     }
 }
