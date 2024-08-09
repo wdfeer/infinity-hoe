@@ -15,12 +15,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill;
 @Mixin(FarmlandBlock.class)
 public class FarmlandMixin {
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-    private void injectOnLandedUpon(World world,
-                                    BlockState state,
-                                    BlockPos pos,
-                                    Entity entity,
-                                    float fallDistance,
-                                    CallbackInfo ci) {
+    private void injectOnLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
         if (entity instanceof ServerPlayerEntity player && Untill.Companion.canCancelLandUntill(player))
             ci.cancel();
     }

@@ -10,7 +10,7 @@
   "enchantment.infinity_hoe.chain_harvest": "Cascade",
   "enchantment.infinity_hoe.chain_harvest.desc": "Allows harvesting large areas at once.",
   "enchantment.infinity_hoe.untill": "Reset",
-  "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click.",
+  "enchantment.infinity_hoe.untill.desc": "Untill tilled land with right click. Cannot untill by falling while in inventory.",
   "enchantment.infinity_hoe.soul_siphon": "Soul Siphon",
   "enchantment.infinity_hoe.soul_siphon.desc": "Reduces your maximum health temporarily to catalyze crop growth while item is held.",
   "enchantment.infinity_hoe.rejuvenation": "Rejuvenation",
