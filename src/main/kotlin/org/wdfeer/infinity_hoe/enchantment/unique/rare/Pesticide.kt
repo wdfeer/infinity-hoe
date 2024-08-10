@@ -28,8 +28,6 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
         return min..max
     }
 
-    override fun isTreasure(): Boolean = true
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,
