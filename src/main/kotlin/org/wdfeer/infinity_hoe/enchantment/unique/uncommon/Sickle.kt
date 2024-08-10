@@ -1,6 +1,7 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.combat
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.entity.EntityGroup
+import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
 
 class Sickle : BetterCombatEnchantment() {
     override fun getPath(): String = "sickle"

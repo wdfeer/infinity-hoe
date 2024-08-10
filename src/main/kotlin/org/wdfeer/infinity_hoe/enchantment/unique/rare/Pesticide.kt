@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.combat
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes

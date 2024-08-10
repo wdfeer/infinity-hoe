@@ -3,7 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.slf4j.Logger
-import org.wdfeer.infinity_hoe.enchantment.unique.combat.*
+import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*

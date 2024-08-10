@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.combat
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
@@ -9,7 +9,6 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.SoulSiphon
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import kotlin.random.Random

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.wdfeer.infinity_hoe.enchantment.unique.combat.BetterCombatEnchantment;
+import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment;
 
 import java.util.Map;
 
