@@ -11,22 +11,22 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener {
-    private val statusDuration: Int = 100
-    override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
-        val roll = Random.nextInt(1..3)
-        when (roll) {
-            1 -> target.addStatusEffect(StatusEffectInstance(StatusEffects.WEAKNESS, statusDuration), attacker)
-            2 -> attacker.addStatusEffect(StatusEffectInstance(StatusEffects.STRENGTH, statusDuration), attacker)
-            3 -> {
-                if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return
+    companion object {
+        private const val STATUS_DURATION: Int = 100
+    }
 
-                CropCatalyzer.trigger(attacker.world as ServerWorld, attacker, 1, hoe)
-            }
-        }
+    override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
+        if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return
+
+        val actions: List<() -> Unit> = listOf(
+            { target.addStatusEffect(StatusEffectInstance(StatusEffects.WEAKNESS, STATUS_DURATION), attacker) },
+            { attacker.addStatusEffect(StatusEffectInstance(StatusEffects.STRENGTH, STATUS_DURATION), attacker) },
+            { CropCatalyzer.trigger(attacker.world as ServerWorld, attacker, 1, hoe) }
+        )
+
+        actions.random()()
     }
 
 

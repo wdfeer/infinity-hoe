@@ -13,7 +13,6 @@ import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Infinity
-import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
@@ -54,7 +53,7 @@ object HoeUse {
     ) {
         val state = world.getBlockState(pos)
         if (state.block == Blocks.FARMLAND && hoe.hasEnchantment(EnchantmentLoader.untill)) {
-            Untill.untill(world, pos, player, hoe, useCallback)
+            EnchantmentLoader.untill.untill(world, pos, player, hoe, useCallback)
         }
     }
 }

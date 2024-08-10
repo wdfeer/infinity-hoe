@@ -35,8 +35,5 @@ object EnchantmentLoader {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
         logger?.info("Loaded ${enchantments.size} hoe enchantments")
-
-
-        GrowthAcceleration.initialize()
     }
 }

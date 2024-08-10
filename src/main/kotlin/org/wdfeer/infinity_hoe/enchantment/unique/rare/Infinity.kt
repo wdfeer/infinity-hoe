@@ -6,24 +6,20 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
+import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 
-class Infinity : HoeEnchantment(Rarity.RARE), TillListener {
+class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.RARE), TillListener {
     override fun getPath(): String = "infinity"
 
     override val maxLvl: Int
-        get() = ChainHarvest.getMaxLevel()
+        get() = ChainHarvest.MAX_LEVEL
     override fun getPowerRange(level: Int): IntRange = ChainHarvest.getPowerRange(level)
-
-
-    private val actionManager = ActionManager<InfinityTillAction>()
 
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
         if (blockTypes[hoe] != null)
-            actionManager.addAction(InfinityTillAction(world, hoe, player, pos, blockTypes[hoe]!!))
+            manager.addAction(InfinityTillAction(world, hoe, player, pos, blockTypes[hoe]!!))
         blockTypes.remove(hoe)
     }
 

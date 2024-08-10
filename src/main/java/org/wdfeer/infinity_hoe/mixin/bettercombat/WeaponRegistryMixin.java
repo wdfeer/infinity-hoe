@@ -16,9 +16,8 @@ import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment;
 import java.util.Map;
 
 @Mixin(net.bettercombat.logic.WeaponRegistry.class)
-abstract class WeaponRegistryMixin {
-    @Shadow
-    static Map<Identifier, AttributesContainer> containers;
+class WeaponRegistryMixin {
+    @Shadow static Map<Identifier, AttributesContainer> containers;
 
     @Inject(at = @At("RETURN"),
             method = "getAttributes(Lnet/minecraft/item/ItemStack;)Lnet/bettercombat/api/WeaponAttributes;",

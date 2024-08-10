@@ -15,7 +15,8 @@ import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 abstract class ChainAction(
     val world: ServerWorld,
     val hoe: ItemStack,
-    val player: ServerPlayerEntity
+    val player: ServerPlayerEntity,
+    origin: BlockPos
 ) {
     abstract fun processBlock(pos: BlockPos)
     abstract fun getRequiredBlock(): Block
@@ -26,7 +27,6 @@ abstract class ChainAction(
     abstract fun getEnchantment(): HoeEnchantment
 
     protected open fun canDamageHoe(): Boolean = true
-    protected open fun airAboveRequired(): Boolean = true
 
 
     private fun getInitialPower(level: Int): Int = pow(4, level + 1)
@@ -38,16 +38,15 @@ abstract class ChainAction(
     private fun isValidBlock(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean, pos: BlockPos): Boolean {
         val notDuplicate = pos != origin && !alreadyIncluded(pos)
         val validBlockType = isValidBlockState(world.getBlockState(pos))
-        val airCondition = !airAboveRequired() || world.getBlockState(pos.up()).isAir
+        val airCondition = world.getBlockState(pos.up()).isAir
 
         return notDuplicate && validBlockType && airCondition
     }
     private fun getNext(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean): List<BlockPos> =
         origin.getAdjacentHorizontally(1).filter { isValidBlock(origin, alreadyIncluded, it) }
 
-    private lateinit var blocks: MutableList<BlockPos>
-    // Has to be called in children
-    protected fun initBlocks(origin: BlockPos) { blocks = getNext(origin) { false }.toMutableList() }
+    private var blocks: MutableList<BlockPos> = initBlocks(origin)
+    private fun initBlocks(origin: BlockPos) = getNext(origin) { false }.toMutableList()
 
     fun tick() {
         val newBlocks: MutableList<BlockPos> = mutableListOf()

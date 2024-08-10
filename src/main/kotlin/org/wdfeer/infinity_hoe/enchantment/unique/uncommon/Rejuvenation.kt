@@ -8,14 +8,16 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import org.wdfeer.infinity_hoe.util.getStatusLevel
 import kotlin.math.min
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+    companion object {
+        private const val DURATION: Int = 2 * 20
+    }
+
     override fun getPath(): String = "rejuvenation"
     override fun getPowerRange(level: Int): IntRange = 10..40
 
-    private val duration = 2 * 20
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,
@@ -24,10 +26,10 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         mature: Boolean
     ) {
         if (mature) {
-            val regen = min(player.getStatusLevel(StatusEffects.REGENERATION) ?: -1, 9)
+            val regen = min(player.getStatusEffect(StatusEffects.REGENERATION)?.amplifier ?: -1, 9)
 
             player.removeStatusEffect(StatusEffects.REGENERATION)
-            player.addStatusEffect(StatusEffectInstance(StatusEffects.REGENERATION, duration, regen + 1))
+            player.addStatusEffect(StatusEffectInstance(StatusEffects.REGENERATION, DURATION, regen + 1))
         }
     }
 }

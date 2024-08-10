@@ -5,28 +5,24 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.chain.ActionManager
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainHarvestAction
-import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class ChainHarvest : HoeEnchantment(Rarity.RARE), HarvestListener {
+class ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
     override val maxLvl: Int
-        get() = Companion.getMaxLevel()
+        get() = MAX_LEVEL
     override fun getPowerRange(level: Int): IntRange = Companion.getPowerRange(level)
 
     companion object {
-        fun getMaxLevel() = 3
+        const val MAX_LEVEL = 3
         fun getPowerRange(level: Int): IntRange = getMinPower(level)..getMaxPower(level)
         private fun getMinPower(level: Int) = 15 + level * 6
         private fun getMaxPower(level: Int) = 21 + level * 6
     }
 
-
-
-    private val actionManager = ActionManager<ChainHarvestAction>()
 
     override fun onCropBroken(
         world: ServerWorld,
@@ -38,6 +34,6 @@ class ChainHarvest : HoeEnchantment(Rarity.RARE), HarvestListener {
     ) {
         if (!mature) return
 
-        actionManager.addAction(ChainHarvestAction(world, hoe, player, pos, state.block))
+        manager.addAction(ChainHarvestAction(world, hoe, player, pos, state.block))
     }
 }

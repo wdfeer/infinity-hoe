@@ -4,4 +4,4 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
 
 val PlayerInventory.stacks: List<ItemStack>
-    get() = List(this.size()) {this.getStack(it)}
+    get() = List(this.size()) { this.getStack(it) }

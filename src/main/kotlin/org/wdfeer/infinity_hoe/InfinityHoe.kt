@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
-import org.wdfeer.infinity_hoe.event.HoeHarvest
+import org.wdfeer.infinity_hoe.event.ModEvents
 import org.wdfeer.infinity_hoe.loot.LootTableModifier
 
 object InfinityHoe : ModInitializer {
@@ -12,8 +12,8 @@ object InfinityHoe : ModInitializer {
 	private val logger: Logger = LoggerFactory.getLogger(MOD_ID)
 
 	override fun onInitialize() {
-		HoeHarvest.initialize()
 		EnchantmentLoader.initialize(logger)
+		ModEvents.initialize()
 		LootTableModifier.initialize()
 	}
 }

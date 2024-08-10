@@ -8,6 +8,7 @@ import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeHit {
+    // Called from mixin
     fun postHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity, source: HoeEnchantment? = null) {
         EnchantmentLoader.enchantments.filter { it is OnHitListener }.forEach {
             if (it != source && hoe.hasEnchantment(it))

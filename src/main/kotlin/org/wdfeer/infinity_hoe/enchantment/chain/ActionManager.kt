@@ -11,8 +11,8 @@ class ActionManager<T : ChainAction> {
     private val map: MutableMap<ServerWorld, MutableList<T>> = mutableMapOf()
 
     private fun onWorldTick(world: ServerWorld?) {
-        map[world]?.forEach {it.tick()}
-        map[world]?.removeIf {!it.isActive()}
+        map[world]?.forEach { it.tick() }
+        map[world]?.removeIf { !it.isActive() }
     }
 
     fun addAction(action: T) = map.getOrPut(action.world) { mutableListOf() }.add(action)
