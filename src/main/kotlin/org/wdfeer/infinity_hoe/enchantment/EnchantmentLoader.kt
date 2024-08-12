@@ -26,7 +26,8 @@ object EnchantmentLoader {
         Rejuvenation(),
         CropExperience(),
         Equinox(),
-        MysticBlade()
+        MysticBlade(),
+        MinerHarvest()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
