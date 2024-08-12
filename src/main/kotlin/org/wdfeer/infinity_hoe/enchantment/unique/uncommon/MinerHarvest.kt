@@ -28,7 +28,7 @@ class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     ) {
         if (!mature) return
 
-        val levels = hoe.getEnchantmentLevel(Enchantments.EFFICIENCY) + hoe.getEnchantmentLevel(Enchantments.FORTUNE)
+        val levels = hoe.getEnchantmentLevel(Enchantments.EFFICIENCY) + hoe.getEnchantmentLevel(Enchantments.FORTUNE) + 2
         val chance: Float = 0.04f + 0.02f * levels
 
         if (Random.roll(chance)) DoubleHarvest.drop(world, state, pos)
