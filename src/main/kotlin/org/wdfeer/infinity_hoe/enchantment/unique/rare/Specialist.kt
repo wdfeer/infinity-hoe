@@ -10,6 +10,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
@@ -30,20 +31,9 @@ class Specialist(private val path: String, private val crop: Block) : HoeEnchant
         mature: Boolean
     ) {
         if (mature && state.block == crop && Random.roll(DOUBLE_HARVEST_CHANCE)) {
-            getDroppedItemEntities(world, state, pos).forEach { world.spawnEntity(it) }
+            DoubleHarvest.drop(world, state, pos)
         }
     }
-
-    private fun getDroppedItemEntities(
-        world: ServerWorld,
-        state: BlockState,
-        pos: BlockPos,
-    ): List<ItemEntity> {
-        return Block.getDroppedStacks(state, world, pos, null).map { drop ->
-            ItemEntity(world, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), drop)
-        }
-    }
-
 
     companion object {
         private const val DOUBLE_HARVEST_CHANCE = 0.2f
