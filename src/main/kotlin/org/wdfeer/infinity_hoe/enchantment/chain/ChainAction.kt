@@ -45,13 +45,16 @@ abstract class ChainAction(
     private fun getNext(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean): List<BlockPos> =
         origin.getAdjacentHorizontally(1).filter { isValidBlock(origin, alreadyIncluded, it) }
 
-    private var blocks: MutableList<BlockPos> = initBlocks(origin)
-    private fun initBlocks(origin: BlockPos) = getNext(origin) { false }.toMutableList()
+    private var blocks: List<BlockPos> = listOf(origin)
+
+    private val isFirstTick: Boolean get() = power == getPower()
 
     fun tick() {
         val newBlocks: MutableList<BlockPos> = mutableListOf()
 
         fun getNext(origin: BlockPos): List<BlockPos> = getNext(origin) { blocks.contains(it) || newBlocks.contains(it) }
+
+        if (isFirstTick) blocks = getNext(blocks[0])
 
         for (pos in blocks) {
             if (!isActive()) return
