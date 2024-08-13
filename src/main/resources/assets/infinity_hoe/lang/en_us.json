@@ -22,7 +22,9 @@
   "enchantment.infinity_hoe.mystic_blade": "Mystic Blade",
   "enchantment.infinity_hoe.mystic_blade.desc": "Deal area damage on hit based on the number of enchantments and their levels.",
   "enchantment.infinity_hoe.miner_harvest": "Miner's Harvest",
-  "enchantment.infinity_hoe.miner_harvest.desc": "Chance of double harvest increasing with Efficiency and Fortune",
+  "enchantment.infinity_hoe.miner_harvest.desc": "Chance of double harvest increasing with Efficiency and Fortune.",
+  "enchantment.infinity_hoe.stand_united": "Stand United",
+  "enchantment.infinity_hoe.stand_united.desc": "Nearby players gain resistance on harvest with stacking duration.",
 
   "enchantment.infinity_hoe.reaper": "Reaper",
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
