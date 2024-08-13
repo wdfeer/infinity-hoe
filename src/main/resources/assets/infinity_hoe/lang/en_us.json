@@ -18,7 +18,7 @@
   "enchantment.infinity_hoe.crop_experience": "Experience",
   "enchantment.infinity_hoe.crop_experience.desc": "Mature crops drop experience.",
   "enchantment.infinity_hoe.equinox": "Equinox",
-  "enchantment.infinity_hoe.equinox.desc": "Gain Strength on harvest, catalyze crop growth on hit.",
+  "enchantment.infinity_hoe.equinox.desc": "Gain Strength on harvest with stacking duration, catalyze crop growth on hit.",
   "enchantment.infinity_hoe.mystic_blade": "Mystic Blade",
   "enchantment.infinity_hoe.mystic_blade.desc": "Deal area damage on hit based on the number of enchantments and their levels.",
   "enchantment.infinity_hoe.miner_harvest": "Miner's Harvest",
