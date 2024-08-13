@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.util.getStatusAmplifier
+import org.wdfeer.infinity_hoe.enchantment.status.getStatusPotency
 import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
 
@@ -38,7 +38,7 @@ class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     private fun getEffectCount(player: ServerPlayerEntity, hoe: ItemStack): Int = listOf(
         hoe.getEnchantmentLevel(Enchantments.EFFICIENCY),
         hoe.getEnchantmentLevel(Enchantments.FORTUNE),
-        player.getStatusAmplifier(StatusEffects.HASTE),
-        player.getStatusAmplifier(StatusEffects.LUCK)
+        player.getStatusPotency(StatusEffects.HASTE),
+        player.getStatusPotency(StatusEffects.LUCK)
     ).let { it.sum() + it.size }
 }

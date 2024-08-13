@@ -1,18 +1,18 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
-import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.status.stackStatusPotency
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import kotlin.math.min
+import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     companion object {
-        private const val DURATION: Int = 2 * 20
+        private val DURATION: Int = secondsToTicks(2)
     }
 
     override fun getPath(): String = "rejuvenation"
@@ -26,10 +26,7 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         mature: Boolean
     ) {
         if (mature) {
-            val regen = min(player.getStatusEffect(StatusEffects.REGENERATION)?.amplifier ?: -1, 9)
-
-            player.removeStatusEffect(StatusEffects.REGENERATION)
-            player.addStatusEffect(StatusEffectInstance(StatusEffects.REGENERATION, DURATION, regen + 1))
+            player.stackStatusPotency(StatusEffects.REGENERATION, DURATION, 9)
         }
     }
 }

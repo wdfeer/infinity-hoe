@@ -1,13 +1,14 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
+import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
@@ -44,20 +45,15 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
         val level = hoe.getEnchantmentLevel(this)
 
         fun processPlayer(player: ServerPlayerEntity) {
-            val resist = player.getStatusEffect(StatusEffects.RESISTANCE)
-            if (resist == null)
-                player.addStatusEffect(StatusEffectInstance(
-                    StatusEffects.RESISTANCE,
-                    getDurationDelta(level)
-                ))
-            else if (resist.amplifier == 0 && resist.duration < getMaxDuration(level)) {
-                player.addStatusEffect(StatusEffectInstance(
-                    StatusEffects.RESISTANCE,
-                    resist.duration + getDurationDelta(level)
-                ))
+            val oldDuration = player.getStatusDuration(StatusEffects.RESISTANCE)
 
-                if (Random.roll(getDamageChance(resist.duration))) hoe.damage(player, 1)
-            }
+            player.stackStatusDuration(StatusEffects.RESISTANCE, 0, getMaxDuration(level), getDurationDelta(level))
+
+            val newDuration = player.getStatusDuration(StatusEffects.RESISTANCE)
+            val durationDelta = newDuration - oldDuration
+
+            if (durationDelta >= getDurationDelta(level) &&
+                Random.roll(getDamageChance(newDuration))) hoe.damage(player, 1)
         }
 
         world.players
