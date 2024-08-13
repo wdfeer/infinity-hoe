@@ -9,6 +9,7 @@ import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.randomRound
 import kotlin.math.floor
 
 class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
@@ -26,14 +27,18 @@ class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
         pos: BlockPos,
         mature: Boolean
     ) {
-        if (mature) ExperienceOrbEntity.spawn(
-            world,
-            pos.toCenterPos().let { Vec3d(it.x, floor(it.y), it.z) },
-            XP_PER_LEVEL * hoe.getEnchantmentLevel(this)
-        )
+        if (mature) {
+            val amount = (XP_PER_LEVEL * hoe.getEnchantmentLevel(this)).randomRound()
+            if (amount > 0)
+                ExperienceOrbEntity.spawn(
+                    world,
+                    pos.toCenterPos().let { Vec3d(it.x, floor(it.y), it.z) },
+                    amount
+                )
+        }
     }
 
     companion object {
-        const val XP_PER_LEVEL: Int = 1
+        const val XP_PER_LEVEL: Float = 0.5f
     }
 }
