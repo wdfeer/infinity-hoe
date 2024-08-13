@@ -10,7 +10,11 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
+import org.wdfeer.infinity_hoe.util.TickDurationHelper.ticksToMinutes
+import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.util.roll
+import kotlin.random.Random
 
 class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
     private companion object {
@@ -35,23 +39,32 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
     ) {
         if (!mature) return
 
+        val level = hoe.getEnchantmentLevel(this)
+
+        fun processPlayer(player: ServerPlayerEntity) {
+            val resist = player.getStatusEffect(StatusEffects.RESISTANCE)
+            if (resist == null)
+                player.addStatusEffect(StatusEffectInstance(
+                    StatusEffects.RESISTANCE,
+                    getDurationDelta(level)
+                ))
+            else if (resist.amplifier == 0 && resist.duration < getMaxDuration(level)) {
+                player.addStatusEffect(StatusEffectInstance(
+                    StatusEffects.RESISTANCE,
+                    resist.duration + getDurationDelta(level)
+                ))
+
+                if (Random.roll(getDamageChance(resist.duration))) hoe.damage(player, 1)
+            }
+        }
+
         world.players
             .filter { it.pos.distanceTo(pos.toCenterPos()) <= SHARE_DISTANCE }
-            .forEach { processPlayer(it, hoe.getEnchantmentLevel(this)) }
+            .forEach { processPlayer(it) }
     }
 
-    private fun processPlayer(player: ServerPlayerEntity, level: Int) {
-        val resist = player.getStatusEffect(StatusEffects.RESISTANCE)
-        if (resist == null)
-            player.addStatusEffect(StatusEffectInstance(
-                StatusEffects.RESISTANCE,
-                getDurationDelta(level)
-            ))
-        else if (resist.amplifier == 0 && resist.duration < getMaxDuration(level))
-            player.addStatusEffect(StatusEffectInstance(
-                StatusEffects.RESISTANCE,
-                resist.duration + getDurationDelta(level)
-            ))
-
+    private fun getDamageChance(resistanceDurationTicks: Int): Float {
+        val minutes = ticksToMinutes(resistanceDurationTicks)
+        return minutes / (minutes + 60f)
     }
 }
