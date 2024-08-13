@@ -38,6 +38,7 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
         mature: Boolean
     ) {
         if (!mature) return
+        if (hoe.maxDamage - hoe.damage < 5) return
 
         val level = hoe.getEnchantmentLevel(this)
 
