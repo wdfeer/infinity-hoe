@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
@@ -68,4 +69,6 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
         val minutes = ticksToMinutes(resistanceDurationTicks)
         return minutes / (minutes + 60f)
     }
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is Equinox
 }
