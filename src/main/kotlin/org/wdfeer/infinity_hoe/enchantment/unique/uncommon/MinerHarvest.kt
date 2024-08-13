@@ -30,11 +30,15 @@ class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     ) {
         if (!mature) return
 
-        val enchantments = 2 + hoe.getEnchantmentLevel(Enchantments.EFFICIENCY) + hoe.getEnchantmentLevel(Enchantments.FORTUNE)
-        val effects = 2 + player.getStatusAmplifier(StatusEffects.HASTE) + player.getStatusAmplifier(StatusEffects.LUCK)
-
-        val chance: Float = 0.04f + 0.02f * (enchantments + effects)
+        val chance: Float = 0.04f + 0.02f * getEffectCount(player, hoe)
 
         if (Random.roll(chance)) DoubleHarvest.drop(world, state, pos)
     }
+
+    private fun getEffectCount(player: ServerPlayerEntity, hoe: ItemStack): Int = listOf(
+        hoe.getEnchantmentLevel(Enchantments.EFFICIENCY),
+        hoe.getEnchantmentLevel(Enchantments.FORTUNE),
+        player.getStatusAmplifier(StatusEffects.HASTE),
+        player.getStatusAmplifier(StatusEffects.LUCK)
+    ).let { it.sum() + it.size }
 }
