@@ -51,7 +51,7 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
 
     private fun getDamageChance(duration: Int): Float {
         val highPoint = MAX_DURATION * 9 / 10
-        return MathHelper.triangleCurve(duration, highPoint, MAX_DURATION) / 5f + 0.05f
+        return MathHelper.triangleCurve(duration, highPoint, MAX_DURATION) / 7f + 0.01f
     }
 
     override fun getPath(): String = "equinox"

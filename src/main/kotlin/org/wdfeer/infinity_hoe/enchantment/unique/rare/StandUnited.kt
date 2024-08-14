@@ -13,7 +13,6 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
-import org.wdfeer.infinity_hoe.util.TickDurationHelper.ticksToMinutes
 import org.wdfeer.infinity_hoe.util.damage
 import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.roll
@@ -60,7 +59,7 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
 
     private fun getDamageChance(duration: Int, max: Int): Float {
         val highPoint = max - minutesToTicks(1)
-        return MathHelper.triangleCurve(duration, highPoint, max) / 4f
+        return MathHelper.triangleCurve(duration, highPoint, max) / 7f
     }
 
     override fun canAccept(other: Enchantment?): Boolean = other !is Equinox
