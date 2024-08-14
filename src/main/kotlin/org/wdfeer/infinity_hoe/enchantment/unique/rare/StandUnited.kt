@@ -10,6 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.ticksToMinutes
@@ -45,15 +46,11 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
         val level = hoe.getEnchantmentLevel(this)
 
         fun processPlayer(player: ServerPlayerEntity) {
-            val oldDuration = player.getStatusDuration(StatusEffects.RESISTANCE)
-
             player.stackStatusDuration(StatusEffects.RESISTANCE, 0, getMaxDuration(level), getDurationDelta(level))
 
             val newDuration = player.getStatusDuration(StatusEffects.RESISTANCE)
-            val durationDelta = newDuration - oldDuration
 
-            if (durationDelta >= getDurationDelta(level) &&
-                Random.roll(getDamageChance(newDuration))) hoe.damage(player, 1)
+            if (Random.roll(getDamageChance(newDuration, getMaxDuration(level)))) hoe.damage(player, 1)
         }
 
         world.players
@@ -61,9 +58,9 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
             .forEach { processPlayer(it) }
     }
 
-    private fun getDamageChance(resistanceDurationTicks: Int): Float {
-        val minutes = ticksToMinutes(resistanceDurationTicks)
-        return minutes / (minutes + 60f)
+    private fun getDamageChance(duration: Int, max: Int): Float {
+        val highPoint = max - minutesToTicks(1)
+        return MathHelper.triangleCurve(duration, highPoint, max) / 4f
     }
 
     override fun canAccept(other: Enchantment?): Boolean = other !is Equinox
