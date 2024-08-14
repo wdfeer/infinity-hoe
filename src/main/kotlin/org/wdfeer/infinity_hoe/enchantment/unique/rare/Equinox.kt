@@ -9,12 +9,17 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
+import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
+import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
+import org.wdfeer.infinity_hoe.util.damage
+import org.wdfeer.infinity_hoe.util.roll
+import kotlin.random.Random
 
 class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
     companion object {
@@ -38,8 +43,16 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
         if (!mature) return
 
         player.stackStatusDuration(StatusEffects.STRENGTH, 0, MAX_DURATION, DURATION_INCREASE)
+
+        val newDuration = player.getStatusDuration(StatusEffects.STRENGTH)
+
+        if (Random.roll(getDamageChance(newDuration))) hoe.damage(player, 1)
     }
 
+    private fun getDamageChance(duration: Int): Float {
+        val highPoint = MAX_DURATION * 9 / 10
+        return MathHelper.triangleCurve(duration, highPoint, MAX_DURATION) / 5f + 0.05f
+    }
 
     override fun getPath(): String = "equinox"
     override fun getPowerRange(level: Int): IntRange = 22..50
