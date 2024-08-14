@@ -14,7 +14,7 @@
   "enchantment.infinity_hoe.soul_siphon": "Soul Siphon",
   "enchantment.infinity_hoe.soul_siphon.desc": "Reduces your maximum health temporarily to catalyze crop growth while item is held.",
   "enchantment.infinity_hoe.rejuvenation": "Rejuvenation",
-  "enchantment.infinity_hoe.rejuvenation.desc": "Shortly gain Regeneration on harvest, stacking in strength.",
+  "enchantment.infinity_hoe.rejuvenation.desc": "Shortly apply Regeneration with stacking potency to yourself and nearby animals on harvest.",
   "enchantment.infinity_hoe.crop_experience": "Experience",
   "enchantment.infinity_hoe.crop_experience.desc": "Mature crops drop experience.",
   "enchantment.infinity_hoe.equinox": "Equinox",
