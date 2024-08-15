@@ -35,8 +35,8 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
             nbt.putInt(nbtKey, 1)
     }
 
-    override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, stack: ItemStack) {
-        val nbt = stack.nbt ?: return
+    override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
+        val nbt = hoe.nbt ?: return
         val charge = nbt.getInt(nbtKey)
         if (!nbt.contains(nbtKey) || charge <= 0) return
 

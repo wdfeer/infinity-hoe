@@ -9,6 +9,8 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
+import net.minecraft.util.Hand
+import net.minecraft.util.TypedActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
@@ -19,14 +21,14 @@ import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeUse {
-    fun preUseOnBlock( // Called from Mixin
+    fun mixinPreUseOnBlock(
         context: ItemUsageContext
     ) {
         if (context.stack.hasEnchantment(EnchantmentLoader.infinity))
             Infinity.preTill(context.world, context.stack, context.blockPos)
     }
 
-    fun postUseOnBlock(  // Called from Mixin
+    fun mixinPostUseOnBlock(
         context: ItemUsageContext,
         useCallback: CallbackInfoReturnable<ActionResult>
     ) {
@@ -59,17 +61,22 @@ object HoeUse {
         }
     }
 
-    // TODO: Create a mixin to call this
-    fun onUseInAir(context: ItemUsageContext, useCallback: CallbackInfoReturnable<ActionResult>) {
-        if (context.world is ServerWorld
-            && context.player is ServerPlayerEntity
-            && context.stack.item is HoeItem
-            && useCallback.returnValue == ActionResult.FAIL)
+    fun mixinItemUse(
+        world: World,
+        user: PlayerEntity,
+        hand: Hand,
+        cir: CallbackInfoReturnable<TypedActionResult<ItemStack>>
+    ) {
+        val serverWorld = world as? ServerWorld ?: return
+        val serverPlayer = user as? ServerPlayerEntity ?: return
+        val stack = serverPlayer.getStackInHand(hand)
+
+        if (stack.item is HoeItem && cir.returnValue.result == ActionResult.FAIL)
         {
             EnchantmentLoader.enchantments.forEach {
                 val listener = it as? AirUseListener ?: return@forEach
-                if (context.stack.hasEnchantment(it))
-                    listener.onUseInAir(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack)
+                if (stack.hasEnchantment(it))
+                    listener.onUseInAir(serverWorld, serverPlayer, stack)
             }
         }
     }

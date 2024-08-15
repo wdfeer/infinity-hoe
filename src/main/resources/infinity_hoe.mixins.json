@@ -6,6 +6,7 @@
     "EnchantmentHelperMixin",
     "FarmlandMixin",
     "HoeMixin",
+    "ItemMixin",
     "MiningItemMixin"
   ],
   "injectors": {
