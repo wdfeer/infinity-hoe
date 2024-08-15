@@ -11,8 +11,6 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import kotlin.math.cos
-import kotlin.math.sin
 
 class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
     override fun getPowerRange(level: Int): IntRange = 20..70
@@ -51,14 +49,8 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         world: ServerWorld,
         player: ServerPlayerEntity
     ): FireballEntity {
-        val forwardVector = Vec3d.fromPolar(player.rotationClient)
-
-        val pos = Vec3d(
-            player.pos.x + forwardVector.x * 2.0,
-            player.eyeY - 0.1,
-            player.pos.z + forwardVector.z * 2.0
-        )
-        val velocity = Vec3d(forwardVector.x * 3.0, 0.0, forwardVector.z * 3.0)
+        val velocity = player.rotationVector.multiply(3.0)
+        val pos = player.eyePos
 
         val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, 0)
         fireball.setPosition(pos)
