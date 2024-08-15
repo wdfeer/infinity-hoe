@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.rare
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffects
@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
@@ -19,14 +19,14 @@ import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.util.roll
 import kotlin.random.Random
 
-class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
+class StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     private companion object {
         const val SHARE_DISTANCE: Int = 20
         fun getMaxDuration(level: Int): Int = minutesToTicks(10 + level * 10)
         private fun getDurationDelta(level: Int): Int = secondsToTicks(2 + level * 4)
     }
 
-    override fun getPowerRange(level: Int): IntRange = 10 + level * 5..25 + level * 5
+    override fun getPowerRange(level: Int): IntRange = 10 + level * 7..20 + level * 7
 
     override val maxLvl: Int
         get() = 3
