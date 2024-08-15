@@ -12,13 +12,19 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
 
 class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
-    override fun getPowerRange(level: Int): IntRange = 20..70
+    override val maxLvl: Int
+        get() = 2
+
+    override fun getPowerRange(level: Int): IntRange = 20 + 5 * level..60
 
     override fun getPath(): String = "blazing"
 
     private val nbtKey = getPath() + "_charge"
+    private fun getMaxCharge(level: Int) = 50 * level
+
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,
@@ -29,10 +35,12 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         if (!mature) return
 
         val nbt = hoe.orCreateNbt
+        val charge = nbt.getInt(nbtKey)
+        val level = hoe.getEnchantmentLevel(this)
 
-        if (nbt.contains(nbtKey))
-            nbt.putInt(nbtKey, nbt.getInt(nbtKey) + 1)
-        else
+        if (nbt.contains(nbtKey) && charge < getMaxCharge(level)) {
+            nbt.putInt(nbtKey, charge + 1)
+        } else
             nbt.putInt(nbtKey, 1)
     }
 
@@ -62,11 +70,11 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
     }
 
     override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
-        val nbt = stack.nbt ?: return
-        if (!nbt.contains(nbtKey)) return
-        val charge = nbt.getInt(nbtKey)
+        val nbt = stack.nbt
+        val charge = if (nbt?.contains(nbtKey) == true) nbt.getInt(nbtKey) else 0
+        val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
 
-        tooltip.add(Text.translatable("tooltip.infinity_hoe.blazing.charge", charge).apply {
+        tooltip.add(Text.translatable("tooltip.infinity_hoe.blazing.charge", charge, maxCharge).apply {
             style = Style.EMPTY.withColor(if (charge > 0) Formatting.RED else Formatting.GRAY)
         })
     }

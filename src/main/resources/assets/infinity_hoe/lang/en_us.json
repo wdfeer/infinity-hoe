@@ -42,5 +42,5 @@
   "enchantment.infinity_hoe.wheat_specialist": "Wheat Specialist",
   "enchantment.infinity_hoe.wheat_specialist.desc": "Chance of double harvest on wheat.",
 
-  "tooltip.infinity_hoe.blazing.charge": "Fireballs: %s"
+  "tooltip.infinity_hoe.blazing.charge": "Fireballs: %s/%s"
 }
