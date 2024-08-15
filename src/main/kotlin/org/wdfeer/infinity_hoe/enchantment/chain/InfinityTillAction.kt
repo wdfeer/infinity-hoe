@@ -8,7 +8,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.HoeUse
+import org.wdfeer.infinity_hoe.event.emitter.HoeUse
 
 class InfinityTillAction(
     world: ServerWorld,

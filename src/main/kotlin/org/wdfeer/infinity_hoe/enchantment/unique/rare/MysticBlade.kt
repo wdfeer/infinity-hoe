@@ -8,7 +8,7 @@ import net.minecraft.entity.mob.Monster
 import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.HoeHit
+import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 

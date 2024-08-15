@@ -9,7 +9,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.HoeHarvest
+import org.wdfeer.infinity_hoe.event.emitter.HoeHarvest
 
 class ChainHarvestAction(world: ServerWorld, hoe: ItemStack, player: ServerPlayerEntity, origin: BlockPos, blockFilter: Block
 ) : FilterableAction(world, hoe, player, origin, blockFilter) {

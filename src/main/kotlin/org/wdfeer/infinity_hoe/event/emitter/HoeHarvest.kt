@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.event
+package org.wdfeer.infinity_hoe.event.emitter
 
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeHarvest {
     fun initialize() {
-        PlayerBlockBreakEvents.AFTER.register {world, player, pos, state, _ -> onBlockBreak(world, player, pos, state)}
+        PlayerBlockBreakEvents.AFTER.register {world, player, pos, state, _ -> onBlockBreak(world, player, pos, state) }
     }
 
     private fun onBlockBreak(

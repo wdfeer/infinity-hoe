@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.event
+package org.wdfeer.infinity_hoe.event.emitter
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.server.world.ServerWorld
@@ -7,7 +7,7 @@ import org.wdfeer.infinity_hoe.event.listener.TickListener
 
 object WorldTicker {
     fun initialize() {
-        ServerTickEvents.END_WORLD_TICK.register(::postWorldTick)
+        ServerTickEvents.END_WORLD_TICK.register(WorldTicker::postWorldTick)
     }
 
     private val tickListeners: List<TickListener> = EnchantmentLoader.enchantments.filterIsInstance<TickListener>()

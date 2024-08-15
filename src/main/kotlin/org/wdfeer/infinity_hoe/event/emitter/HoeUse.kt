@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.event
+package org.wdfeer.infinity_hoe.event.emitter
 
 import net.minecraft.block.Blocks
 import net.minecraft.enchantment.Enchantment
