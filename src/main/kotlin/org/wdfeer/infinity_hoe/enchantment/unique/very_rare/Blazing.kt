@@ -6,7 +6,6 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
@@ -41,6 +40,8 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         if (!nbt.contains(nbtKey) || charge <= 0) return
 
         world.spawnEntity(createFireball(world, player))
+
+        player.itemCooldownManager.set(hoe.item, 10)
 
         nbt.putInt(nbtKey, charge - 1)
     }
