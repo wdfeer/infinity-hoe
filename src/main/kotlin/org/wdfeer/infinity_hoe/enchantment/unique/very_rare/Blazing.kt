@@ -4,15 +4,17 @@ import net.minecraft.entity.projectile.FireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
+import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import kotlin.math.cos
 import kotlin.math.sin
 
-class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener {
+class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
     override fun getPowerRange(level: Int): IntRange = 20..70
 
     override fun getPath(): String = "blazing"
@@ -65,5 +67,13 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         world.spawnEntity(createFireballEntity())
 
         nbt.putInt(nbtKey, charge - 1)
+    }
+
+    override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
+        val nbt = stack.nbt ?: return
+        if (!nbt.contains(nbtKey)) return
+        val charge = nbt.getInt(nbtKey)
+
+        tooltip.add(Text.of("Fireballs: $charge")) // TODO: change this to translatable
     }
 }
