@@ -4,7 +4,9 @@ import net.minecraft.entity.projectile.FireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.text.Style
 import net.minecraft.text.Text
+import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
@@ -64,6 +66,8 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         if (!nbt.contains(nbtKey)) return
         val charge = nbt.getInt(nbtKey)
 
-        tooltip.add(Text.translatable("tooltip.infinity_hoe.blazing.charge", charge))
+        tooltip.add(Text.translatable("tooltip.infinity_hoe.blazing.charge", charge).apply {
+            style = Style.EMPTY.withColor(if (charge > 0) Formatting.RED else Formatting.GRAY)
+        })
     }
 }
