@@ -4,25 +4,51 @@ import net.minecraft.entity.projectile.FireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import kotlin.math.cos
+import kotlin.math.sin
 
-class Blazing : HoeEnchantment(Rarity.VERY_RARE), AirUseListener {
+class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener {
     override fun getPowerRange(level: Int): IntRange = 20..70
 
     override fun getPath(): String = "blazing"
 
+    private val nbtKey = getPath() + "_charge"
+    override fun onCropBroken(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        pos: BlockPos,
+        mature: Boolean
+    ) {
+        if (!mature) return
+
+        val nbt = hoe.orCreateNbt
+
+        if (nbt.contains(nbtKey))
+            nbt.putInt(nbtKey, nbt.getInt(nbtKey) + 1)
+        else
+            nbt.putInt(nbtKey, 1)
+    }
+
     override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, stack: ItemStack) {
+        val nbt = stack.nbt ?: return
+        val charge = nbt.getInt(nbtKey)
+        if (!nbt.contains(nbtKey) || charge <= 0) return
+
         fun createFireballEntity(): FireballEntity {
             val fireball = FireballEntity(world, player, 0.0, 0.0, 0.0, 0)
 
             val playerFacing = player.rotationClient
             val playerPos = player.pos
             val forwardVector = Vec3d(
-                -Math.sin(Math.toRadians(playerFacing.y.toDouble())),
+                -sin(Math.toRadians(playerFacing.y.toDouble())),
                 0.0,
-                Math.cos(Math.toRadians(playerFacing.y.toDouble()))
+                cos(Math.toRadians(playerFacing.y.toDouble()))
             )
 
             fireball.updatePosition(
@@ -37,5 +63,7 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), AirUseListener {
         }
 
         world.spawnEntity(createFireballEntity())
+
+        nbt.putInt(nbtKey, charge - 1)
     }
 }
