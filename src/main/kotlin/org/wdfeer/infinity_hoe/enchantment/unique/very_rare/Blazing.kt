@@ -64,6 +64,6 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         if (!nbt.contains(nbtKey)) return
         val charge = nbt.getInt(nbtKey)
 
-        tooltip.add(Text.of("Fireballs: $charge")) // TODO: change this to translatable
+        tooltip.add(Text.translatable("tooltip.infinity_hoe.blazing.charge", charge))
     }
 }
