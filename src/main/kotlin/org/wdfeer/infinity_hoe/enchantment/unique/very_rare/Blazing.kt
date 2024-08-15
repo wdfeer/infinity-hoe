@@ -42,31 +42,28 @@ class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListene
         val charge = nbt.getInt(nbtKey)
         if (!nbt.contains(nbtKey) || charge <= 0) return
 
-        fun createFireballEntity(): FireballEntity {
-            val fireball = FireballEntity(world, player, 0.0, 0.0, 0.0, 0)
-
-            val playerFacing = player.rotationClient
-            val playerPos = player.pos
-            val forwardVector = Vec3d(
-                -sin(Math.toRadians(playerFacing.y.toDouble())),
-                0.0,
-                cos(Math.toRadians(playerFacing.y.toDouble()))
-            )
-
-            fireball.updatePosition(
-                playerPos.x + forwardVector.x * 2.0,
-                playerPos.y + player.eyeY - 0.10000000149011612,
-                playerPos.z + forwardVector.z * 2.0
-            )
-
-            fireball.setVelocity(forwardVector.x * 3.0, 0.0, forwardVector.z * 3.0)
-
-            return fireball
-        }
-
-        world.spawnEntity(createFireballEntity())
+        world.spawnEntity(createFireball(world, player))
 
         nbt.putInt(nbtKey, charge - 1)
+    }
+
+    private fun createFireball(
+        world: ServerWorld,
+        player: ServerPlayerEntity
+    ): FireballEntity {
+        val forwardVector = Vec3d.fromPolar(player.rotationClient)
+
+        val pos = Vec3d(
+            player.pos.x + forwardVector.x * 2.0,
+            player.eyeY - 0.1,
+            player.pos.z + forwardVector.z * 2.0
+        )
+        val velocity = Vec3d(forwardVector.x * 3.0, 0.0, forwardVector.z * 3.0)
+
+        val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, 0)
+        fireball.setPosition(pos)
+
+        return fireball
     }
 
     override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {

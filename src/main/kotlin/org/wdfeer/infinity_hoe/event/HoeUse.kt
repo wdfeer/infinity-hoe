@@ -71,7 +71,7 @@ object HoeUse {
         val serverPlayer = user as? ServerPlayerEntity ?: return
         val stack = serverPlayer.getStackInHand(hand)
 
-        if (stack.item is HoeItem && cir.returnValue.result == ActionResult.FAIL)
+        if (stack.item is HoeItem && cir.returnValue.result == ActionResult.PASS)
         {
             EnchantmentLoader.enchantments.forEach {
                 val listener = it as? AirUseListener ?: return@forEach
