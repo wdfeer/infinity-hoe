@@ -1,6 +1,7 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
@@ -13,6 +14,8 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusPotency
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.StandUnited
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import org.wdfeer.infinity_hoe.util.damage
@@ -67,4 +70,6 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
             entity.addStatusEffect(StatusEffectInstance(immunity, secondsToTicks(infected.ifElse(10, 240))))
         }
     }
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is StandUnited && other !is Equinox
 }

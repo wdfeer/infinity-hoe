@@ -12,6 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.MathHelper
@@ -58,5 +59,8 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
     override fun getPowerRange(level: Int): IntRange = 22..50
 
 
-    override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration && other !is SoulSiphon && other !is StandUnited
+    override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration &&
+            other !is SoulSiphon &&
+            other !is StandUnited &&
+            other !is Rejuvenation
 }

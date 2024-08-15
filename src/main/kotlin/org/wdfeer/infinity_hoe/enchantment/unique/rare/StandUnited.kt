@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
@@ -62,5 +63,5 @@ class StandUnited : HoeEnchantment(Rarity.RARE), HarvestListener {
         return MathHelper.triangleCurve(duration, highPoint, max) / 7f
     }
 
-    override fun canAccept(other: Enchantment?): Boolean = other !is Equinox
+    override fun canAccept(other: Enchantment?): Boolean = other !is Equinox && other !is Rejuvenation
 }
