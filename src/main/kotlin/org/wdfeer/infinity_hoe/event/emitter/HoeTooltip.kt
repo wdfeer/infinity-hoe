@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
+import org.wdfeer.infinity_hoe.util.hasEnchantment
 
 object HoeTooltip {
     fun mixinAppendTooltip(
@@ -14,6 +15,7 @@ object HoeTooltip {
         if (stack.item !is HoeItem) return
 
         EnchantmentLoader.enchantments
+            .filter { stack.hasEnchantment(it) }
             .filterIsInstance<AppendTooltipListener>()
             .forEach { it.appendTooltip(stack, tooltip) }
     }
