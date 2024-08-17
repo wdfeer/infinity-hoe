@@ -13,13 +13,13 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.status.stackStatusPotency
+import org.wdfeer.infinity_hoe.extension.stackStatusPotency
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.ifElse
-import org.wdfeer.infinity_hoe.util.roll
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.ifElse
+import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {

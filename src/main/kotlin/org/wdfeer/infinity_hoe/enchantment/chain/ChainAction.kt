@@ -8,9 +8,9 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.getAdjacentHorizontally
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 abstract class ChainAction(
     val world: ServerWorld,

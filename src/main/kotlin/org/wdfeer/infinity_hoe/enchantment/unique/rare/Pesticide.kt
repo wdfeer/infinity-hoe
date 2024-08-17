@@ -13,8 +13,8 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"

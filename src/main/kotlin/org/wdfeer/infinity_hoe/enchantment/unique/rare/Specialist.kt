@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import org.wdfeer.infinity_hoe.util.roll
+import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE), HarvestListener {

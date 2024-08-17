@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.getAdjacent
-import org.wdfeer.infinity_hoe.util.randomRound
-import org.wdfeer.infinity_hoe.util.randoms
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.getAdjacent
+import org.wdfeer.infinity_hoe.extension.randomRound
+import org.wdfeer.infinity_hoe.extension.randoms
 
 object CropCatalyzer {
     fun trigger(

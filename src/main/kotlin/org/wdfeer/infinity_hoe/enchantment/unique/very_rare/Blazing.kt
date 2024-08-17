@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 class Blazing : HoeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
     override val maxLvl: Int

@@ -18,7 +18,7 @@ import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Infinity
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
-import org.wdfeer.infinity_hoe.util.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeUse {
     fun mixinPreUseOnBlock(

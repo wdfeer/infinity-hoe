@@ -7,16 +7,16 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
-import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
+import org.wdfeer.infinity_hoe.extension.getStatusDuration
+import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.util.roll
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {

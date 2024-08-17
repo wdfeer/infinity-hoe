@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
-import org.wdfeer.infinity_hoe.util.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeHit {
     // Called from mixin

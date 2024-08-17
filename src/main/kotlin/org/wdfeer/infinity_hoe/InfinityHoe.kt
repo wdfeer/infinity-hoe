@@ -9,10 +9,10 @@ import org.wdfeer.infinity_hoe.loot.LootTableModifier
 
 object InfinityHoe : ModInitializer {
 	const val MOD_ID: String = "infinity_hoe"
-	private val logger: Logger = LoggerFactory.getLogger(MOD_ID)
+	val logger: Logger = LoggerFactory.getLogger(MOD_ID)
 
 	override fun onInitialize() {
-		EnchantmentLoader.initialize(logger)
+		EnchantmentLoader.initialize()
 		Emitters.initialize()
 		LootTableModifier.initialize()
 	}

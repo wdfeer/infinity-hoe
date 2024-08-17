@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
-import org.wdfeer.infinity_hoe.util.*
+import org.wdfeer.infinity_hoe.extension.*
 import java.util.*
 import kotlin.random.Random
 

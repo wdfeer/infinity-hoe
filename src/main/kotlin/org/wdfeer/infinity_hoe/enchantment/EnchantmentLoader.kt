@@ -2,7 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment
 
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
-import org.slf4j.Logger
+import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
@@ -34,10 +34,10 @@ object EnchantmentLoader {
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
-    fun initialize(logger: Logger?) {
+    fun initialize() {
         for (enchantment in enchantments) {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
-        logger?.info("Loaded ${enchantments.size} hoe enchantments")
+        InfinityHoe.logger.info("Loaded ${enchantments.size} hoe enchantments")
     }
 }

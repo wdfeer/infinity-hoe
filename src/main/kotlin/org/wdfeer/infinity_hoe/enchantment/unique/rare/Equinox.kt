@@ -9,8 +9,8 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
-import org.wdfeer.infinity_hoe.enchantment.status.getStatusDuration
-import org.wdfeer.infinity_hoe.enchantment.status.stackStatusDuration
+import org.wdfeer.infinity_hoe.extension.getStatusDuration
+import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.StandUnited
@@ -19,8 +19,8 @@ import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.roll
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {

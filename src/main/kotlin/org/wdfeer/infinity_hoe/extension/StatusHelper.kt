@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.status
+package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffect

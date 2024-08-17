@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.util
+package org.wdfeer.infinity_hoe.extension
 
 import kotlin.random.Random
 

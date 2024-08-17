@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
-import org.wdfeer.infinity_hoe.util.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeTooltip {
     fun mixinAppendTooltip(

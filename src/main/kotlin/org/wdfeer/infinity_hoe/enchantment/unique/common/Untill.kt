@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityUntillAction
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
-import org.wdfeer.infinity_hoe.util.damage
-import org.wdfeer.infinity_hoe.util.hasEnchantment
-import org.wdfeer.infinity_hoe.util.stacks
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.stacks
 
 class Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
     override fun getPath(): String = "untill"

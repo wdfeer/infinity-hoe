@@ -10,7 +10,7 @@ import net.minecraft.util.math.Direction
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
-import org.wdfeer.infinity_hoe.util.stacks
+import org.wdfeer.infinity_hoe.extension.stacks
 
 class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener {
     override fun getPath(): String = "autoseed"

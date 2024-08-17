@@ -8,8 +8,8 @@ import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
-import org.wdfeer.infinity_hoe.util.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.util.roll
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker {

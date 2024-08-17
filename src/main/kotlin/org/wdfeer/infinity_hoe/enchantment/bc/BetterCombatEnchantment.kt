@@ -7,12 +7,13 @@ import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Reaper
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Sickle
 import org.wdfeer.infinity_hoe.io.IO.getFileInJar
-import org.wdfeer.infinity_hoe.util.hasEnchantment
-import org.wdfeer.infinity_hoe.util.ifElse
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.ifElse
 
 abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
@@ -23,11 +24,17 @@ abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
             Sickle()
         ), emptyList())
 
-        val attributes: Map<BetterCombatEnchantment, WeaponAttributes> = readAttributes()
+        val attributes: Map<BetterCombatEnchantment, WeaponAttributes?> = canRegister().ifElse(readAttributes(), emptyMap())
 
         private fun readAttributes() = enchantments.associateWith {
-            val stream = getFileInJar("extra/${it.getPath()}.json")
+            val stream = getFileInJar("extra/infinity_hoe/bettercombat/${it.getPath()}.json")
             val reader = stream?.reader()
+
+            if (reader == null) {
+                InfinityHoe.logger.error("Failed loading weapon attributes for $it")
+                return@associateWith null
+            }
+
             WeaponAttributesHelper.decode(reader).attributes()
         }
     }
