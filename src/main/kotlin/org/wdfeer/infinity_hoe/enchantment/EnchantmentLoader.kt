@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment
 
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
@@ -8,6 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
 import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Blazing
+import java.io.File
 
 object EnchantmentLoader {
     val infinity = Infinity()
@@ -38,6 +40,13 @@ object EnchantmentLoader {
         for (enchantment in enchantments) {
             Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
         }
+
         InfinityHoe.logger.info("Loaded ${enchantments.size} hoe enchantments")
+
+        if (FabricLoader.getInstance().isDevelopmentEnvironment)
+            saveIcongenEnvironmentVariable()
     }
+
+    private fun saveIcongenEnvironmentVariable() =
+        File("scripts/env.sh").printWriter().use { it.println("ENCHANTMENT_COUNT=${enchantments.size}") }
 }

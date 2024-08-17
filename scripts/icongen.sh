@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Get the text from the first argument
-TEXT="$1"
+set -a
+source "scripts/.env"
+set +a
 
-# Input and output image
+TEXT="$ENCHANTMENT_COUNT"
+
 INPUT_IMAGE="src/main/resources/no_include/icon_base.png"
 OUTPUT_IMAGE="src/main/resources/assets/infinity_hoe/icon.png"
 
-# Font settings
 FONT_SIZE=64
 FONT_COLOR="white"
 FONT="Inter"
