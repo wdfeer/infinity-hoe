@@ -4,8 +4,8 @@
 TEXT="$1"
 
 # Input and output image
-INPUT_IMAGE="base.png"
-OUTPUT_IMAGE="output.png"
+INPUT_IMAGE="src/main/resources/no_include/icon_base.png"
+OUTPUT_IMAGE="src/main/resources/assets/infinity_hoe/icon.png"
 
 # Font settings
 FONT_SIZE=8

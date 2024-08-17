@@ -42,3 +42,7 @@ replay_*.log
 # kotlin
 
 .kotlin/
+
+# generated
+
+src/main/resources/assets/infinity_hoe/icon.png
