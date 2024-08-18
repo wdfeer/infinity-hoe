@@ -12,6 +12,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
@@ -32,6 +33,10 @@ object HoeHarvest {
     }
 
     fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, cause: Enchantment?) {
+        onCropBreak(world, player, pos, state) { it != cause }
+    }
+
+    fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, enchantmentFilter: (HoeEnchantment) -> Boolean) {
         val hoe: ItemStack = player.handItems.first()
         if (hoe.item !is HoeItem) return
 
@@ -40,7 +45,7 @@ object HoeHarvest {
 
         EnchantmentLoader.enchantments.forEach {
             val listener = it as? HarvestListener ?: return@forEach
-            if (it != cause && hoe.hasEnchantment(it))
+            if (hoe.hasEnchantment(it) && enchantmentFilter(it))
                 listener.onCropBroken(world, player, hoe, pos, state, mature)
         }
     }
