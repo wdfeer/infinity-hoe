@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.charge
 
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -47,7 +48,7 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
         if (useCharge(world, player, hoe)) nbt.putInt(nbtKey, charge - 1)
     }
 
-    override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
+    final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
         val nbt = stack.nbt
         val charge = if (nbt?.contains(nbtKey) == true) nbt.getInt(nbtKey) else 0
         val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
@@ -56,4 +57,6 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
             style = Style.EMPTY.withColor(if (charge > 0) getTooltipFormatting() else Formatting.GRAY)
         })
     }
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is ChargeEnchantment
 }
