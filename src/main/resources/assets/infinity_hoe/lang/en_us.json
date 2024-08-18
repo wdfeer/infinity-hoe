@@ -27,6 +27,10 @@
   "enchantment.infinity_hoe.stand_united.desc": "Nearby players gain resistance on harvest with stacking duration.",
   "enchantment.infinity_hoe.blazing": "Blazing",
   "enchantment.infinity_hoe.blazing.desc": "Gain charge on harvest. Use charge to shoot fireballs.",
+  "tooltip.infinity_hoe.blazing.charge": "Fireballs: %s/%s",
+  "enchantment.infinity_hoe.fleeting": "Fleeting",
+  "enchantment.infinity_hoe.fleeting.desc": "Gain charge on harvest. Use charge to shortly gain speed.",
+  "tooltip.infinity_hoe.fleeting.charge": "Speed charge: %s/%s",
 
   "enchantment.infinity_hoe.reaper": "Reaper",
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
@@ -40,7 +44,5 @@
   "enchantment.infinity_hoe.potato_specialist": "Potato Specialist",
   "enchantment.infinity_hoe.potato_specialist.desc": "Chance of double harvest on potatoes.",
   "enchantment.infinity_hoe.wheat_specialist": "Wheat Specialist",
-  "enchantment.infinity_hoe.wheat_specialist.desc": "Chance of double harvest on wheat.",
-
-  "tooltip.infinity_hoe.blazing.charge": "Fireballs: %s/%s"
+  "enchantment.infinity_hoe.wheat_specialist.desc": "Chance of double harvest on wheat."
 }
