@@ -32,7 +32,8 @@ object EnchantmentLoader {
         MysticBlade(),
         MinerHarvest(),
         StandUnited(),
-        Blazing()
+        Blazing(),
+        Fleeting()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
