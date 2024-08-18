@@ -11,12 +11,14 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Fleeting : ChargeEnchantment(Rarity.RARE) {
     companion object {
-        private val DURATION = secondsToTicks(10)
-        private const val AMPLIFIER = 1
+        private val DURATION = secondsToTicks(5)
+        private const val BASE_AMPLIFIER = 1
+        private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 2
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
-        player.addStatusEffect(StatusEffectInstance(StatusEffects.SPEED, DURATION, AMPLIFIER))
+        val amplifier = if (player.armor <= 10) LIGHTLY_ARMORED_AMPLIFIER else BASE_AMPLIFIER
+        player.addStatusEffect(StatusEffectInstance(StatusEffects.SPEED, DURATION, amplifier))
 
         return true
     }
