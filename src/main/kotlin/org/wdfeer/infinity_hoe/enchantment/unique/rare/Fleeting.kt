@@ -25,6 +25,8 @@ class Fleeting : ChargeEnchantment(Rarity.RARE) {
 
     override fun getTooltipFormatting(): Formatting = Formatting.BLUE
 
+    override fun getMaxCharge(level: Int): Int = 10
+
     override fun getPowerRange(level: Int): IntRange = 20..60
 
     override fun getPath(): String = "fleeting"
