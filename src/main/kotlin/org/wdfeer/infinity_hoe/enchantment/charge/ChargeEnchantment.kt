@@ -20,6 +20,7 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
 
     private val nbtKey get() =  getPath() + "_charge"
     protected open fun getMaxCharge(level: Int) = 50 * level
+    protected open fun getCooldown() = 10
 
     final override fun onCropBroken(
         world: ServerWorld,
@@ -45,7 +46,10 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
         val charge = nbt.getInt(nbtKey)
         if (!nbt.contains(nbtKey) || charge <= 0) return
 
-        if (useCharge(world, player, hoe)) nbt.putInt(nbtKey, charge - 1)
+        if (useCharge(world, player, hoe)) {
+            player.itemCooldownManager.set(hoe.item, getCooldown())
+            nbt.putInt(nbtKey, charge - 1)
+        }
     }
 
     final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {

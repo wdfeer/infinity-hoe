@@ -21,8 +21,6 @@ class Blazing : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseList
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         world.spawnEntity(createFireball(world, player))
 
-        player.itemCooldownManager.set(hoe.item, 10)
-
         return true
     }
 
