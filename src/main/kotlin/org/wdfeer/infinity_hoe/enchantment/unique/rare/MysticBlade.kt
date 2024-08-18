@@ -6,26 +6,27 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.mob.Monster
 import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
-import org.wdfeer.infinity_hoe.event.listener.OnHitListener
+import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
-class MysticBlade : HoeEnchantment(Rarity.RARE), OnHitListener {
+class MysticBlade : HoeEnchantment(Rarity.RARE), PreAttackListener {
     override fun getPowerRange(level: Int): IntRange = 18..50
 
     override fun getPath(): String = "mystic_blade"
 
-    override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
+    override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
         val world = target.world as? ServerWorld ?: return
 
-        damage(target, world, attacker, hoe)
+        damage(target, world, player, hoe)
 
         Pesticide.getNearbyLivingEntities(world, target.pos, Pesticide.DAMAGE_RADIUS).filter {
-            (target.type == it.type || it is Monster) && it != target && it != attacker
+            (target.type == it.type || it is Monster) && it != target && it != player
         }.forEach {
-            damage(it, world, attacker, hoe)
+            damage(it, world, player, hoe)
         }
     }
 
