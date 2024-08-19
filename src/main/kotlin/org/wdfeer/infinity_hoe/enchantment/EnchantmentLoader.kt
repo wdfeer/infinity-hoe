@@ -12,6 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.MinerHarvest
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.StandUnited
 import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Blazing
+import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Demolition
 
 object EnchantmentLoader {
     val infinity = Infinity()
@@ -35,7 +36,8 @@ object EnchantmentLoader {
         MinerHarvest(),
         StandUnited(),
         Blazing(),
-        Fleeting()
+        Fleeting(),
+        Demolition()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
