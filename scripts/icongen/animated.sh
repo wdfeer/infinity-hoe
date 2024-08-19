@@ -1,3 +1,4 @@
 #!/bin/bash
 
-# TODO: Implement gif creation
+echo "Animated icon generation Not Implemented!"
+return 1

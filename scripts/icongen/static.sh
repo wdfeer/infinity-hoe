@@ -1,18 +1,9 @@
 #!/bin/bash
 
-TEXT="$ENCHANTMENT_COUNT"
-
-INPUT_IMAGE="src/main/resources/no_include/icon_base.png"
-OUTPUT_IMAGE="src/main/resources/assets/infinity_hoe/icon.png"
-
-FONT_SIZE=64
-FONT_COLOR="white"
-FONT="Inter"
-
-magick "$INPUT_IMAGE" \
+magick "$BASE_IMAGE" \
     -gravity southeast \
     -fill "$FONT_COLOR" \
-    -pointsize "$FONT_SIZE" \
+    -pointsize 64 \
     -font "$FONT" \
-    -annotate -5-5 "$TEXT" \
-    "$OUTPUT_IMAGE"
+    -annotate -5-5 "$ENCHANTMENT_COUNT" \
+    "$OUTPUT_PNG"
