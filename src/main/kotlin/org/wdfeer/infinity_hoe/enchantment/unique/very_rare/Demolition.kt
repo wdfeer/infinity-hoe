@@ -1,7 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.entity.TntEntity
-import net.minecraft.entity.projectile.FireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -26,14 +25,12 @@ class Demolition : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseL
         world: ServerWorld,
         player: ServerPlayerEntity
     ): TntEntity {
-        val velocity = player.rotationVector.multiply(3.0)
+        val velocity = player.rotationVector
         val pos = player.eyePos
 
-        val tnt = TntEntity(world, pos.x, pos.y, pos.z, player).apply {
+        return TntEntity(world, pos.x, pos.y, pos.z, player).apply {
             this.velocity = velocity
         }
-
-        return tnt
     }
 
     override fun getTooltipColor(): Formatting = Formatting.RED
