@@ -45,5 +45,6 @@ replay_*.log
 
 # generated
 
-scripts/.env
+scripts/icongen/.env
 src/main/resources/assets/infinity_hoe/icon.png
+scripts/icongen/tmp

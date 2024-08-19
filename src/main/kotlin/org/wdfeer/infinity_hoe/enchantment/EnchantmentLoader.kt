@@ -43,21 +43,5 @@ object EnchantmentLoader {
         }
 
         InfinityHoe.logger.info("Loaded ${enchantments.size} hoe enchantments")
-
-        if (FabricLoader.getInstance().isDevelopmentEnvironment)
-            saveIcongenEnvironmentVariable()
-    }
-
-    private fun saveIcongenEnvironmentVariable() {
-        try {
-            val file = File("../scripts/.env")
-            if (!file.isFile) file.createNewFile()
-
-            file.printWriter().use { it.println("ENCHANTMENT_COUNT=${enchantments.size}") }
-            InfinityHoe.logger.debug("Env file for icongen successfully written")
-        } catch (e : Exception) {
-            InfinityHoe.logger.error("Failed writing the env file for icongen!")
-            e.printStackTrace()
-        }
     }
 }
