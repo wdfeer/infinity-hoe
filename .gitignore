@@ -47,4 +47,5 @@ replay_*.log
 
 scripts/icongen/.env
 src/main/resources/assets/infinity_hoe/icon.png
+src/main/resources/no_include/infinity_hoe/icon_anim.gif
 scripts/icongen/tmp
