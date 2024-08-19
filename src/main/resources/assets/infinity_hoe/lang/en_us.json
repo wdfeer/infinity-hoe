@@ -40,6 +40,8 @@
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
   "enchantment.infinity_hoe.sickle": "Crescent",
   "enchantment.infinity_hoe.sickle.desc": "Allows using the hoe like a sickle weapon and provides a small damage bonus.",
+  "enchantment.infinity_hoe.rebound": "Rebound",
+  "enchantment.infinity_hoe.rebound.desc": "Allows using the hoe like a chakram weapon and slightly reduces damage.",
 
   "enchantment.infinity_hoe.beetroot_specialist": "Beetroot Specialist",
   "enchantment.infinity_hoe.beetroot_specialist.desc": "Chance of double harvest on beetroots.",
