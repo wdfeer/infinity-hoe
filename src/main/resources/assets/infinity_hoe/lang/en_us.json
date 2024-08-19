@@ -29,7 +29,7 @@
   "enchantment.infinity_hoe.blazing.desc": "Gain charge on harvest. Use charge to shoot fireballs.",
   "tooltip.infinity_hoe.blazing.charge": "Fireballs: %s/%s",
   "enchantment.infinity_hoe.fleeting": "Fleeting",
-  "enchantment.infinity_hoe.fleeting.desc": "Gain charge on harvest. Use charge to shortly gain speed. Wearing light armor gives more speed.",
+  "enchantment.infinity_hoe.fleeting.desc": "Gain charge on harvest. Use charge to gain speed. Wearing light armor gives more speed.",
   "tooltip.infinity_hoe.fleeting.charge": "Speed charge: %s/%s",
 
   "enchantment.infinity_hoe.reaper": "Reaper",

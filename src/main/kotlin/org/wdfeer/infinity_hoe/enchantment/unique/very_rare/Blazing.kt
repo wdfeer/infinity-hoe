@@ -37,5 +37,5 @@ class Blazing : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseList
         return fireball
     }
 
-    override fun getTooltipFormatting(): Formatting = Formatting.RED
+    override fun getTooltipColor(): Formatting = Formatting.RED
 }

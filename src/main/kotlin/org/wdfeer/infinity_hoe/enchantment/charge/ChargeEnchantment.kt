@@ -16,11 +16,13 @@ import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), HarvestListener, AirUseListener, AppendTooltipListener {
     protected abstract fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean
-    protected abstract fun getTooltipFormatting(): Formatting
+    protected abstract fun getTooltipColor(): Formatting
 
     private val nbtKey get() =  getPath() + "_charge"
+    protected open fun getChargeDecrement(): Int = 1
     protected open fun getMaxCharge(level: Int) = 50 * level
     protected open fun getCooldown() = 10
+    protected open fun chargeToString(charge: Int): String = charge.toString()
 
     final override fun onCropBroken(
         world: ServerWorld,
@@ -44,11 +46,11 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
     final override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
         val nbt = hoe.nbt ?: return
         val charge = nbt.getInt(nbtKey)
-        if (!nbt.contains(nbtKey) || charge <= 0) return
+        if (!nbt.contains(nbtKey) || charge < getChargeDecrement()) return
 
         if (useCharge(world, player, hoe)) {
             player.itemCooldownManager.set(hoe.item, getCooldown())
-            nbt.putInt(nbtKey, charge - 1)
+            nbt.putInt(nbtKey, charge - getChargeDecrement())
         }
     }
 
@@ -57,8 +59,8 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Harve
         val charge = if (nbt?.contains(nbtKey) == true) nbt.getInt(nbtKey) else 0
         val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
 
-        tooltip.add(Text.translatable("tooltip.infinity_hoe.${getPath()}.charge", charge, maxCharge).apply {
-            style = Style.EMPTY.withColor(if (charge > 0) getTooltipFormatting() else Formatting.GRAY)
+        tooltip.add(Text.translatable("tooltip.infinity_hoe.${getPath()}.charge", chargeToString(charge), chargeToString(maxCharge)).apply {
+            style = Style.EMPTY.withColor(if (charge >= getChargeDecrement()) getTooltipColor() else Formatting.GRAY)
         })
     }
 
