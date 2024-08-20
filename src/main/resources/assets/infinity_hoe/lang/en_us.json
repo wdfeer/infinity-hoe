@@ -26,7 +26,8 @@
   "enchantment.infinity_hoe.stand_united": "Stand United",
   "enchantment.infinity_hoe.stand_united.desc": "Nearby players gain resistance on harvest with stacking duration.",
   "enchantment.infinity_hoe.demeter_wrath": "Demeter's Wrath",
-  "enchantment.infinity_hoe.demeter_wrath.desc": "Increase melee damage based on total number of crops harvested.",
+  "enchantment.infinity_hoe.demeter_wrath.desc": "Deal extra magic damage based on total number of crops harvested.",
+  "tooltip.infinity_hoe.demeter_wrath": "Magic Damage: %s (%s crops harvested)",
 
   "enchantment.infinity_hoe.blazing": "Blazing",
   "enchantment.infinity_hoe.blazing.desc": "Gain charge on harvest. Use charge to shoot fireballs.",
