@@ -1,68 +1,30 @@
 package org.wdfeer.infinity_hoe.enchantment.charge
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Style
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
-import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
-import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
-abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), HarvestListener, AirUseListener, AppendTooltipListener {
-    protected abstract fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean
+abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), AppendTooltipListener {
     protected abstract fun getTooltipColor(): Formatting
 
-    private val nbtKey get() =  getPath() + "_charge"
     protected open fun getChargeDecrement(): Int = 1
     protected open fun getMaxCharge(level: Int) = 50 * level
-    protected open fun getCooldown() = 10
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
-    final override fun onCropBroken(
-        world: ServerWorld,
-        player: ServerPlayerEntity,
-        hoe: ItemStack,
-        pos: BlockPos,
-        mature: Boolean
-    ) {
-        if (!mature) return
-
-        val nbt = hoe.orCreateNbt
-        val charge = nbt.getInt(nbtKey)
-        val level = hoe.getEnchantmentLevel(this)
-
-        if (nbt.contains(nbtKey) && charge < getMaxCharge(level)) {
-            nbt.putInt(nbtKey, charge + 1)
-        } else
-            nbt.putInt(nbtKey, 1)
-    }
-
-    final override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
-        val nbt = hoe.nbt ?: return
-        val charge = nbt.getInt(nbtKey)
-        if (!nbt.contains(nbtKey) || charge < getChargeDecrement()) return
-
-        if (useCharge(world, player, hoe)) {
-            player.itemCooldownManager.set(hoe.item, getCooldown())
-            nbt.putInt(nbtKey, charge - getChargeDecrement())
-        }
-    }
+    private val nbtKey get() = getPath() + "_charge"
+    protected fun getCharge(hoe: ItemStack): Int = hoe.nbt?.getInt(nbtKey) ?: 0
+    protected fun setCharge(hoe: ItemStack, value: Int) { hoe.orCreateNbt.putInt(nbtKey, value) }
 
     final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
-        val nbt = stack.nbt
-        val charge = if (nbt?.contains(nbtKey) == true) nbt.getInt(nbtKey) else 0
+        val charge = getCharge(stack)
         val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
 
         tooltip.add(Text.translatable("tooltip.infinity_hoe.${getPath()}.charge", chargeToString(charge), chargeToString(maxCharge)).apply {
             style = Style.EMPTY.withColor(if (charge >= getChargeDecrement()) getTooltipColor() else Formatting.GRAY)
         })
     }
-
-    override fun canAccept(other: Enchantment?): Boolean = other !is ChargeEnchantment
 }

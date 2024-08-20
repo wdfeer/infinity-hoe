@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
-class Fleeting : ChargeEnchantment(Rarity.RARE) {
+class Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
     companion object {
         private val DURATION = secondsToTicks(30)
         private const val BASE_AMPLIFIER = 0

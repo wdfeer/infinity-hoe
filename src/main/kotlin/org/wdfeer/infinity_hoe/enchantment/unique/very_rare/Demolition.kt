@@ -5,12 +5,12 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class Demolition : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
+class Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
     override fun getPowerRange(level: Int): IntRange = 20..60
 
     override fun getPath(): String = "demolition"
