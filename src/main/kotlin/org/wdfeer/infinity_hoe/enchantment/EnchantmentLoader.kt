@@ -37,7 +37,8 @@ object EnchantmentLoader {
         StandUnited(),
         Blazing(),
         Fleeting(),
-        Demolition()
+        Demolition(),
+        DemeterWrath()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
