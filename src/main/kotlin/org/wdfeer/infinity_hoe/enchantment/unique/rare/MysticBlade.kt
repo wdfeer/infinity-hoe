@@ -36,12 +36,12 @@ class MysticBlade : HoeEnchantment(Rarity.RARE), PreAttackListener {
         attacker: LivingEntity,
         hoe: ItemStack
     ) {
-        target.hurtTime = 0
         target.damage(
             DamageSourceHelper.create(world, DamageTypes.MAGIC, attacker),
             getEnchantAmount(hoe) * damagePerEnchant
         )
         HoeHit.postHit(hoe, target, attacker, this)
+        target.hurtTime = 0
     }
 
     private val damagePerEnchant: Float = 0.1f
