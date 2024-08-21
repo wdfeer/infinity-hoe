@@ -39,17 +39,19 @@ object HoeHarvest {
 
     fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, enchantmentFilter: (HoeEnchantment) -> Boolean) {
         val hoe: ItemStack = player.handItems.first()
-        if (hoe.item !is HoeItem) return
 
-        val crop = state.block as CropBlock
-        val mature = crop.getAge(state) >= crop.maxAge
+        val mature = isMature(state)
+
+        if (mature) DemeterState.incrementPlayerHarvestCount(world, player, state.block)
+
+        if (hoe.item !is HoeItem) return
 
         EnchantmentLoader.enchantments.forEach {
             val listener = it as? HarvestListener ?: return@forEach
             if (hoe.hasEnchantment(it) && enchantmentFilter(it))
                 listener.onCropBroken(world, player, hoe, pos, state, mature)
         }
-
-        if (mature) DemeterState.incrementPlayerHarvestCount(world, player, crop)
     }
+
+    private fun isMature(state: BlockState): Boolean = (state.block as? CropBlock).let { it?.isMature(state) ?: false }
 }
