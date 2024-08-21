@@ -36,12 +36,12 @@ class DemeterState(private val players: MutableMap<UUID, MutableMap<Identifier, 
             }
         }
 
-        fun getServerState(server: MinecraftServer): DemeterState {
+        fun getServerState(server: MinecraftServer, dirty: Boolean = true): DemeterState {
             val persistentStateManager = server.getWorld(World.OVERWORLD)!!.persistentStateManager
 
             val state: DemeterState = persistentStateManager.getOrCreate(::createFromNbt, ::DemeterState, "${InfinityHoe.MOD_ID}:$NBT_KEY")
 
-            state.markDirty()
+            if (dirty) state.markDirty()
 
             return state
         }
