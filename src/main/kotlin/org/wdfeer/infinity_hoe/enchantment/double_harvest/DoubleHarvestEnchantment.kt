@@ -9,9 +9,13 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
 import org.wdfeer.infinity_hoe.event.emitter.HoeHarvest
+import org.wdfeer.infinity_hoe.extension.randomRound
 
 interface DoubleHarvestEnchantment {
-    fun drop(world: ServerWorld, player: ServerPlayerEntity, state: BlockState, pos: BlockPos) {
+    fun tryDrop(world: ServerWorld, player: ServerPlayerEntity, state: BlockState, pos: BlockPos, chance: Float) =
+        repeat(chance.randomRound()) { drop(world, player, state, pos) }
+
+    private fun drop(world: ServerWorld, player: ServerPlayerEntity, state: BlockState, pos: BlockPos) {
         getDroppedItemEntities(world, state, pos).forEach { world.spawnEntity(it) }
 
         HoeHarvest.onCropBreak(world, player, pos, state) {

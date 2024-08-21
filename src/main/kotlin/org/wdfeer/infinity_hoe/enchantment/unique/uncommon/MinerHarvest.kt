@@ -12,8 +12,6 @@ import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvestEnchantme
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.getStatusPotency
-import org.wdfeer.infinity_hoe.extension.roll
-import kotlin.random.Random
 
 class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), DoubleHarvestEnchantment, HarvestListener {
     override fun getPowerRange(level: Int): IntRange = 10..50
@@ -32,7 +30,7 @@ class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), DoubleHarvestEnchantment, 
 
         val chance: Float = 0.04f + 0.02f * getEffectCount(player, hoe)
 
-        if (Random.roll(chance)) drop(world, player, state, pos)
+        tryDrop(world, player, state, pos, chance)
     }
 
     private fun getEffectCount(player: ServerPlayerEntity, hoe: ItemStack): Int = listOf(
