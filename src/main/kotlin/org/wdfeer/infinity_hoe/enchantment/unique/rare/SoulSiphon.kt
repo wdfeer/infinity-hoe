@@ -50,10 +50,10 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker {
         }
     }
 
-    private val modifierUUID = UUID.nameUUIDFromBytes("soul_siphon".toByteArray())
+    private val modifierUUID = UUID.nameUUIDFromBytes(getPath().toByteArray())
     private fun getModifier(hpIncrease: Double) = EntityAttributeModifier(
         modifierUUID,
-        "soul_siphon",
+        getPath(),
         hpIncrease,
         EntityAttributeModifier.Operation.ADDITION)
 

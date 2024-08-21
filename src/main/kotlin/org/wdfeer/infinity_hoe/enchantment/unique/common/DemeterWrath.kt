@@ -1,17 +1,20 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.Blocks
-import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.damage.DamageTypes
+import net.minecraft.entity.EquipmentSlot
+import net.minecraft.entity.attribute.EntityAttributeModifier
+import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.stat.Stats
+import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
-import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import java.util.UUID
 import kotlin.math.log10
 
-class DemeterWrath : HoeEnchantment(Rarity.COMMON), PreAttackListener {
+class DemeterWrath : HoeEnchantment(Rarity.COMMON), HarvestListener {
     override fun getPowerRange(level: Int): IntRange = 10 ..50
 
     override fun getPath(): String = "demeter_wrath"
@@ -23,10 +26,25 @@ class DemeterWrath : HoeEnchantment(Rarity.COMMON), PreAttackListener {
         getStat(Stats.MINED.getOrCreateStat(Blocks.WHEAT)),
     ) }.sum()
 
-    private fun getDamage(player: ServerPlayerEntity): Float = log10(getCrops(player).toFloat())
+    private fun getDamage(player: ServerPlayerEntity): Double = log10(getCrops(player).toDouble() + 1.0)
 
-    override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
-        target.hurtTime = 0
-        target.damage(DamageTypes.MAGIC, getDamage(player), player)
-    }
+    private val attributeUUID = UUID.nameUUIDFromBytes(getIdentifier().toString().toByteArray())
+
+    override fun onCropBroken(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        pos: BlockPos,
+        mature: Boolean
+    ) = updateHoe(player, hoe)
+
+    private fun updateHoe(player: ServerPlayerEntity, hoe: ItemStack) =
+        hoe.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, getModifier(player), EquipmentSlot.MAINHAND)
+
+    private fun getModifier(player: ServerPlayerEntity) = EntityAttributeModifier(
+        attributeUUID,
+        getPath(),
+        getDamage(player),
+        EntityAttributeModifier.Operation.ADDITION
+    )
 }
