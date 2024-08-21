@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.demeter.DemeterState
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
@@ -48,5 +49,7 @@ object HoeHarvest {
             if (hoe.hasEnchantment(it) && enchantmentFilter(it))
                 listener.onCropBroken(world, player, hoe, pos, state, mature)
         }
+
+        if (mature) DemeterState.incrementPlayerHarvestCount(world, player, crop)
     }
 }
