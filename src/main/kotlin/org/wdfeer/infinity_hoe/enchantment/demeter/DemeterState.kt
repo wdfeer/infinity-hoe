@@ -2,6 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment.demeter
 
 import net.minecraft.block.Block
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.Registries
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -46,7 +47,8 @@ class DemeterState(private val players: MutableMap<UUID, MutableMap<Identifier, 
         }
 
         fun incrementPlayerHarvestCount(world: ServerWorld, player: ServerPlayerEntity, crop: Block) {
-            TODO()
+            val playerData = getServerState(world.server).getOrPut(player.uuid) { mutableMapOf() }
+            playerData.getOrPut(Registries.BLOCK.getId(crop)) {0}.inc()
         }
     }
 
