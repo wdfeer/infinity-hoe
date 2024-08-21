@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.common
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.attribute.EntityAttributeModifier
@@ -7,15 +7,12 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.demeter.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import java.util.UUID
 import kotlin.math.log10
 
-class DemeterWrath : HoeEnchantment(Rarity.COMMON), HarvestListener, DemeterEnchantment {
-    override fun getPowerRange(level: Int): IntRange = 10 ..50
-
+class DemeterWrath : DemeterEnchantment(), HarvestListener {
     override fun getPath(): String = "demeter_wrath"
 
     private fun getDamage(world: ServerWorld, player: ServerPlayerEntity): Double = log10(getPlayerHarvestCount(world, player).toDouble() + 1.0)
