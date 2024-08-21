@@ -9,7 +9,8 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.demeter.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import java.util.UUID
+import org.wdfeer.infinity_hoe.util.AttributeHelper
+import java.util.*
 import kotlin.math.log10
 
 class DemeterWrath : DemeterEnchantment(), HarvestListener {
@@ -27,8 +28,10 @@ class DemeterWrath : DemeterEnchantment(), HarvestListener {
         mature: Boolean
     ) = updateHoe(player, hoe)
 
-    private fun updateHoe(player: ServerPlayerEntity, hoe: ItemStack) =
+    private fun updateHoe(player: ServerPlayerEntity, hoe: ItemStack) {
+        AttributeHelper.removeAttributeWithUuid(hoe, attributeUUID)
         hoe.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, getModifier(player), EquipmentSlot.MAINHAND)
+    }
 
     private fun getModifier(player: ServerPlayerEntity) = EntityAttributeModifier(
         attributeUUID,
