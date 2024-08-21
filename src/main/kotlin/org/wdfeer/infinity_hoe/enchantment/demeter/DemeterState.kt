@@ -48,7 +48,8 @@ class DemeterState(private val players: MutableMap<UUID, MutableMap<Identifier, 
 
         fun incrementPlayerHarvestCount(world: ServerWorld, player: ServerPlayerEntity, crop: Block) {
             val playerData = getServerState(world.server).getOrPut(player.uuid) { mutableMapOf() }
-            playerData.getOrPut(Registries.BLOCK.getId(crop)) {0}.inc()
+            val id = Registries.BLOCK.getId(crop)
+            playerData[id] = playerData.getOrPut(id) {0}.inc()
         }
     }
 
