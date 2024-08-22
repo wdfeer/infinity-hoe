@@ -4,16 +4,10 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.DemeterWrath
-import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
+import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.MinerHarvest
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.StandUnited
-import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Blazing
-import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Demolition
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
+import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.*
 
 object EnchantmentLoader {
     val infinity = Infinity()
