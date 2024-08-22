@@ -30,7 +30,7 @@ class DemeterWrath : HarvestChargeEnchantment(Rarity.RARE), HarvestListener, Pre
     override fun chargeToString(charge: Int): String = "%.1f".format(getDamage(charge))
 
     override fun getMaxCharge(level: Int): Int = 10000
-    override fun getChargeDecrement(): Int = 100 // Only affects the tooltip color
+    override fun getChargeDecrement(): Int = 1 // Only affects the tooltip color
     override fun getTooltipColor(): Formatting = Formatting.GREEN
 
     override fun canAccept(other: Enchantment?): Boolean = other !is MysticBlade
