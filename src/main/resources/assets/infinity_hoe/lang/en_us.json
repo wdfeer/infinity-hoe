@@ -41,8 +41,11 @@
   "enchantment.infinity_hoe.demeter_wrath.desc": "Gain charge on harvest. Charge is used on hit to deal extra magic damage.",
   "tooltip.infinity_hoe.demeter_wrath.charge": "Magic Damage: %s/%s",
   "enchantment.infinity_hoe.demeter_aegis": "Demeter's Aegis",
-  "enchantment.infinity_hoe.demeter_aegis.desc": "Gain charge on harvest. Charge is used while in hand to nullify damage.",
+  "enchantment.infinity_hoe.demeter_aegis.desc": "Gain charge on harvest. Charge is used while in hand to nullify incoming damage.",
   "tooltip.infinity_hoe.demeter_aegis.charge": "Immunity: %s/%s",
+  "enchantment.infinity_hoe.demeter_grace": "Demeter's Grace",
+  "enchantment.infinity_hoe.demeter_grace.desc": "Gain charge on harvest. Charge is used while in hand to heal after taking damage.",
+  "tooltip.infinity_hoe.demeter_grace.charge": "Heals: %s/%s",
 
   "enchantment.infinity_hoe.reaper": "Reaper",
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
