@@ -15,6 +15,7 @@ object EnchantmentLoader {
     val growthAcceleration = GrowthAcceleration()
     val chainHarvest = ChainHarvest()
     val untill = Untill()
+    val calciumBurst = CalciumBurst()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -33,7 +34,7 @@ object EnchantmentLoader {
         Blazing(),
         Fleeting(),
         Demolition(),
-        CalciumBurst()
+        calciumBurst
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

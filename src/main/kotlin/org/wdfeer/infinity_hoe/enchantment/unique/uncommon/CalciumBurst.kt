@@ -1,22 +1,18 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
-import net.minecraft.block.CropBlock
-import net.minecraft.item.BoneMealItem
 import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.chain.CalciumBurstAction
+import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import org.wdfeer.infinity_hoe.extension.getAdjacent
-import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.extension.inventoryStacks
 
-class CalciumBurst : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+class CalciumBurst : ChainEnchantment<CalciumBurstAction>(Rarity.UNCOMMON), HarvestListener {
     override val maxLvl: Int
-        get() = 2
-    override fun getPowerRange(level: Int): IntRange = 13..50
+        get() = 3
+    override fun getPowerRange(level: Int): IntRange = ChainHarvest.getPowerRange(level)
 
     override fun getPath(): String = "calcium_burst"
 
@@ -27,21 +23,6 @@ class CalciumBurst : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         pos: BlockPos,
         mature: Boolean
     ) {
-        if (mature) trigger(world, player, pos, hoe.getEnchantmentLevel(this))
-    }
-
-    private fun trigger(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, level: Int) {
-        val boneMealStacks = player.inventoryStacks.filter { !it.isEmpty && it.item == Items.BONE_MEAL }
-
-        if (boneMealStacks.isEmpty()) return
-
-        pos.getAdjacent(1)
-            .filter { world.getBlockState(it).block is CropBlock }
-            .forEach { position ->
-            repeat(level) {
-                val stack = boneMealStacks.find { !it.isEmpty } ?: return@forEach
-                BoneMealItem.useOnFertilizable(stack, world, position)
-            }
-        }
+        if (mature) manager.addAction(CalciumBurstAction(world, hoe, player, pos))
     }
 }

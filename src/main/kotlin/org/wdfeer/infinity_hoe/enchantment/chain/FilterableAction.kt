@@ -12,6 +12,6 @@ abstract class FilterableAction(
     player: ServerPlayerEntity,
     origin: BlockPos,
     private val blockFilter: Block
-) : ChainAction(world, hoe, player, origin) {
+) : ChainAction<Any?>(world, hoe, player, origin) {
     override fun getRequiredBlock(): Block = blockFilter
 }

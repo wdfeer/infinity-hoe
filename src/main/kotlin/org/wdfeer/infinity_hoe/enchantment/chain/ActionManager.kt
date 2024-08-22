@@ -3,7 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment.chain
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.server.world.ServerWorld
 
-class ActionManager<T : ChainAction> {
+class ActionManager<T : ChainAction<Any?>> {
     init {
         ServerTickEvents.END_WORLD_TICK.register(::onWorldTick)
     }
