@@ -35,7 +35,8 @@ object EnchantmentLoader {
         Fleeting(),
         Demolition(),
         calciumBurst,
-        DemeterWrath()
+        DemeterWrath(),
+        DemeterAegis()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

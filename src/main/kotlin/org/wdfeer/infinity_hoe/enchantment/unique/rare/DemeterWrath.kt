@@ -22,6 +22,9 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
     }
 
     private fun getDamage(charge: Int): Float = log10(charge.toFloat() + 1f) * 5
+
+    override fun getMaxCharge(level: Int): Int = 10000
+    override fun getChargeDecrement(): Int = 1 // Only affects the tooltip color
     override fun chargeToString(charge: Int): String = "%.1f".format(getDamage(charge))
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
