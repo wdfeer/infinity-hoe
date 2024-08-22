@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.rare
+package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.Block
 import net.minecraft.item.ItemStack
@@ -10,7 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 
-class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.RARE), TillListener {
+class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListener {
     override fun getPath(): String = "infinity"
 
     override val maxLvl: Int

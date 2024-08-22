@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.Infinity
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
 import org.wdfeer.infinity_hoe.event.listener.AirUseListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
