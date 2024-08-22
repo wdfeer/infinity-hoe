@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
-abstract class ChainAction<T>(
+abstract class ChainAction(
     val world: ServerWorld,
     val hoe: ItemStack,
     val player: ServerPlayerEntity,

@@ -10,7 +10,6 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 
 class CalciumBurstAction(
@@ -18,13 +17,14 @@ class CalciumBurstAction(
     hoe: ItemStack,
     player: ServerPlayerEntity,
     origin: BlockPos
-) : ChainAction<Any?>(world, hoe, player, origin) {
+) : ChainAction(world, hoe, player, origin) {
     override fun processBlock(pos: BlockPos) {
         val boneMealStacks = player.inventoryStacks.filter { !it.isEmpty && it.item == Items.BONE_MEAL }
 
         if (boneMealStacks.isEmpty()) return
 
-        repeat(hoe.getEnchantmentLevel(getEnchantment())) {
+        val count: Int = 1//(hoe.getEnchantmentLevel(getEnchantment()) * 0.3f + 0.5f).randomRound()
+        repeat(count) {
             val stack = boneMealStacks.find { !it.isEmpty } ?: return
             BoneMealItem.useOnFertilizable(stack, world, pos)
         }
@@ -32,7 +32,7 @@ class CalciumBurstAction(
 
     override fun canDamageHoe(): Boolean = false
 
-    override fun isValidBlockState(state: BlockState): Boolean = state.block is CropBlock
+    override fun isValidBlockState(state: BlockState): Boolean = (state.block as? CropBlock)?.isMature(state) == true
 
     override fun getEnchantment(): HoeEnchantment = EnchantmentLoader.calciumBurst
 }
