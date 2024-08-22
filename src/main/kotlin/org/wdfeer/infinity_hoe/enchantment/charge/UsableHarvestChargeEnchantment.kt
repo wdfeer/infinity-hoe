@@ -4,14 +4,14 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import org.wdfeer.infinity_hoe.event.listener.AirUseListener
+import org.wdfeer.infinity_hoe.event.listener.Useable
 
-abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnchantment(rarity), AirUseListener {
+abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnchantment(rarity), Useable {
     protected abstract fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean
 
     protected open fun getCooldown() = 10
 
-    final override fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
+    final override fun use(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
         val charge = getCharge(hoe)
         if (charge < getChargeDecrement()) return
 

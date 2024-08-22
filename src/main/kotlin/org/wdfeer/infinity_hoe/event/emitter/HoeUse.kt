@@ -16,7 +16,7 @@ import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
-import org.wdfeer.infinity_hoe.event.listener.AirUseListener
+import org.wdfeer.infinity_hoe.event.listener.Useable
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
@@ -74,9 +74,9 @@ object HoeUse {
         if (stack.item is HoeItem && cir.returnValue.result == ActionResult.PASS)
         {
             EnchantmentLoader.enchantments.forEach {
-                val listener = it as? AirUseListener ?: return@forEach
+                val listener = it as? Useable ?: return@forEach
                 if (stack.hasEnchantment(it))
-                    listener.onUseInAir(serverWorld, serverPlayer, stack)
+                    listener.use(serverWorld, serverPlayer, stack)
             }
         }
     }
