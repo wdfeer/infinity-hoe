@@ -6,11 +6,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.charge.UsableHarvestChargeEnchantment
-import org.wdfeer.infinity_hoe.event.listener.AirUseListener
-import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
-import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
+class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override val maxLvl: Int
         get() = 2
 
