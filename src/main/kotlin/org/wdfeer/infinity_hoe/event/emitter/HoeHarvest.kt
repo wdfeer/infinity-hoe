@@ -40,7 +40,7 @@ object HoeHarvest {
         val hoe: ItemStack = player.handItems.first()
         if (hoe.item !is HoeItem) return
 
-        val crop = state.block as CropBlock
+        val crop = state.block as? CropBlock ?: return
         val mature = crop.getAge(state) >= crop.maxAge
 
         EnchantmentLoader.enchantments.forEach {
