@@ -1,32 +1,35 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.block.Blocks
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.stat.Stats
-import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import net.minecraft.util.Formatting
+import org.wdfeer.infinity_hoe.enchantment.charge.HarvestChargeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 import kotlin.math.log10
 
-class DemeterWrath : HoeEnchantment(Rarity.RARE), PreAttackListener {
+class DemeterWrath : HarvestChargeEnchantment(Rarity.RARE), HarvestListener, PreAttackListener {
     override fun getPowerRange(level: Int): IntRange = 10 ..50
 
     override fun getPath(): String = "demeter_wrath"
 
-    private fun getCrops(player: ServerPlayerEntity): Int = player.statHandler.run { listOf(
-        getStat(Stats.MINED.getOrCreateStat(Blocks.BEETROOTS)),
-        getStat(Stats.MINED.getOrCreateStat(Blocks.CARROTS)),
-        getStat(Stats.MINED.getOrCreateStat(Blocks.POTATOES)),
-        getStat(Stats.MINED.getOrCreateStat(Blocks.WHEAT)),
-    ) }.sum()
-
-    private fun getDamage(player: ServerPlayerEntity): Float = log10(getCrops(player).toFloat())
-
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
         target.hurtTime = 0
-        target.damage(DamageTypes.MAGIC, getDamage(player), player)
+        target.damage(DamageTypes.MAGIC, getDamage(getCharge(hoe)), player)
+        setCharge(hoe, 0)
     }
+
+
+    private fun getDamage(charge: Int): Float = log10(charge.toFloat()) * 5
+    override fun chargeToString(charge: Int): String = "0.1f".format(getDamage(charge))
+
+    override fun getMaxCharge(level: Int): Int = 10000
+    override fun getChargeDecrement(): Int = 100 // Only affects the tooltip color
+    override fun getTooltipColor(): Formatting = Formatting.GREEN
+
+    override fun canAccept(other: Enchantment?): Boolean = other !is MysticBlade
 }
