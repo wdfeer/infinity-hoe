@@ -8,14 +8,14 @@ import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
+import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.*
 import java.util.*
 import kotlin.random.Random
 
-class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker {
+class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
     companion object {
         private const val INTERVAL: Int = 60
     }
@@ -43,7 +43,7 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker {
             return
         }
 
-        if (trigger(world, player, 3, hoe, 0.5f)) {
+        if (catalyze(world, player, 3, hoe, 0.5f)) {
             player.attributes.addTemporary(attribute, getModifier(mod?.value?.minus(2) ?: -2.0))
 
             player.damage(DamageTypes.MAGIC, 2f)

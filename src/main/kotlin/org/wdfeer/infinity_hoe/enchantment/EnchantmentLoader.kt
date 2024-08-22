@@ -3,7 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
-import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*

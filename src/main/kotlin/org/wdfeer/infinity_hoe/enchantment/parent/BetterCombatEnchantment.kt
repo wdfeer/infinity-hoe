@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.bc
+package org.wdfeer.infinity_hoe.enchantment.parent
 
 import net.bettercombat.BetterCombat
 import net.bettercombat.api.WeaponAttributes

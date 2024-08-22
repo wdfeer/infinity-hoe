@@ -8,7 +8,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer
+import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.extension.getStatusDuration
 import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
@@ -23,7 +23,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
+class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener, CropCatalyzer {
     companion object {
         private val MAX_DURATION: Int = minutesToTicks(15)
         private val DURATION_INCREASE: Int = secondsToTicks(5)
@@ -32,7 +32,7 @@ class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener {
     override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
         if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return
 
-        CropCatalyzer.trigger(attacker.world as ServerWorld, attacker, 1, hoe)
+        catalyze(attacker.world as ServerWorld, attacker, 1, hoe)
     }
 
     override fun onCropBroken(

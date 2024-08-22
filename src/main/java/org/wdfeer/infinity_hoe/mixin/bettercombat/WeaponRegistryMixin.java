@@ -6,8 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment;
-
+import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment;
 
 @Mixin(net.bettercombat.logic.WeaponRegistry.class)
 class WeaponRegistryMixin {

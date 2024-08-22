@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.chain
+package org.wdfeer.infinity_hoe.enchantment.parent.chain
 
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 

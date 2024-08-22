@@ -4,8 +4,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.chain.CalciumBurstAction
-import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.chain.CalciumBurstAction
+import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 

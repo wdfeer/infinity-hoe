@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.double_harvest
+package org.wdfeer.infinity_hoe.enchantment.parent
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -6,7 +6,7 @@ import net.minecraft.entity.ItemEntity
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
 import org.wdfeer.infinity_hoe.event.emitter.HoeHarvest
 import org.wdfeer.infinity_hoe.extension.randomRound

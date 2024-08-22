@@ -9,10 +9,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvestEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE), DoubleHarvestEnchantment, HarvestListener {
+class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE),
+    DoubleHarvestEnchantment, HarvestListener {
     override fun getPath(): String = path
 
     override fun getPowerRange(level: Int): IntRange = 24..60

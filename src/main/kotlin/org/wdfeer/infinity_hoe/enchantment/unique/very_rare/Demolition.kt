@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.UsableHarvestChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
 class Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun getPowerRange(level: Int): IntRange = 20..60

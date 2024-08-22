@@ -1,7 +1,7 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.entity.EntityGroup
-import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
 
 class Rebound : BetterCombatEnchantment() {
     override fun getPath(): String = "rebound"

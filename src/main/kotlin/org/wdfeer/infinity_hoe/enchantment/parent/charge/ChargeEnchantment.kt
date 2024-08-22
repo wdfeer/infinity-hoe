@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.charge
+package org.wdfeer.infinity_hoe.enchantment.parent.charge
 
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Style

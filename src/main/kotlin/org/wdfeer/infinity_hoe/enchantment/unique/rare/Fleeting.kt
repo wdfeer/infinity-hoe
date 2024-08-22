@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.UsableHarvestChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {

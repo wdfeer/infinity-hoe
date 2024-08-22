@@ -8,7 +8,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.double_harvest.DoubleHarvestEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.getStatusPotency

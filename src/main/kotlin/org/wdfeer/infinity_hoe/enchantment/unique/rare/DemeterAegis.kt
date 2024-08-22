@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.HoeItem
 import net.minecraft.server.network.ServerPlayerEntity
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader.demeterAegis
-import org.wdfeer.infinity_hoe.enchantment.demeter.DemeterEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 class DemeterAegis : DemeterEnchantment() {

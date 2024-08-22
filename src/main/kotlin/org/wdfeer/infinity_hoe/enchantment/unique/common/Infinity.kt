@@ -6,8 +6,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
-import org.wdfeer.infinity_hoe.enchantment.chain.InfinityTillAction
+import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 
 class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListener {
