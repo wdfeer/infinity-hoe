@@ -18,6 +18,8 @@ class DemeterWrath : HarvestChargeEnchantment(Rarity.RARE), HarvestListener, Pre
     override fun getPath(): String = "demeter_wrath"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
+        if (getCharge(hoe) == 0) return
+
         target.hurtTime = 0
         target.damage(DamageTypes.MAGIC, getDamage(getCharge(hoe)), player)
         setCharge(hoe, 0)
