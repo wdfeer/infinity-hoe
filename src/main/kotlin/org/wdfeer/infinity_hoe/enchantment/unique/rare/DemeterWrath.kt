@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.common
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.block.Blocks
 import net.minecraft.entity.LivingEntity
@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 import kotlin.math.log10
 
-class DemeterWrath : HoeEnchantment(Rarity.COMMON), PreAttackListener {
+class DemeterWrath : HoeEnchantment(Rarity.RARE), PreAttackListener {
     override fun getPowerRange(level: Int): IntRange = 10 ..50
 
     override fun getPath(): String = "demeter_wrath"
