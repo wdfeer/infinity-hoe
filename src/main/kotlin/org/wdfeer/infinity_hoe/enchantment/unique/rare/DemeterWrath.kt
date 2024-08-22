@@ -26,7 +26,7 @@ class DemeterWrath : HarvestChargeEnchantment(Rarity.RARE), HarvestListener, Pre
     }
 
 
-    private fun getDamage(charge: Int): Float = log10(charge.toFloat()) * 5
+    private fun getDamage(charge: Int): Float = log10(charge.toFloat() + 1f) * 5
     override fun chargeToString(charge: Int): String = "%.1f".format(getDamage(charge))
 
     override fun getMaxCharge(level: Int): Int = 10000
