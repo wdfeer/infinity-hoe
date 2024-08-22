@@ -19,7 +19,11 @@ abstract class ChainAction(
     origin: BlockPos
 ) {
     abstract fun processBlock(pos: BlockPos)
-    abstract fun getRequiredBlock(): Block
+
+    // One of these two has to be overwritten
+    open fun getRequiredBlock(): Block? = null
+    protected open fun isValidBlockState(state: BlockState): Boolean = state.block == getRequiredBlock()
+
 
     /**
      * Returns the enchantment determining the initial power
@@ -34,7 +38,6 @@ abstract class ChainAction(
     private var power = getPower()
 
 
-    protected open fun isValidBlockState(state: BlockState): Boolean = state.block == getRequiredBlock()
     private fun isValidBlock(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean, pos: BlockPos): Boolean {
         val notDuplicate = pos != origin && !alreadyIncluded(pos)
         val validBlockType = isValidBlockState(world.getBlockState(pos))

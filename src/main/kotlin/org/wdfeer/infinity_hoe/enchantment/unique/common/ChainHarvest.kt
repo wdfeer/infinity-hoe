@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.rare
+package org.wdfeer.infinity_hoe.enchantment.unique.common
 
 import net.minecraft.block.BlockState
 import net.minecraft.item.ItemStack
@@ -9,7 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.chain.ChainHarvestAction
 import org.wdfeer.infinity_hoe.enchantment.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 
-class ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.RARE), HarvestListener {
+class ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
     override val maxLvl: Int
