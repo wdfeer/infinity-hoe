@@ -10,18 +10,17 @@ import kotlin.random.Random
 class DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
     override fun getPath(): String = "demeter_grace"
 
-    private fun getProcs(charge: Int): Float = charge / 200f
+    private fun getProcs(charge: Int): Float = charge / 50f
 
     override fun getMaxCharge(level: Int): Int = 1500
-    override fun getChargeDecrement(): Int = 75
+    override fun getChargeDecrement(): Int = 50
     override fun chargeToString(charge: Int): String = "%.2f".format(getProcs(charge))
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 
     override fun postDamageTaken(player: ServerPlayerEntity, amount: Float) {
-        if (!Random.roll(amount * 0.4f + 0.2f)) return
-
         if (player.maxHealth - player.health < 1f) return
+        if (!Random.roll(amount * 0.4f + 0.2f)) return
 
         val hoe = player.handItems.find { getCharge(it) >= getChargeDecrement() } ?: return
 
