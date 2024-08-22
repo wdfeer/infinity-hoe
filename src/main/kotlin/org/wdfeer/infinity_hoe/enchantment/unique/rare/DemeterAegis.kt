@@ -3,13 +3,11 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.item.HoeItem
 import net.minecraft.server.network.ServerPlayerEntity
-import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader.demeterAegis
 import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
-import org.wdfeer.infinity_hoe.extension.hasEnchantment
+import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
 
-class DemeterAegis : DemeterEnchantment() {
+class DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
     override fun getPath(): String = "demeter_aegis"
 
     private fun getNullifications(charge: Int): Float = charge / 200f
@@ -20,17 +18,13 @@ class DemeterAegis : DemeterEnchantment() {
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 
-    companion object {
-        fun preDamage(player: ServerPlayerEntity) {
-            val hoe = player.handItems.find { it.item is HoeItem &&
-                        it.hasEnchantment(demeterAegis) &&
-                        demeterAegis.getCharge(it) >= demeterAegis.getChargeDecrement() } ?: return
+    override fun preDamageTaken(player: ServerPlayerEntity, amount: Float) {
+        val hoe = player.handItems.find { getCharge(it) >= getChargeDecrement() } ?: return
 
-            if (player.statusEffects.any { it.effectType == StatusEffects.RESISTANCE && it.amplifier == 255 }) return
+        if (player.statusEffects.any { it.effectType == StatusEffects.RESISTANCE && it.amplifier == 255 }) return
 
-            player.addStatusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20, 255))
+        player.addStatusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20, 255))
 
-            demeterAegis.setCharge(hoe, demeterAegis.getCharge(hoe) - demeterAegis.getChargeDecrement())
-        }
+        setCharge(hoe, getCharge(hoe) - getChargeDecrement())
     }
 }
