@@ -10,10 +10,17 @@ object PlayerDamageTaken {
     fun mixinPreDamageTaken(
         player: ServerPlayerEntity,
         amount: Float
-    ) {
+    ) = onDamageTaken(player, amount, PlayerDamageTaken::preDamageTaken)
+
+    fun mixinPostDamageTaken(
+        player: ServerPlayerEntity,
+        amount: Float,
+    ) = onDamageTaken(player, amount, PlayerDamageTaken::postDamageTaken)
+
+    private inline fun onDamageTaken(player: ServerPlayerEntity, amount: Float, method: PlayerDamageTaken.(ServerPlayerEntity, Float) -> Unit) {
         EnchantmentLoader.enchantments
             .filter { e -> player.handItems.any { it.item is HoeItem && it.hasEnchantment(e) } }
             .filterIsInstance<PlayerDamageTaken>()
-            .forEach { it.preDamageTaken(player, amount) }
+            .forEach { it.method(player, amount) }
     }
 }

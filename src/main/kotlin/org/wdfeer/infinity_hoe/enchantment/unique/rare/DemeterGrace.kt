@@ -16,7 +16,7 @@ class DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 
-    override fun preDamageTaken(player: ServerPlayerEntity, amount: Float) {
+    override fun postDamageTaken(player: ServerPlayerEntity, amount: Float) {
         val hoe = player.handItems.find { getCharge(it) >= getChargeDecrement() } ?: return
 
         // TODO: Implement healing

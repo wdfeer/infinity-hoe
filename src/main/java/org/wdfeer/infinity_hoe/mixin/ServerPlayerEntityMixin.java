@@ -11,7 +11,12 @@ import org.wdfeer.infinity_hoe.event.emitter.PlayerDamageTaken;
 @Mixin(ServerPlayerEntity.class)
 abstract class ServerPlayerEntityMixin {
     @Inject(method = "damage", at = @At("HEAD"))
-    void injectDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    void injectPreDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         PlayerDamageTaken.INSTANCE.mixinPreDamageTaken((ServerPlayerEntity) (Object) this, amount);
+    }
+
+    @Inject(method = "damage", at = @At("RETURN"))
+    void injectPostDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        PlayerDamageTaken.INSTANCE.mixinPostDamageTaken((ServerPlayerEntity) (Object) this, amount);
     }
 }
