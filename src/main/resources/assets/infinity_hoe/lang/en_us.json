@@ -38,7 +38,7 @@
   "enchantment.infinity_hoe.demolition.desc": "Gain charge on harvest. Use charge to spawn a tnt.",
   "tooltip.infinity_hoe.demolition.charge": "TNT: %s/%s",
   "enchantment.infinity_hoe.pesticide_overload": "Pesticide Overload",
-  "enchantment.infinity_hoe.pesticide_overload.desc": "Gain charge on harvest. Use charge to give poison to everything in the vicinity.",
+  "enchantment.infinity_hoe.pesticide_overload.desc": "Gain charge on harvest. Use charge to give poison and wither to everything in the vicinity.",
   "tooltip.infinity_hoe.pesticide_overload.charge": "Poison burst: %s",
   "enchantment.infinity_hoe.demeter_wrath": "Demeter's Wrath",
   "enchantment.infinity_hoe.demeter_wrath.desc": "Gain charge on harvest. Charge is used on hit to deal extra magic damage.",
