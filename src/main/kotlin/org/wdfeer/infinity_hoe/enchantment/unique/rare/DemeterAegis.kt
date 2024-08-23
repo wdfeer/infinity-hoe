@@ -1,6 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.server.network.ServerPlayerEntity
@@ -15,8 +14,6 @@ class DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
     override fun getMaxCharge(level: Int): Int = 400
     override fun getChargeDecrement(): Int = 200
     override fun chargeToString(charge: Int): String = "%.2f".format(getNullifications(charge))
-
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 
     override fun preDamageTaken(player: ServerPlayerEntity, amount: Float) {
         val hoe = player.handItems.find { getCharge(it) >= getChargeDecrement() } ?: return

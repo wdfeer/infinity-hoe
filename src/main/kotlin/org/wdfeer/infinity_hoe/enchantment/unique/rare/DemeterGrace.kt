@@ -1,6 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.server.network.ServerPlayerEntity
 import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
@@ -15,8 +14,6 @@ class DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
     override fun getMaxCharge(level: Int): Int = 1500
     override fun getChargeDecrement(): Int = 50
     override fun chargeToString(charge: Int): String = "%.2f".format(getProcs(charge))
-
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 
     override fun postDamageTaken(player: ServerPlayerEntity, amount: Float) {
         if (player.maxHealth - player.health < 1f) return
