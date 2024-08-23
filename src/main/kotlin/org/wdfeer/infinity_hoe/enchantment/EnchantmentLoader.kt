@@ -37,7 +37,8 @@ object EnchantmentLoader {
         calciumBurst,
         DemeterWrath(),
         DemeterAegis(),
-        DemeterGrace()
+        DemeterGrace(),
+        PesticideOverload()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
