@@ -36,9 +36,9 @@ class PesticideOverload : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getCooldown(): Int = TickDurationHelper.secondsToTicks(10)
 
-    override fun chargeToString(charge: Int): String = "${charge / 10}%"
+    override fun chargeToString(charge: Int): String = "${charge * 100 / getChargeDecrement()}%"
     override fun getMaxCharge(level: Int): Int = getChargeDecrement()
-    override fun getChargeDecrement(): Int = 1000
+    override fun getChargeDecrement(): Int = 600
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_PURPLE
 
