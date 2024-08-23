@@ -14,18 +14,19 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getPath(): String = "demeter_wrath"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
-        if (getCharge(hoe) == 0) return
+        val charge = getCharge(hoe)
+        if (charge < getChargeDecrement()) return
 
         target.hurtTime = 0
-        target.damage(DamageTypes.MAGIC, getDamage(getCharge(hoe)), player)
-        setCharge(hoe, 0)
+        target.damage(DamageTypes.MAGIC, getDamage(charge), player)
+        setCharge(hoe, charge - getChargeDecrement())
     }
 
-    private fun getDamage(charge: Int): Float = log10(charge.toFloat() + 1f) * 5
+    private fun getDamage(charge: Int): Float = log10(charge.toFloat() + 1f) * 6
 
-    override fun getMaxCharge(level: Int): Int = 10000
-    override fun getChargeDecrement(): Int = 1 // Only affects the tooltip color
-    override fun chargeToString(charge: Int): String = "%.1f".format(getDamage(charge))
+    override fun getMaxCharge(level: Int): Int = 1000
+    override fun getChargeDecrement(): Int = 100
+    override fun chargeToString(charge: Int): String = "%.2f".format(getDamage(charge))
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 }
