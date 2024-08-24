@@ -17,9 +17,11 @@ abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnc
 
         if (useCharge(world, player, hoe)) {
             player.itemCooldownManager.set(hoe.item, getCooldown())
-            setCharge(hoe, charge - getChargeDecrement())
+            setCharge(hoe, charge - getUsedCharge(charge))
         }
     }
+
+    protected open fun getUsedCharge(charge: Int): Int = getChargeDecrement()
 
     override fun canAccept(other: Enchantment?): Boolean = other !is UsableHarvestChargeEnchantment
 }
