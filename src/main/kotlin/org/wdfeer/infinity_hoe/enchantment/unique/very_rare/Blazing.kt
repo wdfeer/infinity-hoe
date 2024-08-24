@@ -1,6 +1,7 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
-import net.minecraft.entity.projectile.FireballEntity
+import net.minecraft.entity.projectile.ProjectileEntity
+import net.minecraft.entity.projectile.SmallFireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -24,15 +25,17 @@ class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     private fun createFireball(
         world: ServerWorld,
         player: ServerPlayerEntity
-    ): FireballEntity {
-        val velocity = player.rotationVector.multiply(3.0)
+    ): ProjectileEntity {
+        val velocity = player.rotationVector.multiply(4.0)
         val pos = player.eyePos
 
-        val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, 0)
-        fireball.setPosition(pos)
+        val fireball = SmallFireballEntity(world, player, pos.x, pos.y, pos.z)
+        fireball.velocity = velocity
 
         return fireball
     }
+
+    override fun getCooldown(): Int = 6
 
     override fun getTooltipColor(): Formatting = Formatting.RED
 }
