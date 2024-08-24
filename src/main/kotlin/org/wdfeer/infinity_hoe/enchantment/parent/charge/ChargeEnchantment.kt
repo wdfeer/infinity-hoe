@@ -10,9 +10,9 @@ import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), AppendTooltipListener {
     protected abstract fun getTooltipColor(): Formatting
+    protected abstract fun getMaxCharge(level: Int): Int
 
     protected open fun getChargeDecrement(): Int = 1
-    protected open fun getMaxCharge(level: Int) = 50 * level
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
     private val nbtKey get() = getPath() + "_charge"
