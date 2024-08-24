@@ -1,6 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.item.ItemStack
@@ -28,6 +27,4 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getMaxCharge(level: Int): Int = 1000
     override fun getChargeDecrement(): Int = 10
     override fun chargeToString(charge: Int): String = "%.2f".format(getDamage(charge))
-
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
 }
