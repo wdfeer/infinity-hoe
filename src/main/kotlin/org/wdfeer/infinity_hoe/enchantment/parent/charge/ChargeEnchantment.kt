@@ -24,7 +24,7 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Appen
         val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
 
         tooltip.add(Text.translatable("tooltip.infinity_hoe.${getPath()}.charge", chargeToString(charge), chargeToString(maxCharge)).apply {
-            style = Style.EMPTY.withColor(if (charge >= getChargeDecrement()) getTooltipColor() else Formatting.GRAY)
+            style = if (charge >= getChargeDecrement()) Style.EMPTY.withColor(getTooltipColor()) else Style.EMPTY.withColor(0xafafaf)
         })
     }
 }
