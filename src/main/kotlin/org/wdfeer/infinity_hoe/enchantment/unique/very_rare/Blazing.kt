@@ -27,10 +27,9 @@ class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
         player: ServerPlayerEntity
     ): ProjectileEntity {
         val velocity = player.rotationVector.multiply(4.0)
-        val pos = player.eyePos
 
-        val fireball = SmallFireballEntity(world, player, pos.x, pos.y, pos.z)
-        fireball.velocity = velocity
+        val fireball = SmallFireballEntity(world, player, velocity.x, velocity.y, velocity.z)
+        fireball.setPosition(player.eyePos)
 
         return fireball
     }
