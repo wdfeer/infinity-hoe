@@ -9,6 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 import kotlin.math.log10
+import kotlin.math.max
 
 class DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getPath(): String = "demeter_wrath"
@@ -22,10 +23,10 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
         setCharge(hoe, charge - getChargeDecrement())
     }
 
-    private fun getDamage(charge: Int): Float = log10(charge.toFloat() + 1f) * 6
+    private fun getDamage(charge: Int): Float = log10(max(charge.toFloat(), 1f)) * 3
 
     override fun getMaxCharge(level: Int): Int = 1000
-    override fun getChargeDecrement(): Int = 100
+    override fun getChargeDecrement(): Int = 10
     override fun chargeToString(charge: Int): String = "%.2f".format(getDamage(charge))
 
     override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade
