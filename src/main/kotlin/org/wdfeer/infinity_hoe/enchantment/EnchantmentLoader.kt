@@ -16,6 +16,7 @@ object EnchantmentLoader {
     val chainHarvest = ChainHarvest()
     val untill = Untill()
     val calciumBurst = CalciumBurst()
+    val automata = Automata()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -39,7 +40,7 @@ object EnchantmentLoader {
         DemeterAegis(),
         DemeterGrace(),
         PesticideOverload(),
-        Automata()
+        automata
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

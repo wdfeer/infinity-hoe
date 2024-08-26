@@ -9,7 +9,8 @@
     "ItemMixin",
     "MiningItemMixin",
     "PlayerEntityMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "ItemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
