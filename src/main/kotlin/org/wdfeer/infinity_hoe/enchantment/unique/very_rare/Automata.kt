@@ -31,14 +31,14 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
             tick(serverWorld, itemEntity)
         }
 
-        private fun tick(world: ServerWorld, itemEntity: ItemEntity) {
-            val positions = itemEntity.blockPos.getAdjacentHorizontally(2)
+        private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
+            val positions = hoeEntity.blockPos.getAdjacentHorizontally(2)
                 .filter { isMatureCrop(world, it) }
 
             positions.forEach { world.breakBlock(it, true) }
-            itemEntity.stack.damage((positions.size / 16f).randomRound())
+            hoeEntity.stack.damage((positions.size / 16f).randomRound())
 
-            itemEntity.setNeverDespawn()
+            hoeEntity.setNeverDespawn()
         }
 
 
