@@ -27,6 +27,8 @@
   "enchantment.infinity_hoe.stand_united.desc": "Nearby players gain resistance on harvest with stacking duration.",
   "enchantment.infinity_hoe.calcium_burst": "Calcium Burst",
   "enchantment.infinity_hoe.calcium_burst.desc": "Use bone meal from inventory on nearby crops on harvest.",
+  "enchantment.infinity_hoe.automata": "Automata",
+  "enchantment.infinity_hoe.automata.desc": "Dropped hoe harvests nearby crops by itself.",
 
   "enchantment.infinity_hoe.blazing": "Blazing",
   "enchantment.infinity_hoe.blazing.desc": "Gain charge on harvest. Use charge to shoot fireballs.",
