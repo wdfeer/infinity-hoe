@@ -1,14 +1,15 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.block.CropBlock
+import net.minecraft.enchantment.Enchantment
+import net.minecraft.enchantment.UnbreakingEnchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
-import org.wdfeer.infinity_hoe.extension.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.*
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Automata : HoeEnchantment(Rarity.VERY_RARE) {
@@ -16,6 +17,7 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
 
     override fun getPath(): String = "automata"
 
+    override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment
     companion object {
         private val CHECK_INTERVAL = secondsToTicks(10)
 
@@ -32,7 +34,10 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
         private fun tick(world: ServerWorld, itemEntity: ItemEntity) =
             itemEntity.blockPos.getAdjacentHorizontally(2)
             .filter { isMatureCrop(world, it) }
-            .forEach { world.breakBlock(it, true) }
+            .let { positions ->
+                positions.forEach { world.breakBlock(it, true) }
+                itemEntity.stack.damage((positions.size / 16f).randomRound())
+            }
 
         private fun isMatureCrop(world: ServerWorld, pos: BlockPos): Boolean {
             val state = world.getBlockState(pos)
