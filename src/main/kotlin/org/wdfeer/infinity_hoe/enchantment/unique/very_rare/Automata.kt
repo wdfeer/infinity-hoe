@@ -1,19 +1,22 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
-import net.minecraft.block.Block
+import net.minecraft.block.Blocks
 import net.minecraft.block.CropBlock
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.UnbreakingEnchantment
 import net.minecraft.entity.ItemEntity
+import net.minecraft.item.BlockItem
 import net.minecraft.item.HoeItem
 import net.minecraft.item.Item
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
-import org.wdfeer.infinity_hoe.extension.*
+import org.wdfeer.infinity_hoe.extension.damage
+import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
+import org.wdfeer.infinity_hoe.extension.hasEnchantment
+import org.wdfeer.infinity_hoe.extension.randomRound
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Automata : HoeEnchantment(Rarity.VERY_RARE) {
@@ -45,10 +48,7 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
             hoeEntity.stack.damage((positions.size / 16f).randomRound())
 
             if (hoeEntity.stack.hasEnchantment(EnchantmentLoader.autoSeed))
-                replant(world, hoeEntity.pos, positions.associateWith {
-                    val block = world.getBlockState(it).block
-                    Pair(block, block.asItem())
-                })
+                plant(world, hoeEntity.blockPos)
 
             hoeEntity.setNeverDespawn()
         }
@@ -59,19 +59,24 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
             return crop.isMature(state)
         }
 
-        private fun replant(world: ServerWorld, origin: Vec3d, positionsWithCrops: Map<BlockPos, Pair<Block, Item>>) {
-            // TODO: fix this not working
-            val itemEntities = world.iterateEntities()
+        private fun plant(world: ServerWorld, origin: BlockPos) {
+            val stacks = world.iterateEntities()
                 .filterIsInstance<ItemEntity>()
-                .filter { it.pos.distanceTo(origin) < SEED_COLLECT_RANGE }
-                .filter { e -> positionsWithCrops.values.any { e.stack.item == it.second } }
+                .filter { it.pos.distanceTo(origin.toCenterPos()) < SEED_COLLECT_RANGE }
+                .map { it.stack }
+                .filter { getCropBlock(it.item) != null }
 
-            for ((pos, pair) in positionsWithCrops) {
-                val entity = itemEntities.find { it.stack.item == pair.second } ?: continue
+            val positions = origin.getAdjacentHorizontally(HARVEST_RANGE)
+                .filter { world.isAir(it) && world.getBlockState(it.down()).block == Blocks.FARMLAND }
 
-                world.setBlockState(pos, pair.first.defaultState)
-                entity.stack.decrement(1)
+            for (pos in positions) {
+                val stack = stacks.find { !it.isEmpty } ?: continue
+
+                world.setBlockState(pos, getCropBlock(stack.item)?.defaultState ?: continue)
+                stack.decrement(1)
             }
         }
+
+        private fun getCropBlock(item: Item): CropBlock? = (item as? BlockItem)?.block as? CropBlock
     }
 }
