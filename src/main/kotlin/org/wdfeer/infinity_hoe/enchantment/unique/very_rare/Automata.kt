@@ -26,7 +26,7 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
 
     override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutoSeed
     companion object {
-        private val CHECK_INTERVAL = secondsToTicks(10)
+        private const val CHECK_INTERVAL = 8
         private const val HARVEST_RANGE = 2
         private const val SEED_COLLECT_RANGE = 3
 
