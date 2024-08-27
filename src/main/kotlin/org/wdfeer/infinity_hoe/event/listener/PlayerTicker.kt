@@ -9,6 +9,6 @@ interface PlayerTicker : TickListener {
 
     override fun postWorldTick(world: ServerWorld) {
         if (canIteratePlayers(world))
-            world.players.forEach { tickPlayer(world, it) }
+            world.players.filter { it.isAlive }.forEach { tickPlayer(world, it) }
     }
 }

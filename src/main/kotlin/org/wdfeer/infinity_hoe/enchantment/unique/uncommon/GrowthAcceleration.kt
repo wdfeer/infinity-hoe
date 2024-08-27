@@ -28,8 +28,6 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCa
     override fun canIteratePlayers(world: ServerWorld) = world.time % TICK_INTERVAL == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (!player.isAlive) return
-
         val regen = player.getStatusEffect(StatusEffects.REGENERATION)?.amplifier
 
         if (!Random.roll(getPlayerTickChance(regen))) return

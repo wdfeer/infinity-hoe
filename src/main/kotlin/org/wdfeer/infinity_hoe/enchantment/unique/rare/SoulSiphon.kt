@@ -28,8 +28,6 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (!player.isAlive) return
-
         val attribute = EntityAttributes.GENERIC_MAX_HEALTH
         val mod = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)?.getModifier(modifierUUID)
 
