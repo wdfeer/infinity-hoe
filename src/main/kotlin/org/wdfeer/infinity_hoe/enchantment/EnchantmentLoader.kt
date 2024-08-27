@@ -17,12 +17,13 @@ object EnchantmentLoader {
     val untill = Untill()
     val calciumBurst = CalciumBurst()
     val automata = Automata()
+    val autoSeed = AutoSeed()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
         pesticide,
         growthAcceleration,
-        AutoSeed(),
+        autoSeed,
         chainHarvest,
         untill,
         SoulSiphon(),
