@@ -29,6 +29,8 @@
   "enchantment.infinity_hoe.calcium_burst.desc": "Use bone meal from inventory on nearby crops on harvest.",
   "enchantment.infinity_hoe.automata": "Automata",
   "enchantment.infinity_hoe.automata.desc": "Dropped hoe harvests nearby crops by itself.",
+  "enchantment.infinity_hoe.decompose": "Decompose",
+  "enchantment.infinity_hoe.decompose.desc": "Uses nearby compostable items to repair or recharge itself while held.",
 
   "enchantment.infinity_hoe.blazing": "Blazing",
   "enchantment.infinity_hoe.blazing.desc": "Gain charge on harvest. Use charge to shoot fireballs.",
