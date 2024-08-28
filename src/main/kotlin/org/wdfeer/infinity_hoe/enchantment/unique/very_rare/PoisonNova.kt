@@ -14,7 +14,7 @@ class PoisonNova : NovaEnchantment() {
     override fun getPath(): String = "poison_nova"
 
     override fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float) {
-        target.damage(DamageTypes.INDIRECT_MAGIC, 4f * powerMult, player)
+        target.damage(DamageTypes.INDIRECT_MAGIC, 5f * powerMult, player)
 
         target.addStatusEffect(
             StatusEffectInstance(

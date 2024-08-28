@@ -15,7 +15,7 @@ class FrostNova : NovaEnchantment() {
     override fun getPath(): String = "frost_nova"
 
     override fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float) {
-        target.damage(DamageTypes.INDIRECT_MAGIC, 3f * powerMult, player)
+        target.damage(DamageTypes.INDIRECT_MAGIC, 4f * powerMult, player)
 
         target.frozenTicks = secondsToTicks(8)
 

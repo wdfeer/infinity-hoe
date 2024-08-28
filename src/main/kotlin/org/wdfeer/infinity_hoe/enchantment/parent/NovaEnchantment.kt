@@ -30,7 +30,7 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
 
     override fun getPowerRange(level: Int): IntRange = 30..60
 
-    override fun getCooldown(): Int = TickDurationHelper.secondsToTicks(10)
+    override fun getCooldown(): Int = TickDurationHelper.secondsToTicks(4)
 
     override fun chargeToString(charge: Int): String = "${charge * 100 / getChargeDecrement()}%"
 
