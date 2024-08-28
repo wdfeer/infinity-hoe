@@ -22,7 +22,7 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
 
     override fun getPath(): String = "automata"
 
-    override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutoSeed
+    override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutomataListener
     companion object {
         private const val CHECK_INTERVAL = 8
         const val HARVEST_RANGE = 2

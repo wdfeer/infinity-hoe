@@ -8,6 +8,7 @@ import net.minecraft.entity.ItemEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
@@ -18,7 +19,7 @@ import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.max
 import kotlin.math.pow
 
-class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker {
+class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
     companion object {
         private const val INTERVAL: Int = 5
         private const val DISTANCE: Int = 4
@@ -31,10 +32,13 @@ class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker {
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
-    override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
+    override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) =
+        decomposeTick(world, player.pos, hoe)
+
+    private fun decomposeTick(world: ServerWorld, origin: Vec3d, hoe: ItemStack) {
         val compostables = world.iterateEntities()
             .filterIsInstance<ItemEntity>()
-            .filter { it.distanceTo(player) < DISTANCE }
+            .filter { it.pos.distanceTo(origin) < DISTANCE }
             .map { it.stack }
             .associateWith { CompostingChanceRegistry.INSTANCE[it.item] }
             .filterValues { it > 0f }
@@ -45,7 +49,6 @@ class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker {
         if (repair(hoe, power) || recharge(hoe, power))
             stack.decrement(1)
     }
-
     private fun repair(hoe: ItemStack, power: Float): Boolean {
         if (hoe.damage <= 0) return false
 
@@ -63,5 +66,9 @@ class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker {
 
         setCharge(hoe, minOf(maxCharge, charge + amount))
         return true
+    }
+
+    override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) {
+        decomposeTick(world, hoe.pos, hoe.stack)
     }
 }
