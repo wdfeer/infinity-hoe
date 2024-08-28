@@ -13,10 +13,8 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
-import org.wdfeer.infinity_hoe.extension.damage
-import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
-import org.wdfeer.infinity_hoe.extension.hasEnchantment
-import org.wdfeer.infinity_hoe.extension.randomRound
+import org.wdfeer.infinity_hoe.event.listener.AutomataListener
+import org.wdfeer.infinity_hoe.extension.*
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 class Automata : HoeEnchantment(Rarity.VERY_RARE) {
@@ -27,8 +25,8 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
     override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutoSeed
     companion object {
         private const val CHECK_INTERVAL = 8
-        private const val HARVEST_RANGE = 2
-        private const val SEED_COLLECT_RANGE = 3
+        const val HARVEST_RANGE = 2
+        const val SEED_COLLECT_RANGE = 3
 
         fun mixinItemEntityTick(itemEntity: ItemEntity) {
             val serverWorld = itemEntity.world as? ServerWorld ?: return
@@ -47,10 +45,11 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
             positions.forEach { world.breakBlock(it, true) }
             hoeEntity.stack.damage((positions.size / 16f).randomRound())
 
-            if (hoeEntity.stack.hasEnchantment(EnchantmentLoader.autoSeed))
-                plant(world, hoeEntity.blockPos)
-
             hoeEntity.setNeverDespawn()
+
+            hoeEntity.stack.enchantmentMap.keys
+                .filterIsInstance<AutomataListener>()
+                .forEach { it.postAutomataTick(world, hoeEntity) }
         }
 
         private fun isMatureCrop(world: ServerWorld, pos: BlockPos): Boolean {
@@ -58,25 +57,5 @@ class Automata : HoeEnchantment(Rarity.VERY_RARE) {
             val crop = state.block as? CropBlock ?: return false
             return crop.isMature(state)
         }
-
-        private fun plant(world: ServerWorld, origin: BlockPos) {
-            val stacks = world.iterateEntities()
-                .filterIsInstance<ItemEntity>()
-                .filter { it.pos.distanceTo(origin.toCenterPos()) < SEED_COLLECT_RANGE }
-                .map { it.stack }
-                .filter { getCropBlock(it.item) != null }
-
-            val positions = origin.getAdjacentHorizontally(HARVEST_RANGE)
-                .filter { world.isAir(it) && world.getBlockState(it.down()).block == Blocks.FARMLAND }
-
-            for (pos in positions) {
-                val stack = stacks.find { !it.isEmpty } ?: continue
-
-                world.setBlockState(pos, getCropBlock(stack.item)?.defaultState ?: continue)
-                stack.decrement(1)
-            }
-        }
-
-        private fun getCropBlock(item: Item): CropBlock? = (item as? BlockItem)?.block as? CropBlock
     }
 }

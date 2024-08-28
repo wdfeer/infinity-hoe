@@ -10,6 +10,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
