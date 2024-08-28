@@ -42,7 +42,8 @@ object EnchantmentLoader {
         DemeterGrace(),
         PoisonNova(),
         automata,
-        Decompose()
+        Decompose(),
+        FrostNova()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
