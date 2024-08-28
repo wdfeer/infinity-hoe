@@ -17,10 +17,10 @@ import org.wdfeer.infinity_hoe.enchantment.unique.rare.Pesticide
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
 
-class PesticideOverload : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+class PoisonNova : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun getPowerRange(level: Int): IntRange = 30..60
 
-    override fun getPath(): String = "pesticide_overload"
+    override fun getPath(): String = "poison_nova"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val powerMult: Float = getCharge(hoe).toFloat() / getChargeDecrement()
@@ -31,7 +31,13 @@ class PesticideOverload : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
             .forEach {
                 it.damage(DamageTypes.INDIRECT_MAGIC, 4f * powerMult, player)
                 for (s in listOf(StatusEffects.POISON, StatusEffects.WITHER)) {
-                    it.addStatusEffect(StatusEffectInstance(s, TickDurationHelper.secondsToTicks(10), powerMult.toInt() - 1))
+                    it.addStatusEffect(
+                        StatusEffectInstance(
+                            s,
+                            TickDurationHelper.secondsToTicks(10),
+                            powerMult.toInt() - 1
+                        )
+                    )
                 }
             }
 
@@ -48,7 +54,8 @@ class PesticideOverload : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_PURPLE
 
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is MysticBlade && other !is Pesticide && other !is DemeterWrath
+    override fun canAccept(other: Enchantment?): Boolean =
+        super.canAccept(other) && other !is MysticBlade && other !is Pesticide && other !is DemeterWrath
 
     companion object {
         private const val BASE_RANGE = 25

@@ -40,7 +40,7 @@ object EnchantmentLoader {
         DemeterWrath(),
         DemeterAegis(),
         DemeterGrace(),
-        PesticideOverload(),
+        PoisonNova(),
         automata,
         Decompose()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
