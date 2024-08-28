@@ -9,7 +9,10 @@ import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
 abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), AppendTooltipListener {
-    protected abstract fun getTooltipColor(): Formatting
+    protected open fun getTooltipStyle(): Style = Style.EMPTY.withColor(getTooltipColor())
+    protected open fun getTooltipColor(): Formatting =
+        throw NotImplementedError("Either override getTooltipColor or implement custom getTooltipStyle!")
+
     abstract fun getMaxCharge(level: Int): Int
 
     protected open fun getChargeDecrement(): Int = 1
@@ -23,8 +26,16 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Appen
         val charge = getCharge(stack)
         val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
 
-        tooltip.add(Text.translatable("tooltip.infinity_hoe.${getPath()}.charge", chargeToString(charge), chargeToString(maxCharge)).apply {
-            style = if (charge >= getChargeDecrement()) Style.EMPTY.withColor(getTooltipColor()) else Style.EMPTY.withColor(0xafafaf)
-        })
+        tooltip.add(
+            Text.translatable(
+                "tooltip.infinity_hoe.${getPath()}.charge",
+                chargeToString(charge),
+                chargeToString(maxCharge)
+            ).apply {
+                style =
+                    if (charge >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
+                        0xafafaf
+                    )
+            })
     }
 }

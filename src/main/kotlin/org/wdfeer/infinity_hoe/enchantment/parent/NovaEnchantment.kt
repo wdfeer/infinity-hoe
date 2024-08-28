@@ -27,7 +27,7 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
     private fun canAffect(player: ServerPlayerEntity, target: LivingEntity): Boolean =
         target.isAlive && target !is AnimalEntity && target != player
 
-    
+
     override fun getPowerRange(level: Int): IntRange = 30..60
 
     override fun getCooldown(): Int = TickDurationHelper.secondsToTicks(10)
@@ -37,8 +37,6 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
     override fun getUsedCharge(charge: Int): Int = charge
     override fun getMaxCharge(level: Int): Int = 2 * getChargeDecrement()
     override fun getChargeDecrement(): Int = 200
-
-    override fun getTooltipColor(): Formatting = Formatting.DARK_PURPLE
 
     companion object {
         private const val BASE_RANGE = 25

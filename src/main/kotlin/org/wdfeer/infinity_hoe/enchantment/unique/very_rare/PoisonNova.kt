@@ -5,6 +5,7 @@ import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.text.Style
 import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
@@ -23,4 +24,6 @@ class PoisonNova : NovaEnchantment() {
             )
         )
     }
+
+    override fun getTooltipStyle(): Style = Style.EMPTY.withColor(0x4db560)
 }
