@@ -23,19 +23,20 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Appen
     fun setCharge(hoe: ItemStack, value: Int) = hoe.orCreateNbt.putInt(nbtKey, value)
 
     final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
-        val charge = getCharge(stack)
-        val maxCharge = getMaxCharge(stack.getEnchantmentLevel(this))
-
         tooltip.add(
             Text.translatable(
                 "tooltip.infinity_hoe.${getPath()}.charge",
-                chargeToString(charge),
-                chargeToString(maxCharge)
+                getTooltipArgs(stack)
             ).apply {
                 style =
-                    if (charge >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
+                    if (getCharge(stack) >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
                         0xafafaf
                     )
             })
     }
+
+    protected open fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(
+        chargeToString(getCharge(hoe)),
+        chargeToString(getMaxCharge(hoe.getEnchantmentLevel(this)))
+    )
 }

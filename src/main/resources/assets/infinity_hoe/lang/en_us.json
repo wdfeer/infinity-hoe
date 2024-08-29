@@ -48,7 +48,7 @@
   "tooltip.infinity_hoe.frost_nova.charge": "Nova: %s",
   "enchantment.infinity_hoe.demeter_wrath": "Demeter's Wrath",
   "enchantment.infinity_hoe.demeter_wrath.desc": "Gain charge on harvest. Charge is used on hit to deal extra magic damage.",
-  "tooltip.infinity_hoe.demeter_wrath.charge": "Magic Damage: %s/%s",
+  "tooltip.infinity_hoe.demeter_wrath.charge": "+%s Magic Damage Charges: %s/%s",
   "enchantment.infinity_hoe.demeter_aegis": "Demeter's Aegis",
   "enchantment.infinity_hoe.demeter_aegis.desc": "Gain charge on harvest. Charge is used while in hand to nullify incoming damage.",
   "tooltip.infinity_hoe.demeter_aegis.charge": "Immunity: %s/%s",

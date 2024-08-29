@@ -49,15 +49,17 @@ class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
         if (repair(hoe, power) || recharge(hoe, power))
             stack.decrement(1)
     }
+
     private fun repair(hoe: ItemStack, power: Float): Boolean {
         if (hoe.damage <= 0) return false
 
         hoe.damage -= power.randomRound()
         return true
     }
+
     private fun recharge(hoe: ItemStack, power: Float): Boolean = hoe.enchantmentMap.keys
-            .filterIsInstance<ChargeEnchantment>()
-            .any { it.increment(hoe, power.randomRound()) }
+        .filterIsInstance<ChargeEnchantment>()
+        .any { it.increment(hoe, power.randomRound()) }
 
     private fun ChargeEnchantment.increment(hoe: ItemStack, amount: Int = 1): Boolean {
         val charge = getCharge(hoe)
@@ -68,7 +70,6 @@ class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
         return true
     }
 
-    override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) {
+    override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) =
         decomposeTick(world, hoe.pos, hoe.stack)
-    }
 }
