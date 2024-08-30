@@ -26,7 +26,7 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Appen
         tooltip.add(
             Text.translatable(
                 "tooltip.infinity_hoe.${getPath()}.charge",
-                getTooltipArgs(stack)
+                *getTooltipArgs(stack).toTypedArray()
             ).apply {
                 style =
                     if (getCharge(stack) >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(

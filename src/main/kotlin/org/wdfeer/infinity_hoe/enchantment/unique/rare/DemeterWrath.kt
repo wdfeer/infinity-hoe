@@ -34,9 +34,8 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun chargeToString(charge: Int): String = "%.1f".format(charge.toFloat() / getChargeDecrement())
 
     override fun getTooltipArgs(hoe: ItemStack): List<String> =
-        buildList {
-            add("%.1f".format(getDamage(hoe)))
-            addAll(super.getTooltipArgs(hoe))
+        super.getTooltipArgs(hoe).toMutableList().apply {
+            addFirst("%.1f".format(getDamage(hoe)))
         }
 
     private fun getDamage(hoe: ItemStack): Float = 1f + hoe.getEnchantmentLevel(this) * 1.5f
