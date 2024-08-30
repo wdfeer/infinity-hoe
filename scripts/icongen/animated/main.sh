@@ -6,7 +6,7 @@ mkdir -p $TMP_PATH
 
 . "scripts/icongen/animated/createFrames.sh"
 
-magick -delay 10 -loop 1 "scripts/icongen/animated/tmp/frame_*.png" "$OUTPUT_GIF"
+magick -delay 10 -dispose Previous "scripts/icongen/animated/tmp/frame_*.png" -loop 1 "$OUTPUT_GIF"
 
 rm -rf $TMP_PATH
 
