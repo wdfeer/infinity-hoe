@@ -25,4 +25,4 @@ magick -delay 10 -loop 1 "scripts/icongen/tmp/frame_*.png" "$OUTPUT_GIF"
 
 #rm -rf "scripts/icongen/tmp"
 
-echo "GIF created: $OUTPUT_GIF"
+echo "Created animated icon at $OUTPUT_GIF"

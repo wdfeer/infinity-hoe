@@ -8,4 +8,4 @@ magick "$BASE_IMAGE" \
     -annotate -5-5 "$ENCHANTMENT_COUNT" \
     "$OUTPUT_PNG"
 
-echo "Created static icon"
+echo "Created static icon at $OUTPUT_PNG"
