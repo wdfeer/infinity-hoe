@@ -15,6 +15,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.incrementBounds
 
 class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
@@ -22,11 +23,7 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override val maxLvl: Int
         get() = 5
 
-    override fun getPowerRange(level: Int): IntRange {
-        val min = 16 + level * 2
-        val max = 24 + level * 2
-        return min..max
-    }
+    override fun getPowerRange(level: Int): IntRange = (16..24).incrementBounds(level * 2)
 
     override fun onCropBroken(
         world: ServerWorld,
@@ -64,7 +61,7 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
 
         fun getNearbyLivingEntities(world: ServerWorld, origin: Vec3d, radius: Double): List<LivingEntity> =
             world.iterateEntities()
-                .filter { it.pos.distanceTo(origin) <= radius}
+                .filter { it.pos.distanceTo(origin) <= radius }
                 .filterIsInstance<LivingEntity>()
     }
 }

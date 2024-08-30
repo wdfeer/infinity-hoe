@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.catalyze
+package org.wdfeer.infinity_hoe.enchantment.parent
 
 import com.google.common.math.IntMath.pow
 import net.minecraft.block.CropBlock
@@ -11,8 +11,8 @@ import org.wdfeer.infinity_hoe.extension.getAdjacent
 import org.wdfeer.infinity_hoe.extension.randomRound
 import org.wdfeer.infinity_hoe.extension.randoms
 
-object CropCatalyzer {
-    fun trigger(
+interface CropCatalyzer {
+    fun catalyze(
         world: ServerWorld,
         player: ServerPlayerEntity,
         level: Int,

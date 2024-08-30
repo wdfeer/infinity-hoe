@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.chain
+package org.wdfeer.infinity_hoe.enchantment.parent.chain
 
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemStack

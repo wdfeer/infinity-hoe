@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.chain
+package org.wdfeer.infinity_hoe.enchantment.parent.chain
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.server.world.ServerWorld

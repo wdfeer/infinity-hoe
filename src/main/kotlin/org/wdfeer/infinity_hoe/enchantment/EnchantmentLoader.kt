@@ -3,15 +3,11 @@ package org.wdfeer.infinity_hoe.enchantment
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
-import org.wdfeer.infinity_hoe.enchantment.bc.BetterCombatEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
-import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
+import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.MinerHarvest
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.StandUnited
-import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Blazing
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
+import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.*
 
 object EnchantmentLoader {
     val infinity = Infinity()
@@ -19,12 +15,15 @@ object EnchantmentLoader {
     val growthAcceleration = GrowthAcceleration()
     val chainHarvest = ChainHarvest()
     val untill = Untill()
+    val calciumBurst = CalciumBurst()
+    val automata = Automata()
+    val autoSeed = AutoSeed()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
         pesticide,
         growthAcceleration,
-        AutoSeed(),
+        autoSeed,
         chainHarvest,
         untill,
         SoulSiphon(),
@@ -35,7 +34,16 @@ object EnchantmentLoader {
         MinerHarvest(),
         StandUnited(),
         Blazing(),
-        Fleeting()
+        Fleeting(),
+        Demolition(),
+        calciumBurst,
+        DemeterWrath(),
+        DemeterAegis(),
+        DemeterGrace(),
+        PoisonNova(),
+        automata,
+        Decompose(),
+        FrostNova()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

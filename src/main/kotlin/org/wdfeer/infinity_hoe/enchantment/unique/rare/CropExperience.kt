@@ -9,6 +9,7 @@ import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
 
@@ -18,7 +19,7 @@ class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override val maxLvl: Int
         get() = 5
 
-    override fun getPowerRange(level: Int): IntRange = 12 + level * 4..20 + level * 4
+    override fun getPowerRange(level: Int): IntRange = (12..20).incrementBounds(level * 4)
 
     override fun onCropBroken(
         world: ServerWorld,

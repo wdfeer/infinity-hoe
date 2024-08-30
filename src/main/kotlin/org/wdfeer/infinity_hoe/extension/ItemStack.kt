@@ -5,12 +5,16 @@ import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.math.random.Random
 
-fun ItemStack.hasEnchantment(enchantment: Enchantment): Boolean =
-    EnchantmentHelper.fromNbt(this.enchantments).contains(enchantment)
+val ItemStack.enchantmentMap: MutableMap<Enchantment, Int> get() = EnchantmentHelper.fromNbt(this.enchantments)
 
-fun ItemStack.getEnchantmentLevel(enchantment: Enchantment): Int =
-    EnchantmentHelper.fromNbt(this.enchantments)[enchantment] ?: -1
+fun ItemStack.hasEnchantment(enchantment: Enchantment): Boolean = enchantmentMap.contains(enchantment)
+
+fun ItemStack.getEnchantmentLevel(enchantment: Enchantment): Int = enchantmentMap[enchantment] ?: -1
 
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
     this.damage(amount, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
+
+fun ItemStack.damage(amount: Int = 1) =
+    this.damage(amount, Random.create(), null)

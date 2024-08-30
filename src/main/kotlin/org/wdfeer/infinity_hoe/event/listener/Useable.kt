@@ -4,6 +4,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 
-interface AirUseListener {
-    fun onUseInAir(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack)
+interface Useable {
+    fun use(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack)
 }

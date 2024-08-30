@@ -6,13 +6,14 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.catalyze.CropCatalyzer.trigger
+import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker {
+class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCatalyzer {
     companion object {
         private const val TICK_INTERVAL: Long = 20
     }
@@ -22,14 +23,12 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker {
     override val maxLvl: Int
         get() = 3
 
-    override fun getPowerRange(level: Int): IntRange = 8 + level * 5..16 + level * 5
+    override fun getPowerRange(level: Int): IntRange = (8..16).incrementBounds(level * 5)
 
 
     override fun canIteratePlayers(world: ServerWorld) = world.time % TICK_INTERVAL == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (!player.isAlive) return
-
         val regen = player.getStatusEffect(StatusEffects.REGENERATION)?.amplifier
 
         if (!Random.roll(getPlayerTickChance(regen))) return
@@ -39,7 +38,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker {
 
         if (level == -1) return
 
-        trigger(world, player, level, hoe)
+        catalyze(world, player, level, hoe)
     }
 
     private fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.02f

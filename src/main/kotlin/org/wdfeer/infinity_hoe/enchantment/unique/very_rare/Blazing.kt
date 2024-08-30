@@ -1,16 +1,14 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
-import net.minecraft.entity.projectile.FireballEntity
+import net.minecraft.entity.projectile.ProjectileEntity
+import net.minecraft.entity.projectile.SmallFireballEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.ChargeEnchantment
-import org.wdfeer.infinity_hoe.event.listener.AirUseListener
-import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
-import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
-class Blazing : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseListener, AppendTooltipListener {
+class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override val maxLvl: Int
         get() = 2
 
@@ -27,15 +25,18 @@ class Blazing : ChargeEnchantment(Rarity.VERY_RARE), HarvestListener, AirUseList
     private fun createFireball(
         world: ServerWorld,
         player: ServerPlayerEntity
-    ): FireballEntity {
-        val velocity = player.rotationVector.multiply(3.0)
-        val pos = player.eyePos
+    ): ProjectileEntity {
+        val velocity = player.rotationVector.multiply(4.0)
 
-        val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, 0)
-        fireball.setPosition(pos)
+        val fireball = SmallFireballEntity(world, player, velocity.x, velocity.y, velocity.z)
+        fireball.setPosition(player.eyePos)
 
         return fireball
     }
 
-    override fun getTooltipFormatting(): Formatting = Formatting.RED
+    override fun getMaxCharge(level: Int): Int = level * 50
+
+    override fun getCooldown(): Int = 6
+
+    override fun getTooltipColor(): Formatting = Formatting.RED
 }

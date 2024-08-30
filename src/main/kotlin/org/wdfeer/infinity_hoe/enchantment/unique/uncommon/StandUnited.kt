@@ -7,16 +7,12 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.extension.getStatusDuration
-import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.extension.*
 import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
-import org.wdfeer.infinity_hoe.extension.damage
-import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 class StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
@@ -26,7 +22,7 @@ class StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         private fun getDurationDelta(level: Int): Int = secondsToTicks(2 + level * 4)
     }
 
-    override fun getPowerRange(level: Int): IntRange = 10 + level * 7..20 + level * 7
+    override fun getPowerRange(level: Int): IntRange = (10..20).incrementBounds(level * 7)
 
     override val maxLvl: Int
         get() = 3

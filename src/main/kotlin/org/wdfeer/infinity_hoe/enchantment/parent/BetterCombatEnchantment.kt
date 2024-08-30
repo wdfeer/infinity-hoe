@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.bc
+package org.wdfeer.infinity_hoe.enchantment.parent
 
 import net.bettercombat.BetterCombat
 import net.bettercombat.api.WeaponAttributes
@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Reaper
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rebound
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Sickle
 import org.wdfeer.infinity_hoe.io.IO.getFileInJar
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
@@ -19,10 +20,13 @@ abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
         private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)
 
-        val enchantments: List<BetterCombatEnchantment> = canRegister().ifElse(listOf(
-            Reaper(),
-            Sickle()
-        ), emptyList())
+        val enchantments: List<BetterCombatEnchantment> = canRegister().ifElse(
+            buildList {
+                add(Reaper())
+                add(Sickle())
+
+                if (FabricLoader.getInstance().isModLoaded("simplyswords")) add(Rebound())
+            }, emptyList())
 
         val attributes: Map<BetterCombatEnchantment, WeaponAttributes?> = canRegister().ifElse(readAttributes(), emptyMap())
 

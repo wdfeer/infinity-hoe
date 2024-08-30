@@ -3,8 +3,8 @@ package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 import net.minecraft.entity.EntityGroup
 import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
 
-class Sickle : BetterCombatEnchantment() {
-    override fun getPath(): String = "sickle"
+class Rebound : BetterCombatEnchantment() {
+    override fun getPath(): String = "rebound"
 
-    override fun getAttackDamage(level: Int, group: EntityGroup?): Float { return 0.5f }
+    override fun getAttackDamage(level: Int, group: EntityGroup?): Float = -0.5f
 }

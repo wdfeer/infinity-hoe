@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
-class Fleeting : ChargeEnchantment(Rarity.RARE) {
+class Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
     companion object {
-        private val DURATION = secondsToTicks(5)
-        private const val BASE_AMPLIFIER = 1
-        private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 2
+        private val DURATION = secondsToTicks(30)
+        private const val BASE_AMPLIFIER = 0
+        private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 1
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
@@ -23,9 +23,11 @@ class Fleeting : ChargeEnchantment(Rarity.RARE) {
         return true
     }
 
-    override fun getTooltipFormatting(): Formatting = Formatting.BLUE
+    override fun getTooltipColor(): Formatting = Formatting.BLUE
 
-    override fun getMaxCharge(level: Int): Int = 10
+    override fun getMaxCharge(level: Int): Int = 50
+    override fun getChargeDecrement(): Int = 10
+    override fun chargeToString(charge: Int): String = "%.1f".format(charge / 10f)
 
     override fun getPowerRange(level: Int): IntRange = 20..60
 
