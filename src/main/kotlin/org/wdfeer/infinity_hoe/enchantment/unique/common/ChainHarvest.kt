@@ -8,19 +8,19 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainHarvestAction
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.extension.incrementBounds
 
 class ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
     override val maxLvl: Int
         get() = MAX_LEVEL
+
     override fun getPowerRange(level: Int): IntRange = Companion.getPowerRange(level)
 
     companion object {
         const val MAX_LEVEL = 3
-        fun getPowerRange(level: Int): IntRange = getMinPower(level)..getMaxPower(level)
-        private fun getMinPower(level: Int) = 15 + level * 6
-        private fun getMaxPower(level: Int) = 21 + level * 6
+        fun getPowerRange(level: Int): IntRange = (15..21).incrementBounds(level * 6)
     }
 
 
