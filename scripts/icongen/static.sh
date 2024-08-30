@@ -7,3 +7,5 @@ magick "$BASE_IMAGE" \
     -font "$FONT" \
     -annotate -5-5 "$ENCHANTMENT_COUNT" \
     "$OUTPUT_PNG"
+
+echo "Created static icon"
