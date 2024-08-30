@@ -23,8 +23,9 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
         val charge = getCharge(hoe)
         if (charge < getChargeDecrement()) return
 
-        target.hurtTime = 0
         target.damage(DamageTypes.MAGIC, getDamage(hoe), player)
+        target.hurtTime = 0
+
         setCharge(hoe, charge - getChargeDecrement())
     }
 
