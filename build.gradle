@@ -92,5 +92,5 @@ publishing {
 tasks.register("icongen", Exec) {
 	workingDir projectDir
 
-	commandLine "bash", "./scripts/icongen.sh"
+	commandLine "bash", "./scripts/icongen/main.sh"
 }
