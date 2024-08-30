@@ -2,8 +2,6 @@ package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
-import net.minecraft.enchantment.Enchantments
-import net.minecraft.enchantment.UnbreakingEnchantment
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity

@@ -2,7 +2,6 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.MendingEnchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.ItemStack
@@ -16,7 +15,6 @@ import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.randomRound
-import kotlin.math.max
 import kotlin.math.pow
 
 class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
