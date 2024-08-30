@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# Split the enchantments into an array
-IFS=';' read -r -a enchantment_array <<< "$ENCHANTMENTS"
+TMP_PATH="scripts/icongen/animated/tmp"
 
-# Temporary directory for frames
-mkdir -p "scripts/icongen/animated/tmp"
+mkdir -p $TMP_PATH
 
-# TODO: Implement frame creation
+. "scripts/icongen/animated/createFrames.sh"
 
 magick -delay 10 -loop 1 "scripts/icongen/animated/tmp/frame_*.png" "$OUTPUT_GIF"
 
-rm -rf "scripts/icongen/animated/tmp"
+rm -rf $TMP_PATH
 
 echo "Created animated icon at $OUTPUT_GIF"
