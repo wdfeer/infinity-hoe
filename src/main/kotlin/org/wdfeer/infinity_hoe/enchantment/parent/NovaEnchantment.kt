@@ -16,12 +16,13 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
 
         world.iterateEntities()
             .filterIsInstance<LivingEntity>()
-            .filter { it.distanceTo(player) <= BASE_RANGE * powerMult && canAffect(player, it) }
+            .filter { it.distanceTo(player) <= getEffectRange(powerMult) && canAffect(player, it) }
             .forEach { affect(player, it, powerMult) }
 
         return true
     }
 
+    protected open fun getEffectRange(powerMult: Float): Float = BASE_RANGE * powerMult
     protected open fun canAffect(player: ServerPlayerEntity, target: LivingEntity): Boolean =
         target.isAlive && target !is AnimalEntity && target != player
 
@@ -33,10 +34,10 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
     override fun chargeToString(charge: Int): String = "${charge * 100 / getChargeDecrement()}%"
 
     override fun getUsedCharge(charge: Int): Int = charge
-    override fun getMaxCharge(level: Int): Int = 2 * getChargeDecrement()
+    override fun getMaxCharge(level: Int): Int = 400
     override fun getChargeDecrement(): Int = 200
 
     companion object {
-        private const val BASE_RANGE = 25
+        const val BASE_RANGE = 25
     }
 }
