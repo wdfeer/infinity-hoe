@@ -22,7 +22,7 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
         return true
     }
 
-    private fun canAffect(player: ServerPlayerEntity, target: LivingEntity): Boolean =
+    protected open fun canAffect(player: ServerPlayerEntity, target: LivingEntity): Boolean =
         target.isAlive && target !is AnimalEntity && target != player
 
 
