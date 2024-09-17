@@ -8,7 +8,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 
 class Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
     companion object {
-        private const val SPEED = 10.0
+        private const val SPEED = 5.0
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
