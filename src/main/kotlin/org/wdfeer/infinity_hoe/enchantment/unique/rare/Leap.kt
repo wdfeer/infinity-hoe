@@ -23,7 +23,7 @@ class Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
     override fun getChargeDecrement(): Int = 30
-    override fun chargeToString(charge: Int): String = "%.1f".format(charge / getChargeDecrement())
+    override fun chargeToString(charge: Int): String = "%.1f".format(charge / getChargeDecrement().toFloat())
 
     override fun getPowerRange(level: Int): IntRange = 20..60
 
