@@ -43,7 +43,8 @@ object EnchantmentLoader {
         automata,
         Decompose(),
         FrostNova(),
-        HealingNova()
+        HealingNova(),
+        Leap()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
