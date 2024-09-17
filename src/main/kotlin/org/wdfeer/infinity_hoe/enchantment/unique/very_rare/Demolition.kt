@@ -32,7 +32,7 @@ class Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getTooltipColor(): Formatting = Formatting.RED
 
-    override fun getMaxCharge(level: Int): Int = 200
-    override fun getChargeDecrement(): Int = 20
-    override fun chargeToString(charge: Int): String = "%.2f".format(charge / 20f)
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
+    override fun getChargeDecrement(): Int = 25
+    override fun chargeToString(charge: Int): String = "%.2f".format(charge / getChargeDecrement())
 }

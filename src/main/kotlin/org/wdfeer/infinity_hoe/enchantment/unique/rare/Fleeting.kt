@@ -25,8 +25,8 @@ class Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
 
     override fun getTooltipColor(): Formatting = Formatting.BLUE
 
-    override fun getMaxCharge(level: Int): Int = 50
-    override fun getChargeDecrement(): Int = 10
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
+    override fun getChargeDecrement(): Int = 15
     override fun chargeToString(charge: Int): String = "%.1f".format(charge / 10f)
 
     override fun getPowerRange(level: Int): IntRange = 20..60

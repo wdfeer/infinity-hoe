@@ -24,7 +24,7 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
         HoeHit.postHit(hoe, target, player, this)
     }
 
-    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 500
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 256
     override fun getChargeDecrement(): Int = 5
     override fun chargeToString(charge: Int): String = "%.1f".format(charge.toFloat() / getChargeDecrement())
 

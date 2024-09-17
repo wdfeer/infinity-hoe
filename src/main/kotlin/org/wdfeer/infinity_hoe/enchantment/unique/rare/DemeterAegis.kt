@@ -13,7 +13,7 @@ class DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
 
     private fun getNullifications(charge: Int): Float = charge / getChargeDecrement().toFloat()
 
-    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 6
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
     override fun getChargeDecrement(): Int = 80
     override fun chargeToString(charge: Int): String = "%.2f".format(getNullifications(charge))
 

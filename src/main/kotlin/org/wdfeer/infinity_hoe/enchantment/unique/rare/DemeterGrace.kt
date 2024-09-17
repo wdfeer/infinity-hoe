@@ -11,7 +11,7 @@ class DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
 
     private fun getProcs(charge: Int): Float = charge / 50f
 
-    override fun getMaxCharge(level: Int): Int = 1500
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 32
     override fun getChargeDecrement(): Int = 50
     override fun chargeToString(charge: Int): String = "%.2f".format(getProcs(charge))
 

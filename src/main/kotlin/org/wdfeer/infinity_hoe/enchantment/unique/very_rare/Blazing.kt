@@ -34,7 +34,7 @@ class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
         return fireball
     }
 
-    override fun getMaxCharge(level: Int): Int = level * 50
+    override fun getMaxCharge(level: Int): Int = level * 32
 
     override fun getCooldown(): Int = 6
 
