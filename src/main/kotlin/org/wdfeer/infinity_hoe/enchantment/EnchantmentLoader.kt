@@ -44,7 +44,8 @@ object EnchantmentLoader {
         Decompose(),
         FrostNova(),
         HealingNova(),
-        Leap()
+        Leap(),
+        LunaDial()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
