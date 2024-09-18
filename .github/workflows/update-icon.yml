@@ -1,0 +1,32 @@
+name: Update project icon on Modrinth
+on:
+  release:
+    types: [published]  # Automatically triggers on GitHub release
+  workflow_dispatch:  # Allows for manual triggering
+
+jobs:
+  update-icon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '21'
+
+      - name: Generate icon
+        run: ./gradlew icongen
+
+      - name: Upload new icon to Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: |
+          ICON_PATH="src/main/resources/assets/infinity_hoe/icon.png"
+          PROJECT_SLUG="infinity-hoe"
+          curl -X PATCH "https://api.modrinth.com/v2/project/$PROJECT_SLUG/icon" \
+            -H "Authorization: Bearer $MODRINTH_TOKEN" \
+            -H "Content-Type: multipart/form-data" \
+            -F "file=@$ICON_PATH"
