@@ -32,20 +32,23 @@ class LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker 
     }
 
     private fun recordPosition(player: ServerPlayerEntity) {
-        val array = ArrayDeque<Vector3f>().let { playerPositions.put(player.uuid, it) ?: it }
+        val array = playerPositions[player.uuid] ?: ArrayDeque<Vector3f>().also { playerPositions[player.uuid] = it }
         array.addLast(player.pos.toVector3f())
         if (array.size > POSITIONS_STORED)
             array.removeFirst()
     }
 
-    override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
-        // FIXME: right clicking doesn't have any effect
-        player.setPosition(playerPositions[player.uuid]?.first()?.run {
+    override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean =
+        playerPositions[player.uuid]?.run {
+            if (isEmpty()) null
+            else this
+        }?.first()?.run {
             Vec3d(x.toDouble(), y.toDouble(), z.toDouble())
-        } ?: return false)
-
-        return true
-    }
+        }?.let {
+            player.startFallFlying()
+            player.setPosition(it)
+            true
+        } ?: false
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
     override fun getChargeDecrement(): Int = 50
