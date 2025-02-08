@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
@@ -13,9 +14,10 @@ class EquivalentExchange : ChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
     override fun getMaxCharge(level: Int): Int = 1000
     override fun getPowerRange(level: Int): IntRange = 20..60
     override fun getPath(): String = "equivalent_exchange"
+    override fun getTooltipColor(): Formatting = Formatting.YELLOW
 
     // tick with an interval for performance
-    override fun canIteratePlayers(world: ServerWorld): Boolean = world.time.toInt() % 25 == 0
+    override fun canIteratePlayers(world: ServerWorld): Boolean = world.time.toInt() % 40 == 0
 
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
         if (getCharge(hoe) <= minCost) return
@@ -37,8 +39,8 @@ class EquivalentExchange : ChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
     private data class Transformation(val inputCount: Int, val output: Item, val outputCount: Int, val cost: Int)
 
     private val transformations: Map<Item, Transformation> = mapOf(
-        Items.GRAVEL to Transformation(1, Items.SAND, 1, 1),
-        Items.ARROW to Transformation(1, Items.SPECTRAL_ARROW, 1, 3),
+        Items.GRAVEL to Transformation(4, Items.SAND, 4, 3),
+        Items.ARROW to Transformation(2, Items.SPECTRAL_ARROW, 2, 5),
         Items.POISONOUS_POTATO to Transformation(1, Items.POTATO, 1, 6),
         Items.ROTTEN_FLESH to Transformation(1, Items.LEATHER, 1, 6),
         Items.STRING to Transformation(1, Items.COBWEB, 1, 8),

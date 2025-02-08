@@ -66,7 +66,7 @@
   "tooltip.infinity_hoe.demeter_grace.charge": "Heals: %s/%s",
   "enchantment.infinity_hoe.equivalent_exchange": "Equivalent Exchange",
   "enchantment.infinity_hoe.equivalent_exchange.desc": "Gain charge on harvest. Charge is used while in hand to transform some items in inventory.",
-  "tooltip.infinity_hoe.equivalent_exchange.charge": "Charge: %s/%s",
+  "tooltip.infinity_hoe.equivalent_exchange.charge": "Transformation Charge: %s/%s",
   "enchantment.infinity_hoe.reaper": "Reaper",
   "enchantment.infinity_hoe.reaper.desc": "Allows using the hoe like a scythe weapon.",
   "enchantment.infinity_hoe.sickle": "Crescent",
