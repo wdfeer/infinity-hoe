@@ -17,6 +17,7 @@ object EnchantmentLoader {
     val untill = Untill()
     val calciumBurst = CalciumBurst()
     val automata = Automata()
+    val equivalentExchange = EquivalentExchange()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -45,7 +46,8 @@ object EnchantmentLoader {
         FrostNova(),
         HealingNova(),
         Leap(),
-        LunaDial()
+        LunaDial(),
+        equivalentExchange
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
