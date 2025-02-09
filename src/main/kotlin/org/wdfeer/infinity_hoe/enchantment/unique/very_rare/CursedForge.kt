@@ -4,7 +4,6 @@ import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.item.ToolItem
-import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
@@ -36,8 +35,8 @@ class CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
         } else false
     }
 
-    override fun getMaxCharge(level: Int): Int = 128
-    override fun getChargeDecrement(): Int = 128
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement()
+    override fun getChargeDecrement(): Int = 256
     override fun getPowerRange(level: Int): IntRange = 18..60
     override fun getPath(): String = "cursed_forge"
 
