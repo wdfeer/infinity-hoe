@@ -7,10 +7,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.parent.charge.HarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 
-class EquivalentExchange : ChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
+class EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
     override fun getMaxCharge(level: Int): Int = 1000
     override fun getPowerRange(level: Int): IntRange = 20..60
     override fun getPath(): String = "equivalent_exchange"
