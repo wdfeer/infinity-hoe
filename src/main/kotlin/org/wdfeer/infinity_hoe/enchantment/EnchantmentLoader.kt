@@ -47,7 +47,8 @@ object EnchantmentLoader {
         HealingNova(),
         Leap(),
         LunaDial(),
-        equivalentExchange
+        equivalentExchange,
+        CursedForge()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
