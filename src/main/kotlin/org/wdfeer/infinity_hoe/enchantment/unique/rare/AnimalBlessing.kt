@@ -25,10 +25,15 @@ class AnimalBlessing : HoeEnchantment(Rarity.RARE), HoldTicker {
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
         val level = hoe.getEnchantmentLevel(this) * 2 + 1
         for (e in world.iterateEntities().filterIsInstance<AnimalEntity>().filter { it.distanceTo(player) < 25 }) {
+            // for breeding to work breedingAge must be 0
             if (e.breedingAge > 0)
                 e.breedingAge = max(0, e.breedingAge - level)
             else if (e.breedingAge < 0)
                 e.breedingAge = min(0, e.breedingAge + level)
+
+            // can only be fed if loveTicks < 0
+            if (e.loveTicks > 0)
+                e.loveTicks -= level
         }
     }
 
