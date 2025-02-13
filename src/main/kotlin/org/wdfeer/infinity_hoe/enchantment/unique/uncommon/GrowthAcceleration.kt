@@ -2,7 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.item.HoeItem
+import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
@@ -30,12 +30,15 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCa
 
         if (!Random.roll(getPlayerTickChance(regen))) return
 
-        val hoe = player.handItems.find { it.item is HoeItem } ?: return
-        val level = hoe.getEnchantmentLevel(EnchantmentLoader.growthAcceleration)
+        val tool = player.handItems.find {
+            // not HoeItem because BlessedForge applies this enchantment to non-hoes as well
+            it.item is ToolItem
+        } ?: return
+        val level = tool.getEnchantmentLevel(EnchantmentLoader.growthAcceleration)
 
         if (level == -1) return
 
-        catalyze(world, player, level, hoe)
+        catalyze(world, player, level, tool)
     }
 
     private fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.02f

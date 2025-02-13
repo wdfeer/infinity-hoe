@@ -8,11 +8,11 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 interface HoldTicker : PlayerTicker {
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        val hoe = player.handItems.find {
+        val stack = player.handItems.find {
             !it.isEmpty && it.hasEnchantment(this as? HoeEnchantment ?: return)
         } ?: return
         
-        holdTick(world, player, hoe)
+        holdTick(world, player, stack)
     }
     
     fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack)
