@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.ItemStack
@@ -37,42 +37,45 @@ class CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement()
     override fun getChargeDecrement(): Int = 256
-    override fun getPowerRange(level: Int): IntRange = 18..60
+    override fun getPowerRange(level: Int): IntRange = 17..60
     override fun getPath(): String = "cursed_forge"
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"
     override fun getTooltipColor(): Formatting = Formatting.DARK_RED
     override fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(chargeToString(getCharge(hoe)))
+
+    companion object {
+        val toolUpgrades = mapOf(
+            Items.WOODEN_SWORD to Items.STONE_SWORD,
+            Items.WOODEN_PICKAXE to Items.STONE_PICKAXE,
+            Items.WOODEN_SHOVEL to Items.STONE_SHOVEL,
+            Items.WOODEN_AXE to Items.STONE_AXE,
+            Items.WOODEN_HOE to Items.STONE_HOE,
+
+            Items.STONE_SWORD to Items.IRON_SWORD,
+            Items.STONE_PICKAXE to Items.IRON_PICKAXE,
+            Items.STONE_SHOVEL to Items.IRON_SHOVEL,
+            Items.STONE_AXE to Items.IRON_AXE,
+            Items.STONE_HOE to Items.IRON_HOE,
+
+            Items.IRON_SWORD to Items.DIAMOND_SWORD,
+            Items.IRON_PICKAXE to Items.DIAMOND_PICKAXE,
+            Items.IRON_SHOVEL to Items.DIAMOND_SHOVEL,
+            Items.IRON_AXE to Items.DIAMOND_AXE,
+            Items.IRON_HOE to Items.DIAMOND_HOE,
+
+            Items.DIAMOND_SWORD to Items.NETHERITE_SWORD,
+            Items.DIAMOND_PICKAXE to Items.NETHERITE_PICKAXE,
+            Items.DIAMOND_SHOVEL to Items.NETHERITE_SHOVEL,
+            Items.DIAMOND_AXE to Items.NETHERITE_AXE,
+            Items.DIAMOND_HOE to Items.NETHERITE_HOE,
+
+            Items.GOLDEN_SWORD to Items.DIAMOND_SWORD,
+            Items.GOLDEN_PICKAXE to Items.DIAMOND_PICKAXE,
+            Items.GOLDEN_SHOVEL to Items.DIAMOND_SHOVEL,
+            Items.GOLDEN_AXE to Items.DIAMOND_AXE,
+            Items.GOLDEN_HOE to Items.DIAMOND_HOE
+        )
+    }
 }
 
-private val toolUpgrades = mapOf(
-    Items.WOODEN_SWORD to Items.STONE_SWORD,
-    Items.WOODEN_PICKAXE to Items.STONE_PICKAXE,
-    Items.WOODEN_SHOVEL to Items.STONE_SHOVEL,
-    Items.WOODEN_AXE to Items.STONE_AXE,
-    Items.WOODEN_HOE to Items.STONE_HOE,
-
-    Items.STONE_SWORD to Items.IRON_SWORD,
-    Items.STONE_PICKAXE to Items.IRON_PICKAXE,
-    Items.STONE_SHOVEL to Items.IRON_SHOVEL,
-    Items.STONE_AXE to Items.IRON_AXE,
-    Items.STONE_HOE to Items.IRON_HOE,
-
-    Items.IRON_SWORD to Items.DIAMOND_SWORD,
-    Items.IRON_PICKAXE to Items.DIAMOND_PICKAXE,
-    Items.IRON_SHOVEL to Items.DIAMOND_SHOVEL,
-    Items.IRON_AXE to Items.DIAMOND_AXE,
-    Items.IRON_HOE to Items.DIAMOND_HOE,
-
-    Items.DIAMOND_SWORD to Items.NETHERITE_SWORD,
-    Items.DIAMOND_PICKAXE to Items.NETHERITE_PICKAXE,
-    Items.DIAMOND_SHOVEL to Items.NETHERITE_SHOVEL,
-    Items.DIAMOND_AXE to Items.NETHERITE_AXE,
-    Items.DIAMOND_HOE to Items.NETHERITE_HOE,
-
-    Items.GOLDEN_SWORD to Items.DIAMOND_SWORD,
-    Items.GOLDEN_PICKAXE to Items.DIAMOND_PICKAXE,
-    Items.GOLDEN_SHOVEL to Items.DIAMOND_SHOVEL,
-    Items.GOLDEN_AXE to Items.DIAMOND_AXE,
-    Items.GOLDEN_HOE to Items.DIAMOND_HOE
-)
