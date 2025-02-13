@@ -48,7 +48,8 @@ object EnchantmentLoader {
         Leap(),
         LunaDial(),
         equivalentExchange,
-        CursedForge()
+        CursedForge(),
+        AnimalBlessing()
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
