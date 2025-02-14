@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.HarvestChargeEnchantmen
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 
-class EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
+object EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
     override fun getMaxCharge(level: Int): Int = 1000
     override fun getPowerRange(level: Int): IntRange = 20..60
     override fun getPath(): String = "equivalent_exchange"

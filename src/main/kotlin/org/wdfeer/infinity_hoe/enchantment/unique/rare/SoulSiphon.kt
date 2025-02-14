@@ -15,10 +15,8 @@ import org.wdfeer.infinity_hoe.extension.*
 import java.util.*
 import kotlin.random.Random
 
-class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
-    companion object {
-        private const val INTERVAL: Int = 60
-    }
+object SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
+    private const val INTERVAL: Int = 60
 
     override fun getPath(): String = "soul_siphon"
     override fun getPowerRange(level: Int): IntRange = 19..50
@@ -53,7 +51,8 @@ class SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
         modifierUUID,
         "soul_siphon",
         hpIncrease,
-        EntityAttributeModifier.Operation.ADDITION)
+        EntityAttributeModifier.Operation.ADDITION
+    )
 
     private fun recover(
         mod: EntityAttributeModifier,

@@ -9,12 +9,10 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
-class Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
-    companion object {
-        private val DURATION = secondsToTicks(30)
-        private const val BASE_AMPLIFIER = 0
-        private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 1
-    }
+object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
+    private val DURATION = secondsToTicks(30)
+    private const val BASE_AMPLIFIER = 0
+    private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 1
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val amplifier = if (player.armor <= 10) LIGHTLY_ARMORED_AMPLIFIER else BASE_AMPLIFIER

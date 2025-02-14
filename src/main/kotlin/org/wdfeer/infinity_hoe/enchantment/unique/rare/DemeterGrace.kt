@@ -6,7 +6,7 @@ import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
+object DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
     override fun getPath(): String = "demeter_grace"
 
     private fun getProcs(charge: Int): Float = charge / 50f

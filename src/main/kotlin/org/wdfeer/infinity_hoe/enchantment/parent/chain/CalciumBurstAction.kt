@@ -10,6 +10,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.CalciumBurst
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.randomRound
@@ -36,5 +37,5 @@ class CalciumBurstAction(
 
     override fun isValidBlockState(state: BlockState): Boolean = (state.block as? CropBlock)?.isMature(state) == false
 
-    override fun getEnchantment(): HoeEnchantment = EnchantmentLoader.calciumBurst
+    override fun getEnchantment(): HoeEnchantment = CalciumBurst
 }

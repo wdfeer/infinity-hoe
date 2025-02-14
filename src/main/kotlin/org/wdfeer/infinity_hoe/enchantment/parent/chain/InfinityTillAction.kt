@@ -8,6 +8,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
 import org.wdfeer.infinity_hoe.event.emitter.HoeUse
 
 class InfinityTillAction(
@@ -20,8 +21,8 @@ class InfinityTillAction(
     override fun processBlock(pos: BlockPos) {
         world.setBlockState(pos, Blocks.FARMLAND.defaultState)
 
-        HoeUse.onTill(world, player, hoe, pos, EnchantmentLoader.infinity)
+        HoeUse.onTill(world, player, hoe, pos, Infinity)
     }
 
-    override fun getEnchantment(): HoeEnchantment = EnchantmentLoader.infinity
+    override fun getEnchantment(): HoeEnchantment = Infinity
 }

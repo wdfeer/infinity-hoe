@@ -10,50 +10,39 @@ import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
 import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.*
 
 object EnchantmentLoader {
-    val infinity = Infinity()
-    val pesticide = Pesticide()
-    val growthAcceleration = GrowthAcceleration()
-    val chainHarvest = ChainHarvest()
-    val untill = Untill()
-    val calciumBurst = CalciumBurst()
-    val automata = Automata()
-    val equivalentExchange = EquivalentExchange()
-    val animalBlessing = AnimalBlessing()
-    val miracleBlessing = MiracleBlessing()
-
     val enchantments: List<HoeEnchantment> = listOf(
-        infinity,
-        pesticide,
-        growthAcceleration,
-        AutoSeed(),
-        chainHarvest,
-        untill,
-        SoulSiphon(),
-        Rejuvenation(),
-        CropExperience(),
-        Equinox(),
-        MysticBlade(),
-        MinerHarvest(),
-        StandUnited(),
-        Blazing(),
-        Fleeting(),
-        Demolition(),
-        calciumBurst,
-        DemeterWrath(),
-        DemeterAegis(),
-        DemeterGrace(),
-        PoisonNova(),
-        automata,
-        Decompose(),
-        FrostNova(),
-        HealingNova(),
-        Leap(),
-        LunaDial(),
-        equivalentExchange,
-        CursedForge(),
-        animalBlessing,
-        BlessedForge(),
-        miracleBlessing
+        Infinity,
+        Pesticide,
+        GrowthAcceleration,
+        AutoSeed,
+        ChainHarvest,
+        Untill,
+        SoulSiphon,
+        Rejuvenation,
+        CropExperience,
+        Equinox,
+        MysticBlade,
+        MinerHarvest,
+        StandUnited,
+        Blazing,
+        Fleeting,
+        Demolition,
+        CalciumBurst,
+        DemeterWrath,
+        DemeterAegis,
+        DemeterGrace,
+        PoisonNova,
+        Automata,
+        Decompose,
+        FrostNova,
+        HealingNova,
+        Leap,
+        LunaDial,
+        EquivalentExchange,
+        CursedForge,
+        AnimalBlessing,
+        BlessedForge,
+        MiracleBlessing
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

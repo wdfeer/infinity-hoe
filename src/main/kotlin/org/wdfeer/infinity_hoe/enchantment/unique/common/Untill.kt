@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.stacks
 
-class Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
+object Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
     override fun getPath(): String = "untill"
 
     override fun getPowerRange(level: Int): IntRange = 4..40
@@ -32,7 +32,7 @@ class Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
         if (world.isClient)
             useCallback.returnValue = ActionResult.SUCCESS
         else if (world is ServerWorld && player is ServerPlayerEntity) {
-            untill(world, player, hoe, pos, hoe.hasEnchantment(EnchantmentLoader.infinity))
+            untill(world, player, hoe, pos, hoe.hasEnchantment(Infinity))
             useCallback.returnValue = ActionResult.CONSUME
         }
     }
@@ -51,8 +51,6 @@ class Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
             manager.addAction(InfinityUntillAction(world, hoe, player, pos))
     }
 
-    companion object {
-        fun canCancelLandUntill(player: ServerPlayerEntity): Boolean = // Called from mixin
-            player.inventory.stacks.any {!it.isEmpty && it.item is HoeItem && it.hasEnchantment(EnchantmentLoader.untill)}
-    }
+    fun canCancelLandUntill(player: ServerPlayerEntity): Boolean = // Called from mixin
+        player.inventory.stacks.any { !it.isEmpty && it.item is HoeItem && it.hasEnchantment(Untill) }
 }

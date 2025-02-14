@@ -8,7 +8,7 @@ import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
+object DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
     override fun getPath(): String = "demeter_aegis"
 
     private fun getNullifications(charge: Int): Float = charge / getChargeDecrement().toFloat()

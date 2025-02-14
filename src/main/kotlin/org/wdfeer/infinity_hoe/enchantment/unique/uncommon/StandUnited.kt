@@ -15,12 +15,10 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
 
-class StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
-    private companion object {
-        const val SHARE_DISTANCE: Int = 20
-        fun getMaxDuration(level: Int): Int = minutesToTicks(10 + level * 10)
-        private fun getDurationDelta(level: Int): Int = secondsToTicks(2 + level * 4)
-    }
+object StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+    private const val SHARE_DISTANCE: Int = 20
+    private fun getMaxDuration(level: Int): Int = minutesToTicks(10 + level * 10)
+    private fun getDurationDelta(level: Int): Int = secondsToTicks(2 + level * 4)
 
     override fun getPowerRange(level: Int): IntRange = (10..20).incrementBounds(level * 7)
 

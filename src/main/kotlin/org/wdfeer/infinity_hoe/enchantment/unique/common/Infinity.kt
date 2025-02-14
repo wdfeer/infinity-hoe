@@ -10,11 +10,12 @@ import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 
-class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListener {
+object Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListener {
     override fun getPath(): String = "infinity"
 
     override val maxLvl: Int
         get() = ChainHarvest.MAX_LEVEL
+
     override fun getPowerRange(level: Int): IntRange = ChainHarvest.getPowerRange(level)
 
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
@@ -23,13 +24,11 @@ class Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListen
         blockTypes.remove(hoe)
     }
 
-    companion object {
-        fun preTill(world: World, stack: ItemStack, blockPos: BlockPos) {
-            if (world.isClient) return
+    fun preTill(world: World, stack: ItemStack, blockPos: BlockPos) {
+        if (world.isClient) return
 
-            blockTypes[stack] = world.getBlockState(blockPos).block
-        }
-
-        private val blockTypes: MutableMap<ItemStack, Block> = mutableMapOf()
+        blockTypes[stack] = world.getBlockState(blockPos).block
     }
+
+    private val blockTypes: MutableMap<ItemStack, Block> = mutableMapOf()
 }

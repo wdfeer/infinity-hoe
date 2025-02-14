@@ -6,10 +6,8 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
-class Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
-    companion object {
-        private const val SPEED = 5.0
-    }
+object Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
+    private const val SPEED = 5.0
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val velocity = player.rotationVector.multiply(SPEED)

@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCatalyzer {
+object GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCatalyzer {
     override fun getPath(): String = "growth_acceleration"
 
     override val maxLvl: Int
@@ -35,7 +35,7 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCa
             // not HoeItem because BlessedForge applies this enchantment to non-hoes as well
             it.item is ToolItem
         } ?: return
-        val level = tool.getEnchantmentLevel(EnchantmentLoader.growthAcceleration)
+        val level = tool.getEnchantmentLevel(GrowthAcceleration)
 
         if (level == -1) return
 

@@ -11,6 +11,6 @@ import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.Automata;
 class ItemEntityMixin {
     @Inject(method = "tick", at = @At("RETURN"))
     private void injectTick(CallbackInfo ci) {
-        Automata.Companion.mixinItemEntityTick((ItemEntity) (Object) this);
+        Automata.INSTANCE.mixinItemEntityTick((ItemEntity) (Object) this);
     }
 }

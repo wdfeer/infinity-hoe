@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.getStatusPotency
 
-class MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), DoubleHarvestEnchantment, HarvestListener {
+object MinerHarvest : HoeEnchantment(Rarity.UNCOMMON), DoubleHarvestEnchantment, HarvestListener {
     override fun getPowerRange(level: Int): IntRange = 10..50
 
     override fun getPath(): String = "miner_harvest"

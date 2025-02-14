@@ -10,7 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
-class FrostNova : NovaEnchantment() {
+object FrostNova : NovaEnchantment() {
     override fun getPath(): String = "frost_nova"
 
     override fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float) {

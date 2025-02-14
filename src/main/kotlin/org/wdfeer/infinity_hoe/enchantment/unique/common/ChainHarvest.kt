@@ -10,19 +10,14 @@ import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.incrementBounds
 
-class ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
+object ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
     override val maxLvl: Int
         get() = MAX_LEVEL
 
-    override fun getPowerRange(level: Int): IntRange = Companion.getPowerRange(level)
-
-    companion object {
-        const val MAX_LEVEL = 3
-        fun getPowerRange(level: Int): IntRange = (15..21).incrementBounds(level * 6)
-    }
-
+    const val MAX_LEVEL = 3
+    override fun getPowerRange(level: Int): IntRange = (15..21).incrementBounds(level * 6)
 
     override fun onCropBroken(
         world: ServerWorld,

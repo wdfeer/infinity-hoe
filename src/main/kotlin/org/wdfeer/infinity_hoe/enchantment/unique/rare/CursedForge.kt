@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
-class CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val oldStack = player.handItems.firstOrNull {
             it != hoe && toolUpgrades.containsKey(it.item) && !it.hasEnchantment(Enchantments.VANISHING_CURSE)
@@ -44,38 +44,36 @@ class CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun getTooltipColor(): Formatting = Formatting.DARK_RED
     override fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(chargeToString(getCharge(hoe)))
 
-    companion object {
-        val toolUpgrades = mapOf(
-            Items.WOODEN_SWORD to Items.STONE_SWORD,
-            Items.WOODEN_PICKAXE to Items.STONE_PICKAXE,
-            Items.WOODEN_SHOVEL to Items.STONE_SHOVEL,
-            Items.WOODEN_AXE to Items.STONE_AXE,
-            Items.WOODEN_HOE to Items.STONE_HOE,
+    val toolUpgrades = mapOf(
+        Items.WOODEN_SWORD to Items.STONE_SWORD,
+        Items.WOODEN_PICKAXE to Items.STONE_PICKAXE,
+        Items.WOODEN_SHOVEL to Items.STONE_SHOVEL,
+        Items.WOODEN_AXE to Items.STONE_AXE,
+        Items.WOODEN_HOE to Items.STONE_HOE,
 
-            Items.STONE_SWORD to Items.IRON_SWORD,
-            Items.STONE_PICKAXE to Items.IRON_PICKAXE,
-            Items.STONE_SHOVEL to Items.IRON_SHOVEL,
-            Items.STONE_AXE to Items.IRON_AXE,
-            Items.STONE_HOE to Items.IRON_HOE,
+        Items.STONE_SWORD to Items.IRON_SWORD,
+        Items.STONE_PICKAXE to Items.IRON_PICKAXE,
+        Items.STONE_SHOVEL to Items.IRON_SHOVEL,
+        Items.STONE_AXE to Items.IRON_AXE,
+        Items.STONE_HOE to Items.IRON_HOE,
 
-            Items.IRON_SWORD to Items.DIAMOND_SWORD,
-            Items.IRON_PICKAXE to Items.DIAMOND_PICKAXE,
-            Items.IRON_SHOVEL to Items.DIAMOND_SHOVEL,
-            Items.IRON_AXE to Items.DIAMOND_AXE,
-            Items.IRON_HOE to Items.DIAMOND_HOE,
+        Items.IRON_SWORD to Items.DIAMOND_SWORD,
+        Items.IRON_PICKAXE to Items.DIAMOND_PICKAXE,
+        Items.IRON_SHOVEL to Items.DIAMOND_SHOVEL,
+        Items.IRON_AXE to Items.DIAMOND_AXE,
+        Items.IRON_HOE to Items.DIAMOND_HOE,
 
-            Items.DIAMOND_SWORD to Items.NETHERITE_SWORD,
-            Items.DIAMOND_PICKAXE to Items.NETHERITE_PICKAXE,
-            Items.DIAMOND_SHOVEL to Items.NETHERITE_SHOVEL,
-            Items.DIAMOND_AXE to Items.NETHERITE_AXE,
-            Items.DIAMOND_HOE to Items.NETHERITE_HOE,
+        Items.DIAMOND_SWORD to Items.NETHERITE_SWORD,
+        Items.DIAMOND_PICKAXE to Items.NETHERITE_PICKAXE,
+        Items.DIAMOND_SHOVEL to Items.NETHERITE_SHOVEL,
+        Items.DIAMOND_AXE to Items.NETHERITE_AXE,
+        Items.DIAMOND_HOE to Items.NETHERITE_HOE,
 
-            Items.GOLDEN_SWORD to Items.DIAMOND_SWORD,
-            Items.GOLDEN_PICKAXE to Items.DIAMOND_PICKAXE,
-            Items.GOLDEN_SHOVEL to Items.DIAMOND_SHOVEL,
-            Items.GOLDEN_AXE to Items.DIAMOND_AXE,
-            Items.GOLDEN_HOE to Items.DIAMOND_HOE
-        )
-    }
+        Items.GOLDEN_SWORD to Items.DIAMOND_SWORD,
+        Items.GOLDEN_PICKAXE to Items.DIAMOND_PICKAXE,
+        Items.GOLDEN_SHOVEL to Items.DIAMOND_SHOVEL,
+        Items.GOLDEN_AXE to Items.DIAMOND_AXE,
+        Items.GOLDEN_HOE to Items.DIAMOND_HOE
+    )
 }
 

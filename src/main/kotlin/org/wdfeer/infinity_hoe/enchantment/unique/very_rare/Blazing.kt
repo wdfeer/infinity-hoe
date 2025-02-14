@@ -8,7 +8,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
-class Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override val maxLvl: Int
         get() = 2
 

@@ -16,6 +16,7 @@ import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.event.listener.Useable
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
@@ -24,7 +25,7 @@ object HoeUse {
     fun mixinPreUseOnBlock(
         context: ItemUsageContext
     ) {
-        if (context.stack.hasEnchantment(EnchantmentLoader.infinity))
+        if (context.stack.hasEnchantment(Infinity))
             Infinity.preTill(context.world, context.stack, context.blockPos)
     }
 
@@ -56,8 +57,8 @@ object HoeUse {
         useCallback: CallbackInfoReturnable<ActionResult>
     ) {
         val state = world.getBlockState(pos)
-        if (state.block == Blocks.FARMLAND && hoe.hasEnchantment(EnchantmentLoader.untill)) {
-            EnchantmentLoader.untill.untill(world, pos, player, hoe, useCallback)
+        if (state.block == Blocks.FARMLAND && hoe.hasEnchantment(Untill)) {
+            Untill.untill(world, pos, player, hoe, useCallback)
         }
     }
 

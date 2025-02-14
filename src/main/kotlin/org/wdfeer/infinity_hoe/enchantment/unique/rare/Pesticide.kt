@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.incrementBounds
 
-class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
+object Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
 
     override val maxLvl: Int
@@ -53,15 +53,13 @@ class Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
     }
 
     private fun getDamage(hoe: ItemStack): Float {
-        return hoe.getEnchantmentLevel(EnchantmentLoader.pesticide) * 4f
+        return hoe.getEnchantmentLevel(Pesticide) * 4f
     }
 
-    companion object {
-        const val DAMAGE_RADIUS = 3.0
+    const val DAMAGE_RADIUS = 3.0
 
-        fun getNearbyLivingEntities(world: ServerWorld, origin: Vec3d, radius: Double): List<LivingEntity> =
-            world.iterateEntities()
-                .filter { it.pos.distanceTo(origin) <= radius }
-                .filterIsInstance<LivingEntity>()
-    }
+    fun getNearbyLivingEntities(world: ServerWorld, origin: Vec3d, radius: Double): List<LivingEntity> =
+        world.iterateEntities()
+            .filter { it.pos.distanceTo(origin) <= radius }
+            .filterIsInstance<LivingEntity>()
 }

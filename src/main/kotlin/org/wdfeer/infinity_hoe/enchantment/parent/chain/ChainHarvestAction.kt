@@ -9,6 +9,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
 import org.wdfeer.infinity_hoe.event.emitter.HoeHarvest
 
 class ChainHarvestAction(world: ServerWorld, hoe: ItemStack, player: ServerPlayerEntity, origin: BlockPos, blockFilter: Block
@@ -20,10 +21,10 @@ class ChainHarvestAction(world: ServerWorld, hoe: ItemStack, player: ServerPlaye
     override fun processBlock(pos: BlockPos) {
         val state = world.getBlockState(pos)
         world.breakBlock(pos, true, player)
-        HoeHarvest.onCropBreak(world, player, pos, state, EnchantmentLoader.chainHarvest)
+        HoeHarvest.onCropBreak(world, player, pos, state, ChainHarvest)
     }
 
-    override fun getEnchantment(): HoeEnchantment = EnchantmentLoader.chainHarvest
+    override fun getEnchantment(): HoeEnchantment = ChainHarvest
 
     override fun canDamageHoe(): Boolean = false
 }

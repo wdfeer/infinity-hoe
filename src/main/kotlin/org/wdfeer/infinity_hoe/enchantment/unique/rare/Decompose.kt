@@ -17,11 +17,9 @@ import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.pow
 
-class Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
-    companion object {
-        private const val INTERVAL: Int = 5
-        private const val DISTANCE: Int = 4
-    }
+object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
+    private const val INTERVAL: Int = 5
+    private const val DISTANCE: Int = 4
 
     override fun getPath(): String = "decompose"
     override fun getPowerRange(level: Int): IntRange = 16..50

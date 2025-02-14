@@ -22,16 +22,14 @@ import org.wdfeer.infinity_hoe.extension.ifElse
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
-    private companion object {
-        val DURATION: Int = secondsToTicks(2)
-        const val MAX_ANIMAL_DISTANCE: Int = 20
+object Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+    private val DURATION: Int = secondsToTicks(2)
+    private const val MAX_ANIMAL_DISTANCE: Int = 20
 
-        const val HOE_DAMAGE_CHANCE_DIVIDER = 80
+    private const val HOE_DAMAGE_CHANCE_DIVIDER = 80
 
-        const val CONTAGION_IMMUNITY_CHANCE_DIVIDER = 200
-        const val CONTAGION_CURE_CHANCE_DIVIDER = 80
-    }
+    private const val CONTAGION_IMMUNITY_CHANCE_DIVIDER = 200
+    private const val CONTAGION_CURE_CHANCE_DIVIDER = 80
 
     override fun getPath(): String = "rejuvenation"
     override fun getPowerRange(level: Int): IntRange = 10..40
@@ -59,7 +57,8 @@ class Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         if (Random.roll(HOE_DAMAGE_CHANCE_DIVIDER)) hoe.damage(player, 1)
 
         if (FabricLoader.getInstance().isModLoaded("contagion")) {
-            val infected = entity.hasStatusEffect( Registries.STATUS_EFFECT.get(Identifier.of("contagion", "infection")) ?: return)
+            val infected =
+                entity.hasStatusEffect(Registries.STATUS_EFFECT.get(Identifier.of("contagion", "infection")) ?: return)
 
             val chanceDivider = if (infected) CONTAGION_CURE_CHANCE_DIVIDER else CONTAGION_IMMUNITY_CHANCE_DIVIDER
 

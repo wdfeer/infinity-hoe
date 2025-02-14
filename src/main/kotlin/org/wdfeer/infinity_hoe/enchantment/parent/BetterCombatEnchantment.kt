@@ -22,10 +22,10 @@ abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
 
         val enchantments: List<BetterCombatEnchantment> = canRegister().ifElse(
             buildList {
-                add(Reaper())
-                add(Sickle())
+                add(Reaper)
+                add(Sickle)
 
-                if (FabricLoader.getInstance().isModLoaded("simplyswords")) add(Rebound())
+                if (FabricLoader.getInstance().isModLoaded("simplyswords")) add(Rebound)
             }, emptyList())
 
         val attributes: Map<BetterCombatEnchantment, WeaponAttributes?> = canRegister().ifElse(readAttributes(), emptyMap())

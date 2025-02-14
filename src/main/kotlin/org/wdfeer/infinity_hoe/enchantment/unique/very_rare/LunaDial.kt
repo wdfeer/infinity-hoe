@@ -14,28 +14,23 @@ import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import java.util.*
 import kotlin.collections.ArrayDeque
 
-class LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
-    companion object {
-        const val POSITIONS_STORED = 200
+object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
+    private const val POSITIONS_STORED = 200
 
-        // Vector3f instead of Vec3d to conserve RAM
-        val playerPositions: MutableMap<UUID, ArrayDeque<Vector3f>> = mutableMapOf()
-    }
+    // Vector3f instead of Vec3d to conserve RAM
+    private val playerPositions: MutableMap<UUID, ArrayDeque<Vector3f>> = mutableMapOf()
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = true
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this)})
-            recordPosition(player)
-        else
-            playerPositions.remove(player.uuid)
+        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this) }) recordPosition(player)
+        else playerPositions.remove(player.uuid)
     }
 
     private fun recordPosition(player: ServerPlayerEntity) {
         val array = playerPositions[player.uuid] ?: ArrayDeque<Vector3f>().also { playerPositions[player.uuid] = it }
         array.addLast(player.pos.toVector3f())
-        if (array.size > POSITIONS_STORED)
-            array.removeFirst()
+        if (array.size > POSITIONS_STORED) array.removeFirst()
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean =

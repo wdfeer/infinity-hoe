@@ -18,7 +18,7 @@ import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.extension.stacks
 
-class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, AutomataListener {
+object AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, AutomataListener {
     override fun getPath(): String = "autoseed"
 
     override fun getPowerRange(level: Int): IntRange = 4..40
@@ -37,30 +37,28 @@ class AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, A
         trigger(world, player, pos.up())
     }
 
-    companion object {
-        private fun trigger(
-            world: ServerWorld,
-            player: ServerPlayerEntity,
-            pos: BlockPos,
-        ) {
-            val seed: ItemStack = findSeed(player) ?: return
+    private fun trigger(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        pos: BlockPos,
+    ) {
+        val seed: ItemStack = findSeed(player) ?: return
 
-            if (!player.canPlaceOn(pos, Direction.UP, seed)) return
+        if (!player.canPlaceOn(pos, Direction.UP, seed)) return
 
-            plant(world, seed, pos)
-        }
+        plant(world, seed, pos)
+    }
 
-        private fun findSeed(player: ServerPlayerEntity): ItemStack? {
-            fun predicate(stack: ItemStack) = stack.item is BlockItem && (stack.item as BlockItem).block is CropBlock
-            return player.handItems.find(::predicate) ?: player.inventory.stacks.find(::predicate)
-        }
+    private fun findSeed(player: ServerPlayerEntity): ItemStack? {
+        fun predicate(stack: ItemStack) = stack.item is BlockItem && (stack.item as BlockItem).block is CropBlock
+        return player.handItems.find(::predicate) ?: player.inventory.stacks.find(::predicate)
+    }
 
-        private fun plant(world: ServerWorld, seed: ItemStack, pos: BlockPos) {
-            val block = (seed.item as BlockItem).block
-            world.setBlockState(pos, block.defaultState)
+    private fun plant(world: ServerWorld, seed: ItemStack, pos: BlockPos) {
+        val block = (seed.item as BlockItem).block
+        world.setBlockState(pos, block.defaultState)
 
-            seed.decrement(1)
-        }
+        seed.decrement(1)
     }
 
     override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) {

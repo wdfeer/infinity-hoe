@@ -10,7 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.math.sqrt
 
-class HealingNova : NovaEnchantment() {
+object HealingNova : NovaEnchantment() {
     override fun getPath(): String = "healing_nova"
 
     override fun canAffect(player: ServerPlayerEntity, target: LivingEntity): Boolean =

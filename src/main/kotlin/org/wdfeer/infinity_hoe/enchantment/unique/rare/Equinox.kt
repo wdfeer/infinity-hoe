@@ -23,11 +23,9 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-class Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener, CropCatalyzer {
-    companion object {
-        private val MAX_DURATION: Int = minutesToTicks(15)
-        private val DURATION_INCREASE: Int = secondsToTicks(5)
-    }
+object Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener, CropCatalyzer {
+    private val MAX_DURATION: Int = minutesToTicks(15)
+    private val DURATION_INCREASE: Int = secondsToTicks(5)
 
     override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
         if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return

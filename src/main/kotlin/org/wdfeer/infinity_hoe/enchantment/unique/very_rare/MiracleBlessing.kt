@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.extension.*
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
 
-class MiracleBlessing : HoeEnchantment(Rarity.VERY_RARE), PlayerTicker {
+object MiracleBlessing : HoeEnchantment(Rarity.VERY_RARE), PlayerTicker {
     override fun getPath(): String = "miracle_blessing"
 
     override val maxLvl: Int

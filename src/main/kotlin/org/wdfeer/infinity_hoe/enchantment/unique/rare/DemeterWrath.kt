@@ -9,7 +9,7 @@ import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 
-class DemeterWrath : DemeterEnchantment(), PreAttackListener {
+object DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getPath(): String = "demeter_wrath"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
@@ -33,7 +33,5 @@ class DemeterWrath : DemeterEnchantment(), PreAttackListener {
             addFirst("%.1f".format(DAMAGE))
         }
 
-    companion object {
-        private const val DAMAGE = 5f
-    }
+    private const val DAMAGE = 5f
 }

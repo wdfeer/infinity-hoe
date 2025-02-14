@@ -12,46 +12,44 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
 
-class Automata : HoeEnchantment(Rarity.VERY_RARE) {
+object Automata : HoeEnchantment(Rarity.VERY_RARE) {
     override fun getPowerRange(level: Int): IntRange = 25..60
 
     override fun getPath(): String = "automata"
 
     override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutomataListener
 
-    companion object {
-        private const val CHECK_INTERVAL = 8
-        const val HARVEST_RANGE = 2
-        const val SEED_COLLECT_RANGE = 3
+    private const val CHECK_INTERVAL = 8
+    const val HARVEST_RANGE = 2
+    const val SEED_COLLECT_RANGE = 3
 
-        fun mixinItemEntityTick(itemEntity: ItemEntity) {
-            val serverWorld = itemEntity.world as? ServerWorld ?: return
-            if (serverWorld.time % CHECK_INTERVAL != 0L) return
+    fun mixinItemEntityTick(itemEntity: ItemEntity) {
+        val serverWorld = itemEntity.world as? ServerWorld ?: return
+        if (serverWorld.time % CHECK_INTERVAL != 0L) return
 
-            if (itemEntity.stack.item !is HoeItem) return
-            if (!itemEntity.stack.hasEnchantment(EnchantmentLoader.automata)) return
+        if (itemEntity.stack.item !is HoeItem) return
+        if (!itemEntity.stack.hasEnchantment(this)) return
 
-            tick(serverWorld, itemEntity)
-        }
+        tick(serverWorld, itemEntity)
+    }
 
-        private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
-            val positions = hoeEntity.blockPos.getAdjacentHorizontally(HARVEST_RANGE)
-                .filter { isMatureCrop(world, it) }
+    private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
+        val positions = hoeEntity.blockPos.getAdjacentHorizontally(HARVEST_RANGE)
+            .filter { isMatureCrop(world, it) }
 
-            positions.forEach { world.breakBlock(it, true) }
-            hoeEntity.stack.damage((positions.size / 16f).randomRound())
+        positions.forEach { world.breakBlock(it, true) }
+        hoeEntity.stack.damage((positions.size / 16f).randomRound())
 
-            hoeEntity.setNeverDespawn()
+        hoeEntity.setNeverDespawn()
 
-            hoeEntity.stack.enchantmentMap.keys
-                .filterIsInstance<AutomataListener>()
-                .forEach { it.postAutomataTick(world, hoeEntity) }
-        }
+        hoeEntity.stack.enchantmentMap.keys
+            .filterIsInstance<AutomataListener>()
+            .forEach { it.postAutomataTick(world, hoeEntity) }
+    }
 
-        private fun isMatureCrop(world: ServerWorld, pos: BlockPos): Boolean {
-            val state = world.getBlockState(pos)
-            val crop = state.block as? CropBlock ?: return false
-            return crop.isMature(state)
-        }
+    private fun isMatureCrop(world: ServerWorld, pos: BlockPos): Boolean {
+        val state = world.getBlockState(pos)
+        val crop = state.block as? CropBlock ?: return false
+        return crop.isMature(state)
     }
 }

@@ -5,12 +5,13 @@ import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.Companion.toolUpgrades
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.AnimalBlessing
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.toolUpgrades
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 
-class BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val oldStack = player.handItems.firstOrNull {
             it != hoe && toolUpgrades.containsKey(it.item)
@@ -27,9 +28,9 @@ class BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
             newStack.damage = oldStack.damage
 
             val blessing = listOf(
-                EnchantmentLoader.growthAcceleration,
-                EnchantmentLoader.animalBlessing,
-                EnchantmentLoader.miracleBlessing
+                GrowthAcceleration,
+                AnimalBlessing,
+                MiracleBlessing
             ).random()
             newStack.addEnchantment(blessing, 3)
 

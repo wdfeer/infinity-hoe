@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
 
-class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
+object CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "crop_experience"
 
     override val maxLvl: Int
@@ -39,7 +39,5 @@ class CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
         }
     }
 
-    companion object {
-        const val XP_PER_LEVEL: Float = 0.5f
-    }
+    private const val XP_PER_LEVEL: Float = 0.5f
 }
