@@ -19,21 +19,22 @@ object BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
         return if (oldStack != null) {
             val oldItem = oldStack.item as ToolItem
-            oldStack.count = 0
 
             val newItem = toolUpgrades[oldItem]
             val newStack = ItemStack(newItem)
 
-            for (e in oldStack.enchantmentMap) newStack.addEnchantment(e.key, e.value)
+            val oldEnchants = oldStack.enchantmentMap
+            for (e in oldEnchants) newStack.addEnchantment(e.key, e.value)
             newStack.damage = oldStack.damage
 
             val blessing = listOf(
                 GrowthAcceleration,
                 AnimalBlessing,
                 MiracleBlessing
-            ).random()
+            ).filter { !oldEnchants.containsKey(it) }.randomOrNull() ?: return false
             newStack.addEnchantment(blessing, 3)
 
+            oldStack.count = 0
             player.inventory.insertStack(newStack)
 
             true
