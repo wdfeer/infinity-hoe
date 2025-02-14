@@ -19,6 +19,7 @@ object EnchantmentLoader {
     val automata = Automata()
     val equivalentExchange = EquivalentExchange()
     val animalBlessing = AnimalBlessing()
+    val miracleBlessing = MiracleBlessing()
 
     val enchantments: List<HoeEnchantment> = listOf(
         infinity,
@@ -51,7 +52,8 @@ object EnchantmentLoader {
         equivalentExchange,
         CursedForge(),
         animalBlessing,
-        BlessedForge()
+        BlessedForge(),
+        miracleBlessing
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

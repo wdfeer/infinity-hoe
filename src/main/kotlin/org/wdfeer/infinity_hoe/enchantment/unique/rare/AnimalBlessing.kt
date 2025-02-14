@@ -7,6 +7,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
+import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.MiracleBlessing
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.max
@@ -38,6 +39,5 @@ class AnimalBlessing : HoeEnchantment(Rarity.RARE), HoldTicker {
     }
 
     override fun canAccept(other: Enchantment?): Boolean =
-        // because it's also a blessing (Dryad's Blessing)
-        super.canAccept(other) && other !is GrowthAcceleration
+        super.canAccept(other) && other !is GrowthAcceleration && other !is MiracleBlessing
 }

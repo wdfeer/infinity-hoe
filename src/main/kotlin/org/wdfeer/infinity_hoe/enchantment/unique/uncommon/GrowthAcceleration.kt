@@ -9,6 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.AnimalBlessing
+import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.MiracleBlessing
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.incrementBounds
@@ -43,5 +44,6 @@ class GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCa
 
     private fun getPlayerTickChance(regen: Int?): Float = 0.1f + (regen ?: 0) * 0.02f
 
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other !is AnimalBlessing
+    override fun canAccept(other: Enchantment?): Boolean =
+        super.canAccept(other) && other !is AnimalBlessing && other !is MiracleBlessing
 }

@@ -9,7 +9,6 @@ import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.Companion.toolUpgrades
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
-import kotlin.random.Random
 
 class BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
@@ -27,9 +26,11 @@ class BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
             for (e in oldStack.enchantmentMap) newStack.addEnchantment(e.key, e.value)
             newStack.damage = oldStack.damage
 
-            val blessing =
-                if (Random.nextBoolean()) EnchantmentLoader.growthAcceleration
-                else EnchantmentLoader.animalBlessing
+            val blessing = listOf(
+                EnchantmentLoader.growthAcceleration,
+                EnchantmentLoader.animalBlessing,
+                EnchantmentLoader.miracleBlessing
+            ).random()
             newStack.addEnchantment(blessing, 3)
 
             player.inventory.insertStack(newStack)
