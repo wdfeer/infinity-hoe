@@ -6,7 +6,6 @@ import net.minecraft.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.HarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.inventoryStacks

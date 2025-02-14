@@ -5,7 +5,6 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.AnimalBlessing

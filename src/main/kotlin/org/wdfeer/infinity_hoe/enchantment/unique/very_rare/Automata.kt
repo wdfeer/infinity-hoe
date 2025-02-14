@@ -7,7 +7,6 @@ import net.minecraft.entity.ItemEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
