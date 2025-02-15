@@ -1,12 +1,14 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.item.ToolItem
+import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
+import net.minecraft.util.Identifier
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
@@ -44,36 +46,54 @@ object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun getTooltipColor(): Formatting = Formatting.DARK_RED
     override fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(chargeToString(getCharge(hoe)))
 
-    val toolUpgrades = mapOf(
-        Items.WOODEN_SWORD to Items.STONE_SWORD,
-        Items.WOODEN_PICKAXE to Items.STONE_PICKAXE,
-        Items.WOODEN_SHOVEL to Items.STONE_SHOVEL,
-        Items.WOODEN_AXE to Items.STONE_AXE,
-        Items.WOODEN_HOE to Items.STONE_HOE,
+    val toolUpgrades: Map<Item, Item> by lazy {
+        val toolUpgradesIds: Array<Pair<String, String>> = arrayOf(
+            // Vanilla
+            "minecraft:wooden_sword" to "minecraft:stone_sword",
+            "minecraft:wooden_pickaxe" to "minecraft:stone_pickaxe",
+            "minecraft:wooden_shovel" to "minecraft:stone_shovel",
+            "minecraft:wooden_axe" to "minecraft:stone_axe",
+            "minecraft:wooden_hoe" to "minecraft:stone_hoe",
+            "minecraft:stone_sword" to "minecraft:iron_sword",
+            "minecraft:stone_pickaxe" to "minecraft:iron_pickaxe",
+            "minecraft:stone_shovel" to "minecraft:iron_shovel",
+            "minecraft:stone_axe" to "minecraft:iron_axe",
+            "minecraft:stone_hoe" to "minecraft:iron_hoe",
+            "minecraft:iron_sword" to "minecraft:diamond_sword",
+            "minecraft:iron_pickaxe" to "minecraft:diamond_pickaxe",
+            "minecraft:iron_shovel" to "minecraft:diamond_shovel",
+            "minecraft:iron_axe" to "minecraft:diamond_axe",
+            "minecraft:iron_hoe" to "minecraft:diamond_hoe",
+            "minecraft:diamond_sword" to "minecraft:netherite_sword",
+            "minecraft:diamond_pickaxe" to "minecraft:netherite_pickaxe",
+            "minecraft:diamond_shovel" to "minecraft:netherite_shovel",
+            "minecraft:diamond_axe" to "minecraft:netherite_axe",
+            "minecraft:diamond_hoe" to "minecraft:netherite_hoe",
+            "minecraft:golden_sword" to "minecraft:diamond_sword",
+            "minecraft:golden_pickaxe" to "minecraft:diamond_pickaxe",
+            "minecraft:golden_shovel" to "minecraft:diamond_shovel",
+            "minecraft:golden_axe" to "minecraft:diamond_axe",
+            "minecraft:golden_hoe" to "minecraft:diamond_hoe",
 
-        Items.STONE_SWORD to Items.IRON_SWORD,
-        Items.STONE_PICKAXE to Items.IRON_PICKAXE,
-        Items.STONE_SHOVEL to Items.IRON_SHOVEL,
-        Items.STONE_AXE to Items.IRON_AXE,
-        Items.STONE_HOE to Items.IRON_HOE,
+            // Botania
+            "minecraft:bow" to "botania:livingwood_bow",
+            "botania:glass_pickaxe" to "minecraft:iron_pickaxe",
+            "botania:manasteel_sword" to "botania:elementium_sword",
+            "botania:manasteel_pickaxe" to "botania:elementium_pickaxe",
+            "botania:manasteel_shovel" to "botania:elementium_shovel",
+            "botania:manasteel_axe" to "botania:elementium_axe",
+            "botania:manasteel_hoe" to "botania:elementium_hoe",
 
-        Items.IRON_SWORD to Items.DIAMOND_SWORD,
-        Items.IRON_PICKAXE to Items.DIAMOND_PICKAXE,
-        Items.IRON_SHOVEL to Items.DIAMOND_SHOVEL,
-        Items.IRON_AXE to Items.DIAMOND_AXE,
-        Items.IRON_HOE to Items.DIAMOND_HOE,
+            // AE2
+            "ae2:fluix_sword" to "minecraft:diamond_sword",
+            "ae2:fluix_pickaxe" to "minecraft:diamond_pickaxe",
+            "ae2:fluix_shovel" to "minecraft:diamond_shovel",
+            "ae2:fluix_axe" to "minecraft:diamond_axe",
+            "ae2:fluix_hoe" to "minecraft:diamond_hoe"
+        )
 
-        Items.DIAMOND_SWORD to Items.NETHERITE_SWORD,
-        Items.DIAMOND_PICKAXE to Items.NETHERITE_PICKAXE,
-        Items.DIAMOND_SHOVEL to Items.NETHERITE_SHOVEL,
-        Items.DIAMOND_AXE to Items.NETHERITE_AXE,
-        Items.DIAMOND_HOE to Items.NETHERITE_HOE,
-
-        Items.GOLDEN_SWORD to Items.DIAMOND_SWORD,
-        Items.GOLDEN_PICKAXE to Items.DIAMOND_PICKAXE,
-        Items.GOLDEN_SHOVEL to Items.DIAMOND_SHOVEL,
-        Items.GOLDEN_AXE to Items.DIAMOND_AXE,
-        Items.GOLDEN_HOE to Items.DIAMOND_HOE
-    )
+        toolUpgradesIds.map { Identifier(it.first) to Identifier(it.second) }
+            .associate { Registries.ITEM[it.first] to Registries.ITEM[it.second] }
+    }
 }
 
