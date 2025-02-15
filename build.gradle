@@ -64,11 +64,8 @@ java {
 }
 
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
-	}
-
-	exclude "resources/no_include/**"
+	exclude "LICENSE"
+	exclude "no_include/**"
 }
 
 // configure the maven publication
