@@ -42,7 +42,8 @@ object EnchantmentLoader {
         CursedForge,
         AnimalBlessing,
         BlessedForge,
-        MiracleBlessing
+        MiracleBlessing,
+        Fireblast
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 
