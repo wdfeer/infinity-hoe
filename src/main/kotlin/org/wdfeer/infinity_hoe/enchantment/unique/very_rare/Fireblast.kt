@@ -25,19 +25,19 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
         player: ServerPlayerEntity,
         level: Int
     ): ProjectileEntity {
-        val velocity = player.rotationVector.multiply(4.0)
+        val velocity = player.rotationVector.multiply(5.0)
 
         val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, level)
         fireball.setPosition(player.eyePos)
-        splittingFireballs.add(fireball to 2 * level + 3)
+        splittingFireballs.add(fireball to level + 3)
 
         return fireball
     }
 
     private const val DETONATION_DISTANCE = 8
     override fun postWorldTick(world: ServerWorld) {
+        splittingFireballs.removeIf { !it.first.isAlive || it.first.owner == null }
         splittingFireballs.forEach { (e, children) -> if (e.owner!!.distanceTo(e) > DETONATION_DISTANCE) detonateFireball(e, children) }
-        splittingFireballs.removeIf { !it.first.isAlive }
     }
 
     private fun detonateFireball(fireball: FireballEntity, childCount: Int) {
@@ -59,9 +59,9 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
         fireball.remove(Entity.RemovalReason.KILLED)
     }
 
-    override val maxLvl: Int get() = 5
+    override val maxLvl: Int get() = 4
     override fun getMaxCharge(level: Int): Int = getChargeDecrement() * level * 16
-    override fun getChargeDecrement(): Int = 8
+    override fun getChargeDecrement(): Int = 10
     override fun chargeToString(charge: Int): String = "${(charge / getChargeDecrement())}"
     override fun getTooltipColor(): Formatting = Formatting.RED
     override fun getPowerRange(level: Int): IntRange = 22 + 3 * level..60
