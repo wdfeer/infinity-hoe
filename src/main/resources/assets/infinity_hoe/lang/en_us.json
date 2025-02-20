@@ -8,7 +8,7 @@
   "enchantment.infinity_hoe.animal_blessing": "Animal Blessing",
   "enchantment.infinity_hoe.animal_blessing.desc": "Nurtures nearby animals while item is held, increasing grow and breed rate.",
   "enchantment.infinity_hoe.miracle_blessing": "Miracle Blessing",
-  "enchantment.infinity_hoe.miracle_blessing.desc": "Provides random bonuses while item is in inventory.",
+  "enchantment.infinity_hoe.miracle_blessing.desc": "Provides random bonuses while held.",
   "enchantment.infinity_hoe.autoseed": "Disseminate",
   "enchantment.infinity_hoe.autoseed.desc": "Plants seeds from inventory upon till or harvest.",
   "enchantment.infinity_hoe.chain_harvest": "Cascade",
