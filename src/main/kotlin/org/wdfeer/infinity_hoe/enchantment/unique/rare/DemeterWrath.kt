@@ -28,10 +28,10 @@ object DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getChargeDecrement(): Int = 5
     override fun chargeToString(charge: Int): String = "%.1f".format(charge.toFloat() / getChargeDecrement())
 
-    override fun getTooltipArgs(hoe: ItemStack): List<String> =
-        super.getTooltipArgs(hoe).toMutableList().apply {
-            addFirst("%.1f".format(DAMAGE))
-        }
+    override fun getTooltipArgs(hoe: ItemStack): List<String> = buildList {
+        add("%.1f".format(DAMAGE))
+        addAll(super.getTooltipArgs(hoe))
+    }
 
     private const val DAMAGE = 5f
 }
