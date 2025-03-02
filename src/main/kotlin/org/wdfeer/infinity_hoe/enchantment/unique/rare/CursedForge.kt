@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.item.ToolItem
 import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
@@ -15,9 +16,13 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
-        val oldStack = player.handItems.firstOrNull {
-            it != hoe && toolUpgrades.containsKey(it.item) && !it.hasEnchantment(Enchantments.VANISHING_CURSE)
-        }
+        val oldStack = (
+                player.handItems + player.inventory.getStack(40) // workaround for two-handed weapons from SimplySwords
+                ).firstOrNull {
+                it.item != Items.AIR && it != hoe && toolUpgrades.containsKey(it.item) && !it.hasEnchantment(
+                    Enchantments.VANISHING_CURSE
+                )
+            }
 
         return if (oldStack != null) {
             val oldItem = oldStack.item as ToolItem
@@ -89,7 +94,29 @@ object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
             "ae2:fluix_pickaxe" to "minecraft:diamond_pickaxe",
             "ae2:fluix_shovel" to "minecraft:diamond_shovel",
             "ae2:fluix_axe" to "minecraft:diamond_axe",
-            "ae2:fluix_hoe" to "minecraft:diamond_hoe"
+            "ae2:fluix_hoe" to "minecraft:diamond_hoe",
+
+            // Simply Swords
+            *arrayOf(
+                "iron", "gold", "diamond", "netherite", "runic"
+            ).flatMap { material ->
+                listOf(
+                    "longsword", "twinblade", "rapier", "katana", "sai", "spear", "glaive",
+                    "warglaive", "cutlass", "claymore", "greathammer", "greataxe",
+                    "chakram", "scythe", "halberd"
+                ).mapNotNull { variant ->
+                    val nextMaterial = when (material) {
+                        "iron" -> "diamond"
+                        "gold" -> "diamond"
+                        "diamond" -> "netherite"
+                        "netherite" -> "runic"
+                        else -> null
+                    }
+                    nextMaterial?.let {
+                        "simplyswords:${material}_${variant}" to "simplyswords:${nextMaterial}_${variant}"
+                    }
+                }
+            }.toTypedArray()
         )
 
         toolUpgradesIds.map { Identifier(it.first) to Identifier(it.second) }
