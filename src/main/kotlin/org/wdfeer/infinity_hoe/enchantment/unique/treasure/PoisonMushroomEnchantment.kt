@@ -29,7 +29,7 @@ object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListen
                 .filterIsInstance<LivingEntity>()
                 .filter { it is Monster }
                 .filter { it.distanceTo(player) < 16 }
-                .random()
+                .randomOrNull() ?: return
             target.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 2), player)
         }
     }

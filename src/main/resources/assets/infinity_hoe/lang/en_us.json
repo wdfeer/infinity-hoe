@@ -98,7 +98,7 @@
   "enchantment.infinity_hoe.fungus_enchanter.desc": "Put a mushroom enchantment on a random item after some time.",
   "tooltip.infinity_hoe.fungus_enchanter.charge": "Fungus time left: %s",
   "enchantment.infinity_hoe.poison_mushroom": "Amanita Muscaria",
-  "enchantment.infinity_hoe.poison_mushroom.desc": "Inflict poison on hit. Inflict poison on monsters periodically.",
+  "enchantment.infinity_hoe.poison_mushroom.desc": "Inflict poison on hit. Inflict poison on nearby monsters periodically.",
   "enchantment.infinity_hoe.healing_mushroom": "Amethyst Laccaria",
   "enchantment.infinity_hoe.healing_mushroom.desc": "Heal periodically and before taking damage if held."
 }
