@@ -100,5 +100,7 @@
   "enchantment.infinity_hoe.poison_mushroom": "Amanita Muscaria",
   "enchantment.infinity_hoe.poison_mushroom.desc": "Inflict poison on hit. Inflict poison on nearby monsters periodically.",
   "enchantment.infinity_hoe.healing_mushroom": "Amethyst Laccaria",
-  "enchantment.infinity_hoe.healing_mushroom.desc": "Heal periodically and before taking damage if held."
+  "enchantment.infinity_hoe.healing_mushroom.desc": "Heal periodically and before taking damage if held.",
+  "enchantment.infinity_hoe.growing_capital": "Growing Capital",
+  "enchantment.infinity_hoe.growing_capital.desc": "Chance to get coins on harvest."
 }
