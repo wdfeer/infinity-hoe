@@ -6,6 +6,8 @@ import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.*
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
+import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
 import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.*
 
@@ -44,7 +46,9 @@ object EnchantmentLoader {
         BlessedForge,
         MiracleBlessing,
         Fireblast,
-        FungusEnchanter
+        FungusEnchanter,
+        PoisonMushroomEnchantment,
+        HealMushroomEnchantment
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
 
 

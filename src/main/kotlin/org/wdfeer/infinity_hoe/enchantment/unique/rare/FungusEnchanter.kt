@@ -1,16 +1,19 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 
 object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
-    private val mushroomEnchantments: List<Enchantment> by lazy { listOf(
-        // TODO: add mushroom enchantments
+    private val mushroomEnchantments: List<HoeEnchantment> by lazy { listOf(
+        PoisonMushroomEnchantment,
+        HealMushroomEnchantment
     ) }
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % 20L == 0L
