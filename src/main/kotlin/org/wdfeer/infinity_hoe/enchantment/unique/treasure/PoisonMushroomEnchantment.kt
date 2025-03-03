@@ -12,6 +12,8 @@ import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
+import org.wdfeer.infinity_hoe.extension.stackStatusDuration
+import org.wdfeer.infinity_hoe.util.TickDurationHelper
 
 object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListener, PlayerTicker {
     override fun isTreasure(): Boolean = true
@@ -19,7 +21,10 @@ object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListen
     override fun getPath(): String = "poison_mushroom"
 
     override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
-        target.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 20), attacker)
+        target.addStatusEffect(
+            StatusEffectInstance(StatusEffects.POISON, TickDurationHelper.secondsToTicks(20)),
+            attacker
+        )
     }
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time.toInt() % 20 == 0
@@ -29,8 +34,9 @@ object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListen
                 .filterIsInstance<LivingEntity>()
                 .filter { it is Monster }
                 .filter { it.distanceTo(player) < 16 }
-                .random()
+                .randomOrNull() ?: return
             target.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 2), player)
+
         }
     }
 }
