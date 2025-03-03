@@ -4,7 +4,10 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.common.*
+import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
+import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
+import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
@@ -49,7 +52,7 @@ object EnchantmentLoader {
         FungusEnchanter,
         PoisonMushroomEnchantment,
         HealMushroomEnchantment
-    ) + BetterCombatEnchantment.enchantments + Specialist.enchantments
+    ) + BetterCombatEnchantment.enchantments + Specialist.enchantments + GrowingCapital.getSelfIfCanRegister
 
 
     fun initialize() {
