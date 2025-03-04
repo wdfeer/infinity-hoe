@@ -52,7 +52,10 @@ object EnchantmentLoader {
         FungusEnchanter,
         PoisonMushroomEnchantment,
         HealMushroomEnchantment
-    ) + BetterCombatEnchantment.enchantments + Specialist.enchantments + GrowingCapital.getSelfIfCanRegister
+    ) + BetterCombatEnchantment.enchantments +
+            Specialist.enchantments +
+            GrowingCapital.getSelfIfCanRegister +
+            ManaSiphon.getSelfIfCanRegister
 
 
     fun initialize() {
