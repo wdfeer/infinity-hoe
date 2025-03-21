@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.rare
+package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.item.ItemStack
@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
 
-object CropExperience : HoeEnchantment(Rarity.RARE), HarvestListener {
+object Experience : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     override fun getPath(): String = "crop_experience"
 
     override val maxLvl: Int

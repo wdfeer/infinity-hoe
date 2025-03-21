@@ -84,4 +84,13 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
         ),
         randomlyEnchantedLoot(Items.NETHERITE_HOE, 5, 0.03f)
     ),
+    Experience(
+        listOf(
+            LootTables.STRONGHOLD_LIBRARY_CHEST,
+            LootTables.HERO_OF_THE_VILLAGE_CLERIC_GIFT_GAMEPLAY
+        ),
+        LootPool.builder().with(ItemEntry.builder(Items.IRON_HOE).apply(
+            EnchantRandomlyLootFunction.create().add(org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Experience)
+        ))
+    )
 }

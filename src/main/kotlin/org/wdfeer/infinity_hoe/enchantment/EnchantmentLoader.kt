@@ -24,7 +24,7 @@ object EnchantmentLoader {
         Untill,
         SoulSiphon,
         Rejuvenation,
-        CropExperience,
+        Experience,
         Equinox,
         MysticBlade,
         MinerHarvest,
