@@ -55,6 +55,7 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
 
     private fun recharge(hoe: ItemStack, power: Float): Boolean = hoe.enchantmentMap.keys
         .filterIsInstance<ChargeEnchantment>()
+        .minus(FungusEnchanter) // you don't want to recharge the timer
         .any { it.increment(hoe, power.randomRound()) }
 
     private fun ChargeEnchantment.increment(hoe: ItemStack, amount: Int = 1): Boolean {
