@@ -27,12 +27,19 @@ private fun getItemBuilder(item: Item, enchantments: Int): LeafEntry.Builder<*> 
 }
 
 internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Builder) {
+    Wood(
+        listOf(
+            LootTables.SPAWN_BONUS_CHEST,
+            LootTables.VILLAGE_TOOLSMITH_CHEST,
+        ),
+        randomlyEnchantedLoot(Items.WOODEN_HOE, 1, 0.6f)
+    ),
     Stone(
         listOf(
             LootTables.SPAWN_BONUS_CHEST,
             LootTables.VILLAGE_TOOLSMITH_CHEST,
         ),
-        randomlyEnchantedLoot(Items.STONE_HOE, 1, 1f)
+        randomlyEnchantedLoot(Items.STONE_HOE, 1, 0.4f)
     ),
     IronCommon(
         listOf(
@@ -40,12 +47,13 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
             LootTables.SHIPWRECK_MAP_CHEST,
             LootTables.SHIPWRECK_SUPPLY_CHEST,
             LootTables.VILLAGE_WEAPONSMITH_CHEST,
+            LootTables.HERO_OF_THE_VILLAGE_FARMER_GIFT_GAMEPLAY,
         ),
         randomlyEnchantedLoot(Items.IRON_HOE, 1, 0.4f)
     ),
     IronRare(
         listOf(
-            LootTables.HERO_OF_THE_VILLAGE_FARMER_GIFT_GAMEPLAY,
+            LootTables.HERO_OF_THE_VILLAGE_TOOLSMITH_GIFT_GAMEPLAY,
             LootTables.ABANDONED_MINESHAFT_CHEST,
             LootTables.DESERT_PYRAMID_CHEST,
             LootTables.JUNGLE_TEMPLE_CHEST,
