@@ -51,7 +51,8 @@ object EnchantmentLoader {
         Fireblast,
         FungusEnchanter,
         PoisonMushroomEnchantment,
-        HealMushroomEnchantment
+        HealMushroomEnchantment,
+        SwordConjuring
     ) + BetterCombatEnchantment.enchantments + Specialist.enchantments + GrowingCapital.getSelfIfCanRegister
 
 
