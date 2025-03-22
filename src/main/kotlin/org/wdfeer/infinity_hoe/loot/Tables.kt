@@ -11,6 +11,7 @@ import net.minecraft.loot.function.EnchantRandomlyLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.Identifier
+import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Experience
 
 private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float) = LootPool.builder()
     .with(getItemBuilder(item, enchantCount))
@@ -84,13 +85,10 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
         ),
         randomlyEnchantedLoot(Items.NETHERITE_HOE, 5, 0.03f)
     ),
-    Experience(
-        listOf(
-            LootTables.STRONGHOLD_LIBRARY_CHEST,
-            LootTables.HERO_OF_THE_VILLAGE_CLERIC_GIFT_GAMEPLAY
-        ),
+    StrongholdLibrary(
+        listOf(LootTables.STRONGHOLD_LIBRARY_CHEST),
         LootPool.builder().with(ItemEntry.builder(Items.IRON_HOE).apply(
-            EnchantRandomlyLootFunction.create().add(org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Experience)
+            EnchantRandomlyLootFunction.create().add(Experience)
         ))
     )
 }
