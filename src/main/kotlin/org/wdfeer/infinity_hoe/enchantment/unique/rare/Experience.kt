@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
+package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.item.ItemStack
@@ -13,13 +13,13 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
 
-object Experience : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+object Experience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "crop_experience"
 
     override val maxLvl: Int
         get() = 5
 
-    override fun getPowerRange(level: Int): IntRange = (12..20).incrementBounds(level * 4)
+    override fun getPowerRange(level: Int): IntRange = (6..12).incrementBounds(level * 4)
 
     override fun onCropBroken(
         world: ServerWorld,

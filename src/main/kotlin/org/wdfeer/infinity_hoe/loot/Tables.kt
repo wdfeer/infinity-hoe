@@ -11,7 +11,7 @@ import net.minecraft.loot.function.EnchantRandomlyLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.Identifier
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Experience
+import org.wdfeer.infinity_hoe.enchantment.unique.rare.Experience
 
 private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float) = LootPool.builder()
     .with(getItemBuilder(item, enchantCount))
