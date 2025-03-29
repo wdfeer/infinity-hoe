@@ -11,6 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.randomRound
 
 abstract class ChainAction(
     val world: ServerWorld,
@@ -30,8 +31,7 @@ abstract class ChainAction(
      */
     abstract fun getEnchantment(): HoeEnchantment
 
-    protected open fun canDamageHoe(): Boolean = true
-
+    protected open val hoeDamage: Float = 1f
 
     private fun getInitialPower(level: Int): Int = pow(4, level + 1)
     private fun getPower(): Int = getInitialPower(hoe.getEnchantmentLevel(getEnchantment()))
@@ -45,6 +45,7 @@ abstract class ChainAction(
 
         return notDuplicate && validBlockType && airCondition
     }
+
     private fun getNext(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean): List<BlockPos> =
         origin.getAdjacentHorizontally(1).filter { isValidBlock(origin, alreadyIncluded, it) }
 
@@ -55,7 +56,8 @@ abstract class ChainAction(
     fun tick() {
         val newBlocks: MutableList<BlockPos> = mutableListOf()
 
-        fun getNext(origin: BlockPos): List<BlockPos> = getNext(origin) { blocks.contains(it) || newBlocks.contains(it) }
+        fun getNext(origin: BlockPos): List<BlockPos> =
+            getNext(origin) { blocks.contains(it) || newBlocks.contains(it) }
 
         if (isFirstTick) blocks = getNext(blocks[0])
 
@@ -63,7 +65,8 @@ abstract class ChainAction(
             if (!isActive()) return
 
             processBlock(pos)
-            if (canDamageHoe()) hoe.damage(player)
+            val damageAmount = hoeDamage.randomRound()
+            if (damageAmount > 0) hoe.damage(player, damageAmount)
             power--
             newBlocks.addAll(getNext(pos))
         }

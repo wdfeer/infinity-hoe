@@ -25,5 +25,6 @@ class ChainHarvestAction(world: ServerWorld, hoe: ItemStack, player: ServerPlaye
 
     override fun getEnchantment(): HoeEnchantment = ChainHarvest
 
-    override fun canDamageHoe(): Boolean = false
+    override val hoeDamage: Float
+        get() = 0.1f
 }

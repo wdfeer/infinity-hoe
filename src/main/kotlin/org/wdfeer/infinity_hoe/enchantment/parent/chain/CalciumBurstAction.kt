@@ -32,7 +32,8 @@ class CalciumBurstAction(
         }
     }
 
-    override fun canDamageHoe(): Boolean = false
+    override val hoeDamage: Float
+        get() = 0f
 
     override fun isValidBlockState(state: BlockState): Boolean = (state.block as? CropBlock)?.isMature(state) == false
 
