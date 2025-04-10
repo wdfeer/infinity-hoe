@@ -44,9 +44,8 @@ object GrowingCapital : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
         val chanceMult = 1f + max(luck / 2f + 0.5f, 0f) + max(fortune / 2f + 0.5f, 0f)
 
         val coinId: String = when {
-            Random.roll(1 / 7777f * chanceMult) -> "$NUMISMATIC_OVERHAUL_ID:gold_coin"
             Random.roll(1 / 777f * chanceMult) -> "$NUMISMATIC_OVERHAUL_ID:silver_coin"
-            Random.roll(1 / 77f * chanceMult) -> "$NUMISMATIC_OVERHAUL_ID:bronze_coin"
+            Random.roll(1 / 17f * chanceMult) -> "$NUMISMATIC_OVERHAUL_ID:bronze_coin"
             else -> null
         } ?: return
 
