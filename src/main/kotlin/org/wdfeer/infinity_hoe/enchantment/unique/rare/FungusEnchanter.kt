@@ -18,6 +18,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchant
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
+import kotlin.math.pow
 
 object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
     private val mushroomEnchantments: List<HoeEnchantment> by lazy {
@@ -72,7 +73,7 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
             }
         }
 
-        return result
+        return 2f.pow(result).toInt()
     }
 
     private fun trigger(player: ServerPlayerEntity, hoe: ItemStack) {
@@ -87,7 +88,7 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
         stack.addEnchantment(enchantment, 1)
     }
 
-    override fun getMaxCharge(level: Int): Int = 18000
+    override fun getMaxCharge(level: Int): Int = 9000
     override fun getPowerRange(level: Int): IntRange = 0..25
     override fun getPath(): String = "fungus_enchanter"
     override fun getTooltipColor(): Formatting = Formatting.DARK_GREEN
