@@ -26,6 +26,8 @@ object AlchemyMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), PlayerTick
             world.getBlockState(it).block == Blocks.BREWING_STAND
         }
 
+        if (brewingStandPositions.isEmpty()) return
+
         val pos = brewingStandPositions.random()
         val state = world.getBlockState(pos)
 
