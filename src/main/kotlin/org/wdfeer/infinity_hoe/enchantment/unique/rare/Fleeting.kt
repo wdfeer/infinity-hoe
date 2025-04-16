@@ -1,12 +1,13 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
+import org.wdfeer.infinity_hoe.extension.stackStatusDuration
+import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
@@ -16,7 +17,7 @@ object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val amplifier = if (player.armor <= 10) LIGHTLY_ARMORED_AMPLIFIER else BASE_AMPLIFIER
-        player.addStatusEffect(StatusEffectInstance(StatusEffects.SPEED, DURATION, amplifier))
+        player.stackStatusDuration(StatusEffects.SPEED, amplifier, minutesToTicks(120), DURATION)
 
         return true
     }
