@@ -9,8 +9,6 @@ import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.*
-import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.*
 import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.*
 
@@ -49,10 +47,11 @@ object EnchantmentLoader {
         BlessedForge,
         MiracleBlessing,
         Fireblast,
-        FungusEnchanter,
-        PoisonMushroomEnchantment,
-        HealMushroomEnchantment
-    ) + BetterCombatEnchantment.enchantments + Specialist.enchantments + GrowingCapital.getSelfIfCanRegister
+        FungusEnchanter
+    ).plus(FungusEnchanter.mushroomEnchantments) +
+            BetterCombatEnchantment.enchantments +
+            Specialist.enchantments +
+            GrowingCapital.getSelfIfCanRegister
 
 
     fun initialize() {
