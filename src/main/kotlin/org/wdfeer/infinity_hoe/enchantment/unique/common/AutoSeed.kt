@@ -17,6 +17,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.extension.stacks
+import kotlin.math.roundToInt
 
 object AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, AutomataListener {
     override fun getPath(): String = "autoseed"
@@ -68,7 +69,9 @@ object AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, 
             .map { it.stack }
             .filter { getCropBlock(it.item) != null }
 
-        val positions = hoe.blockPos.getAdjacentHorizontally(Automata.HARVEST_RANGE)
+        val positions = hoe.pos
+            .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
+            .getAdjacentHorizontally(Automata.HARVEST_RANGE)
             .filter { world.isAir(it) && world.getBlockState(it.down()).block == Blocks.FARMLAND }
 
         for (pos in positions) {

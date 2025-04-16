@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
+import kotlin.math.roundToInt
 
 object Automata : HoeEnchantment(Rarity.VERY_RARE) {
     override fun getPowerRange(level: Int): IntRange = 25..60
@@ -33,7 +34,9 @@ object Automata : HoeEnchantment(Rarity.VERY_RARE) {
     }
 
     private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
-        val positions = hoeEntity.blockPos.getAdjacentHorizontally(HARVEST_RANGE)
+        val positions = hoeEntity.pos
+            .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
+            .getAdjacentHorizontally(HARVEST_RANGE)
             .filter { isMatureCrop(world, it) }
 
         positions.forEach { world.breakBlock(it, true) }
