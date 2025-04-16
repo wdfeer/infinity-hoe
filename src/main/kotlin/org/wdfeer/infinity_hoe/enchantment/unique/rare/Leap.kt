@@ -7,7 +7,7 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
 object Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
-    private const val SPEED = 5.0
+    private const val SPEED = 4.5
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val velocity = player.rotationVector.multiply(SPEED)
@@ -19,7 +19,7 @@ object Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
 
     override fun getTooltipColor(): Formatting = Formatting.AQUA
 
-    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 16
+    override fun getMaxCharge(level: Int): Int = getChargeDecrement() * 32
     override fun getChargeDecrement(): Int = 30
     override fun chargeToString(charge: Int): String = "%.1f".format(charge / getChargeDecrement().toFloat())
 
