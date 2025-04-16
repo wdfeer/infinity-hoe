@@ -22,7 +22,9 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
     private const val DISTANCE: Int = 4
 
     override fun getPath(): String = "decompose"
-    override fun getPowerRange(level: Int): IntRange = 16..50
+    override val maxLvl: Int
+        get() = 3
+    override fun getPowerRange(level: Int): IntRange = (12 + level * 4)..50
     override fun canAccept(other: Enchantment?): Boolean = other !is MendingEnchantment
 
 
@@ -42,8 +44,9 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
         val stack = compostables.keys.randomOrNull() ?: return
         val power = (compostables[stack]!! + 1).pow(3)
 
-        if (repair(hoe, power) || recharge(hoe, power))
-            stack.decrement(1)
+        repeat(hoe.getEnchantmentLevel(this)) {
+            if (repair(hoe, power) || recharge(hoe, power)) stack.decrement(1)
+        }
     }
 
     private fun repair(hoe: ItemStack, power: Float): Boolean {
