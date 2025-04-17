@@ -1,0 +1,8 @@
+{
+  "my_sound": {
+    "sounds": [
+      "infinity_hoe:charged",
+      "infinity_hoe:discharged"
+    ]
+  }
+}
