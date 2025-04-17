@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.event.Emitters
 import org.wdfeer.infinity_hoe.loot.LootTableModifier
+import org.wdfeer.infinity_hoe.sound.SoundLoader
 
 object InfinityHoe : ModInitializer {
 	const val MOD_ID: String = "infinity_hoe"
@@ -15,5 +16,6 @@ object InfinityHoe : ModInitializer {
 		EnchantmentLoader.initialize()
 		Emitters.initialize()
 		LootTableModifier.initialize()
+		SoundLoader.initialize()
 	}
 }
