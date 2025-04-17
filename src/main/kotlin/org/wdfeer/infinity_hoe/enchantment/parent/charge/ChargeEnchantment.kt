@@ -28,15 +28,15 @@ abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), Appen
     fun setCharge(hoe: ItemStack, value: Int) = hoe.orCreateNbt.putInt(nbtKey, value)
 
     fun setChargeWithSound(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, value: Int) {
+        val sound: SoundEvent? = when {
+            value == getMaxCharge(hoe.getEnchantmentLevel(this)) -> SoundLoader.chargedSoundEvent
+            value < getChargeDecrement() && getCharge(hoe) >= getChargeDecrement() -> SoundLoader.dischargedSoundEvent
+            else -> null
+        }
         setCharge(hoe, value)
 
-        val sound: SoundEvent = when {
-            value == getMaxCharge(hoe.getEnchantmentLevel(this)) -> SoundLoader.chargedSoundEvent
-            value < getChargeDecrement() -> SoundLoader.dischargedSoundEvent
-            else -> null
-        } ?: return
-
-        world.playSoundFromEntity(null, player, sound, SoundCategory.PLAYERS, 1f, 1f)
+        if (sound != null)
+            world.playSoundFromEntity(null, player, sound, SoundCategory.PLAYERS, 1f, 1f)
     }
 
     final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
