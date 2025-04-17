@@ -1,7 +1,11 @@
 {
-  "my_sound": {
+  "charged": {
     "sounds": [
-      "infinity_hoe:charged",
+      "infinity_hoe:charged"
+    ]
+  },
+  "discharged": {
+    "sounds": [
       "infinity_hoe:discharged"
     ]
   }
