@@ -20,6 +20,6 @@ abstract class HarvestChargeEnchantment(rarity: Rarity) : ChargeEnchantment(rari
         val charge = getCharge(hoe)
         val level = hoe.getEnchantmentLevel(this)
 
-        if (charge < getMaxCharge(level)) setCharge(hoe, charge + 1)
+        if (charge < getMaxCharge(level)) setChargeWithSound(world, player, hoe, charge + 1)
     }
 }

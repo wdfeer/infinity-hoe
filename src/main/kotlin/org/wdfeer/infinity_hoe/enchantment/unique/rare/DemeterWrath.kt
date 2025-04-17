@@ -19,7 +19,7 @@ object DemeterWrath : DemeterEnchantment(), PreAttackListener {
         target.damage(DamageTypes.MAGIC, DAMAGE, player)
         target.hurtTime = 0
 
-        setCharge(hoe, charge - getChargeDecrement())
+        setChargeWithSound(player.serverWorld, player, hoe, charge - getChargeDecrement())
 
         HoeHit.postHit(hoe, target, player, this)
     }

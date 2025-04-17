@@ -29,7 +29,7 @@ object EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTick
             if (stack.count >= transformation.inputCount) {
                 stack.decrement(transformation.inputCount)
                 player.inventory.insertStack(ItemStack(transformation.output, transformation.outputCount))
-                setCharge(hoe, getCharge(hoe) - transformation.cost)
+                setChargeWithSound(world, player, hoe, getCharge(hoe) - transformation.cost)
 
                 if (getCharge(hoe) < minCost) break
             }

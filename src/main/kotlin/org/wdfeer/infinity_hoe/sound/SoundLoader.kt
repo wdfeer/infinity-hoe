@@ -7,14 +7,14 @@ import net.minecraft.util.Identifier
 import org.wdfeer.infinity_hoe.InfinityHoe.MOD_ID
 
 object SoundLoader {
-    private val soundEvents: List<String> = listOf(
-        "charged",
-        "discharged"
-    )
+    private val chargedId = Identifier(MOD_ID, "charged")
+    val chargedSoundEvent = SoundEvent.of(chargedId)
+
+    private val dischargedId = Identifier(MOD_ID, "discharged")
+    val dischargedSoundEvent = SoundEvent.of(dischargedId)
 
     fun initialize() {
-        soundEvents.map { Identifier(MOD_ID, it) }.forEach { id ->
-            Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id))
-        }
+        Registry.register(Registries.SOUND_EVENT, chargedId, chargedSoundEvent)
+        Registry.register(Registries.SOUND_EVENT, dischargedId, dischargedSoundEvent)
     }
 }

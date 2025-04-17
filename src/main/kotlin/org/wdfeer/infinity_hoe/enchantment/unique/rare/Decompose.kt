@@ -24,6 +24,7 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
     override fun getPath(): String = "decompose"
     override val maxLvl: Int
         get() = 3
+
     override fun getPowerRange(level: Int): IntRange = (12 + level * 4)..50
     override fun canAccept(other: Enchantment?): Boolean = other !is MendingEnchantment
 
@@ -31,9 +32,9 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) =
-        decomposeTick(world, player.pos, hoe)
+        decomposeTick(world, player, player.pos, hoe)
 
-    private fun decomposeTick(world: ServerWorld, origin: Vec3d, hoe: ItemStack) {
+    private fun decomposeTick(world: ServerWorld, player: ServerPlayerEntity?, origin: Vec3d, hoe: ItemStack) {
         val compostables = world.iterateEntities()
             .filterIsInstance<ItemEntity>()
             .filter { it.pos.distanceTo(origin) < DISTANCE }
@@ -45,7 +46,7 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
         val power = (compostables[stack]!! + 1).pow(3)
 
         repeat(hoe.getEnchantmentLevel(this)) {
-            if (repair(hoe, power) || recharge(hoe, power)) stack.decrement(1)
+            if (repair(hoe, power) || recharge(world, player, hoe, power)) stack.decrement(1)
         }
     }
 
@@ -56,20 +57,31 @@ object Decompose : HoeEnchantment(Rarity.RARE), HoldTicker, AutomataListener {
         return true
     }
 
-    private fun recharge(hoe: ItemStack, power: Float): Boolean = hoe.enchantmentMap.keys
-        .filterIsInstance<ChargeEnchantment>()
-        .minus(FungusEnchanter) // you don't want to recharge the timer
-        .any { it.increment(hoe, power.randomRound()) }
+    private fun recharge(world: ServerWorld, player: ServerPlayerEntity?, hoe: ItemStack, power: Float): Boolean =
+        hoe.enchantmentMap.keys
+            .filterIsInstance<ChargeEnchantment>()
+            .minus(FungusEnchanter) // you don't want to recharge the timer
+            .any { it.increment(world, player, hoe, power.randomRound()) }
 
-    private fun ChargeEnchantment.increment(hoe: ItemStack, amount: Int = 1): Boolean {
+    private fun ChargeEnchantment.increment(
+        world: ServerWorld,
+        player: ServerPlayerEntity?,
+        hoe: ItemStack,
+        amount: Int = 1
+    ): Boolean {
         val charge = getCharge(hoe)
         val maxCharge = getMaxCharge(hoe.getEnchantmentLevel(this))
         if (charge >= maxCharge) return false
 
-        setCharge(hoe, minOf(maxCharge, charge + amount))
+        val newCharge = minOf(maxCharge, charge + amount)
+        if (player == null)
+            setCharge(hoe, newCharge)
+        else
+            setChargeWithSound(world, player, hoe, newCharge)
+
         return true
     }
 
     override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) =
-        decomposeTick(world, hoe.pos, hoe.stack)
+        decomposeTick(world, null, hoe.pos, hoe.stack)
 }

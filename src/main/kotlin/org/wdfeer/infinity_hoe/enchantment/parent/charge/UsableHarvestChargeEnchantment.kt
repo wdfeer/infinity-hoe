@@ -17,7 +17,7 @@ abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnc
 
         if (useCharge(world, player, hoe)) {
             player.itemCooldownManager.set(hoe.item, getCooldown())
-            setCharge(hoe, charge - getUsedCharge(charge))
+            setChargeWithSound(world, player, hoe, charge - getUsedCharge(charge))
         }
     }
 
