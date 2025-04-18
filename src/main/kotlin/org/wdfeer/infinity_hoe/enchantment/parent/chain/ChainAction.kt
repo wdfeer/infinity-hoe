@@ -37,11 +37,12 @@ abstract class ChainAction(
     private fun getPower(): Int = getInitialPower(hoe.getEnchantmentLevel(getEnchantment()))
     private var power = getPower()
 
+    protected open val checkForAirAboveBlock: Boolean = true
 
     private fun isValidBlock(origin: BlockPos, alreadyIncluded: (BlockPos) -> Boolean, pos: BlockPos): Boolean {
         val notDuplicate = pos != origin && !alreadyIncluded(pos)
         val validBlockType = isValidBlockState(world.getBlockState(pos))
-        val airCondition = world.getBlockState(pos.up()).isAir
+        val airCondition = !checkForAirAboveBlock || world.getBlockState(pos.up()).isAir
 
         return notDuplicate && validBlockType && airCondition
     }

@@ -17,6 +17,9 @@ class ChainHarvestAction(world: ServerWorld, hoe: ItemStack, player: ServerPlaye
         return super.isValidBlockState(state) && (state.block as CropBlock).isMature(state)
     }
 
+    override val checkForAirAboveBlock: Boolean
+        get() = false
+
     override fun processBlock(pos: BlockPos) {
         val state = world.getBlockState(pos)
         world.breakBlock(pos, true, player)

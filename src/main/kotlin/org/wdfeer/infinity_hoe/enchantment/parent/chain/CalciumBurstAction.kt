@@ -37,5 +37,8 @@ class CalciumBurstAction(
 
     override fun isValidBlockState(state: BlockState): Boolean = (state.block as? CropBlock)?.isMature(state) == false
 
+    override val checkForAirAboveBlock: Boolean
+        get() = false
+
     override fun getEnchantment(): HoeEnchantment = CalciumBurst
 }
