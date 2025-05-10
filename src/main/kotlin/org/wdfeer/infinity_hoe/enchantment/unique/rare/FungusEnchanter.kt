@@ -43,7 +43,7 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
     }
 
     private fun getChargingSpeed(world: ServerWorld, player: ServerPlayerEntity): Int {
-        var result = 1
+        var speed = 1
 
         val origin = player.blockPos
 
@@ -69,13 +69,13 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
                     val block = world.getBlockState(pos).block
                     if (blockTypes.contains(block)) {
                         blockTypes.remove(block)
-                        result++
+                        speed++
                     }
                 }
             }
         }
 
-        return 2f.pow(result).toInt()
+        return 2f.pow(speed - 1).toInt()
     }
 
     private fun trigger(player: ServerPlayerEntity, hoe: ItemStack) {
@@ -90,7 +90,7 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
         stack.addEnchantment(enchantment, 1)
     }
 
-    override fun getMaxCharge(level: Int): Int = 9000
+    override fun getMaxCharge(level: Int): Int = 6000
     override fun getPowerRange(level: Int): IntRange = 0..25
     override fun getPath(): String = "fungus_enchanter"
     override fun getTooltipColor(): Formatting = Formatting.DARK_GREEN
