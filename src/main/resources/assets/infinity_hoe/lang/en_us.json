@@ -103,6 +103,8 @@
   "enchantment.infinity_hoe.healing_mushroom.desc": "Heal periodically in inventory and before taking damage if held.",
   "enchantment.infinity_hoe.alchemy_mushroom": "Panellus Stipticus",
   "enchantment.infinity_hoe.alchemy_mushroom.desc": "Nearby brewing stands work faster while in inventory.",
+  "enchantment.infinity_hoe.speed_mushroom": "Cobalt Pleurotus",
+  "enchantment.infinity_hoe.speed_mushroom.desc": "Move slightly faster while in inventory.",
   "enchantment.infinity_hoe.growing_capital": "Growing Capital",
   "enchantment.infinity_hoe.growing_capital.desc": "Chance to get coins on harvest."
 }

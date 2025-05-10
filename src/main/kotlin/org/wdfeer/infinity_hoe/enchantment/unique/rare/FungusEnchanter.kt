@@ -16,6 +16,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.AlchemyMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
+import org.wdfeer.infinity_hoe.enchantment.unique.treasure.SpeedMushroomEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
@@ -26,7 +27,8 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
         listOf(
             PoisonMushroomEnchantment,
             HealMushroomEnchantment,
-            AlchemyMushroomEnchantment
+            AlchemyMushroomEnchantment,
+            SpeedMushroomEnchantment
         )
     }
 
