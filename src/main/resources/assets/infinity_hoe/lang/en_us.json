@@ -42,7 +42,7 @@
   "enchantment.infinity_hoe.fireblast.desc": "Gain charge on harvest. Use charge to shoot a ghast fireball that splits into multiple.",
   "tooltip.infinity_hoe.fireblast.charge": "Fireballs: %s/%s",
   "enchantment.infinity_hoe.fleeting": "Fleeting",
-  "enchantment.infinity_hoe.fleeting.desc": "Gain charge on harvest. Use charge to gain speed, duration stacks. Wearing light armor gives more speed.",
+  "enchantment.infinity_hoe.fleeting.desc": "Gain charge on harvest. Use charge to gain speed, duration stacks.",
   "tooltip.infinity_hoe.fleeting.charge": "Speed charge: %s/%s",
   "enchantment.infinity_hoe.leap": "Leap",
   "enchantment.infinity_hoe.leap.desc": "Gain charge on harvest. Use charge to gain velocity.",

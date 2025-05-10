@@ -12,12 +12,9 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
     private val DURATION = secondsToTicks(30)
-    private const val BASE_AMPLIFIER = 0
-    private const val LIGHTLY_ARMORED_AMPLIFIER = BASE_AMPLIFIER + 1
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
-        val amplifier = if (player.armor <= 10) LIGHTLY_ARMORED_AMPLIFIER else BASE_AMPLIFIER
-        player.stackStatusDuration(StatusEffects.SPEED, amplifier, minutesToTicks(120), DURATION)
+        player.stackStatusDuration(StatusEffects.SPEED, 0, minutesToTicks(120), DURATION)
 
         return true
     }
