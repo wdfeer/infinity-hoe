@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.item.ItemStack
@@ -12,6 +13,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 object DemeterWrath : DemeterEnchantment(), PreAttackListener {
     override fun getPath(): String = "demeter_wrath"
 
+    private const val DAMAGE = 5f
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
         val charge = getCharge(hoe)
         if (charge < getChargeDecrement()) return
@@ -33,5 +35,5 @@ object DemeterWrath : DemeterEnchantment(), PreAttackListener {
         addAll(super.getTooltipArgs(hoe))
     }
 
-    private const val DAMAGE = 5f
+    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other != MysticBlade
 }
