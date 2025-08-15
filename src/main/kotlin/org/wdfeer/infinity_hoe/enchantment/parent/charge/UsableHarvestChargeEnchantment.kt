@@ -4,9 +4,10 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import org.wdfeer.infinity_hoe.event.listener.Useable
+import net.minecraft.util.Rarity
+import org.wdfeer.infinity_hoe.event.listener.Usable
 
-abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnchantment(rarity), Useable {
+abstract class UsableHarvestChargeEnchantment(rarity: Rarity) : HarvestChargeEnchantment(rarity), Usable {
     protected abstract fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean
 
     protected open fun getCooldown() = 10
