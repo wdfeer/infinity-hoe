@@ -1,7 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment
 
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
 import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.parent.BetterCombatEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.AutoSeed
@@ -55,10 +53,6 @@ object EnchantmentLoader {
 
 
     fun initialize() {
-        for (enchantment in enchantments) {
-            Registry.register(Registries.ENCHANTMENT, enchantment.getIdentifier(), enchantment)
-        }
-
         InfinityHoe.logger.info("Loaded ${enchantments.size} hoe enchantments")
     }
 }
