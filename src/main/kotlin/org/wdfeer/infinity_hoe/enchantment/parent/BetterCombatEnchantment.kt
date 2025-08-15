@@ -1,6 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.parent
 
-import net.bettercombat.BetterCombat
+import net.bettercombat.BetterCombatMod
 import net.bettercombat.api.WeaponAttributes
 import net.bettercombat.api.WeaponAttributesHelper
 import net.fabricmc.loader.api.FabricLoader
@@ -18,7 +18,7 @@ import org.wdfeer.infinity_hoe.extension.ifElse
 
 abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
     companion object {
-        private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombat.MODID)
+        private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombatMod.ID)
 
         val enchantments: List<BetterCombatEnchantment> = canRegister().ifElse(
             buildList {
