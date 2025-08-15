@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
 import net.minecraft.util.Rarity
 
-object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListener, PlayerTicker {
+object PoisonMushroomEnchantment : HoeEnchantment, OnHitListener, PlayerTicker {
     override fun isTreasure(): Boolean = true
     override fun getPowerRange(level: Int): IntRange = 30..60
     override fun getPath(): String = "poison_mushroom"

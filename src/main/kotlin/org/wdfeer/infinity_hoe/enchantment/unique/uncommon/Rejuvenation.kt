@@ -23,7 +23,7 @@ import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 import net.minecraft.util.Rarity
 
-object Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+object Rejuvenation : HoeEnchantment, HarvestListener {
     private val DURATION: Int = secondsToTicks(2)
     private const val MAX_ANIMAL_DISTANCE: Int = 20
 

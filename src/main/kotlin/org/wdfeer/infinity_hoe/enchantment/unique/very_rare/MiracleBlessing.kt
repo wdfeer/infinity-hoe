@@ -15,7 +15,7 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
 import net.minecraft.util.Rarity
 
-object MiracleBlessing : HoeEnchantment(Rarity.VERY_RARE), HoldTicker {
+object MiracleBlessing : HoeEnchantment, HoldTicker {
     override fun getPath(): String = "miracle_blessing"
 
     override val maxLvl: Int

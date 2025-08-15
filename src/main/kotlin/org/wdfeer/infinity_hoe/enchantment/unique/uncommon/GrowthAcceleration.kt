@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 import net.minecraft.util.Rarity
 
-object GrowthAcceleration : HoeEnchantment(Rarity.UNCOMMON), PlayerTicker, CropCatalyzer {
+object GrowthAcceleration : HoeEnchantment, PlayerTicker, CropCatalyzer {
     override fun getPath(): String = "growth_acceleration"
 
     override val maxLvl: Int

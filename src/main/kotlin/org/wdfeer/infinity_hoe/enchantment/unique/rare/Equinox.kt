@@ -24,7 +24,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
-object Equinox : HoeEnchantment(Rarity.RARE), OnHitListener, HarvestListener, CropCatalyzer {
+object Equinox : HoeEnchantment, OnHitListener, HarvestListener, CropCatalyzer {
     private val MAX_DURATION: Int = minutesToTicks(15)
     private val DURATION_INCREASE: Int = secondsToTicks(5)
 

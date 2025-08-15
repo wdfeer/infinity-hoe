@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
 import net.minecraft.util.Rarity
 
-object StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
+object StandUnited : HoeEnchantment, HarvestListener {
     private const val SHARE_DISTANCE: Int = 20
     private fun getMaxDuration(level: Int): Int = minutesToTicks(10 + level * 10)
     private fun getDurationDelta(level: Int): Int = secondsToTicks(2 + level * 4)

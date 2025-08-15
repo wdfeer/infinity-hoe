@@ -14,7 +14,7 @@ import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 import net.minecraft.util.Rarity
 
-object MysticBlade : HoeEnchantment(Rarity.RARE), PreAttackListener {
+object MysticBlade : HoeEnchantment, PreAttackListener {
     override fun getPowerRange(level: Int): IntRange = 18..50
 
     override fun getPath(): String = "mystic_blade"

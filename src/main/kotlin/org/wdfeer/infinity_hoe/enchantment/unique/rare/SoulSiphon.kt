@@ -16,7 +16,7 @@ import java.util.*
 import kotlin.random.Random
 import net.minecraft.util.Rarity
 
-object SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
+object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {
     private const val INTERVAL: Int = 60
 
     override fun getPath(): String = "soul_siphon"

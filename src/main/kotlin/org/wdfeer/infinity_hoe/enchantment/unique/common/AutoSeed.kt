@@ -20,7 +20,7 @@ import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
 import org.wdfeer.infinity_hoe.extension.stacks
 import kotlin.math.roundToInt
 
-object AutoSeed : HoeEnchantment(Rarity.COMMON), HarvestListener, TillListener, AutomataListener {
+object AutoSeed : HoeEnchantment, HarvestListener, TillListener, AutomataListener {
     override fun getPath(): String = "autoseed"
 
     override fun getPowerRange(level: Int): IntRange = 4..40

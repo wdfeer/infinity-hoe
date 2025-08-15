@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.sound.SoundLoader
 
-abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment(rarity), AppendTooltipListener {
+abstract class ChargeEnchantment(rarity: Rarity) : HoeEnchantment, AppendTooltipListener {
     protected open fun getTooltipStyle(): Style = Style.EMPTY.withColor(getTooltipColor())
     protected open fun getTooltipColor(): Formatting =
         throw NotImplementedError("Either override getTooltipColor or implement custom getTooltipStyle!")

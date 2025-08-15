@@ -13,7 +13,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import net.minecraft.util.Rarity
 
-class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE),
+class Specialist(private val path: String, private val crop: Block) : HoeEnchantment,
     DoubleHarvestEnchantment, HarvestListener {
     override fun getPath(): String = path
 

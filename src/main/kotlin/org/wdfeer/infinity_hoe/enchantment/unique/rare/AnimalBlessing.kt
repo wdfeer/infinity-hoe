@@ -14,7 +14,7 @@ import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.max
 import kotlin.math.min
 
-object AnimalBlessing : HoeEnchantment(Rarity.RARE), HoldTicker {
+object AnimalBlessing : HoeEnchantment, HoldTicker {
     override fun getPath(): String = "animal_blessing"
 
     override val maxLvl: Int

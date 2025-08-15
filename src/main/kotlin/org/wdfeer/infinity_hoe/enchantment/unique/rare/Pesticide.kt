@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.incrementBounds
 import net.minecraft.util.Rarity
 
-object Pesticide : HoeEnchantment(Rarity.RARE), HarvestListener, TillListener {
+object Pesticide : HoeEnchantment, HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
 
     override val maxLvl: Int

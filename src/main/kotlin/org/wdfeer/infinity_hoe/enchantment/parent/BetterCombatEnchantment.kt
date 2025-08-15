@@ -16,7 +16,7 @@ import org.wdfeer.infinity_hoe.io.IO.getFileInJar
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.ifElse
 
-abstract class BetterCombatEnchantment : HoeEnchantment(Rarity.UNCOMMON) {
+abstract class BetterCombatEnchantment : HoeEnchantment {
     companion object {
         private fun canRegister(): Boolean = FabricLoader.getInstance().isModLoaded(BetterCombatMod.ID)
 
