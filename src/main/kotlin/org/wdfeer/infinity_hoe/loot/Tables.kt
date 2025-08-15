@@ -3,14 +3,16 @@ package org.wdfeer.infinity_hoe.loot
 import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.loot.LootPool
+import net.minecraft.loot.LootTable
 import net.minecraft.loot.LootTables
 import net.minecraft.loot.condition.RandomChanceLootCondition
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.entry.LeafEntry
 import net.minecraft.loot.function.EnchantRandomlyLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
+import net.minecraft.loot.function.SetEnchantmentsLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
-import net.minecraft.util.Identifier
+import net.minecraft.registry.RegistryKey
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Experience
 
 private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float) = LootPool.builder()
@@ -26,7 +28,7 @@ private fun getItemBuilder(item: Item, enchantments: Int): LeafEntry.Builder<*> 
     return builder
 }
 
-internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Builder) {
+internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward: LootPool.Builder) {
     Wood(
         listOf(
             LootTables.SPAWN_BONUS_CHEST,
@@ -96,7 +98,7 @@ internal enum class Tables(val tables: List<Identifier>, val reward: LootPool.Bu
     StrongholdLibrary(
         listOf(LootTables.STRONGHOLD_LIBRARY_CHEST),
         LootPool.builder().with(ItemEntry.builder(Items.IRON_HOE).apply(
-            EnchantRandomlyLootFunction.create().add(Experience)
+            SetEnchantmentsLootFunction.Builder().enchantment(Experience) // FIXME: how to get RegistryKey?
         ))
     )
 }

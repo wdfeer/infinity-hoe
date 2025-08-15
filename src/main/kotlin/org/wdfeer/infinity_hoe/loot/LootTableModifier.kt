@@ -1,13 +1,13 @@
 package org.wdfeer.infinity_hoe.loot
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents
-import net.fabricmc.fabric.api.loot.v2.LootTableSource
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents
+import net.fabricmc.fabric.api.loot.v3.LootTableSource
 import net.minecraft.loot.LootTable
 import net.minecraft.util.Identifier
 
 object LootTableModifier {
     fun initialize() {
-        LootTableEvents.MODIFY.register { _, _, id, builder, source -> modifyLootTable(id, builder, source) }
+        LootTableEvents.MODIFY.register { registryKey, builder, source, _ -> modifyLootTable(registryKey.value, builder, source) }
     }
 
     private fun modifyLootTable(
@@ -18,7 +18,7 @@ object LootTableModifier {
         if (!source.isBuiltin) return
 
         for (e in Tables.entries) {
-            if (e.tables.contains(id)) {
+            if (e.tables.any { key -> key.value == id }) {
                 builder.pool(e.reward)
                 return
             }
