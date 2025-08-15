@@ -8,6 +8,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.chain.CalciumBurstAction
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.ChainHarvest
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import net.minecraft.util.Rarity
 
 object CalciumBurst : ChainEnchantment<CalciumBurstAction>(Rarity.UNCOMMON), HarvestListener {
     override val maxLvl: Int

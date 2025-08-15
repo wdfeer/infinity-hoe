@@ -12,6 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
+import net.minecraft.util.Rarity
 
 object MysticBlade : HoeEnchantment(Rarity.RARE), PreAttackListener {
     override fun getPowerRange(level: Int): IntRange = 18..50

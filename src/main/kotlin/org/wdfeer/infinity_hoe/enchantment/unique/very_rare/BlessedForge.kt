@@ -10,6 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.rare.AnimalBlessing
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.toolUpgrades
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
+import net.minecraft.util.Rarity
 
 object BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

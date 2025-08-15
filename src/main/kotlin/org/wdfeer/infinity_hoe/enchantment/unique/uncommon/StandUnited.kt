@@ -14,6 +14,7 @@ import org.wdfeer.infinity_hoe.util.MathHelper
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
+import net.minecraft.util.Rarity
 
 object StandUnited : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     private const val SHARE_DISTANCE: Int = 20

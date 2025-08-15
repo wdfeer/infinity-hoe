@@ -14,6 +14,7 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
+import net.minecraft.util.Rarity
 
 object PoisonMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), OnHitListener, PlayerTicker {
     override fun isTreasure(): Boolean = true

@@ -21,6 +21,7 @@ import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import kotlin.math.pow
+import net.minecraft.util.Rarity
 
 object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
     val mushroomEnchantments: List<HoeEnchantment> by lazy {

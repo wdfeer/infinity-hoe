@@ -11,6 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.roundToInt
+import net.minecraft.util.Rarity
 
 object Automata : HoeEnchantment(Rarity.VERY_RARE) {
     override fun getPowerRange(level: Int): IntRange = 25..60

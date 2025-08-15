@@ -12,6 +12,7 @@ import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
+import net.minecraft.util.Rarity
 
 object Experience : HoeEnchantment(Rarity.RARE), HarvestListener {
     override fun getPath(): String = "crop_experience"

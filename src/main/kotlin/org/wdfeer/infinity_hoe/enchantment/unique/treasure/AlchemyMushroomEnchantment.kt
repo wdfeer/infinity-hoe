@@ -10,6 +10,7 @@ import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.getAdjacent
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
+import net.minecraft.util.Rarity
 
 object AlchemyMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), PlayerTicker {
     override fun isTreasure(): Boolean = true

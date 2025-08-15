@@ -13,6 +13,7 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import java.util.*
 import kotlin.collections.ArrayDeque
+import net.minecraft.util.Rarity
 
 object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
     private const val POSITIONS_STORED = 200

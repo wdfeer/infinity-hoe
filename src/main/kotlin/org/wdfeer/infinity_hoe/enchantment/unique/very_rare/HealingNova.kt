@@ -9,6 +9,7 @@ import net.minecraft.text.Style
 import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.math.sqrt
+import net.minecraft.util.Rarity
 
 object HealingNova : NovaEnchantment() {
     override fun getPath(): String = "healing_nova"

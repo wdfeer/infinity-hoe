@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import net.minecraft.util.Rarity
 
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment(Rarity.RARE),
     DoubleHarvestEnchantment, HarvestListener {

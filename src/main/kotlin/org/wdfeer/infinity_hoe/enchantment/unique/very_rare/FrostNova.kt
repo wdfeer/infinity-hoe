@@ -9,6 +9,7 @@ import net.minecraft.text.Style
 import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
+import net.minecraft.util.Rarity
 
 object FrostNova : NovaEnchantment() {
     override fun getPath(): String = "frost_nova"

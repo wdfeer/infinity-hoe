@@ -21,6 +21,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.ifElse
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
+import net.minecraft.util.Rarity
 
 object Rejuvenation : HoeEnchantment(Rarity.UNCOMMON), HarvestListener {
     private val DURATION: Int = secondsToTicks(2)

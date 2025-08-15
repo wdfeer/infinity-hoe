@@ -9,6 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 import org.wdfeer.infinity_hoe.extension.stackStatusDuration
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
+import net.minecraft.util.Rarity
 
 object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
     private val DURATION = secondsToTicks(30)

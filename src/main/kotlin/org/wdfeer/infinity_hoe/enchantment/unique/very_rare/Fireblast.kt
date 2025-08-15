@@ -11,6 +11,7 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.TickListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import net.minecraft.util.Rarity
 
 object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListener {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

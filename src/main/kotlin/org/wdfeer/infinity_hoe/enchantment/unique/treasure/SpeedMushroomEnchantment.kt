@@ -12,6 +12,7 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.remove
 import java.util.*
+import net.minecraft.util.Rarity
 
 object SpeedMushroomEnchantment : HoeEnchantment(Rarity.VERY_RARE), PlayerTicker {
     override fun isTreasure(): Boolean = true

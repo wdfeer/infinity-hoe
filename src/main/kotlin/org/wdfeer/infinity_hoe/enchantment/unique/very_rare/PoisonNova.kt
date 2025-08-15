@@ -9,6 +9,7 @@ import net.minecraft.text.Style
 import org.wdfeer.infinity_hoe.enchantment.parent.NovaEnchantment
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
+import net.minecraft.util.Rarity
 
 object PoisonNova : NovaEnchantment() {
     override fun getPath(): String = "poison_nova"

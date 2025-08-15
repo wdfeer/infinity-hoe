@@ -14,6 +14,7 @@ import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.*
 import java.util.*
 import kotlin.random.Random
+import net.minecraft.util.Rarity
 
 object SoulSiphon : HoeEnchantment(Rarity.RARE), PlayerTicker, CropCatalyzer {
     private const val INTERVAL: Int = 60
