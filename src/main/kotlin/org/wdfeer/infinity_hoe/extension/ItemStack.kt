@@ -1,17 +1,24 @@
 package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.random.Random
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import kotlin.jvm.optionals.getOrNull
 
-val ItemStack.enchantmentMap: MutableMap<Enchantment, Int> get() = EnchantmentHelper.fromNbt(this.enchantments)
+val ItemStack.enchantmentMap: Map<RegistryKey<Enchantment>, Int>
+    get() = this.enchantments.enchantments.associate { entry: RegistryEntry<Enchantment> ->
+        entry.key.get() to enchantments.getLevel(entry)
+    }
 
-fun ItemStack.hasEnchantment(enchantment: Enchantment): Boolean = enchantmentMap.contains(enchantment)
+fun ItemStack.hasEnchantment(enchantment: RegistryKey<Enchantment>): Boolean = enchantments.enchantments.any { it.key.getOrNull() == enchantment.value }
+fun ItemStack.hasEnchantment(enchantment: HoeEnchantment): Boolean = enchantments.enchantments.any { it.key.getOrNull() == enchantment.registryKey }
 
-fun ItemStack.getEnchantmentLevel(enchantment: Enchantment): Int = enchantmentMap[enchantment] ?: -1
+fun ItemStack.getEnchantmentLevel(enchantment: RegistryKey<Enchantment>): Int = enchantmentMap[enchantment] ?: -1
 
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
     this.damage(amount, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
