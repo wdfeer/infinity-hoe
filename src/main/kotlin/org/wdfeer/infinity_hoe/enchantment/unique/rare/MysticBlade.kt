@@ -1,7 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
-import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.mob.Monster
@@ -11,6 +9,7 @@ import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
+import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
 object MysticBlade : HoeEnchantment, PreAttackListener {
@@ -36,17 +35,15 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
     ) {
         target.damage(
             DamageSourceHelper.create(world, DamageTypes.MAGIC, attacker),
-            getEnchantAmount(hoe) * damagePerEnchant
+            getEnchantAmount(hoe) * DAMAGE_PER_ENCHANTMENT
         )
         target.hurtTime = 0
         
         HoeHit.postHit(hoe, target, attacker, this)
     }
 
-    private val damagePerEnchant: Float = 0.1f
+    private const val DAMAGE_PER_ENCHANTMENT: Float = 0.1f
 
     private fun getEnchantAmount(hoe: ItemStack): Int =
-        EnchantmentHelper.fromNbt(hoe.enchantments).values.sumOf { it + 1 }
-
-    override fun canAccept(other: Enchantment?): Boolean = other != Pesticide && other != DemeterWrath
+        hoe.enchantmentMap.map { (_, value) -> value }.sum()
 }
