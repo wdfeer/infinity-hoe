@@ -18,8 +18,6 @@ class Specialist(private val path: String, private val crop: Block) : HoeEnchant
     DoubleHarvestEnchantment, HarvestListener {
     override fun getPath(): String = path
 
-    override fun canAccept(other: Enchantment?): Boolean = other !is Specialist
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,
