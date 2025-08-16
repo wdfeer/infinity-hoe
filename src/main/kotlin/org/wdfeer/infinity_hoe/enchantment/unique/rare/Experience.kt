@@ -16,11 +16,6 @@ import kotlin.math.floor
 object Experience : HoeEnchantment, HarvestListener {
     override fun getPath(): String = "crop_experience"
 
-    override val maxLvl: Int
-        get() = 5
-
-    override fun getPowerRange(level: Int): IntRange = (6..12).incrementBounds(level * 4)
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,

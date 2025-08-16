@@ -6,9 +6,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
-import net.minecraft.util.Rarity
 
-object Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object Demolition : UsableHarvestChargeEnchantment() {
     override fun getPath(): String = "demolition"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

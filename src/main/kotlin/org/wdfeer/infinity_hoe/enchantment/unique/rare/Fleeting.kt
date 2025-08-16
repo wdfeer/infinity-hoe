@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.util.TickDurationHelper.minutesToTicks
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import net.minecraft.util.Rarity
 
-object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
+object Fleeting : UsableHarvestChargeEnchantment() {
     private val DURATION = secondsToTicks(30)
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

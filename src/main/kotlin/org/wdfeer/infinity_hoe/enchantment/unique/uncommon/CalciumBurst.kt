@@ -7,9 +7,8 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.CalciumBurstAction
 import org.wdfeer.infinity_hoe.enchantment.parent.chain.ChainEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import net.minecraft.util.Rarity
 
-object CalciumBurst : ChainEnchantment<CalciumBurstAction>(Rarity.UNCOMMON), HarvestListener {
+object CalciumBurst : ChainEnchantment<CalciumBurstAction>(), HarvestListener {
     override fun getPath(): String = "calcium_burst"
 
     override fun onCropBroken(
