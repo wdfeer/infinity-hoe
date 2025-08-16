@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.rebound"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": "#infinity_hoe:better_combat_enchantment",
   "max_cost": {
     "base": 40,
     "per_level_above_first": 0

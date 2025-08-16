@@ -4,7 +4,6 @@ import net.bettercombat.BetterCombatMod
 import net.bettercombat.api.WeaponAttributes
 import net.bettercombat.api.WeaponAttributesHelper
 import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.InfinityHoe
@@ -47,7 +46,5 @@ abstract class BetterCombatEnchantment : HoeEnchantment {
         if (cir.returnValue == null && stack.hasEnchantment(this)) {
             cir.returnValue = attributes[this]
         }
-    }
-
-    override fun canAccept(other: Enchantment?): Boolean = other !is BetterCombatEnchantment
+ }
 }
