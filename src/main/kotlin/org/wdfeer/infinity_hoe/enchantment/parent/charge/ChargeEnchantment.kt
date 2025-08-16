@@ -1,6 +1,10 @@
 package org.wdfeer.infinity_hoe.enchantment.parent.charge
 
+import com.mojang.serialization.Codec
+import net.minecraft.component.ComponentType
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
@@ -8,6 +12,8 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Style
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
+import net.minecraft.util.Identifier
+import org.wdfeer.infinity_hoe.InfinityHoe.MOD_ID
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
@@ -24,8 +30,8 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
     private val nbtKey get() = getPath() + "_charge"
-    fun getCharge(hoe: ItemStack): Int = hoe.nbt?.getInt(nbtKey) ?: 0
-    fun setCharge(hoe: ItemStack, value: Int) = hoe.orCreateNbt.putInt(nbtKey, value)
+    fun getCharge(hoe: ItemStack): Int = hoe.getOrDefault(component, 0)
+    fun setCharge(hoe: ItemStack, value: Int) = hoe.set(component, value)
 
     fun setChargeWithSound(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, value: Int) {
         val sound: SoundEvent? = when {
@@ -53,4 +59,12 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(
         chargeToString(getCharge(hoe)), chargeToString(getMaxCharge(hoe.getEnchantmentLevel(this)))
     )
+
+    companion object {
+        val component: ComponentType<Int> = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MOD_ID, "charge_component"),
+            ComponentType.builder<Int>().codec(Codec.INT).build()
+        )
+    }
 }
