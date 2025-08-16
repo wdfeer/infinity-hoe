@@ -20,6 +20,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.treasure.SpeedMushroomEnchantm
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
+import org.wdfeer.infinity_hoe.extension.removeEnchantment
 import kotlin.math.pow
 
 object FungusEnchanter : ChargeEnchantment(), HoldTicker {
@@ -81,7 +82,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
     }
 
     private fun trigger(player: ServerPlayerEntity, hoe: ItemStack) {
-        hoe.enchantments.remove(hoe.enchantments.find { EnchantmentHelper.getIdFromNbt(it as NbtCompound?) == getIdentifier() })
+        hoe.removeEnchantment(registryKey)
 
         val stack = player.inventoryStacks.filter { it.item != Items.AIR }
             .filter { it.item is ArmorItem || it.item is ToolItem }
@@ -89,7 +90,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
             .randomOrNull() ?: return
 
         val enchantment = mushroomEnchantments.filter { !stack.hasEnchantment(it) }.random()
-        stack.addEnchantment(enchantment, 1)
+        stack.addEnchantment(enchantment.registryEntry, 1)
     }
 
     override fun getMaxCharge(level: Int): Int = 6000
