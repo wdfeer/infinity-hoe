@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.growth_acceleration"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": "#infinity_hoe:blessing",
   "max_cost": {
     "base": 16,
     "per_level_above_first": 5

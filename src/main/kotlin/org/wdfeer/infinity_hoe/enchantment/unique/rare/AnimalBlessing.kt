@@ -33,7 +33,4 @@ object AnimalBlessing : HoeEnchantment, HoldTicker {
                 e.loveTicks -= level
         }
     }
-
-    override fun canAccept(other: Enchantment?): Boolean =
-        super.canAccept(other) && other !is GrowthAcceleration && other !is MiracleBlessing
 }

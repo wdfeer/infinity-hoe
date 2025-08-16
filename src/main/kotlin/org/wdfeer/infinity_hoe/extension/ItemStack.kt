@@ -20,6 +20,9 @@ fun ItemStack.hasEnchantment(enchantment: HoeEnchantment): Boolean = enchantment
 fun ItemStack.getEnchantmentLevel(enchantment: RegistryKey<Enchantment>): Int = enchantmentMap[enchantment] ?: -1
 fun ItemStack.getEnchantmentLevel(enchantment: HoeEnchantment): Int = enchantmentMap[enchantment.registryKey] ?: -1
 
+fun ItemStack.addEnchantment(enchantment: RegistryKey<Enchantment>, level: Int) =
+    addEnchantment(enchantment.getEntry(), level)
+
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
     this.damage(amount, player, EquipmentSlot.MAINHAND)
 

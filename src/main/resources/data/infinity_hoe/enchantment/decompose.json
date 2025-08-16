@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.decompose"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": "minecraft:mending",
   "max_cost": {
     "base": 50,
     "per_level_above_first": 0

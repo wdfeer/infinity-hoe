@@ -2,13 +2,12 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.enchantment.MendingEnchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.Rarity
 import net.minecraft.util.math.Vec3d
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
@@ -23,8 +22,6 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
     private const val DISTANCE: Int = 4
 
     override fun getPath(): String = "decompose"
-    override fun canAccept(other: Enchantment?): Boolean = other !is MendingEnchantment
-
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
@@ -56,8 +53,8 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
 
     private fun recharge(world: ServerWorld, player: ServerPlayerEntity?, hoe: ItemStack, power: Float): Boolean =
         hoe.enchantmentMap.keys
+            .mapNotNull { key -> EnchantmentLoader.enchantments.find { it.registryKey == key } }
             .filterIsInstance<ChargeEnchantment>()
-            .minus(FungusEnchanter) // you don't want to recharge the timer
             .any { it.increment(world, player, hoe, power.randomRound()) }
 
     private fun ChargeEnchantment.increment(

@@ -17,7 +17,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.stacks
 
-object Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
+object Untill : ChainEnchantment<InfinityUntillAction>() {
     override fun getPath(): String = "untill"
 
     fun untill(
