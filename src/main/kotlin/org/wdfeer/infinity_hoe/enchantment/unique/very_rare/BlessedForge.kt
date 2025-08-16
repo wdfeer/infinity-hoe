@@ -32,7 +32,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
                 GrowthAcceleration,
                 AnimalBlessing,
                 MiracleBlessing
-            ).filter { !oldEnchants.containsKey(it) }.randomOrNull() ?: return false
+            ).filter { !oldEnchants.containsKey(it.registryKey) }.randomOrNull() ?: return false
             newStack.addEnchantment(blessing, 3)
 
             oldStack.count = 0

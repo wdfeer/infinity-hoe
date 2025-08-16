@@ -11,9 +11,8 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.TickListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
-import net.minecraft.util.Rarity
 
-object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListener {
+object Fireblast : UsableHarvestChargeEnchantment(), TickListener {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         world.spawnEntity(createFireball(world, player, hoe.getEnchantmentLevel(this)))
 
@@ -28,7 +27,7 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
     ): ProjectileEntity {
         val velocity = player.rotationVector.multiply(5.0)
 
-        val fireball = FireballEntity(world, player, velocity.x, velocity.y, velocity.z, level)
+        val fireball = FireballEntity(world, player, velocity, level)
         fireball.setPosition(player.eyePos)
         splittingFireballs.add(fireball to level + 3)
 
@@ -48,9 +47,7 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
             val entity = FireballEntity(
                 world,
                 fireball.owner as? LivingEntity ?: return,
-                velocity.x,
-                velocity.y,
-                velocity.z,
+                velocity,
                 1
             )
             entity.setPosition(fireball.pos.add(velocity.multiply(1.2)))

@@ -34,7 +34,7 @@ interface CropCatalyzer {
             if (state.block !is CropBlock) return false
 
             val block = state.block as CropBlock
-            return block.isFertilizable(world, pos, state, false)
+            return block.isFertilizable(world, pos, state)
         }
 
         fun apply(pos: BlockPos) {

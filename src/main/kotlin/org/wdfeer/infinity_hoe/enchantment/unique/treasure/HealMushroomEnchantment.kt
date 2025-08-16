@@ -10,7 +10,6 @@ import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import net.minecraft.util.Rarity
 
 object HealMushroomEnchantment : HoeEnchantment, PlayerDamageTaken, PlayerTicker {
-    override fun isTreasure(): Boolean = true
     override fun getPowerRange(level: Int): IntRange = 30..60
     override fun getPath(): String = "healing_mushroom"
 

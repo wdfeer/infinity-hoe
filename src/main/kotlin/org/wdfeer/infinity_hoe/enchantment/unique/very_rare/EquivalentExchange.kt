@@ -9,9 +9,8 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.HarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
-import net.minecraft.util.Rarity
 
-object EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
+object EquivalentExchange : HarvestChargeEnchantment(), HoldTicker {
     override fun getMaxCharge(level: Int): Int = 1000
     override fun getPath(): String = "equivalent_exchange"
     override fun getTooltipColor(): Formatting = Formatting.YELLOW

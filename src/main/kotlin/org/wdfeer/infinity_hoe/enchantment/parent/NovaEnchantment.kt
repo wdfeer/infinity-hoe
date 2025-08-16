@@ -8,7 +8,7 @@ import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
 
-abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+abstract class NovaEnchantment : UsableHarvestChargeEnchantment() {
     abstract fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float)
 
     final override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

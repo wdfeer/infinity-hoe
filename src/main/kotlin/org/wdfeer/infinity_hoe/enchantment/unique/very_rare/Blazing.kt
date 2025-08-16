@@ -21,10 +21,11 @@ object Blazing : UsableHarvestChargeEnchantment() {
         world: ServerWorld,
         player: ServerPlayerEntity
     ): ProjectileEntity {
+        val pos = player.eyePos
         val velocity = player.rotationVector.multiply(4.0)
 
-        val fireball = SmallFireballEntity(world, player, velocity.x, velocity.y, velocity.z)
-        fireball.setPosition(player.eyePos)
+        val fireball = SmallFireballEntity(world, pos.x, pos.y, pos.z, velocity)
+        fireball.owner = player
 
         return fireball
     }

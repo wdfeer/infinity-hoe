@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.math.random.Random
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import kotlin.jvm.optionals.getOrNull
 
@@ -19,9 +18,10 @@ fun ItemStack.hasEnchantment(enchantment: RegistryKey<Enchantment>): Boolean = e
 fun ItemStack.hasEnchantment(enchantment: HoeEnchantment): Boolean = enchantments.enchantments.any { it.key.getOrNull() == enchantment.registryKey }
 
 fun ItemStack.getEnchantmentLevel(enchantment: RegistryKey<Enchantment>): Int = enchantmentMap[enchantment] ?: -1
+fun ItemStack.getEnchantmentLevel(enchantment: HoeEnchantment): Int = enchantmentMap[enchantment.registryKey] ?: -1
 
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
-    this.damage(amount, player) { p -> p.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
+    this.damage(amount, player, EquipmentSlot.MAINHAND)
 
 fun ItemStack.damage(amount: Int = 1) =
-    this.damage(amount, Random.create(), null)
+    this.damage(amount, null, null)
