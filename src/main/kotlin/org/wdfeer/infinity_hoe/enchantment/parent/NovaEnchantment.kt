@@ -27,8 +27,6 @@ abstract class NovaEnchantment : UsableHarvestChargeEnchantment(Rarity.VERY_RARE
         target.isAlive && target !is AnimalEntity && target != player
 
 
-    override fun getPowerRange(level: Int): IntRange = 30..60
-
     override fun getCooldown(): Int = TickDurationHelper.secondsToTicks(4)
 
     override fun chargeToString(charge: Int): String = "${charge * 100 / getChargeDecrement()}%"

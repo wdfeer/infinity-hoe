@@ -2,7 +2,6 @@ package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.block.CropBlock
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.enchantment.UnbreakingEnchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
@@ -11,11 +10,8 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.roundToInt
-import net.minecraft.util.Rarity
 
 object Automata : HoeEnchantment {
-    override fun getPowerRange(level: Int): IntRange = 25..60
-
     override fun getPath(): String = "automata"
 
     override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutomataListener

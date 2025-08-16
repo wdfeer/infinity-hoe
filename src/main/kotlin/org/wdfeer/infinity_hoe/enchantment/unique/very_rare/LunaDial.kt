@@ -13,9 +13,8 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import java.util.*
 import kotlin.collections.ArrayDeque
-import net.minecraft.util.Rarity
 
-object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
+object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     private const val POSITIONS_STORED = 200
 
     // Vector3f instead of Vec3d to conserve RAM
@@ -51,8 +50,6 @@ object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker
     override fun chargeToString(charge: Int): String = "%.2f".format(charge.toFloat() / getChargeDecrement())
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_AQUA
-
-    override fun getPowerRange(level: Int): IntRange = 30..100
 
     override fun getPath(): String = "luna_dial"
 }

@@ -60,11 +60,9 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
         fireball.remove(Entity.RemovalReason.KILLED)
     }
 
-    override val maxLvl: Int get() = 4
     override fun getMaxCharge(level: Int): Int = getChargeDecrement() * level * 16
     override fun getChargeDecrement(): Int = 10
     override fun chargeToString(charge: Int): String = "${(charge / getChargeDecrement())}"
     override fun getTooltipColor(): Formatting = Formatting.RED
-    override fun getPowerRange(level: Int): IntRange = 22 + 3 * level..60
     override fun getPath(): String = "fireblast"
 }

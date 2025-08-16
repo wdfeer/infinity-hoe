@@ -7,14 +7,8 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
-import net.minecraft.util.Rarity
 
-object Blazing : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
-    override val maxLvl: Int
-        get() = 2
-
-    override fun getPowerRange(level: Int): IntRange = 20 + 5 * level..60
-
+object Blazing : UsableHarvestChargeEnchantment() {
     override fun getPath(): String = "blazing"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

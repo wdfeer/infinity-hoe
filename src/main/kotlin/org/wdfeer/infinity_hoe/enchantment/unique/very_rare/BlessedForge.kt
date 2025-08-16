@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import net.minecraft.util.Rarity
 
-object BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object BlessedForge : UsableHarvestChargeEnchantment() {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val oldStack = player.handItems.firstOrNull {
             it != hoe && toolUpgrades.containsKey(it.item)
@@ -44,7 +44,6 @@ object BlessedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement()
     override fun getChargeDecrement(): Int = 4096
-    override fun getPowerRange(level: Int): IntRange = 23..60
     override fun getPath(): String = "blessed_forge"
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"

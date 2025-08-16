@@ -9,8 +9,6 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 import net.minecraft.util.Rarity
 
 object Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
-    override fun getPowerRange(level: Int): IntRange = 20..60
-
     override fun getPath(): String = "demolition"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {

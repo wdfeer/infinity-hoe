@@ -18,11 +18,6 @@ import net.minecraft.util.Rarity
 object MiracleBlessing : HoeEnchantment, HoldTicker {
     override fun getPath(): String = "miracle_blessing"
 
-    override val maxLvl: Int
-        get() = 3
-
-    override fun getPowerRange(level: Int): IntRange = (17..23).incrementBounds(level * 4)
-
     override fun canIteratePlayers(world: ServerWorld) = world.time % secondsToTicks(7) == 0L
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {
         val level = hoe.getEnchantmentLevel(this)

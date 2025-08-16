@@ -13,7 +13,6 @@ import net.minecraft.util.Rarity
 
 object EquivalentExchange : HarvestChargeEnchantment(Rarity.VERY_RARE), HoldTicker {
     override fun getMaxCharge(level: Int): Int = 1000
-    override fun getPowerRange(level: Int): IntRange = 20..60
     override fun getPath(): String = "equivalent_exchange"
     override fun getTooltipColor(): Formatting = Formatting.YELLOW
 
