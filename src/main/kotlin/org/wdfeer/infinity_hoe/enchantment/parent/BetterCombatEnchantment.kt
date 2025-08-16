@@ -48,6 +48,4 @@ abstract class BetterCombatEnchantment : HoeEnchantment {
             cir.returnValue = attributes[this]
         }
     }
-
-    override fun canAccept(other: Enchantment?): Boolean = other !is BetterCombatEnchantment
 }

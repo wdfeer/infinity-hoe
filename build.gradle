@@ -86,6 +86,11 @@ publishing {
 	}
 }
 
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
 tasks.register("icongen", Exec) {
 	workingDir projectDir
 

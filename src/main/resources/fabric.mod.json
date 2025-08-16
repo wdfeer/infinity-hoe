@@ -1,45 +1,51 @@
 {
-	"schemaVersion": 1,
-	"id": "infinity_hoe",
-	"version": "${version}",
-	"name": "Infinity Hoe",
-	"description": "Hoe Enchantments",
-	"authors": [
-		"wdfeer"
-	],
-	"contact": {
-		"homepage": "https://github.com/wdfeer/infinity-hoe",
-		"sources": "https://github.com/wdfeer/infinity-hoe"
-	},
-	"license": "GPL-3.0",
-	"icon": "assets/infinity_hoe/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			{
-				"value": "org.wdfeer.infinity_hoe.InfinityHoe",
-				"adapter": "kotlin"
-			}
-		],
-		"client": [
-			{
-				"value": "org.wdfeer.infinity_hoe.client.InfinityHoeClient",
-				"adapter": "kotlin"
-			}
-		]
-	},
-	"mixins": [
-		"infinity_hoe.mixins.json",
-		"infinity_hoe.bettercombat.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.16.10",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*",
-		"fabric-language-kotlin": "*"
-	},
-	"suggests": {
-		"bettercombat": "*"
-	}
+  "schemaVersion": 1,
+  "id": "infinity_hoe",
+  "version": "${version}",
+  "name": "Infinity Hoe",
+  "description": "Hoe Enchantments",
+  "authors": [
+    "wdfeer"
+  ],
+  "contact": {
+    "homepage": "https://github.com/wdfeer/infinity-hoe",
+    "sources": "https://github.com/wdfeer/infinity-hoe"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/infinity_hoe/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "value": "org.wdfeer.infinity_hoe.InfinityHoe",
+        "adapter": "kotlin"
+      }
+    ],
+    "client": [
+      {
+        "value": "org.wdfeer.infinity_hoe.client.InfinityHoeClient",
+        "adapter": "kotlin"
+      }
+    ],
+    "fabric-datagen": [
+      {
+        "value": "org.wdfeer.infinity_hoe.datagen.InfinityHoeDatagen",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [
+    "infinity_hoe.mixins.json",
+    "infinity_hoe.bettercombat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*"
+  },
+  "suggests": {
+    "bettercombat": "*"
+  }
 }
