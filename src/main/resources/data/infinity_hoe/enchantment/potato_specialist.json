@@ -1,0 +1,19 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.infinity_hoe.potato_specialist"
+  },
+  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 24,
+    "per_level_above_first": 0
+  },
+  "slots": [],
+  "supported_items": "#minecraft:hoes",
+  "weight": 3
+}
