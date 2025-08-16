@@ -34,6 +34,4 @@ object DemeterWrath : DemeterEnchantment(), PreAttackListener {
         add("%.1f".format(DAMAGE))
         addAll(super.getTooltipArgs(hoe))
     }
-
-    override fun canAccept(other: Enchantment?): Boolean = super.canAccept(other) && other != MysticBlade
 }

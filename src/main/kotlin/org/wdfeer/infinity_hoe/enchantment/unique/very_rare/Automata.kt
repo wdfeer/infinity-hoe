@@ -14,8 +14,6 @@ import kotlin.math.roundToInt
 object Automata : HoeEnchantment {
     override fun getPath(): String = "automata"
 
-    override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutomataListener
-
     private const val CHECK_INTERVAL = 8
     const val HARVEST_RANGE = 2
     const val SEED_COLLECT_RANGE = 3
