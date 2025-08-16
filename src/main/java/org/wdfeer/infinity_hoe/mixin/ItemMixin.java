@@ -1,9 +1,9 @@
 package org.wdfeer.infinity_hoe.mixin;
 
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -26,7 +26,7 @@ class ItemMixin {
     }
 
     @Inject(method = "appendTooltip", at = @At("RETURN"))
-    private void injectAppendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
+    private void injectAppendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
         HoeTooltip.INSTANCE.mixinAppendTooltip(stack, tooltip);
     }
 }
