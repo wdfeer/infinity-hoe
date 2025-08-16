@@ -20,8 +20,6 @@ import org.wdfeer.infinity_hoe.extension.stacks
 object Untill : ChainEnchantment<InfinityUntillAction>(Rarity.COMMON) {
     override fun getPath(): String = "untill"
 
-    override fun getPowerRange(level: Int): IntRange = 4..40
-
     fun untill(
         world: World,
         pos: BlockPos,

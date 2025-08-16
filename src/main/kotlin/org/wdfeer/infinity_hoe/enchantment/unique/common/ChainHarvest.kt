@@ -14,12 +14,6 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 object ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
     override fun getPath(): String = "chain_harvest"
 
-    override val maxLvl: Int
-        get() = MAX_LEVEL
-
-    const val MAX_LEVEL = 3
-    override fun getPowerRange(level: Int): IntRange = (15..21).incrementBounds(level * 6)
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,

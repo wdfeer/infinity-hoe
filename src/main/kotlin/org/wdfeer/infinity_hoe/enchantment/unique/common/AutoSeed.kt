@@ -23,8 +23,6 @@ import kotlin.math.roundToInt
 object AutoSeed : HoeEnchantment, HarvestListener, TillListener, AutomataListener {
     override fun getPath(): String = "autoseed"
 
-    override fun getPowerRange(level: Int): IntRange = 4..40
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,
