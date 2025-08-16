@@ -17,11 +17,6 @@ import kotlin.math.min
 object AnimalBlessing : HoeEnchantment, HoldTicker {
     override fun getPath(): String = "animal_blessing"
 
-    override val maxLvl: Int
-        get() = 3
-
-    override fun getPowerRange(level: Int): IntRange = (12..20).incrementBounds(level * 5)
-
     override fun canIteratePlayers(world: ServerWorld) = world.time % 20 == 0L
 
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {

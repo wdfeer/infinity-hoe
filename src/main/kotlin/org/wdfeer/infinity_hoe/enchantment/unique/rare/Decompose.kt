@@ -23,10 +23,6 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
     private const val DISTANCE: Int = 4
 
     override fun getPath(): String = "decompose"
-    override val maxLvl: Int
-        get() = 3
-
-    override fun getPowerRange(level: Int): IntRange = (12 + level * 4)..50
     override fun canAccept(other: Enchantment?): Boolean = other !is MendingEnchantment
 
 

@@ -20,11 +20,6 @@ import net.minecraft.util.Rarity
 object Pesticide : HoeEnchantment, HarvestListener, TillListener {
     override fun getPath(): String = "pesticide"
 
-    override val maxLvl: Int
-        get() = 5
-
-    override fun getPowerRange(level: Int): IntRange = (16..24).incrementBounds(level * 2)
-
     override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,

@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 
-abstract class HarvestChargeEnchantment(rarity: Rarity) : ChargeEnchantment(rarity), HarvestListener {
+abstract class HarvestChargeEnchantment() : ChargeEnchantment(), HarvestListener {
     final override fun onCropBroken(
         world: ServerWorld,
         player: ServerPlayerEntity,

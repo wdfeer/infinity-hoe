@@ -15,8 +15,6 @@ import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 import net.minecraft.util.Rarity
 
 object MysticBlade : HoeEnchantment, PreAttackListener {
-    override fun getPowerRange(level: Int): IntRange = 18..50
-
     override fun getPath(): String = "mystic_blade"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
