@@ -37,7 +37,4 @@ object MiracleBlessing : HoeEnchantment, HoldTicker {
         if (Random.roll(3)) it.heal(1.75f)
         if (Random.roll(7)) it.hungerManager.add(1, 1f)
     })
-
-    override fun canAccept(other: Enchantment?): Boolean =
-        super.canAccept(other) && other !is GrowthAcceleration && other !is AnimalBlessing
 }
