@@ -18,7 +18,7 @@ import org.wdfeer.infinity_hoe.extension.incrementBounds
 import net.minecraft.util.Rarity
 
 object Pesticide : HoeEnchantment, HarvestListener, TillListener {
-    override fun getPath(): String = "pesticide"
+    override fun getName(): String = "pesticide"
 
     override fun onCropBroken(
         world: ServerWorld,

@@ -15,7 +15,7 @@ import net.minecraft.util.Rarity
 object AlchemyMushroomEnchantment : HoeEnchantment, PlayerTicker {
     override fun isTreasure(): Boolean = true
     override fun getPowerRange(level: Int): IntRange = 30..60
-    override fun getPath(): String = "alchemy_mushroom"
+    override fun getName(): String = "alchemy_mushroom"
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time.toInt() % 12 == 0
 

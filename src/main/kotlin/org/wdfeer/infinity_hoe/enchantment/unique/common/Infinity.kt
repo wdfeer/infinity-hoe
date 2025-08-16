@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.chain.InfinityTillAction
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 
 object Infinity : ChainEnchantment<InfinityTillAction>(Rarity.COMMON), TillListener {
-    override fun getPath(): String = "infinity"
+    override fun getName(): String = "infinity"
 
     override fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos) {
         if (blockTypes[hoe] != null)

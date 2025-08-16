@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper
 
 object PoisonNova : NovaEnchantment() {
-    override fun getPath(): String = "poison_nova"
+    override fun getName(): String = "poison_nova"
 
     override fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float) {
         target.damage(DamageTypes.INDIRECT_MAGIC, 5f * powerMult, player)

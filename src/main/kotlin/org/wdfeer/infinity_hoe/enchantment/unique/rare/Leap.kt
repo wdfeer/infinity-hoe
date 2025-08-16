@@ -25,5 +25,5 @@ object Leap : UsableHarvestChargeEnchantment() {
     override fun chargeToString(charge: Int): String = "%.1f".format(charge / getChargeDecrement().toFloat())
 
 
-    override fun getPath(): String = "leap"
+    override fun getName(): String = "leap"
 }

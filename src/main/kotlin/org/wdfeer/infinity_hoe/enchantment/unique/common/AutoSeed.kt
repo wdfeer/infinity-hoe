@@ -21,7 +21,7 @@ import org.wdfeer.infinity_hoe.extension.stacks
 import kotlin.math.roundToInt
 
 object AutoSeed : HoeEnchantment, HarvestListener, TillListener, AutomataListener {
-    override fun getPath(): String = "autoseed"
+    override fun getName(): String = "autoseed"
 
     override fun onCropBroken(
         world: ServerWorld,

@@ -7,7 +7,7 @@ import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 object DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
-    override fun getPath(): String = "demeter_grace"
+    override fun getName(): String = "demeter_grace"
 
     private fun getProcs(charge: Int): Float = charge / 50f
 

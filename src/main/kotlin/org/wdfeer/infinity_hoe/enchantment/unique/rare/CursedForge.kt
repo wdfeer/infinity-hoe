@@ -45,7 +45,7 @@ object CursedForge : UsableHarvestChargeEnchantment() {
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement()
     override fun getChargeDecrement(): Int = 256
-    override fun getPath(): String = "cursed_forge"
+    override fun getName(): String = "cursed_forge"
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"
     override fun getTooltipColor(): Formatting = Formatting.DARK_RED

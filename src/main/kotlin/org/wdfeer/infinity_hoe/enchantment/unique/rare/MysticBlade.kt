@@ -15,7 +15,7 @@ import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 import net.minecraft.util.Rarity
 
 object MysticBlade : HoeEnchantment, PreAttackListener {
-    override fun getPath(): String = "mystic_blade"
+    override fun getName(): String = "mystic_blade"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
         val world = target.world as? ServerWorld ?: return

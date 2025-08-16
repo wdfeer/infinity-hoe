@@ -10,7 +10,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import net.minecraft.util.Rarity
 
 object CalciumBurst : ChainEnchantment<CalciumBurstAction>(Rarity.UNCOMMON), HarvestListener {
-    override fun getPath(): String = "calcium_burst"
+    override fun getName(): String = "calcium_burst"
 
     override fun onCropBroken(
         world: ServerWorld,

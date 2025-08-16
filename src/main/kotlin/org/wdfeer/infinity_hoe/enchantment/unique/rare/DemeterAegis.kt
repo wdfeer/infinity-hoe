@@ -9,7 +9,7 @@ import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
 object DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
-    override fun getPath(): String = "demeter_aegis"
+    override fun getName(): String = "demeter_aegis"
 
     private fun getNullifications(charge: Int): Float = charge / getChargeDecrement().toFloat()
 

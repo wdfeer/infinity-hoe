@@ -23,7 +23,7 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun getChargeDecrement(): Int = 1
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
-    private val nbtKey get() = getPath() + "_charge"
+    private val nbtKey get() = getName() + "_charge"
     fun getCharge(hoe: ItemStack): Int = hoe.nbt?.getInt(nbtKey) ?: 0
     fun setCharge(hoe: ItemStack, value: Int) = hoe.orCreateNbt.putInt(nbtKey, value)
 
@@ -42,7 +42,7 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     final override fun appendTooltip(stack: ItemStack, tooltip: MutableList<Text>) {
         tooltip.add(
             Text.translatable(
-                "tooltip.infinity_hoe.${getPath()}.charge", *getTooltipArgs(stack).toTypedArray()
+                "tooltip.infinity_hoe.${getName()}.charge", *getTooltipArgs(stack).toTypedArray()
             ).apply {
                 style = if (getCharge(stack) >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
                     0xafafaf

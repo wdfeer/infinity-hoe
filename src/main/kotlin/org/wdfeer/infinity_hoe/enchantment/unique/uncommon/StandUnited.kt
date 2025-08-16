@@ -26,7 +26,7 @@ object StandUnited : HoeEnchantment, HarvestListener {
     override val maxLvl: Int
         get() = 3
 
-    override fun getPath(): String = "stand_united"
+    override fun getName(): String = "stand_united"
 
     override fun onCropBroken(
         world: ServerWorld,

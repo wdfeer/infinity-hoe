@@ -22,7 +22,7 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
     private const val INTERVAL: Int = 5
     private const val DISTANCE: Int = 4
 
-    override fun getPath(): String = "decompose"
+    override fun getName(): String = "decompose"
     override fun canAccept(other: Enchantment?): Boolean = other !is MendingEnchantment
 
 

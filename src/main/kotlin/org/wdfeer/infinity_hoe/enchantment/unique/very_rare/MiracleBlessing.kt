@@ -16,7 +16,7 @@ import kotlin.random.Random
 import net.minecraft.util.Rarity
 
 object MiracleBlessing : HoeEnchantment, HoldTicker {
-    override fun getPath(): String = "miracle_blessing"
+    override fun getName(): String = "miracle_blessing"
 
     override fun canIteratePlayers(world: ServerWorld) = world.time % secondsToTicks(7) == 0L
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) {

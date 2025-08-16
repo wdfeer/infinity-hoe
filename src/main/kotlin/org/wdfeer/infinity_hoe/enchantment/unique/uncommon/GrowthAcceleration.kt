@@ -17,7 +17,7 @@ import kotlin.random.Random
 import net.minecraft.util.Rarity
 
 object GrowthAcceleration : HoeEnchantment, PlayerTicker, CropCatalyzer {
-    override fun getPath(): String = "growth_acceleration"
+    override fun getName(): String = "growth_acceleration"
 
     override fun canIteratePlayers(world: ServerWorld) = world.time % 20 == 0L
 

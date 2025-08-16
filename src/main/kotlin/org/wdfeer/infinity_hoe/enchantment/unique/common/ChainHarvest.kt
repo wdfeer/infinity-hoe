@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.incrementBounds
 
 object ChainHarvest : ChainEnchantment<ChainHarvestAction>(Rarity.COMMON), HarvestListener {
-    override fun getPath(): String = "chain_harvest"
+    override fun getName(): String = "chain_harvest"
 
     override fun onCropBroken(
         world: ServerWorld,

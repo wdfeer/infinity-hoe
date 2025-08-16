@@ -28,7 +28,7 @@ object GrowingCapital : HoeEnchantment, HarvestListener {
     val getSelfIfCanRegister
         get() = if (FabricLoader.getInstance().isModLoaded(NUMISMATIC_OVERHAUL_ID)) listOf(this) else emptyList()
 
-    override fun getPath(): String = "growing_capital"
+    override fun getName(): String = "growing_capital"
 
     override fun onCropBroken(
         world: ServerWorld,

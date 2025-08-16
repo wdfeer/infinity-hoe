@@ -55,7 +55,7 @@ object Equinox : HoeEnchantment, OnHitListener, HarvestListener, CropCatalyzer {
         return MathHelper.triangleCurve(duration, highPoint, MAX_DURATION) / 7f + 0.01f
     }
 
-    override fun getPath(): String = "equinox"
+    override fun getName(): String = "equinox"
 
     override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration &&
             other !is SoulSiphon &&

@@ -4,7 +4,6 @@ import net.bettercombat.BetterCombatMod
 import net.bettercombat.api.WeaponAttributes
 import net.bettercombat.api.WeaponAttributesHelper
 import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.InfinityHoe
@@ -31,7 +30,7 @@ abstract class BetterCombatEnchantment : HoeEnchantment {
         val attributes: Map<BetterCombatEnchantment, WeaponAttributes?> = canRegister().ifElse(readAttributes(), emptyMap())
 
         private fun readAttributes() = enchantments.associateWith {
-            val stream = getFileInJar("extra/infinity_hoe/bettercombat/${it.getPath()}.json")
+            val stream = getFileInJar("extra/infinity_hoe/bettercombat/${it.getName()}.json")
             val reader = stream?.reader()
 
             if (reader == null) {

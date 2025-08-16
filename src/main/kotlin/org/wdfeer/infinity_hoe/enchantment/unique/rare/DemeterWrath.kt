@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 
 object DemeterWrath : DemeterEnchantment(), PreAttackListener {
-    override fun getPath(): String = "demeter_wrath"
+    override fun getName(): String = "demeter_wrath"
 
     private const val DAMAGE = 5f
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {

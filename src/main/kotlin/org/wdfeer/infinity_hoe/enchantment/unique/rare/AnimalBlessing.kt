@@ -15,7 +15,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 object AnimalBlessing : HoeEnchantment, HoldTicker {
-    override fun getPath(): String = "animal_blessing"
+    override fun getName(): String = "animal_blessing"
 
     override fun canIteratePlayers(world: ServerWorld) = world.time % 20 == 0L
 

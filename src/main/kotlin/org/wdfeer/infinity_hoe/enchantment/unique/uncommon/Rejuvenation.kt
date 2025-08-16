@@ -32,7 +32,7 @@ object Rejuvenation : HoeEnchantment, HarvestListener {
     private const val CONTAGION_IMMUNITY_CHANCE_DIVIDER = 200
     private const val CONTAGION_CURE_CHANCE_DIVIDER = 80
 
-    override fun getPath(): String = "rejuvenation"
+    override fun getName(): String = "rejuvenation"
     override fun getPowerRange(level: Int): IntRange = 10..40
 
     override fun onCropBroken(

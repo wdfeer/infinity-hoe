@@ -64,5 +64,5 @@ object Fireblast : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), TickListene
     override fun getChargeDecrement(): Int = 10
     override fun chargeToString(charge: Int): String = "${(charge / getChargeDecrement())}"
     override fun getTooltipColor(): Formatting = Formatting.RED
-    override fun getPath(): String = "fireblast"
+    override fun getName(): String = "fireblast"
 }

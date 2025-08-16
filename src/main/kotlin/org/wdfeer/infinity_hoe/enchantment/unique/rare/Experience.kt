@@ -15,7 +15,7 @@ import kotlin.math.floor
 import net.minecraft.util.Rarity
 
 object Experience : HoeEnchantment, HarvestListener {
-    override fun getPath(): String = "crop_experience"
+    override fun getName(): String = "crop_experience"
 
     override val maxLvl: Int
         get() = 5

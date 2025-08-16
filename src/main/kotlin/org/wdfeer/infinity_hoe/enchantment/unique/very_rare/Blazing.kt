@@ -9,7 +9,7 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 
 object Blazing : UsableHarvestChargeEnchantment() {
-    override fun getPath(): String = "blazing"
+    override fun getName(): String = "blazing"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         world.spawnEntity(createFireball(world, player))

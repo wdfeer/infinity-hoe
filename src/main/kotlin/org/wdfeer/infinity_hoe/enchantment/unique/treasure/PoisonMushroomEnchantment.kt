@@ -19,7 +19,7 @@ import net.minecraft.util.Rarity
 object PoisonMushroomEnchantment : HoeEnchantment, OnHitListener, PlayerTicker {
     override fun isTreasure(): Boolean = true
     override fun getPowerRange(level: Int): IntRange = 30..60
-    override fun getPath(): String = "poison_mushroom"
+    override fun getName(): String = "poison_mushroom"
 
     override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
         target.addStatusEffect(

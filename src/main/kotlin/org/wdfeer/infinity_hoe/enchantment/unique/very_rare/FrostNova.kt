@@ -11,7 +11,7 @@ import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 
 object FrostNova : NovaEnchantment() {
-    override fun getPath(): String = "frost_nova"
+    override fun getName(): String = "frost_nova"
 
     override fun affect(player: ServerPlayerEntity, target: LivingEntity, powerMult: Float) {
         target.damage(DamageTypes.INDIRECT_MAGIC, 4f * powerMult, player)

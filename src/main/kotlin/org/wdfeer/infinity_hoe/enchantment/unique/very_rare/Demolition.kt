@@ -9,7 +9,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 import net.minecraft.util.Rarity
 
 object Demolition : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
-    override fun getPath(): String = "demolition"
+    override fun getName(): String = "demolition"
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         world.spawnEntity(createTnt(world, player))

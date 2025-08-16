@@ -51,5 +51,5 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_AQUA
 
-    override fun getPath(): String = "luna_dial"
+    override fun getName(): String = "luna_dial"
 }

@@ -12,24 +12,23 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.remove
 import java.util.*
-import net.minecraft.util.Rarity
 
 object SpeedMushroomEnchantment : HoeEnchantment, PlayerTicker {
     override fun isTreasure(): Boolean = true
     override fun getPowerRange(level: Int): IntRange = 30..60
-    override fun getPath(): String = "speed_mushroom"
+    override fun getName(): String = "speed_mushroom"
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % 21 == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        val uuid = UUID.nameUUIDFromBytes(getPath().toByteArray())
+        val uuid = UUID.nameUUIDFromBytes(getName().toByteArray())
         val modifier = player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.getModifier(uuid)
 
         if (player.inventoryStacks.any { it.item != Items.AIR && it.hasEnchantment(this) }) {
             if (modifier == null)
                 player.attributes.addTemporary(
                     EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                    EntityAttributeModifier(uuid, getPath(), 0.015, EntityAttributeModifier.Operation.ADDITION)
+                    EntityAttributeModifier(uuid, getName(), 0.015, EntityAttributeModifier.Operation.ADDITION)
                 )
         } else if (modifier != null) {
             player.attributes.remove(EntityAttributes.GENERIC_MOVEMENT_SPEED, modifier)

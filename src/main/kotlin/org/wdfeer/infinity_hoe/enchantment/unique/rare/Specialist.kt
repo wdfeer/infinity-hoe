@@ -16,7 +16,7 @@ import net.minecraft.util.Rarity
 // FIXME: convert these to jsons
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment,
     DoubleHarvestEnchantment, HarvestListener {
-    override fun getPath(): String = path
+    override fun getName(): String = path
 
     override fun canAccept(other: Enchantment?): Boolean = other !is Specialist
 

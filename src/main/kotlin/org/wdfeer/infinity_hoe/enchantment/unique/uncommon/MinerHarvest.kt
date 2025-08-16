@@ -15,7 +15,7 @@ import org.wdfeer.infinity_hoe.extension.getStatusPotency
 import net.minecraft.util.Rarity
 
 object MinerHarvest : HoeEnchantment, DoubleHarvestEnchantment, HarvestListener {
-    override fun getPath(): String = "miner_harvest"
+    override fun getName(): String = "miner_harvest"
 
     override fun onCropBroken(
         world: ServerWorld,

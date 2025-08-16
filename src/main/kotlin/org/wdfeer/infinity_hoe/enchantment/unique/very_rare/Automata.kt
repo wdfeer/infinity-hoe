@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.roundToInt
 
 object Automata : HoeEnchantment {
-    override fun getPath(): String = "automata"
+    override fun getName(): String = "automata"
 
     override fun canAccept(other: Enchantment?): Boolean = other is UnbreakingEnchantment || other is AutomataListener
 
