@@ -15,5 +15,18 @@
   },
   "slots": [],
   "supported_items": "#minecraft:hoes",
-  "weight": 5
+  "weight": 5,
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.5
+          }
+        }
+      }
+    ]
+  }
 }
