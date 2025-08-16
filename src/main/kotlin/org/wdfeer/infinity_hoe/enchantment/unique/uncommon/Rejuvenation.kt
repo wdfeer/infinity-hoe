@@ -7,19 +7,18 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.passive.AnimalEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries
-import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.extension.stackStatusPotency
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
-import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.ifElse
 import org.wdfeer.infinity_hoe.extension.roll
+import org.wdfeer.infinity_hoe.extension.stackStatusPotency
+import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.jvm.optionals.getOrNull
 import kotlin.random.Random
 

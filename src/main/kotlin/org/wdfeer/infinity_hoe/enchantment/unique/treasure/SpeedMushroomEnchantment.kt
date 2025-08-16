@@ -13,7 +13,6 @@ import org.wdfeer.infinity_hoe.extension.addTemporary
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.remove
-import java.util.*
 
 object SpeedMushroomEnchantment : HoeEnchantment, PlayerTicker {
     override fun getPath(): String = "speed_mushroom"

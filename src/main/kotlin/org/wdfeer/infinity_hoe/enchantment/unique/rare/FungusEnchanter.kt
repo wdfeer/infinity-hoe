@@ -1,12 +1,10 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.block.Blocks
-import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.item.ArmorItem
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.item.ToolItem
-import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting

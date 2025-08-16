@@ -12,7 +12,6 @@ import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.*
-import java.util.*
 import kotlin.random.Random
 
 object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {

@@ -9,7 +9,6 @@ import net.minecraft.util.math.Vec3d
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
-import org.wdfeer.infinity_hoe.extension.incrementBounds
 import org.wdfeer.infinity_hoe.extension.randomRound
 import kotlin.math.floor
 

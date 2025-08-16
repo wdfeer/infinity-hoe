@@ -1,16 +1,14 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.AnimalBlessing
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
-import org.wdfeer.infinity_hoe.extension.*
+import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.roll
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
 
