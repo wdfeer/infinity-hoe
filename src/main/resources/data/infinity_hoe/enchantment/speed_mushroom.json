@@ -3,17 +3,17 @@
   "description": {
     "translate": "enchantment.infinity_hoe.speed_mushroom"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": "",
   "max_cost": {
-    "base": 65,
+    "base": 60,
     "per_level_above_first": 0
   },
   "max_level": 1,
   "min_cost": {
-    "base": 15,
+    "base": 30,
     "per_level_above_first": 0
   },
   "slots": [],
   "supported_items": "#minecraft:hoes",
-  "weight": 1
+  "weight": 0
 }

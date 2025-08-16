@@ -12,11 +12,8 @@ import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.remove
 import java.util.*
-import net.minecraft.util.Rarity
 
 object SpeedMushroomEnchantment : HoeEnchantment, PlayerTicker {
-    override fun isTreasure(): Boolean = true
-    override fun getPowerRange(level: Int): IntRange = 30..60
     override fun getPath(): String = "speed_mushroom"
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % 21 == 0L
