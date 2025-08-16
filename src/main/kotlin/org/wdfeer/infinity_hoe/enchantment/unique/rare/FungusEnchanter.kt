@@ -94,7 +94,6 @@ object FungusEnchanter : ChargeEnchantment(Rarity.RARE), HoldTicker {
     }
 
     override fun getMaxCharge(level: Int): Int = 6000
-    override fun getPowerRange(level: Int): IntRange = 0..25
     override fun getPath(): String = "fungus_enchanter"
     override fun getTooltipColor(): Formatting = Formatting.DARK_GREEN
 }

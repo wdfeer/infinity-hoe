@@ -13,6 +13,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import net.minecraft.util.Rarity
 
+// FIXME: convert these to jsons
 class Specialist(private val path: String, private val crop: Block) : HoeEnchantment,
     DoubleHarvestEnchantment, HarvestListener {
     override fun getPath(): String = path

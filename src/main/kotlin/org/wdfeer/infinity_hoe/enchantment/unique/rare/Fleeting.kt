@@ -26,7 +26,5 @@ object Fleeting : UsableHarvestChargeEnchantment(Rarity.RARE) {
     override fun getChargeDecrement(): Int = 15
     override fun chargeToString(charge: Int): String = "%.1f".format(charge / 10f)
 
-    override fun getPowerRange(level: Int): IntRange = 20..60
-
     override fun getPath(): String = "fleeting"
 }

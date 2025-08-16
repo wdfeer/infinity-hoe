@@ -15,7 +15,7 @@ import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnch
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
-object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
+object CursedForge : UsableHarvestChargeEnchantment() {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val oldStack = (
                 player.handItems + player.inventory.getStack(40) // workaround for two-handed weapons from SimplySwords
@@ -45,7 +45,6 @@ object CursedForge : UsableHarvestChargeEnchantment(Rarity.VERY_RARE) {
 
     override fun getMaxCharge(level: Int): Int = getChargeDecrement()
     override fun getChargeDecrement(): Int = 256
-    override fun getPowerRange(level: Int): IntRange = 17..60
     override fun getPath(): String = "cursed_forge"
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"

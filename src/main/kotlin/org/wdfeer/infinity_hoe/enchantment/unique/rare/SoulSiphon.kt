@@ -20,7 +20,6 @@ object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {
     private const val INTERVAL: Int = 60
 
     override fun getPath(): String = "soul_siphon"
-    override fun getPowerRange(level: Int): IntRange = 19..50
     override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration
 
 

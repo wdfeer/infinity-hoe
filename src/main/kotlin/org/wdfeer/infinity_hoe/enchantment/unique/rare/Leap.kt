@@ -7,7 +7,7 @@ import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import net.minecraft.util.Rarity
 
-object Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
+object Leap : UsableHarvestChargeEnchantment() {
     private const val SPEED = 4.5
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
@@ -24,7 +24,6 @@ object Leap : UsableHarvestChargeEnchantment(Rarity.RARE) {
     override fun getChargeDecrement(): Int = 30
     override fun chargeToString(charge: Int): String = "%.1f".format(charge / getChargeDecrement().toFloat())
 
-    override fun getPowerRange(level: Int): IntRange = 20..60
 
     override fun getPath(): String = "leap"
 }

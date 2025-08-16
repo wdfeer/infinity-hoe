@@ -56,8 +56,6 @@ object Equinox : HoeEnchantment, OnHitListener, HarvestListener, CropCatalyzer {
     }
 
     override fun getPath(): String = "equinox"
-    override fun getPowerRange(level: Int): IntRange = 22..50
-
 
     override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration &&
             other !is SoulSiphon &&
