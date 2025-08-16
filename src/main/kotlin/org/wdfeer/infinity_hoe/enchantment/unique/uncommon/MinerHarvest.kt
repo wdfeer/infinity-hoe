@@ -12,7 +12,6 @@ import org.wdfeer.infinity_hoe.enchantment.parent.DoubleHarvestEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.getStatusPotency
-import net.minecraft.util.Rarity
 
 object MinerHarvest : HoeEnchantment, DoubleHarvestEnchantment, HarvestListener {
     override fun getPath(): String = "miner_harvest"

@@ -3,7 +3,12 @@
   "description": {
     "translate": "enchantment.infinity_hoe.equinox"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": [
+    "infinity_hoe:growth_acceleration",
+    "infinity_hoe:rejuvenation",
+    "infinity_hoe:soul_siphon",
+    "infinity_hoe:stand_united"
+  ],
   "max_cost": {
     "base": 50,
     "per_level_above_first": 0

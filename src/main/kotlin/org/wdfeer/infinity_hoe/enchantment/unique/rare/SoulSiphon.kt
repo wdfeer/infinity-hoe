@@ -1,6 +1,5 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.attribute.EntityAttribute
 import net.minecraft.entity.attribute.EntityAttributeModifier
 import net.minecraft.entity.attribute.EntityAttributes
@@ -9,19 +8,15 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.*
 import java.util.*
 import kotlin.random.Random
-import net.minecraft.util.Rarity
 
 object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {
     private const val INTERVAL: Int = 60
 
     override fun getPath(): String = "soul_siphon"
-    override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration
-
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 

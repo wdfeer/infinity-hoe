@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.stand_united"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": ["infinity_hoe:equinox", "infinity_hoe:rejuvenation"],
   "max_cost": {
     "base": 20,
     "per_level_above_first": 7

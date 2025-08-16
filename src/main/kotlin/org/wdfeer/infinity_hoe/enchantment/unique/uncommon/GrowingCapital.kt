@@ -20,7 +20,6 @@ import org.wdfeer.infinity_hoe.extension.getStatusPotency
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.math.max
 import kotlin.random.Random
-import net.minecraft.util.Rarity
 
 object GrowingCapital : HoeEnchantment, HarvestListener {
     private const val NUMISMATIC_OVERHAUL_ID = "numismatic-overhaul"

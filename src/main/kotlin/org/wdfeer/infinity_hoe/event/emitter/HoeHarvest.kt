@@ -3,7 +3,6 @@ package org.wdfeer.infinity_hoe.event.emitter
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.CropBlock
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack

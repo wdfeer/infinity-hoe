@@ -13,7 +13,6 @@ import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.*
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import kotlin.random.Random
-import net.minecraft.util.Rarity
 
 object MiracleBlessing : HoeEnchantment, HoldTicker {
     override fun getPath(): String = "miracle_blessing"

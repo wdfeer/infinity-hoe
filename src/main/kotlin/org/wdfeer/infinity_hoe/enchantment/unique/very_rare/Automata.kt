@@ -1,7 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.block.CropBlock
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld

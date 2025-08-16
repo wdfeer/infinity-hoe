@@ -1,14 +1,10 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.passive.AnimalEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.Rarity
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.very_rare.MiracleBlessing
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.*
 import kotlin.math.max

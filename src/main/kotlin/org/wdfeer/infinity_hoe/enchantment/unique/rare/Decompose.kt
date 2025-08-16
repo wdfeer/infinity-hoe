@@ -1,7 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.ItemEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity

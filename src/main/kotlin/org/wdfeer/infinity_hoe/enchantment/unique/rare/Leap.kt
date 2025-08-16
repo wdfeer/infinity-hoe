@@ -5,7 +5,6 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
-import net.minecraft.util.Rarity
 
 object Leap : UsableHarvestChargeEnchantment() {
     private const val SPEED = 4.5

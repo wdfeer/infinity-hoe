@@ -1,10 +1,8 @@
 package org.wdfeer.infinity_hoe.enchantment.parent.charge
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.Rarity
 import org.wdfeer.infinity_hoe.event.listener.Usable
 
 abstract class UsableHarvestChargeEnchantment : HarvestChargeEnchantment(), Usable {

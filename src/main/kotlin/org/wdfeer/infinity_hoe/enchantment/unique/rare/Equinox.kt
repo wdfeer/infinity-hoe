@@ -1,20 +1,15 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.Rarity
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.extension.getStatusDuration
 import org.wdfeer.infinity_hoe.extension.stackStatusDuration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.Rejuvenation
-import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.StandUnited
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.OnHitListener
 import org.wdfeer.infinity_hoe.util.MathHelper
@@ -56,9 +51,4 @@ object Equinox : HoeEnchantment, OnHitListener, HarvestListener, CropCatalyzer {
     }
 
     override fun getPath(): String = "equinox"
-
-    override fun canAccept(other: Enchantment?): Boolean = other !is GrowthAcceleration &&
-            other !is SoulSiphon &&
-            other !is StandUnited &&
-            other !is Rejuvenation
 }

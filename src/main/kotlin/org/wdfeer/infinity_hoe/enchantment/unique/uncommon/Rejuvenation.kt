@@ -1,7 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
 import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
@@ -14,14 +13,12 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.extension.stackStatusPotency
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.Equinox
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.util.TickDurationHelper.secondsToTicks
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.ifElse
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
-import net.minecraft.util.Rarity
 
 object Rejuvenation : HoeEnchantment, HarvestListener {
     private val DURATION: Int = secondsToTicks(2)
@@ -33,7 +30,6 @@ object Rejuvenation : HoeEnchantment, HarvestListener {
     private const val CONTAGION_CURE_CHANCE_DIVIDER = 80
 
     override fun getPath(): String = "rejuvenation"
-    override fun getPowerRange(level: Int): IntRange = 10..40
 
     override fun onCropBroken(
         world: ServerWorld,
@@ -69,6 +65,4 @@ object Rejuvenation : HoeEnchantment, HarvestListener {
             entity.addStatusEffect(StatusEffectInstance(immunity, secondsToTicks(infected.ifElse(10, 240))))
         }
     }
-
-    override fun canAccept(other: Enchantment?): Boolean = other !is StandUnited && other !is Equinox
 }
