@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Infinity
 import org.wdfeer.infinity_hoe.enchantment.unique.common.Untill
 import org.wdfeer.infinity_hoe.event.listener.Usable
@@ -41,7 +42,7 @@ object HoeUse {
             checkUntill(context.world, context.player, context.stack, context.blockPos, useCallback)
     }
 
-    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: Enchantment?) {
+    fun onTill(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, pos: BlockPos, cause: HoeEnchantment?) {
         EnchantmentLoader.enchantments.forEach {
             val listener = it as? TillListener ?: return@forEach
             if (it != cause && hoe.hasEnchantment(it))

@@ -32,7 +32,7 @@ object HoeHarvest {
         }
     }
 
-    fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, cause: Enchantment?) {
+    fun onCropBreak(world: ServerWorld, player: ServerPlayerEntity, pos: BlockPos, state: BlockState, cause: HoeEnchantment?) {
         onCropBreak(world, player, pos, state) { it != cause }
     }
 
