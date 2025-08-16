@@ -19,11 +19,6 @@ import net.minecraft.util.Rarity
 object GrowthAcceleration : HoeEnchantment, PlayerTicker, CropCatalyzer {
     override fun getPath(): String = "growth_acceleration"
 
-    override val maxLvl: Int
-        get() = 3
-
-    override fun getPowerRange(level: Int): IntRange = (8..16).incrementBounds(level * 5)
-
     override fun canIteratePlayers(world: ServerWorld) = world.time % 20 == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {

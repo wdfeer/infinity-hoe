@@ -49,7 +49,5 @@ abstract class BetterCombatEnchantment : HoeEnchantment {
         }
     }
 
-    override fun getPowerRange(level: Int): IntRange = 16..40
-
     override fun canAccept(other: Enchantment?): Boolean = other !is BetterCombatEnchantment
 }

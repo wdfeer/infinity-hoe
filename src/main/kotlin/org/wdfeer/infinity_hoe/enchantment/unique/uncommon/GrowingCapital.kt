@@ -28,7 +28,6 @@ object GrowingCapital : HoeEnchantment, HarvestListener {
     val getSelfIfCanRegister
         get() = if (FabricLoader.getInstance().isModLoaded(NUMISMATIC_OVERHAUL_ID)) listOf(this) else emptyList()
 
-    override fun getPowerRange(level: Int): IntRange = 15..45
     override fun getPath(): String = "growing_capital"
 
     override fun onCropBroken(
@@ -50,7 +49,7 @@ object GrowingCapital : HoeEnchantment, HarvestListener {
             else -> null
         } ?: return
 
-        val coin: Item = Registries.ITEM[Identifier(coinId)].takeIf { it != Items.AIR } ?: run {
+        val coin: Item = Registries.ITEM[Identifier.of(NUMISMATIC_OVERHAUL_ID, coinId)].takeIf { it != Items.AIR } ?: run {
             InfinityHoe.logger.error("Coin $coinId not found!")
             return
         }
