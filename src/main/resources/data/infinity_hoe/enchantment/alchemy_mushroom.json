@@ -3,7 +3,6 @@
   "description": {
     "translate": "enchantment.infinity_hoe.alchemy_mushroom"
   },
-  "exclusive_set": "minecraft:loyalty",
   "max_cost": {
     "base": 60,
     "per_level_above_first": 0

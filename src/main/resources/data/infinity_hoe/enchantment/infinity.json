@@ -3,7 +3,6 @@
   "description": {
     "translate": "enchantment.infinity_hoe.infinity"
   },
-  "exclusive_set": "minecraft:loyalty",
   "max_cost": {
     "base": 21,
     "per_level_above_first": 6

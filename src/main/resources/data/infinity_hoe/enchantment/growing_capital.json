@@ -3,7 +3,6 @@
   "description": {
     "translate": "enchantment.infinity_hoe.growing_capital"
   },
-  "exclusive_set": "minecraft:loyalty",
   "max_cost": {
     "base": 45,
     "per_level_above_first": 0
