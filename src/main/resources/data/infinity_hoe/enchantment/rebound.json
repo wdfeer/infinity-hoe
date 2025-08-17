@@ -15,6 +15,9 @@
   },
   "supported_items": "#minecraft:hoes",
   "weight": 5,
+  "slots": [
+    "mainhand"
+  ],
   "effects": {
     "minecraft:damage": [
       {
