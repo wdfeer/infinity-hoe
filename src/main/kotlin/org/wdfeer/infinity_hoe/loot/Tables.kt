@@ -15,6 +15,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.registry.RegistryKey
 import org.wdfeer.infinity_hoe.enchantment.unique.rare.Experience
+import org.wdfeer.infinity_hoe.extension.getPlaceholderEntry
 
 private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float) = LootPool.builder()
     .with(getItemBuilder(item, enchantCount))
@@ -101,7 +102,10 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
         LootPool.builder().with(
             ItemEntry.builder(Items.IRON_HOE).apply(
                 SetEnchantmentsLootFunction.Builder()
-                    .enchantment(Experience.registryEntry, UniformLootNumberProvider.create(1f, 5f))
+                    .enchantment(
+                        Experience.registryKey.getPlaceholderEntry(), // The actual entry is not loaded yet - testing needed
+                        UniformLootNumberProvider.create(1f, 5f)
+                    )
             )
         )
     )

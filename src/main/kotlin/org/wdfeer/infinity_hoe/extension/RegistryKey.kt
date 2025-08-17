@@ -4,6 +4,7 @@ import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.Registries
 import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.registry.entry.RegistryEntryOwner
 
 @Suppress("UNCHECKED_CAST")
 fun <T> RegistryKey<T>.getValue(): T? {
@@ -18,3 +19,6 @@ fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
         ?: return null
     return registry.getEntry(this).orElse(null)
 }
+
+fun <T> RegistryKey<T>.getPlaceholderEntry(): RegistryEntry<T> =
+    RegistryEntry.Reference.standAlone<T>(object : RegistryEntryOwner<T> { }, this)

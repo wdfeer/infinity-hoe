@@ -16,6 +16,8 @@ import org.wdfeer.infinity_hoe.enchantment.unique.treasure.HealMushroomEnchantme
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchantment
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.SpeedMushroomEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
+import org.wdfeer.infinity_hoe.extension.addEnchantment
+import org.wdfeer.infinity_hoe.extension.getEntry
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.removeEnchantment
@@ -88,7 +90,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
             .randomOrNull() ?: return
 
         val enchantment = mushroomEnchantments.filter { !stack.hasEnchantment(it) }.random()
-        stack.addEnchantment(enchantment.registryEntry, 1)
+        stack.addEnchantment(enchantment.registryKey, 1)
     }
 
     override fun getMaxCharge(level: Int): Int = 6000

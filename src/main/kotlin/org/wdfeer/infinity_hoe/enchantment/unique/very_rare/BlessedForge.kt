@@ -11,6 +11,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.toolUpgrades
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.extension.addEnchantment
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
+import org.wdfeer.infinity_hoe.extension.getEntry
 
 object BlessedForge : UsableHarvestChargeEnchantment() {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
@@ -33,7 +34,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
                 AnimalBlessing,
                 MiracleBlessing
             ).filter { !oldEnchants.containsKey(it.registryKey) }.randomOrNull() ?: return false
-            newStack.addEnchantment(blessing.registryEntry, 3)
+            newStack.addEnchantment(blessing.registryKey, 3)
 
             oldStack.count = 0
             player.inventory.insertStack(newStack)
