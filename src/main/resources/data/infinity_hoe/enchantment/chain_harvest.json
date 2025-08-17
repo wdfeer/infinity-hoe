@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.chain_harvest"
   },
-  "exclusive_set": "",
+  "exclusive_set": "minecraft:loyalty",
   "max_cost": {
     "base": 21,
     "per_level_above_first": 6

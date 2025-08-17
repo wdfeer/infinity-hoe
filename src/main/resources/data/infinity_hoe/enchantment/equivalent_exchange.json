@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.equivalent_exchange"
   },
-  "exclusive_set": "",
+  "exclusive_set": "minecraft:loyalty",
   "max_cost": {
     "base": 60,
     "per_level_above_first": 0
