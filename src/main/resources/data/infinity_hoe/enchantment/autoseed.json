@@ -3,7 +3,7 @@
   "description": {
     "translate": "enchantment.infinity_hoe.autoseed"
   },
-  "exclusive_set": "#minecraft:exclusive_set/mining",
+  "exclusive_set": "",
   "max_cost": {
     "base": 40,
     "per_level_above_first": 0
