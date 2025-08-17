@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "alchemy_mushroom",
-    "speed_mushroom",
-    "healing_mushroom",
-    "poison_mushroom"
+    "infinity_hoe:alchemy_mushroom",
+    "infinity_hoe:speed_mushroom",
+    "infinity_hoe:healing_mushroom",
+    "infinity_hoe:poison_mushroom"
   ]
 }
