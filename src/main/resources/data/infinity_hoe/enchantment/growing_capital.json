@@ -12,6 +12,7 @@
     "base": 15,
     "per_level_above_first": 0
   },
+  "slots": [],
   "supported_items": "#minecraft:hoes",
   "weight": 5
 }
