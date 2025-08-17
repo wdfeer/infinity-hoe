@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "alchemy_mushroom",
+    "speed_mushroom",
+    "healing_mushroom",
+    "poison_mushroom"
+  ]
+}

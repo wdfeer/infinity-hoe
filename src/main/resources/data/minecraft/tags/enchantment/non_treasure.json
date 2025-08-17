@@ -1,13 +1,11 @@
 {
   "replace": false,
   "values": [
-    "alchemy_mushroom",
     "calcium_burst",
     "demeter_grace",
     "frost_nova",
     "leap",
     "poison_nova",
-    "speed_mushroom",
     "animal_blessing",
     "carrot_specialist",
     "demeter_wrath",
@@ -32,7 +30,6 @@
     "beetroot_specialist",
     "cursed_forge",
     "equivalent_exchange",
-    "healing_mushroom",
     "mystic_blade",
     "rejuvenation",
     "blazing",
@@ -45,7 +42,6 @@
     "demeter_aegis",
     "fleeting",
     "infinity",
-    "poison_mushroom",
     "soul_siphon"
   ]
 }
