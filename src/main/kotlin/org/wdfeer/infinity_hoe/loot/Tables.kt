@@ -42,6 +42,7 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
         listOf(
             LootTables.SPAWN_BONUS_CHEST,
             LootTables.VILLAGE_TOOLSMITH_CHEST,
+            LootTables.TRIAL_CHAMBERS_ENTRANCE_CHEST,
         ),
         randomlyEnchantedLoot(Items.STONE_HOE, 1, 0.4f)
     ),
@@ -64,7 +65,8 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
             LootTables.SHIPWRECK_TREASURE_CHEST,
             LootTables.BURIED_TREASURE_CHEST,
             LootTables.FISHING_TREASURE_GAMEPLAY,
-            LootTables.WOODLAND_MANSION_CHEST
+            LootTables.WOODLAND_MANSION_CHEST,
+            LootTables.TRIAL_CHAMBERS_INTERSECTION_CHEST,
         ),
         randomlyEnchantedLoot(Items.IRON_HOE, 2, 0.25f)
     ),
@@ -74,12 +76,15 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
             LootTables.BASTION_BRIDGE_CHEST,
             LootTables.BASTION_OTHER_CHEST,
             LootTables.NETHER_BRIDGE_CHEST,
+            LootTables.TRIAL_CHAMBERS_REWARD_COMMON_CHEST
         ),
         randomlyEnchantedLoot(Items.GOLDEN_HOE, 3, 0.2f)
     ),
     GoldRare(
         listOf(
             LootTables.BASTION_TREASURE_CHEST,
+            LootTables.TRIAL_CHAMBERS_REWARD_RARE_CHEST,
+            LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_COMMON_CHEST
         ),
         randomlyEnchantedLoot(Items.GOLDEN_HOE, 5, 0.25f)
     ),
@@ -87,6 +92,7 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
         listOf(
             LootTables.ANCIENT_CITY_CHEST,
             LootTables.END_CITY_TREASURE_CHEST,
+            LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_RARE_CHEST
         ),
         randomlyEnchantedLoot(Items.DIAMOND_HOE, 4, 0.2f)
     ),
@@ -94,6 +100,7 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
         listOf(
             LootTables.ANCIENT_CITY_CHEST,
             LootTables.BASTION_TREASURE_CHEST,
+            LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_UNIQUE_CHEST
         ),
         randomlyEnchantedLoot(Items.NETHERITE_HOE, 5, 0.03f)
     ),
@@ -108,5 +115,5 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
                     )
             )
         )
-    )
+    ),
 }
