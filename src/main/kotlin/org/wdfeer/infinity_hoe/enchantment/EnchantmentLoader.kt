@@ -45,7 +45,8 @@ object EnchantmentLoader {
         BlessedForge,
         MiracleBlessing,
         Fireblast,
-        FungusEnchanter
+        FungusEnchanter,
+        Pestilence
     ).plus(FungusEnchanter.mushroomEnchantments) +
             BetterCombatEnchantment.enchantments +
             Specialist.enchantments +
