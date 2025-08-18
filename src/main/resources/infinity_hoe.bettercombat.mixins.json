@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "SilverfishMixin",
-    "bettercombat.WeaponRegistryMixin"
+    "bettercombat.WeaponRegistryMixin",
+    "pestilence.MobEntityMixin",
+    "pestilence.SilverfishMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -3,19 +3,17 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.mob.SilverfishEntity
-import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
-import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
-import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.math.max
 import kotlin.random.Random
 
+// The silverfish not targeting player is handled in SilverfishMixin.java
 object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
     override fun getPath(): String = "pestilence"
 
@@ -39,7 +37,6 @@ object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
 
     private fun getPlayerTickChance(silverfish: Int): Float = max(0.8f, silverfish / 10f)
 
-    fun SilverfishEntity.silverfishInitGoalsMixin() {
-        // TODO: modify silverfish ActiveTargetGoal to not target players with Pestilence hoe
-    }
+    fun isValidPlayer(player: ServerPlayerEntity): Boolean =
+        player.handItems.any { !it.isEmpty && it.hasEnchantment(this) }
 }
