@@ -9,7 +9,10 @@
     "MiningItemMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
-    "ItemEntityMixin"
+    "ItemEntityMixin",
+    "pestilence.MobEntityMixin",
+    "pestilence.SilverfishMixin",
+    "bettercombat.WeaponRegistryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
