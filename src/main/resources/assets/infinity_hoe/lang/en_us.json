@@ -106,5 +106,7 @@
   "enchantment.infinity_hoe.speed_mushroom": "Cobalt Pleurotus",
   "enchantment.infinity_hoe.speed_mushroom.desc": "Move slightly faster while in inventory.",
   "enchantment.infinity_hoe.growing_capital": "Growing Capital",
-  "enchantment.infinity_hoe.growing_capital.desc": "Chance to get coins on harvest."
+  "enchantment.infinity_hoe.growing_capital.desc": "Chance to get coins on harvest.",
+  "enchantment.infinity_hoe.pestilence": "Pestilence",
+  "enchantment.infinity_hoe.pestilence.desc": "While held, gain Infested, Silverfish cannot damage you and catalyze crop growth."
 }

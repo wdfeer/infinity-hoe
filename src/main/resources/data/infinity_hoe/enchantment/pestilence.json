@@ -1,9 +1,9 @@
 {
   "anvil_cost": 8,
   "description": {
-    "translate": "enchantment.infinity_hoe.soul_siphon"
+    "translate": "enchantment.infinity_hoe.pestilence"
   },
-  "exclusive_set": ["infinity_hoe:growth_acceleration", "infinity_hoe:pestilence"],
+  "exclusive_set": ["infinity_hoe:growth_acceleration", "infinity_hoe:soul_siphon"],
   "max_cost": {
     "base": 50,
     "per_level_above_first": 0
