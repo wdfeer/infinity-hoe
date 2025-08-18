@@ -19,7 +19,7 @@ object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
 
     override fun canIteratePlayers(world: ServerWorld) = world.time % 20 == 0L
 
-    private const val DISTANCE = 5f
+    private const val DISTANCE = 10f
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
         val hoe = player.handItems.find { !it.isEmpty && it.hasEnchantment(this) } ?: return
@@ -27,15 +27,16 @@ object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
         player.addStatusEffect(StatusEffectInstance(StatusEffects.INFESTED, 40))
 
         val silverfish = world.iterateEntities().filterIsInstance<SilverfishEntity>().count {
-            it.distanceTo(player) < DISTANCE
+            it.isAlive && it.distanceTo(player) < DISTANCE
         }
+        if (silverfish == 0) return
 
         if (!Random.roll(getPlayerTickChance(silverfish))) return
 
         catalyze(world, player, 3, hoe, 0.5f)
     }
 
-    private fun getPlayerTickChance(silverfish: Int): Float = max(0.8f, silverfish / 10f)
+    private fun getPlayerTickChance(silverfish: Int): Float = max(0.5f, silverfish / 20f)
 
     fun silverfishIgnorePlayer(player: ServerPlayerEntity): Boolean =
         player.handItems.any { !it.isEmpty && it.hasEnchantment(this) }
