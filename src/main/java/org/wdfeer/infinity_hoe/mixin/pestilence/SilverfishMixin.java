@@ -20,6 +20,6 @@ class SilverfishMixin {
         targetSelector.add(2, new ActiveTargetGoal<>((SilverfishEntity) (Object) this,
                 PlayerEntity.class,
                 true,
-                livingEntity -> livingEntity instanceof ServerPlayerEntity player && Pestilence.INSTANCE.isValidPlayer(player)));
+                livingEntity -> livingEntity instanceof ServerPlayerEntity player && !Pestilence.INSTANCE.silverfishIgnorePlayer(player)));
     }
 }

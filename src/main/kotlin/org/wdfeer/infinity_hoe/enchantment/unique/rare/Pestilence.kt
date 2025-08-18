@@ -37,6 +37,6 @@ object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
 
     private fun getPlayerTickChance(silverfish: Int): Float = max(0.8f, silverfish / 10f)
 
-    fun isValidPlayer(player: ServerPlayerEntity): Boolean =
+    fun silverfishIgnorePlayer(player: ServerPlayerEntity): Boolean =
         player.handItems.any { !it.isEmpty && it.hasEnchantment(this) }
 }
