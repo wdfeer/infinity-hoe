@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 interface HoldTicker : PlayerTicker {

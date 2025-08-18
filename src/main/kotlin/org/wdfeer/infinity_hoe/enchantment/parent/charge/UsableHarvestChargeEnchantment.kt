@@ -15,7 +15,7 @@ abstract class UsableHarvestChargeEnchantment : HarvestChargeEnchantment(), Usab
         if (charge < getChargeDecrement()) return
 
         if (useCharge(world, player, hoe)) {
-            player.itemCooldownManager.set(hoe.item, getCooldown())
+            player.itemCooldownManager.set(hoe, getCooldown())
             setChargeWithSound(world, player, hoe, charge - getUsedCharge(charge))
         }
     }

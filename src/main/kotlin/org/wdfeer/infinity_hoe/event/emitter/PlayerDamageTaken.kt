@@ -4,6 +4,7 @@ import net.minecraft.item.HoeItem
 import net.minecraft.server.network.ServerPlayerEntity
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object PlayerDamageTaken {

@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.mixin.pestilence;
 
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.mob.SilverfishEntity;
@@ -17,9 +18,12 @@ class SilverfishMixin {
     private void injectGoals(CallbackInfo ci) {
         GoalSelector targetSelector = ((MobEntityMixin) this).getTargetSelector();
         targetSelector.clear((goal -> goal instanceof ActiveTargetGoal));
-        targetSelector.add(2, new ActiveTargetGoal<>((SilverfishEntity) (Object) this,
+        TargetPredicate.EntityPredicate predicate = ((livingEntity, world) ->
+                livingEntity instanceof ServerPlayerEntity player && !Pestilence.INSTANCE.silverfishIgnorePlayer(player));
+        var goal = new ActiveTargetGoal<>((SilverfishEntity) (Object) this,
                 PlayerEntity.class,
                 true,
-                livingEntity -> livingEntity instanceof ServerPlayerEntity player && !Pestilence.INSTANCE.silverfishIgnorePlayer(player)));
+                predicate);
+        targetSelector.add(2, goal);
     }
 }

@@ -9,7 +9,6 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
-import net.minecraft.util.TypedActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
@@ -66,13 +65,13 @@ object HoeUse {
         world: World,
         user: PlayerEntity,
         hand: Hand,
-        cir: CallbackInfoReturnable<TypedActionResult<ItemStack>>
+        cir: CallbackInfoReturnable<ActionResult>
     ) {
         val serverWorld = world as? ServerWorld ?: return
         val serverPlayer = user as? ServerPlayerEntity ?: return
         val stack = serverPlayer.getStackInHand(hand)
 
-        if (stack.item is HoeItem && cir.returnValue.result == ActionResult.PASS)
+        if (stack.item is HoeItem && cir.returnValue == ActionResult.PASS)
         {
             EnchantmentLoader.enchantments.forEach {
                 val listener = it as? Usable ?: return@forEach

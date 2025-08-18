@@ -22,8 +22,8 @@ object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        val attribute = EntityAttributes.GENERIC_MAX_HEALTH
-        val mod = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)?.getModifier(modifierId)
+        val attribute = EntityAttributes.MAX_HEALTH
+        val mod = player.getAttributeInstance(EntityAttributes.MAX_HEALTH)?.getModifier(modifierId)
 
         val hoe = player.handItems.find { !it.isEmpty && it.hasEnchantment(this) }
 
@@ -38,7 +38,7 @@ object SoulSiphon : HoeEnchantment, PlayerTicker, CropCatalyzer {
         if (catalyze(world, player, 3, hoe, 0.5f)) {
             player.attributes.addTemporary(attribute.value(), getModifier(mod?.value?.minus(2) ?: -2.0))
 
-            player.damage(DamageTypes.MAGIC, 2f)
+            player.damage(DamageTypes.MAGIC, 2f, player)
         }
     }
 

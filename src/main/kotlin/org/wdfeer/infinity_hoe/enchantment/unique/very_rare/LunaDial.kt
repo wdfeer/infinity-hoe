@@ -34,14 +34,13 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean =
-        playerPositions[player.uuid]?.run {
-            if (isEmpty()) null
-            else this
+        playerPositions[player.uuid]?.let {
+            if (it.isEmpty()) null
+            else it
         }?.first()?.run {
             Vec3d(x.toDouble(), y.toDouble(), z.toDouble())
         }?.let {
-            player.startFallFlying()
-            player.setPosition(it)
+            player.teleport(it.x, it.y, it.z, true)
             true
         } ?: false
 

@@ -16,6 +16,7 @@ import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
 import org.wdfeer.infinity_hoe.event.listener.TillListener
 import org.wdfeer.infinity_hoe.extension.getAdjacentHorizontally
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.stacks
 import kotlin.math.roundToInt
 

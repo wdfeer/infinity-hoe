@@ -25,7 +25,7 @@ object MiracleBlessing : HoeEnchantment, HoldTicker {
     private val effects: List<(ServerPlayerEntity) -> Unit> = listOf({
         it.addStatusEffect(StatusEffectInstance(StatusEffects.ABSORPTION, secondsToTicks(7)))
         if (Random.roll(7)) it.heal(2.5f)
-        if (Random.roll(7)) it.hungerManager.exhaustion = 0f
+        if (Random.roll(7)) it.hungerManager.saturationLevel += 0.5f
     }, {
         it.addStatusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, secondsToTicks(7)))
         if (Random.roll(5)) it.heal(2f)

@@ -17,7 +17,7 @@ fun <T> RegistryKey<T>.getValue(): T? {
 fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
     val registry = Registries.REGISTRIES[this.registry] as? Registry<T>
         ?: return null
-    return registry.getEntry(this).orElse(null)
+    return registry.getEntry(this.value).orElse(null)
 }
 
 fun <T> RegistryKey<T>.getPlaceholderEntry(): RegistryEntry<T> =

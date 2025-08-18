@@ -13,6 +13,7 @@ import net.minecraft.world.World
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HarvestListener
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeHarvest {

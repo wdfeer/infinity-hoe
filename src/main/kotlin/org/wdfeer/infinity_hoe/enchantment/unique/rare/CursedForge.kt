@@ -1,10 +1,10 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.item.HoeItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.item.ToolItem
 import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -13,6 +13,7 @@ import net.minecraft.util.Identifier
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.extension.addEnchantment
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object CursedForge : UsableHarvestChargeEnchantment() {
@@ -26,7 +27,7 @@ object CursedForge : UsableHarvestChargeEnchantment() {
             }
 
         return if (oldStack != null) {
-            val oldItem = oldStack.item as ToolItem
+            val oldItem = oldStack.item
             oldStack.count = 0
 
             val newItem = toolUpgrades[oldItem]

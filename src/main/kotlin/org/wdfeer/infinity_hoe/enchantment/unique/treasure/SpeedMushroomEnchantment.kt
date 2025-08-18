@@ -21,16 +21,16 @@ object SpeedMushroomEnchantment : HoeEnchantment, PlayerTicker {
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
         val id = Identifier.of(MOD_ID, getPath())
-        val modifier = player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.getModifier(id)
+        val modifier = player.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)?.getModifier(id)
 
         if (player.inventoryStacks.any { it.item != Items.AIR && it.hasEnchantment(this) }) {
             if (modifier == null)
                 player.attributes.addTemporary(
-                    EntityAttributes.GENERIC_MOVEMENT_SPEED.value(),
+                    EntityAttributes.MOVEMENT_SPEED.value(),
                     EntityAttributeModifier(id, 0.015, EntityAttributeModifier.Operation.ADD_VALUE)
                 )
         } else if (modifier != null) {
-            player.attributes.remove(EntityAttributes.GENERIC_MOVEMENT_SPEED.value(), modifier)
+            player.attributes.remove(EntityAttributes.MOVEMENT_SPEED.value(), modifier)
         }
     }
 }

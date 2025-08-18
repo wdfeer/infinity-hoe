@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.server.network.ServerPlayerEntity
 import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
@@ -26,6 +27,6 @@ object DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
 
         player.addStatusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20, 255))
 
-        setChargeWithSound(player.serverWorld, player, hoe, getCharge(hoe) - getChargeDecrement())
+        setChargeWithSound(player.world, player, hoe, getCharge(hoe) - getChargeDecrement())
     }
 }

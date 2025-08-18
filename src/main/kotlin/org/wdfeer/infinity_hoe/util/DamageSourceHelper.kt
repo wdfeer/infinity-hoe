@@ -7,9 +7,6 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.world.World
 
 object DamageSourceHelper {
-    fun create(world: World, type: RegistryKey<DamageType>): DamageSource =
-        DamageSource(DamageTypeHelper.getRegistryEntry(world, type))
-
     fun create(world: World, type: RegistryKey<DamageType>, entity: Entity) =
         DamageSource(DamageTypeHelper.getRegistryEntry(world, type), entity)
 }

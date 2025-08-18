@@ -1,13 +1,14 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.uncommon
 
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.CropCatalyzer
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.getEnchantmentLevel
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
@@ -23,7 +24,7 @@ object GrowthAcceleration : HoeEnchantment, PlayerTicker, CropCatalyzer {
 
         val tool = player.handItems.find {
             // not HoeItem because BlessedForge applies this enchantment to non-hoes as well
-            it.item is ToolItem
+            it.isIn(ConventionalItemTags.TOOLS)
         } ?: return
         val level = tool.getEnchantmentLevel(GrowthAcceleration)
 

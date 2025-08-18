@@ -1,7 +1,6 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.item.ItemStack
-import net.minecraft.item.ToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
@@ -11,7 +10,7 @@ import org.wdfeer.infinity_hoe.enchantment.unique.rare.CursedForge.toolUpgrades
 import org.wdfeer.infinity_hoe.enchantment.unique.uncommon.GrowthAcceleration
 import org.wdfeer.infinity_hoe.extension.addEnchantment
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
-import org.wdfeer.infinity_hoe.extension.getEntry
+import org.wdfeer.infinity_hoe.extension.handItems
 
 object BlessedForge : UsableHarvestChargeEnchantment() {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
@@ -20,7 +19,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
         }
 
         return if (oldStack != null) {
-            val oldItem = oldStack.item as ToolItem
+            val oldItem = oldStack.item
 
             val newItem = toolUpgrades[oldItem]
             val newStack = ItemStack(newItem)

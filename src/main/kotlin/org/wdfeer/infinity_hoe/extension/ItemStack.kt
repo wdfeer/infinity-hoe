@@ -31,7 +31,7 @@ fun ItemStack.removeEnchantment(enchantment: RegistryKey<Enchantment>) =
     })
 
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
-    this.damage(amount, player, EquipmentSlot.MAINHAND)
+    this.damage(amount, player)
 
-fun ItemStack.damage(amount: Int = 1) =
-    this.damage(amount, null, null)
+fun ItemStack.damage(amount: Int = 1): Unit =
+    this.damage(amount, null)

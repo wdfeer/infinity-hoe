@@ -9,6 +9,7 @@ import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
+import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
@@ -18,27 +19,27 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
         val world = target.world as? ServerWorld ?: return
 
-        damage(target, world, player, hoe)
+        damage(target, player, hoe)
 
         Pesticide.getNearbyLivingEntities(world, target.pos, Pesticide.DAMAGE_RADIUS).filter {
             (target.type == it.type || it is Monster) && it != player
         }.forEach {
-            damage(it, world, player, hoe)
+            damage(it, player, hoe)
         }
     }
 
     private fun damage(
         target: LivingEntity,
-        world: ServerWorld,
         attacker: LivingEntity,
         hoe: ItemStack
     ) {
         target.damage(
-            DamageSourceHelper.create(world, DamageTypes.MAGIC, attacker),
-            getEnchantAmount(hoe) * DAMAGE_PER_ENCHANTMENT
+            DamageTypes.MAGIC,
+            getEnchantAmount(hoe) * DAMAGE_PER_ENCHANTMENT,
+            attacker
         )
         target.hurtTime = 0
-        
+
         HoeHit.postHit(hoe, target, attacker, this)
     }
 

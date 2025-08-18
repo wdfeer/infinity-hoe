@@ -3,6 +3,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.rare
 import net.minecraft.server.network.ServerPlayerEntity
 import org.wdfeer.infinity_hoe.enchantment.parent.DemeterEnchantment
 import org.wdfeer.infinity_hoe.event.listener.PlayerDamageTaken
+import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.random.Random
 
@@ -23,6 +24,6 @@ object DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
 
         player.heal(amount / 4f + 1f)
 
-        setChargeWithSound(player.serverWorld, player, hoe, getCharge(hoe) - getChargeDecrement())
+        setChargeWithSound(player.world, player, hoe, getCharge(hoe) - getChargeDecrement())
     }
 }

@@ -1,13 +1,17 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.minecraft.block.Blocks
-import net.minecraft.item.ArmorItem
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.item.ToolItem
+import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.tag.ItemTags
+import net.minecraft.registry.tag.TagKey
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
+import net.minecraft.util.Identifier
 import net.minecraft.world.biome.BiomeKeys
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
@@ -85,7 +89,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
         hoe.removeEnchantment(registryKey)
 
         val stack = player.inventoryStacks.filter { it.item != Items.AIR }
-            .filter { it.item is ArmorItem || it.item is ToolItem }
+            .filter { it.isIn(ConventionalItemTags.TOOLS) || it.isIn(ConventionalItemTags.ARMORS) }
             .filter { stack -> mushroomEnchantments.any { !stack.hasEnchantment(it) } }
             .randomOrNull() ?: return
 
