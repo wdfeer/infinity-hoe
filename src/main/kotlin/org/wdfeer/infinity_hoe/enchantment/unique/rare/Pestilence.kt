@@ -16,7 +16,6 @@ import org.wdfeer.infinity_hoe.extension.roll
 import kotlin.math.max
 import kotlin.random.Random
 
-// TODO: immunity to silverfish
 object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
     override fun getPath(): String = "pestilence"
 
@@ -39,4 +38,8 @@ object Pestilence : HoeEnchantment, PlayerTicker, CropCatalyzer {
     }
 
     private fun getPlayerTickChance(silverfish: Int): Float = max(0.8f, silverfish / 10f)
+
+    fun SilverfishEntity.silverfishInitGoalsMixin() {
+        // TODO: modify silverfish ActiveTargetGoal to not target players with Pestilence hoe
+    }
 }
