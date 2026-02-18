@@ -18,7 +18,7 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     private const val POSITION_SAVE_INTERVAL = 20
     private const val POSITIONS_STORED = 30
 
-    private data class PastPos(val pos: Vec3d, val pitch: Float, val yaw: Float, val dimension: DimensionType)
+    private data class PastPos(val pos: Vec3d, val yaw: Float, val pitch: Float, val dimension: DimensionType)
 
     private val playerPositions: MutableMap<UUID, ArrayDeque<PastPos>> = mutableMapOf()
 
@@ -31,7 +31,7 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
 
     private fun recordPosition(player: ServerPlayerEntity) {
         val array = playerPositions.getOrPut(player.uuid) { ArrayDeque() }
-        array.addLast(PastPos(player.pos, player.pitch, player.yaw, player.world.dimension))
+        array.addLast(PastPos(player.pos, player.yaw, player.pitch, player.world.dimension))
         if (array.size > POSITIONS_STORED) array.removeFirst()
     }
 
@@ -46,8 +46,8 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
                 saved.pos.x,
                 saved.pos.y,
                 saved.pos.z,
-                saved.pitch,
-                saved.yaw
+                saved.yaw,
+                saved.pitch
             )
             true
         } ?: false
