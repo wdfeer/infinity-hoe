@@ -16,7 +16,7 @@ import kotlin.collections.ArrayDeque
 
 object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
     private const val POSITION_SAVE_INTERVAL = 20
-    private const val POSITIONS_STORED = 10
+    private const val POSITIONS_STORED = 30
 
     // Vector3f instead of Vec3d to conserve Memory
     private val playerPositions: MutableMap<UUID, ArrayDeque<Vector3f>> = mutableMapOf()
