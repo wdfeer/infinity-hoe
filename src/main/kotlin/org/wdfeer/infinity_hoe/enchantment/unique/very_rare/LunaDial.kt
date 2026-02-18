@@ -15,15 +15,16 @@ import java.util.*
 import kotlin.collections.ArrayDeque
 
 object LunaDial : UsableHarvestChargeEnchantment(Rarity.VERY_RARE), PlayerTicker {
-    private const val POSITIONS_STORED = 200
+    private const val POSITION_SAVE_INTERVAL = 20
+    private const val POSITIONS_STORED = 10
 
-    // Vector3f instead of Vec3d to conserve RAM
+    // Vector3f instead of Vec3d to conserve Memory
     private val playerPositions: MutableMap<UUID, ArrayDeque<Vector3f>> = mutableMapOf()
 
-    override fun canIteratePlayers(world: ServerWorld): Boolean = true
+    override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % POSITION_SAVE_INTERVAL == 0L;
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this) }) recordPosition(player)
+        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this)}) recordPosition(player)
         else playerPositions.remove(player.uuid)
     }
 
