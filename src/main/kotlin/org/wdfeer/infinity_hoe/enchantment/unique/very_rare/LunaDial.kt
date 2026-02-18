@@ -6,7 +6,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.Vec3d
-import org.joml.Vector3f
+import net.minecraft.world.dimension.DimensionType
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.UsableHarvestChargeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.PlayerTicker
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
@@ -18,30 +18,37 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     private const val POSITION_SAVE_INTERVAL = 20
     private const val POSITIONS_STORED = 30
 
-    // Vector3f instead of Vec3d to conserve Memory
-    private val playerPositions: MutableMap<UUID, ArrayDeque<Vector3f>> = mutableMapOf()
+    private data class PastPos(val pos: Vec3d, val pitch: Float, val yaw: Float, val dimension: DimensionType)
+
+    private val playerPositions: MutableMap<UUID, ArrayDeque<PastPos>> = mutableMapOf()
 
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % POSITION_SAVE_INTERVAL == 0L;
 
     override fun tickPlayer(world: ServerWorld, player: ServerPlayerEntity) {
-        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this)}) recordPosition(player)
+        if (player.inventoryStacks.any { it.item is HoeItem && it.hasEnchantment(this) }) recordPosition(player)
         else playerPositions.remove(player.uuid)
     }
 
     private fun recordPosition(player: ServerPlayerEntity) {
-        val array = playerPositions[player.uuid] ?: ArrayDeque<Vector3f>().also { playerPositions[player.uuid] = it }
-        array.addLast(player.entityPos.toVector3f())
+        val array = playerPositions.getOrPut(player.uuid) { ArrayDeque() }
+        array.addLast(PastPos(player.pos, player.pitch, player.yaw, player.world.dimension))
         if (array.size > POSITIONS_STORED) array.removeFirst()
     }
 
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean =
-        playerPositions[player.uuid]?.let {
-            if (it.isEmpty()) null
-            else it
-        }?.first()?.run {
-            Vec3d(x.toDouble(), y.toDouble(), z.toDouble())
-        }?.let {
-            player.teleport(it.x, it.y, it.z, true)
+        playerPositions[player.uuid]?.run {
+            if (isEmpty()) null
+            else this
+        }?.first()?.let { saved ->
+            player.startFallFlying()
+            player.teleport(
+                world.server.worlds.find { it.dimension == saved.dimension },
+                saved.pos.x,
+                saved.pos.y,
+                saved.pos.z,
+                saved.pitch,
+                saved.yaw
+            )
             true
         } ?: false
 
@@ -50,6 +57,8 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     override fun chargeToString(charge: Int): String = "%.2f".format(charge.toFloat() / getChargeDecrement())
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_AQUA
+
+    override fun getPowerRange(level: Int): IntRange = 30..100
 
     override fun getPath(): String = "luna_dial"
 }
