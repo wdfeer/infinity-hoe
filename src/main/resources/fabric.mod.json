@@ -3,7 +3,7 @@
 	"id": "infinity_hoe",
 	"version": "${version}",
 	"name": "Infinity Hoe",
-	"description": "Hoe Enchantments",
+	"description": "Overfeatured Hoe Enchantments.",
 	"authors": [
 		"wdfeer"
 	],
@@ -32,8 +32,8 @@
 		"infinity_hoe.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.17.2",
-		"minecraft": "1.21.1",
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.8",
 		"java": ">=17",
 		"fabric-api": "*",
 		"fabric-language-kotlin": "*"
