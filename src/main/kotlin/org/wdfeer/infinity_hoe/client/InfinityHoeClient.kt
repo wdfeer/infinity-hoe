@@ -3,12 +3,16 @@ package org.wdfeer.infinity_hoe.client
 import net.bettercombat.BetterCombatMod
 import net.bettercombat.client.BetterCombatClientMod
 import net.fabricmc.api.ClientModInitializer
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents
+import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents
 import net.fabricmc.loader.api.FabricLoader
+import org.wdfeer.infinity_hoe.event.emitter.HoeTooltip
 
 object InfinityHoeClient : ClientModInitializer {
     override fun onInitializeClient() {
-        ClientLifecycleEvents.CLIENT_STARTED.register { initBetterCombat() }
+        CommonLifecycleEvents.TAGS_LOADED.register { _, _ ->
+            initBetterCombat() // TODO: check whether it has the same functionality as CLIENT_STARTED event from 1.21.1
+        }
+//        ClientLifecycleEvents.CLIENT_STARTED.register { initBetterCombat() }
     }
 
     private fun initBetterCombat() {
