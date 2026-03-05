@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.event.emitter
 
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
@@ -8,7 +9,13 @@ import org.wdfeer.infinity_hoe.event.listener.AppendTooltipListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeTooltip {
-    fun mixinAppendTooltip(
+    fun initialize() {
+        ItemTooltipCallback.EVENT.register { itemStack, _, _, list ->
+            appendTooltip(itemStack, list)
+        }
+    }
+
+    private fun appendTooltip(
         stack: ItemStack,
         tooltip: MutableList<Text>,
     ) {
