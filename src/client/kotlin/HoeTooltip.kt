@@ -1,4 +1,4 @@
-package org.wdfeer.infinity_hoe.event.emitter
+package org.wdfeer.infinity_hoe.client
 
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback
 import net.minecraft.item.HoeItem
