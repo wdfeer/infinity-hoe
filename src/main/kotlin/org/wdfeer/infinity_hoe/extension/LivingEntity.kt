@@ -7,5 +7,5 @@ import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
 fun LivingEntity.damage(damageType: RegistryKey<DamageType>, amount: Float, attacker: LivingEntity) {
-    this.damage(world as ServerWorld,DamageSourceHelper.create(this.world, damageType, attacker), amount)
+    this.damage(entityWorld as ServerWorld,DamageSourceHelper.create(this.entityWorld, damageType, attacker), amount)
 }

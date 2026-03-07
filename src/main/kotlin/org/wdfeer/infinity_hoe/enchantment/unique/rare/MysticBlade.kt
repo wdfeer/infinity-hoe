@@ -17,11 +17,11 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
     override fun getPath(): String = "mystic_blade"
 
     override fun preAttack(player: ServerPlayerEntity, target: LivingEntity, hoe: ItemStack) {
-        val world = target.world as? ServerWorld ?: return
+        val world = target.entityWorld as? ServerWorld ?: return
 
         damage(target, player, hoe)
 
-        Pesticide.getNearbyLivingEntities(world, target.pos, Pesticide.DAMAGE_RADIUS).filter {
+        Pesticide.getNearbyLivingEntities(world, target.entityPos, Pesticide.DAMAGE_RADIUS).filter {
             (target.type == it.type || it is Monster) && it != player
         }.forEach {
             damage(it, player, hoe)

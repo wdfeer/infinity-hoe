@@ -24,9 +24,9 @@ object Equinox : HoeEnchantment, OnHitListener, HarvestListener, CropCatalyzer {
     private val DURATION_INCREASE: Int = secondsToTicks(5)
 
     override fun onHit(hoe: ItemStack, target: LivingEntity, attacker: LivingEntity) {
-        if (attacker !is ServerPlayerEntity || attacker.world !is ServerWorld) return
+        if (attacker !is ServerPlayerEntity || attacker.entityWorld !is ServerWorld) return
 
-        catalyze(attacker.world as ServerWorld, attacker, 1, hoe)
+        catalyze(attacker.entityWorld as ServerWorld, attacker, 1, hoe)
     }
 
     override fun onCropBroken(

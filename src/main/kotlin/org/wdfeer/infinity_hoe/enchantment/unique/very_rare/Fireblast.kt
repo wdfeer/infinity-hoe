@@ -41,7 +41,7 @@ object Fireblast : UsableHarvestChargeEnchantment(), TickListener {
     }
 
     private fun detonateFireball(fireball: FireballEntity, childCount: Int) {
-        val world = fireball.world as? ServerWorld ?: return
+        val world = fireball.entityWorld as? ServerWorld ?: return
         repeat(childCount) {
             val velocity = fireball.velocity.addRandom(world.random, 2f)
             val entity = FireballEntity(
@@ -50,7 +50,7 @@ object Fireblast : UsableHarvestChargeEnchantment(), TickListener {
                 velocity,
                 1
             )
-            entity.setPosition(fireball.pos.add(velocity.multiply(1.2)))
+            entity.setPosition(fireball.entityPos.add(velocity.multiply(1.2)))
             world.spawnEntity(entity)
         }
 

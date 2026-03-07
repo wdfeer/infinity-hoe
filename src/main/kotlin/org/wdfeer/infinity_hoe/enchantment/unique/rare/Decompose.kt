@@ -25,12 +25,12 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
     override fun canIteratePlayers(world: ServerWorld): Boolean = world.time % INTERVAL == 0L
 
     override fun holdTick(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack) =
-        decomposeTick(world, player, player.pos, hoe)
+        decomposeTick(world, player, player.entityPos, hoe)
 
     private fun decomposeTick(world: ServerWorld, player: ServerPlayerEntity?, origin: Vec3d, hoe: ItemStack) {
         val compostables = world.iterateEntities()
             .filterIsInstance<ItemEntity>()
-            .filter { it.pos.distanceTo(origin) < DISTANCE }
+            .filter { it.entityPos.distanceTo(origin) < DISTANCE }
             .map { it.stack }
             .associateWith { CompostingChanceRegistry.INSTANCE[it.item] }
             .filterValues { it > 0f }
@@ -76,5 +76,5 @@ object Decompose : HoeEnchantment, HoldTicker, AutomataListener {
     }
 
     override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) =
-        decomposeTick(world, null, hoe.pos, hoe.stack)
+        decomposeTick(world, null, hoe.entityPos, hoe.stack)
 }

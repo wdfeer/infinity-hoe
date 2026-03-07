@@ -27,6 +27,6 @@ object DemeterAegis : DemeterEnchantment(), PlayerDamageTaken {
 
         player.addStatusEffect(StatusEffectInstance(StatusEffects.RESISTANCE, 20, 255))
 
-        setChargeWithSound(player.world, player, hoe, getCharge(hoe) - getChargeDecrement())
+        setChargeWithSound(player.entityWorld, player, hoe, getCharge(hoe) - getChargeDecrement())
     }
 }

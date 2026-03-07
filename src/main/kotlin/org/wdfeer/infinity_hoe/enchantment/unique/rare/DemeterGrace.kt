@@ -24,6 +24,6 @@ object DemeterGrace : DemeterEnchantment(), PlayerDamageTaken {
 
         player.heal(amount / 4f + 1f)
 
-        setChargeWithSound(player.world, player, hoe, getCharge(hoe) - getChargeDecrement())
+        setChargeWithSound(player.entityWorld, player, hoe, getCharge(hoe) - getChargeDecrement())
     }
 }

@@ -18,7 +18,7 @@ object Automata : HoeEnchantment {
     const val SEED_COLLECT_RANGE = 3
 
     fun mixinItemEntityTick(itemEntity: ItemEntity) {
-        val serverWorld = itemEntity.world as? ServerWorld ?: return
+        val serverWorld = itemEntity.entityWorld as? ServerWorld ?: return
         if (serverWorld.time % CHECK_INTERVAL != 0L) return
 
         if (itemEntity.stack.item !is HoeItem) return
@@ -28,7 +28,7 @@ object Automata : HoeEnchantment {
     }
 
     private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
-        val positions = hoeEntity.pos
+        val positions = hoeEntity.entityPos
             .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
             .getAdjacentHorizontally(HARVEST_RANGE)
             .filter { isMatureCrop(world, it) }

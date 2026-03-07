@@ -15,7 +15,7 @@ abstract class PlayerEntityMixin {
     private void injectAttack(Entity target, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
 
-        if (player.getWorld().isClient) return;
+        if (player.getEntityWorld().isClient()) return;
 
         HoeHit.INSTANCE.mixinPreAttack((ServerPlayerEntity) player, target);
     }

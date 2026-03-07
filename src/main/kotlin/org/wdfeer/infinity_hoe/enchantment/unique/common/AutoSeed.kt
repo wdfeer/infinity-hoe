@@ -64,11 +64,11 @@ object AutoSeed : HoeEnchantment, HarvestListener, TillListener, AutomataListene
     override fun postAutomataTick(world: ServerWorld, hoe: ItemEntity) {
         val stacks = world.iterateEntities()
             .filterIsInstance<ItemEntity>()
-            .filter { it.pos.distanceTo(hoe.blockPos.toCenterPos()) < Automata.SEED_COLLECT_RANGE }
+            .filter { it.entityPos.distanceTo(hoe.blockPos.toCenterPos()) < Automata.SEED_COLLECT_RANGE }
             .map { it.stack }
             .filter { getCropBlock(it.item) != null }
 
-        val positions = hoe.pos
+        val positions = hoe.entityPos
             .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
             .getAdjacentHorizontally(Automata.HARVEST_RANGE)
             .filter { world.isAir(it) && world.getBlockState(it.down()).block == Blocks.FARMLAND }

@@ -41,7 +41,7 @@ object StandUnited : HoeEnchantment, HarvestListener {
         }
 
         world.players
-            .filter { it.pos.distanceTo(pos.toCenterPos()) <= SHARE_DISTANCE }
+            .filter { it.entityPos.distanceTo(pos.toCenterPos()) <= SHARE_DISTANCE }
             .forEach { processPlayer(it) }
     }
 

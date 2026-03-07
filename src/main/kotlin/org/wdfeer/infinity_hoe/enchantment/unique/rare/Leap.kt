@@ -12,7 +12,7 @@ object Leap : UsableHarvestChargeEnchantment() {
     override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
         val velocity = player.rotationVector.multiply(SPEED)
         player.velocity = player.velocity.multiply(0.5).add(velocity)
-        player.velocityModified = true
+        player.velocityDirty = true
 
         return true
     }

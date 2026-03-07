@@ -53,6 +53,6 @@ object Pesticide : HoeEnchantment, HarvestListener, TillListener {
 
     fun getNearbyLivingEntities(world: ServerWorld, origin: Vec3d, radius: Double): List<LivingEntity> =
         world.iterateEntities()
-            .filter { it.pos.distanceTo(origin) <= radius }
+            .filter { it.entityPos.distanceTo(origin) <= radius }
             .filterIsInstance<LivingEntity>()
 }

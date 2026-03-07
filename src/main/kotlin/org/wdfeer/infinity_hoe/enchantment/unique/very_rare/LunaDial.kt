@@ -29,7 +29,7 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
 
     private fun recordPosition(player: ServerPlayerEntity) {
         val array = playerPositions[player.uuid] ?: ArrayDeque<Vector3f>().also { playerPositions[player.uuid] = it }
-        array.addLast(player.pos.toVector3f())
+        array.addLast(player.entityPos.toVector3f())
         if (array.size > POSITIONS_STORED) array.removeFirst()
     }
 

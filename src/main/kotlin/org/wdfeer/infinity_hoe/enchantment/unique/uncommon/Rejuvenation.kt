@@ -46,7 +46,7 @@ object Rejuvenation : HoeEnchantment, HarvestListener {
 
         world.iterateEntities()
             .filterIsInstance<AnimalEntity>()
-            .filter { it.isAlive && it.pos.distanceTo(pos.toCenterPos()) <= MAX_ANIMAL_DISTANCE }
+            .filter { it.isAlive && it.entityPos.distanceTo(pos.toCenterPos()) <= MAX_ANIMAL_DISTANCE }
             .forEach { procRegen(hoe, player, it) }
     }
 
