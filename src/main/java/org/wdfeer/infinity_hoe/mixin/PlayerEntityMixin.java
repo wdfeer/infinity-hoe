@@ -17,6 +17,6 @@ abstract class PlayerEntityMixin {
 
         if (player.getWorld().isClient) return;
 
-        HoeHit.INSTANCE.preAttack((ServerPlayerEntity) player, target);
+        HoeHit.INSTANCE.mixinPreAttack((ServerPlayerEntity) player, target);
     }
 }

@@ -12,7 +12,7 @@ import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object HoeHit {
-    fun preAttack(player: ServerPlayerEntity, target: Entity) {
+    fun mixinPreAttack(player: ServerPlayerEntity, target: Entity) {
         if (target !is LivingEntity) return
 
         val inventory = player.inventory
