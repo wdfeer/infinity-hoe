@@ -24,7 +24,8 @@ Uncommon enchantments:
 
 Rare enchantments:
 - **Decompose (III)**: consume nearby compostable items on the ground to repair the hoe while held. Can also refill charge enchantments if applicable. Incompatible with Mending. Level increases speed.
-- **Soul Siphon**: nurture nearby crops similarly to _Dryad's Blessing_, but your max hp is temporarily reduced to affect more crops at once. Higher frequency than _Dryad's Blessing_, but not affected by Regeneration. While not held, recover slowly. Incompatible with _Dryad's Blessing_.
+- **Soul Siphon**: nurture nearby crops similarly to _Dryad's Blessing_, but your max hp is temporarily reduced to affect more crops at once. Higher frequency than _Dryad's Blessing_, but not affected by Regeneration. While not held, recover slowly. Incompatible with _Dryad's Blessing_ and _Pestilence_.
+- **Pestilence**: whilst held, gain Infested, silverfish don't attack you unprovoked, and you nurture nearby crops if there are silverfish nearby. Crop nurturing power scales with the number of nearby silverfish. Incompatible with _Dryad's Blessing_ or _Soul Siphon_.
 - **Experience (V)**: mature crops drop xp. Level increases amount.
 
 ## Specialist Enchantments
