@@ -102,3 +102,9 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+
+tasks.register("icongen", Exec) {
+	workingDir projectDir
+
+	commandLine "bash", "./scripts/icongen.sh"
+}
