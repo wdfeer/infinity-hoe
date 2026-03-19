@@ -8,6 +8,6 @@ import net.minecraft.server.world.ServerWorld
 
 fun LivingEntity.damage(damageType: RegistryKey<DamageType>, amount: Float, attacker: LivingEntity) {
     this.damage(
-        world as ServerWorld, DamageSource(damageType.getEntry(), null, attacker), amount
+        world as ServerWorld, DamageSource(damageType.getEntry(), attacker), amount
     )
 }
