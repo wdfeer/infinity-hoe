@@ -44,6 +44,7 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
             getEnchantAmount(hoe) * DAMAGE_PER_ENCHANTMENT,
             attacker
         )
+        target.hurtTime = 0
 
         HoeHit.postHit(hoe, target, attacker, this)
     }
