@@ -7,6 +7,6 @@ import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.world.World
 
 object DamageTypeHelper {
-    fun getRegistryEntry(world: World, key: RegistryKey<DamageType>): RegistryEntry<DamageType>? =
+    fun getRegistryEntry(world: World, key: RegistryKey<DamageType>): RegistryEntry<DamageType> =
         world.registryManager.getEntryOrThrow(RegistryKeys.DAMAGE_TYPE).value().getEntry(key.value).get()
 }

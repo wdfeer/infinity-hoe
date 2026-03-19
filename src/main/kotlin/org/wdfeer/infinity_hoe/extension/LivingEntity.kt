@@ -1,11 +1,13 @@
 package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.damage.DamageType
 import net.minecraft.registry.RegistryKey
 import net.minecraft.server.world.ServerWorld
-import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
 fun LivingEntity.damage(damageType: RegistryKey<DamageType>, amount: Float, attacker: LivingEntity) {
-    this.damage(entityWorld as ServerWorld,DamageSourceHelper.create(this.entityWorld, damageType, attacker), amount)
+    this.damage(
+        world as ServerWorld, DamageSource(damageType.getEntry(), null, attacker), amount
+    )
 }
