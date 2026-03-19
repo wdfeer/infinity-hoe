@@ -4,8 +4,12 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.mob.Monster
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.Identifier
+import org.wdfeer.infinity_hoe.InfinityHoe
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
@@ -33,11 +37,13 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
         hoe: ItemStack
     ) {
         target.damage(
-            DamageTypes.MAGIC,
+            RegistryKey.of(
+                RegistryKeys.DAMAGE_TYPE,
+                Identifier.of(InfinityHoe.MOD_ID, this.getPath())
+            ),
             getEnchantAmount(hoe) * DAMAGE_PER_ENCHANTMENT,
             attacker
         )
-        target.hurtTime = 0
 
         HoeHit.postHit(hoe, target, attacker, this)
     }
