@@ -34,7 +34,7 @@ object HoeUse {
     ) {
         if (context.world is ServerWorld
             && context.player is ServerPlayerEntity
-            && useCallback.returnValue == ActionResult.CONSUME)
+            && useCallback.returnValue == ActionResult.SUCCESS)
             onTill(context.world as ServerWorld, context.player as ServerPlayerEntity, context.stack, context.blockPos, null)
         else
             checkUntill(context.world, context.player, context.stack, context.blockPos, useCallback)
