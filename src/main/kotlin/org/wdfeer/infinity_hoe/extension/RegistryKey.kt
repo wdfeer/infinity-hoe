@@ -27,7 +27,7 @@ fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
 }
 
 fun RegistryKey<DamageType>.getEntry(world: World): RegistryEntry<DamageType> =
-    world.registryManager.getEntryOrThrow(RegistryKeys.DAMAGE_TYPE).value().getEntry(this.value).get()
+    world.registryManager.getOptional<DamageType>(RegistryKeys.DAMAGE_TYPE).get().getEntry(this.value).get()
 
 fun <T> RegistryKey<T>.getPlaceholderEntry(): RegistryEntry<T> =
     RegistryEntry.Reference.standAlone<T>(object : RegistryEntryOwner<T> {}, this)
