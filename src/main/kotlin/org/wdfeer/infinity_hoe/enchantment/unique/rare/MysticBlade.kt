@@ -11,7 +11,6 @@ import org.wdfeer.infinity_hoe.event.emitter.HoeHit
 import org.wdfeer.infinity_hoe.event.listener.PreAttackListener
 import org.wdfeer.infinity_hoe.extension.damage
 import org.wdfeer.infinity_hoe.extension.enchantmentMap
-import org.wdfeer.infinity_hoe.util.DamageSourceHelper
 
 object MysticBlade : HoeEnchantment, PreAttackListener {
     override fun getPath(): String = "mystic_blade"
