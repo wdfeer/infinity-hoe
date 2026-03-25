@@ -2,6 +2,7 @@ package org.wdfeer.infinity_hoe.enchantment.unique.very_rare
 
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
+import net.minecraft.network.packet.s2c.play.PositionFlag
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
@@ -31,7 +32,7 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
 
     private fun recordPosition(player: ServerPlayerEntity) {
         val array = playerPositions.getOrPut(player.uuid) { ArrayDeque() }
-        array.addLast(PastPos(player.pos, player.yaw, player.pitch, player.world.dimension))
+        array.addLast(PastPos(player.entityPos, player.yaw, player.pitch, player.entityWorld.dimension))
         if (array.size > POSITIONS_STORED) array.removeFirst()
     }
 
@@ -40,14 +41,15 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
             if (isEmpty()) null
             else this
         }?.first()?.let { saved ->
-            player.startFallFlying()
             player.teleport(
-                world.server.worlds.find { it.dimension == saved.dimension },
+                world.server!!.worlds.find { it.dimension == saved.dimension },
                 saved.pos.x,
                 saved.pos.y,
                 saved.pos.z,
+                setOf(), // TODO: maybe add PositionFlag flags?
                 saved.yaw,
-                saved.pitch
+                saved.pitch,
+                true
             )
             true
         } ?: false
@@ -57,8 +59,6 @@ object LunaDial : UsableHarvestChargeEnchantment(), PlayerTicker {
     override fun chargeToString(charge: Int): String = "%.2f".format(charge.toFloat() / getChargeDecrement())
 
     override fun getTooltipColor(): Formatting = Formatting.DARK_AQUA
-
-    override fun getPowerRange(level: Int): IntRange = 30..100
 
     override fun getPath(): String = "luna_dial"
 }
