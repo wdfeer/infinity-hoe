@@ -63,7 +63,7 @@ Manual usage:
 - **Poison Nova**: Very rare. Use all charge to instantly damage and give Poison to all non-animal entities in the vicinity, user excluded. Range, duration and power scales with used charge.
 - **Frost Nova**: Very rare. Use all charge to instantly damage, freeze and give Slowness to all non-animal entities in the vicinity, user excluded. Range, duration and power scales with used charge.
 - **Healing Nova**: Very rare. Use all charge to give Regeneration to all non-monster entities nearby. Range, duration and power scales with used charge.
-- **Luna Dial**: Very rare. Use charge to teleport to your position up to 10 seconds ago.
+- **Luna Dial**: Very rare. Use charge to teleport to your position up to 30 seconds ago.
 - **Cursed Forge**: Very rare. Use charge to upgrade a non-cursed tool in the other hand to the next material level, e.g.: iron -> diamond, and give it a Curse of Vanishing.
 - **Blessed Forge**: Very rare. Use charge to upgrade a tool in the other hand to the next material level, e.g.: iron -> diamond, and give it one of 3 Blessings: *Dryad's Blessing*, *Animal Blessing* or *Miracle Blessing* - even if it's not a hoe.
     - *Animal Blessing*: exclusive to *Blessed Forge*. While held, reduces the timer between breeding animals.
