@@ -9,25 +9,24 @@ import net.minecraft.loot.condition.RandomChanceLootCondition
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.entry.LeafEntry
 import net.minecraft.loot.function.EnchantRandomlyLootFunction
+import net.minecraft.loot.function.EnchantWithLevelsLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
-import net.minecraft.loot.function.SetEnchantmentsLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
-import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.registry.RegistryKey
-import org.wdfeer.infinity_hoe.enchantment.unique.rare.Experience
-import org.wdfeer.infinity_hoe.extension.getPlaceholderEntry
 
-private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float) = LootPool.builder()
-    .with(getItemBuilder(item, enchantCount))
-    .conditionally(RandomChanceLootCondition.builder(chance))
+private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float): LootPool.Builder {
+    fun getItemBuilder(item: Item, enchantCount: Int): LeafEntry.Builder<*> {
+        val builder = ItemEntry.builder(item)
+            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1f)))
 
-private fun getItemBuilder(item: Item, enchantments: Int): LeafEntry.Builder<*> {
-    val builder = ItemEntry.builder(item)
-        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1f)))
+        repeat(enchantCount) { builder.apply(EnchantRandomlyLootFunction.create()) }
 
-    repeat(enchantments) { builder.apply(EnchantRandomlyLootFunction.create()) }
+        return builder
+    }
 
-    return builder
+    return LootPool.builder()
+        .with(getItemBuilder(item, enchantCount))
+        .conditionally(RandomChanceLootCondition.builder(chance))
 }
 
 internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward: LootPool.Builder) {
@@ -53,12 +52,14 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
             LootTables.SHIPWRECK_SUPPLY_CHEST,
             LootTables.VILLAGE_WEAPONSMITH_CHEST,
             LootTables.HERO_OF_THE_VILLAGE_FARMER_GIFT_GAMEPLAY,
+            LootTables.STRONGHOLD_CROSSING_CHEST,
         ),
         randomlyEnchantedLoot(Items.IRON_HOE, 1, 0.4f)
     ),
     IronRare(
         listOf(
             LootTables.HERO_OF_THE_VILLAGE_TOOLSMITH_GIFT_GAMEPLAY,
+            LootTables.STRONGHOLD_LIBRARY_CHEST,
             LootTables.ABANDONED_MINESHAFT_CHEST,
             LootTables.DESERT_PYRAMID_CHEST,
             LootTables.JUNGLE_TEMPLE_CHEST,
@@ -103,17 +104,5 @@ internal enum class Tables(val tables: List<RegistryKey<LootTable>>, val reward:
             LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_UNIQUE_CHEST
         ),
         randomlyEnchantedLoot(Items.NETHERITE_HOE, 5, 0.03f)
-    ),
-    StrongholdLibrary(
-        listOf(LootTables.STRONGHOLD_LIBRARY_CHEST),
-        LootPool.builder().with(
-            ItemEntry.builder(Items.IRON_HOE).apply(
-                SetEnchantmentsLootFunction.Builder()
-                    .enchantment(
-                        Experience.registryKey.getPlaceholderEntry(), // The actual entry is not loaded yet - testing needed
-                        UniformLootNumberProvider.create(1f, 5f)
-                    )
-            )
-        )
-    ),
+    )
 }
