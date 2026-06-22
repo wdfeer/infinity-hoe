@@ -34,4 +34,4 @@ fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
     this.damage(amount, player, EquipmentSlot.MAINHAND)
 
 fun ItemStack.damage(amount: Int = 1) =
-    this.damage(amount, null, null)
+    this.damage(amount, null, EquipmentSlot.MAINHAND)
