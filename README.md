@@ -93,7 +93,6 @@ Automatical usage:
     - 200 Charge: 5 Iron Block to 64 Iron Ingot
     - 777 Charge: 1 Golden Apple to 1 Enchanted Golden Apple
 
-
 ## Automata Enchantment
 
 **Automata** is a very rare enchantment allowing the hoe to function on its own when thrown as an item, harvesting mature crops within a 5x5 area at the cost of durability. Sets the hoe to never despawn while thrown. _Incompatible with all other enchantments unless stated otherwise._

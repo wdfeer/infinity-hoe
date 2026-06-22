@@ -30,7 +30,7 @@ fun ItemStack.removeEnchantment(enchantment: RegistryKey<Enchantment>) =
         it?.enchantments?.remove(enchantment.getEntry())
     })
 
-fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
+fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1): Unit =
     this.damage(amount, player)
 
 fun ItemStack.damage(amount: Int = 1): Unit =
