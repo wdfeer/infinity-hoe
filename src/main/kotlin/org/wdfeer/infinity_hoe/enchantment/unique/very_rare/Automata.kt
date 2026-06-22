@@ -34,6 +34,8 @@ object Automata : HoeEnchantment(Rarity.VERY_RARE) {
     }
 
     private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
+        hoeEntity.stack ?: return
+
         val positions = hoeEntity.pos
             .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
             .getAdjacentHorizontally(HARVEST_RANGE)
