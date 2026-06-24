@@ -29,11 +29,15 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun getChargeDecrement(): Int = 1
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
-    private val nbtKey get() = getPath() + "_charge"
     fun getCharge(hoe: ItemStack): Int = hoe.getOrDefault(component, 0)
     fun setCharge(hoe: ItemStack, value: Int) = hoe.set(component, value)
 
-    fun setChargeWithSound(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack, value: Int) {
+    fun setChargeWithSound(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack,
+        value: Int
+    ) {
         val sound: SoundEvent? = when {
             value == getMaxCharge(hoe.getEnchantmentLevel(this)) -> SoundLoader.chargedSoundEvent
             value < getChargeDecrement() && getCharge(hoe) >= getChargeDecrement() -> SoundLoader.dischargedSoundEvent
@@ -50,9 +54,10 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
             Text.translatable(
                 "tooltip.infinity_hoe.${getPath()}.charge", *getTooltipArgs(stack).toTypedArray()
             ).apply {
-                style = if (getCharge(stack) >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
-                    0xafafaf
-                )
+                style =
+                    if (getCharge(stack) >= getChargeDecrement()) getTooltipStyle() else Style.EMPTY.withColor(
+                        0xafafaf
+                    )
             })
     }
 
