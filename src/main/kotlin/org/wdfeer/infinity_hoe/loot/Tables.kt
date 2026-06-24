@@ -8,18 +8,17 @@ import net.minecraft.loot.LootTables
 import net.minecraft.loot.condition.RandomChanceLootCondition
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.entry.LeafEntry
-import net.minecraft.loot.function.EnchantRandomlyLootFunction
-import net.minecraft.loot.function.EnchantWithLevelsLootFunction
 import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.registry.RegistryKey
+import org.wdfeer.infinity_hoe.util.EnchantRandomlyWithoutEnchantmentConflictsLootFunction
 
 private fun randomlyEnchantedLoot(item: Item, enchantCount: Int, chance: Float): LootPool.Builder {
     fun getItemBuilder(item: Item, enchantCount: Int): LeafEntry.Builder<*> {
         val builder = ItemEntry.builder(item)
             .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1f)))
 
-        repeat(enchantCount) { builder.apply(EnchantRandomlyLootFunction.create()) }
+        repeat(enchantCount) { builder.apply(EnchantRandomlyWithoutEnchantmentConflictsLootFunction.Builder()) }
 
         return builder
     }
