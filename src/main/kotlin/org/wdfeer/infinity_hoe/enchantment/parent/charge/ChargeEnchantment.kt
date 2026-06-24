@@ -29,7 +29,12 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun getChargeDecrement(): Int = 1
     protected open fun chargeToString(charge: Int): String = charge.toString()
 
-    private val nbtKey get() = getPath() + "_charge"
+    val component: ComponentType<Int> = Registry.register(
+        Registries.DATA_COMPONENT_TYPE,
+        Identifier.of(MOD_ID, this.getPath() + "_charge"),
+        ComponentType.builder<Int>().codec(Codec.INT).build()
+    )
+
     fun getCharge(hoe: ItemStack): Int = hoe.getOrDefault(component, 0)
     fun setCharge(hoe: ItemStack, value: Int) = hoe.set(component, value)
 
@@ -59,12 +64,4 @@ abstract class ChargeEnchantment : HoeEnchantment, AppendTooltipListener {
     protected open fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(
         chargeToString(getCharge(hoe)), chargeToString(getMaxCharge(hoe.getEnchantmentLevel(this)))
     )
-
-    companion object {
-        val component: ComponentType<Int> = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MOD_ID, "charge_component"),
-            ComponentType.builder<Int>().codec(Codec.INT).build()
-        )
-    }
 }
