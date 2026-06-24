@@ -4,10 +4,18 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableSource
 import net.minecraft.loot.LootTable
 import net.minecraft.util.Identifier
+import org.wdfeer.infinity_hoe.util.EnchantRandomlyWithoutEnchantmentConflictsLootFunction
 
 object LootTableModifier {
     fun initialize() {
-        LootTableEvents.MODIFY.register { registryKey, builder, source, _ -> modifyLootTable(registryKey.value, builder, source) }
+        EnchantRandomlyWithoutEnchantmentConflictsLootFunction.initialize()
+        LootTableEvents.MODIFY.register { registryKey, builder, source, _ ->
+            modifyLootTable(
+                registryKey.value,
+                builder,
+                source
+            )
+        }
     }
 
     private fun modifyLootTable(
