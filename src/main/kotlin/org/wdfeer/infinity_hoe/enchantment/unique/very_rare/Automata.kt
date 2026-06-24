@@ -34,7 +34,7 @@ object Automata : HoeEnchantment {
             .filter { isMatureCrop(world, it) }
 
         positions.forEach { world.breakBlock(it, true) }
-        hoeEntity.stack.damage((positions.size / 16f).randomRound())
+        hoeEntity.stack.damage(world, (positions.size / 16f).randomRound())
 
         hoeEntity.setNeverDespawn()
 

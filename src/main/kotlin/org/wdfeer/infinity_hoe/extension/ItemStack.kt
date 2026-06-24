@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import kotlin.jvm.optionals.getOrNull
 
@@ -33,5 +34,5 @@ fun ItemStack.removeEnchantment(enchantment: RegistryKey<Enchantment>) =
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1) =
     this.damage(amount, player, EquipmentSlot.MAINHAND)
 
-fun ItemStack.damage(amount: Int = 1) =
-    this.damage(amount, null, EquipmentSlot.MAINHAND)
+fun ItemStack.damage(world: ServerWorld, amount: Int = 1) =
+    this.damage(amount, world, null) {}
