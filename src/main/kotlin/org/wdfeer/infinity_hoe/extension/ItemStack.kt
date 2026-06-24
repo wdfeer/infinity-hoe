@@ -2,12 +2,14 @@ package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.entity.EquipmentSlot
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
+import java.util.function.Consumer
 import kotlin.jvm.optionals.getOrNull
 
 val ItemStack.enchantmentMap: Map<RegistryKey<Enchantment>, Int>
@@ -15,11 +17,17 @@ val ItemStack.enchantmentMap: Map<RegistryKey<Enchantment>, Int>
         entry.key.get() to enchantments.getLevel(entry)
     }
 
-fun ItemStack.hasEnchantment(enchantment: RegistryKey<Enchantment>): Boolean = enchantments.enchantments.any { it.key.getOrNull() == enchantment.value }
-fun ItemStack.hasEnchantment(enchantment: HoeEnchantment): Boolean = enchantments.enchantments.any { it.key.getOrNull() == enchantment.registryKey }
+fun ItemStack.hasEnchantment(enchantment: RegistryKey<Enchantment>): Boolean =
+    enchantments.enchantments.any { it.key.getOrNull() == enchantment.value }
 
-fun ItemStack.getEnchantmentLevel(enchantment: RegistryKey<Enchantment>): Int = enchantmentMap[enchantment] ?: -1
-fun ItemStack.getEnchantmentLevel(enchantment: HoeEnchantment): Int = enchantmentMap[enchantment.registryKey] ?: -1
+fun ItemStack.hasEnchantment(enchantment: HoeEnchantment): Boolean =
+    enchantments.enchantments.any { it.key.getOrNull() == enchantment.registryKey }
+
+fun ItemStack.getEnchantmentLevel(enchantment: RegistryKey<Enchantment>): Int =
+    enchantmentMap[enchantment] ?: -1
+
+fun ItemStack.getEnchantmentLevel(enchantment: HoeEnchantment): Int =
+    enchantmentMap[enchantment.registryKey] ?: -1
 
 fun ItemStack.addEnchantment(enchantment: RegistryKey<Enchantment>, level: Int) =
     addEnchantment(enchantment.getEntry(), level)
@@ -33,5 +41,6 @@ fun ItemStack.removeEnchantment(enchantment: RegistryKey<Enchantment>) =
 fun ItemStack.damage(player: ServerPlayerEntity, amount: Int = 1): Unit =
     this.damage(amount, player)
 
-fun ItemStack.damage(amount: Int = 1): Unit =
-    this.damage(amount, null)
+fun ItemStack.damage(world: ServerWorld, amount: Int = 1): Unit = this.damage(
+    amount, world, null
+) { }
