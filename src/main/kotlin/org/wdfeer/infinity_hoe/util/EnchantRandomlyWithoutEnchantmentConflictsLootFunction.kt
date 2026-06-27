@@ -54,7 +54,7 @@ class EnchantRandomlyWithoutEnchantmentConflictsLootFunction internal constructo
     override fun process(
         stack: ItemStack, context: LootContext
     ): ItemStack {
-        val enchantmentRegistry = context.world.registryManager.get(RegistryKeys.ENCHANTMENT)
+        val enchantmentRegistry = context.world.registryManager.getOrThrow(RegistryKeys.ENCHANTMENT)
         val enchantments = enchantmentRegistry.filter { enchant ->
             enchant.isSupportedItem(stack) && !stack.enchantmentMap.any {
                 it.key == enchantmentRegistry.getKey(
