@@ -2,14 +2,12 @@ package org.wdfeer.infinity_hoe.extension
 
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
-import java.util.function.Consumer
 import kotlin.jvm.optionals.getOrNull
 
 val ItemStack.enchantmentMap: Map<RegistryKey<Enchantment>, Int>

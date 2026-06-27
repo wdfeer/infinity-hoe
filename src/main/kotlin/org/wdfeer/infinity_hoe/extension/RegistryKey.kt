@@ -1,5 +1,6 @@
 package org.wdfeer.infinity_hoe.extension
 
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.damage.DamageType
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
@@ -7,15 +8,21 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.registry.entry.RegistryEntryOwner
-import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
+import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 
 @Suppress("UNCHECKED_CAST")
-fun <T> RegistryKey<T>.getValue(): T? {
+fun <T> RegistryKey<T>.get(): T? {
     val registry = Registries.REGISTRIES[this.registry] as? Registry<T>
         ?: return null
     return registry.get(this.value)
 }
+
+fun RegistryKey<Enchantment>.getHoeEnchantment(): HoeEnchantment? {
+    return EnchantmentLoader.enchantments.find { it.registryKey.value == this.value }
+}
+
 
 @Suppress("UNCHECKED_CAST")
 fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
@@ -27,7 +34,8 @@ fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
 }
 
 fun RegistryKey<DamageType>.getEntry(world: World): RegistryEntry<DamageType> =
-    world.registryManager.getOptional<DamageType>(RegistryKeys.DAMAGE_TYPE).get().getEntry(this.value).get()
+    world.registryManager.getOptional<DamageType>(RegistryKeys.DAMAGE_TYPE).get()
+        .getEntry(this.value).get()
 
 fun <T> RegistryKey<T>.getPlaceholderEntry(): RegistryEntry<T> =
     RegistryEntry.Reference.standAlone<T>(object : RegistryEntryOwner<T> {}, this)

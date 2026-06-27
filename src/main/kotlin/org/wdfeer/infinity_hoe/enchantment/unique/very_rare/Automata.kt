@@ -5,6 +5,7 @@ import net.minecraft.entity.ItemEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.event.listener.AutomataListener
 import org.wdfeer.infinity_hoe.extension.*
@@ -28,19 +29,16 @@ object Automata : HoeEnchantment {
     }
 
     private fun tick(world: ServerWorld, hoeEntity: ItemEntity) {
-        val positions = hoeEntity.entityPos
-            .run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
-            .getAdjacentHorizontally(HARVEST_RANGE)
-            .filter { isMatureCrop(world, it) }
+        val positions = hoeEntity.entityPos.run { BlockPos(x.toInt(), y.roundToInt(), z.toInt()) }
+            .getAdjacentHorizontally(HARVEST_RANGE).filter { isMatureCrop(world, it) }
 
         positions.forEach { world.breakBlock(it, true) }
         hoeEntity.stack.damage(world, (positions.size / 16f).randomRound())
 
         hoeEntity.setNeverDespawn()
 
-        hoeEntity.stack.enchantmentMap.keys
-            .filterIsInstance<AutomataListener>()
-            .forEach { it.postAutomataTick(world, hoeEntity) }
+        hoeEntity.stack.enchantmentMap.keys.mapNotNull { it.getHoeEnchantment() }
+            .filterIsInstance<AutomataListener>().forEach { it.postAutomataTick(world, hoeEntity) }
     }
 
     private fun isMatureCrop(world: ServerWorld, pos: BlockPos): Boolean {
