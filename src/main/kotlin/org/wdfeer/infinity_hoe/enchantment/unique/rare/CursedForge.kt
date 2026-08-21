@@ -116,7 +116,15 @@ object CursedForge : UsableHarvestChargeEnchantment() {
                         "simplyswords:${material}_${variant}" to "simplyswords:${nextMaterial}_${variant}"
                     }
                 }
-            }.toTypedArray()
+            }.toTypedArray(),
+
+            // Adamantite
+            "minecraft:netherite_sword" to "adamantite:adamantite_sword",
+            "minecraft:netherite_pickaxe" to "adamantite:adamantite_pickaxe",
+            "minecraft:netherite_shovel" to "adamantite:adamantite_shovel",
+            "minecraft:netherite_axe" to "adamantite:adamantite_axe",
+            "minecraft:netherite_hoe" to "adamantite:adamantite_hoe",
+            "minecraft:crossbow" to "adamantite:adamantite_crossbow",
         )
 
         toolUpgradesIds.map { Identifier.of(it.first) to Identifier.of(it.second) }
