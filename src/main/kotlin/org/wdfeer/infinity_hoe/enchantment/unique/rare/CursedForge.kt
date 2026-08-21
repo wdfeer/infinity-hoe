@@ -17,11 +17,15 @@ import org.wdfeer.infinity_hoe.extension.handItems
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 
 object CursedForge : UsableHarvestChargeEnchantment() {
-    override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
+    override fun useCharge(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack
+    ): Boolean {
         val oldStack = (
-                player.handItems + player.inventory.getStack(40) // workaround for two-handed weapons from SimplySwords
-                ).firstOrNull {
-                it.item != Items.AIR && it != hoe && toolUpgrades.containsKey(it.item) && !it.hasEnchantment(
+            player.handItems + player.inventory.getStack(40) // workaround for two-handed weapons from SimplySwords
+            ).firstOrNull {
+                it != hoe && toolUpgrades.containsKey(it.item) && !it.hasEnchantment(
                     Enchantments.VANISHING_CURSE
                 )
             }
@@ -33,10 +37,14 @@ object CursedForge : UsableHarvestChargeEnchantment() {
             val newItem = toolUpgrades[oldItem]
             val newStack = ItemStack(newItem)
 
-            for ((enchantment, level) in oldStack.enchantmentMap) newStack.addEnchantment(enchantment, level)
+            for ((enchantment, level) in oldStack.enchantmentMap) newStack.addEnchantment(
+                world,
+                enchantment,
+                level
+            )
             newStack.damage = oldStack.damage
 
-            newStack.addEnchantment(Enchantments.VANISHING_CURSE, 1)
+            newStack.addEnchantment(world, Enchantments.VANISHING_CURSE, 1)
 
             player.inventory.insertStack(newStack)
 
@@ -50,7 +58,8 @@ object CursedForge : UsableHarvestChargeEnchantment() {
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"
     override fun getTooltipColor(): Formatting = Formatting.DARK_RED
-    override fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(chargeToString(getCharge(hoe)))
+    override fun getTooltipArgs(hoe: ItemStack): List<String> =
+        listOf(chargeToString(getCharge(hoe)))
 
     val toolUpgrades: Map<Item, Item> by lazy {
         val toolUpgradesIds: Array<Pair<String, String>> = arrayOf(

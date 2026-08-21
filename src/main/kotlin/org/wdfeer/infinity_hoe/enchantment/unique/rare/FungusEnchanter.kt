@@ -1,17 +1,12 @@
 package org.wdfeer.infinity_hoe.enchantment.unique.rare
 
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.registry.RegistryKeys
-import net.minecraft.registry.tag.ItemTags
-import net.minecraft.registry.tag.TagKey
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Formatting
-import net.minecraft.util.Identifier
 import net.minecraft.world.biome.BiomeKeys
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 import org.wdfeer.infinity_hoe.enchantment.parent.charge.ChargeEnchantment
@@ -21,7 +16,6 @@ import org.wdfeer.infinity_hoe.enchantment.unique.treasure.PoisonMushroomEnchant
 import org.wdfeer.infinity_hoe.enchantment.unique.treasure.SpeedMushroomEnchantment
 import org.wdfeer.infinity_hoe.event.listener.HoldTicker
 import org.wdfeer.infinity_hoe.extension.addEnchantment
-import org.wdfeer.infinity_hoe.extension.getEntry
 import org.wdfeer.infinity_hoe.extension.hasEnchantment
 import org.wdfeer.infinity_hoe.extension.inventoryStacks
 import org.wdfeer.infinity_hoe.extension.removeEnchantment
@@ -86,7 +80,8 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
     }
 
     private fun trigger(player: ServerPlayerEntity, hoe: ItemStack) {
-        hoe.removeEnchantment(registryKey)
+        val world = player.entityWorld
+        hoe.removeEnchantment(world, registryKey)
 
         val stack = player.inventoryStacks.filter { it.item != Items.AIR }
             .filter { it.isIn(ConventionalItemTags.TOOLS) || it.isIn(ConventionalItemTags.ARMORS) }
@@ -94,7 +89,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
             .randomOrNull() ?: return
 
         val enchantment = mushroomEnchantments.filter { !stack.hasEnchantment(it) }.random()
-        stack.addEnchantment(enchantment.registryKey, 1)
+        stack.addEnchantment(world, enchantment.registryKey, 1)
     }
 
     override fun getMaxCharge(level: Int): Int = 6000

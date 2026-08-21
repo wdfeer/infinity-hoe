@@ -6,9 +6,13 @@ import net.minecraft.entity.damage.DamageType
 import net.minecraft.registry.RegistryKey
 import net.minecraft.server.world.ServerWorld
 
-fun LivingEntity.damage(damageType: RegistryKey<DamageType>, amount: Float, attacker: LivingEntity) {
+fun LivingEntity.damage(
+    damageType: RegistryKey<DamageType>,
+    amount: Float,
+    attacker: LivingEntity
+) {
     val world = this.entityWorld as? ServerWorld ?: return
-    val entry = damageType.getEntry(attacker.entityWorld)
+    val entry = damageType.getEntry(attacker.entityWorld as ServerWorld)
     val damageSource = DamageSource(entry, attacker)
     this.damage(world, damageSource, amount)
 }

@@ -13,7 +13,11 @@ import org.wdfeer.infinity_hoe.extension.enchantmentMap
 import org.wdfeer.infinity_hoe.extension.handItems
 
 object BlessedForge : UsableHarvestChargeEnchantment() {
-    override fun useCharge(world: ServerWorld, player: ServerPlayerEntity, hoe: ItemStack): Boolean {
+    override fun useCharge(
+        world: ServerWorld,
+        player: ServerPlayerEntity,
+        hoe: ItemStack
+    ): Boolean {
         val oldStack = player.handItems.firstOrNull {
             it != hoe && toolUpgrades.containsKey(it.item)
         }
@@ -25,7 +29,11 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
             val newStack = ItemStack(newItem)
 
             val oldEnchants = oldStack.enchantmentMap
-            for ((enchantment, level) in oldEnchants) newStack.addEnchantment(enchantment, level)
+            for ((enchantment, level) in oldEnchants) newStack.addEnchantment(
+                world,
+                enchantment,
+                level
+            )
             newStack.damage = oldStack.damage
 
             val blessing = listOf(
@@ -33,7 +41,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
                 AnimalBlessing,
                 MiracleBlessing
             ).filter { !oldEnchants.containsKey(it.registryKey) }.randomOrNull() ?: return false
-            newStack.addEnchantment(blessing.registryKey, 3)
+            newStack.addEnchantment(world, blessing.registryKey, 3)
 
             oldStack.count = 0
             player.inventory.insertStack(newStack)
@@ -48,6 +56,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
 
     override fun chargeToString(charge: Int): String = "${(charge * 100 / getChargeDecrement())}%"
     override fun getTooltipColor(): Formatting = Formatting.YELLOW
-    override fun getTooltipArgs(hoe: ItemStack): List<String> = listOf(chargeToString(getCharge(hoe)))
+    override fun getTooltipArgs(hoe: ItemStack): List<String> =
+        listOf(chargeToString(getCharge(hoe)))
 }
 
