@@ -42,7 +42,7 @@ object MysticBlade : HoeEnchantment, PreAttackListener {
         HoeHit.postHit(hoe, target, attacker, this)
     }
 
-    private const val DAMAGE_PER_ENCHANTMENT: Float = 0.1f
+    private const val DAMAGE_PER_ENCHANTMENT: Float = 0.15f
 
     private fun getEnchantAmount(hoe: ItemStack): Int =
         hoe.enchantmentMap.map { (_, value) -> value }.sum()
