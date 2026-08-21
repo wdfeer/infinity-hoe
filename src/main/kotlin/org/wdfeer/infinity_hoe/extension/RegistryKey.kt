@@ -4,8 +4,10 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.registry.entry.RegistryEntryOwner
+import net.minecraft.server.world.ServerWorld
 import org.wdfeer.infinity_hoe.enchantment.EnchantmentLoader
 import org.wdfeer.infinity_hoe.enchantment.HoeEnchantment
 
@@ -21,9 +23,8 @@ fun RegistryKey<Enchantment>.getHoeEnchantment(): HoeEnchantment? {
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T> RegistryKey<T>.getEntry(): RegistryEntry<T>? {
-    val registry = Registries.REGISTRIES[this.registry] as? Registry<T>
-        ?: return null
+fun RegistryKey<Enchantment>.getEntry(world: ServerWorld): RegistryEntry<Enchantment>? {
+    val registry = world.registryManager[RegistryKeys.ENCHANTMENT] ?: return null
     return registry.getEntry(this).orElse(null)
 }
 

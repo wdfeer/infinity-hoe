@@ -82,7 +82,8 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
     }
 
     private fun trigger(player: ServerPlayerEntity, hoe: ItemStack) {
-        hoe.removeEnchantment(registryKey)
+        val world = player.world as ServerWorld
+        hoe.removeEnchantment(world, registryKey)
 
         val stack = player.inventoryStacks.filter { it.item != Items.AIR }
             .filter { it.item is ArmorItem || it.item is ToolItem }
@@ -90,7 +91,7 @@ object FungusEnchanter : ChargeEnchantment(), HoldTicker {
             .randomOrNull() ?: return
 
         val enchantment = mushroomEnchantments.filter { !stack.hasEnchantment(it) }.random()
-        stack.addEnchantment(enchantment.registryKey, 1)
+        stack.addEnchantment(world, enchantment.registryKey, 1)
     }
 
     override fun getMaxCharge(level: Int): Int = 6000
