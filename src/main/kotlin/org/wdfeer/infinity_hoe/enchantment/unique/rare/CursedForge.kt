@@ -33,7 +33,7 @@ object CursedForge : UsableHarvestChargeEnchantment() {
             val newItem = toolUpgrades[oldItem]
             val newStack = ItemStack(newItem)
 
-            for (e in oldStack.enchantmentMap) newStack.addEnchantment(e.key, e.value)
+            for ((enchantment, level) in oldStack.enchantmentMap) newStack.addEnchantment(enchantment, level)
             newStack.damage = oldStack.damage
 
             newStack.addEnchantment(Enchantments.VANISHING_CURSE, 1)

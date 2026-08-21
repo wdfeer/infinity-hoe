@@ -25,7 +25,7 @@ object BlessedForge : UsableHarvestChargeEnchantment() {
             val newStack = ItemStack(newItem)
 
             val oldEnchants = oldStack.enchantmentMap
-            for (e in oldEnchants) newStack.addEnchantment(e.key, e.value)
+            for ((enchantment, level) in oldEnchants) newStack.addEnchantment(enchantment, level)
             newStack.damage = oldStack.damage
 
             val blessing = listOf(
